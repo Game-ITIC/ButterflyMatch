@@ -172,26 +172,11 @@ namespace Initializers
                     if(tmp != null) tmp.text = "LEVEL " + nextLevel;
                 }
 
-                var upgradeStars = _regionModel != null ? _regionModel.UpgradeCost : Models.RegionModel.DefaultUpgradeCost;
-                if(buildActionButton != null)
+                UpdateBuildButtonLabels();
+
+                if (_regionService != null)
                 {
-                    buildActionButton.SetSubLabel(upgradeStars.ToString());
-                }
-                else if(buildButton != null)
-                {
-                    var actionButton = buildButton.GetComponent<MenuActionButton>() ?? buildButton.GetComponentInParent<MenuActionButton>();
-                    if(actionButton != null)
-                    {
-                        actionButton.SetSubLabel(upgradeStars.ToString());
-                    }
-                    else
-                    {
-                        var texts = buildButton.GetComponentsInChildren<TMPro.TMP_Text>(true);
-                        if(texts.Length > 1)
-                        {
-                            texts[1].text = upgradeStars.ToString();
-                        }
-                    }
+                    _regionService.OnActiveRegionChanged += OnActiveRegionChangedHandler;
                 }
 
                 Debug.Log($"[CountryInitializer] Initialization complete in {sw.ElapsedMilliseconds} ms.");
@@ -199,6 +184,40 @@ namespace Initializers
             catch (Exception ex)
             {
                 Debug.LogError($"[CountryInitializer] Critical error during StartAsync ({sw.ElapsedMilliseconds} ms): {ex}");
+            }
+        }
+
+        private void OnActiveRegionChangedHandler(int index)
+        {
+            UpdateBuildButtonLabels();
+        }
+
+        public void UpdateBuildButtonLabels()
+        {
+            var buildActionButton = _mainMenuPanel?.MenuActionPanel?.BuildButton;
+            var buildButton = buildActionButton?.Button
+                              ?? FindButtonInScene("BuildButton", "Build Button", "Build");
+            var upgradeStars = _regionModel != null ? _regionModel.UpgradeCost : Models.RegionModel.DefaultUpgradeCost;
+
+            if (buildActionButton != null)
+            {
+                buildActionButton.SetSubLabel(upgradeStars.ToString());
+            }
+            else if (buildButton != null)
+            {
+                var actionButton = buildButton.GetComponent<MenuActionButton>() ?? buildButton.GetComponentInParent<MenuActionButton>();
+                if (actionButton != null)
+                {
+                    actionButton.SetSubLabel(upgradeStars.ToString());
+                }
+                else
+                {
+                    var texts = buildButton.GetComponentsInChildren<TMPro.TMP_Text>(true);
+                    if (texts.Length > 1)
+                    {
+                        texts[1].text = upgradeStars.ToString();
+                    }
+                }
             }
         }
 
@@ -563,6 +582,10 @@ namespace Initializers
 
         public void Dispose()
         {
+            if (_regionService != null)
+            {
+                _regionService.OnActiveRegionChanged -= OnActiveRegionChangedHandler;
+            }
             _disposable.Dispose();
         }
     }

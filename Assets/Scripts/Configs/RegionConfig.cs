@@ -41,6 +41,12 @@ namespace Configs
         {
             return regions != null && currentIndex >= 0 && currentIndex + 1 < regions.Count;
         }
+
+        public int GetTotalStepsForRegion(int index)
+        {
+            var region = GetRegionByIndex(index);
+            return region != null ? region.GetTotalSteps() : 0;
+        }
     }
 
     [Serializable]
@@ -61,5 +67,13 @@ namespace Configs
 
         [LabelText("Star Cost per Upgrade"), HideIf(nameof(isComingSoon)), MinValue(1)]
         public int starCost = 5;
+
+        public int GetTotalSteps()
+        {
+            if (regionPrefab == null) return 0;
+            var config = regionPrefab.GetComponent<BuildingsAnimationConfig>() ??
+                         regionPrefab.GetComponentInChildren<BuildingsAnimationConfig>(true);
+            return config != null && config.data != null ? config.data.Count : 0;
+        }
     }
 }

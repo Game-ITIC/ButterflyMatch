@@ -112,6 +112,29 @@ namespace Scopes.Country
                     .WithParameter<System.Collections.Generic.IEnumerable<Button>>(otherNavButtons);
             }
 
+            var islandPanel = _mainMenuPanel != null ? _mainMenuPanel.IslandPanel : null;
+            if(islandPanel == null) islandPanel = FindObjectOfType<IslandPanel>(true);
+            RegisterComponentIfPresent(builder, islandPanel);
+
+            if(islandPanel != null && regionConfig != null)
+            {
+                Button navIslandButton = null;
+                var otherNavButtons = new System.Collections.Generic.List<Button>();
+
+                if(menuNavPanel != null)
+                {
+                    navIslandButton = menuNavPanel.IslandButton;
+                    if(menuNavPanel.MenuButton != null) otherNavButtons.Add(menuNavPanel.MenuButton);
+                    if(menuNavPanel.ShopButton != null) otherNavButtons.Add(menuNavPanel.ShopButton);
+                }
+
+                builder.Register<IslandPresenter>(Lifetime.Scoped)
+                    .As<IInitializable>()
+                    .WithParameter(islandPanel)
+                    .WithParameter(navIslandButton)
+                    .WithParameter<System.Collections.Generic.IEnumerable<Button>>(otherNavButtons);
+            }
+
             if(topBarPanel != null)
             {
                 if(topBarPanel.StarView != null)

@@ -93,4 +93,14 @@ public class MainMenuPanel : MonoBehaviour
             return _rewardPopup;
         }
     }
+
+    public IslandPanel IslandPanel
+    {
+        get
+        {
+            if (_islandPanel != null) return _islandPanel;
+            _islandPanel = GetComponentInChildren<IslandPanel>(true) ?? FindObjectOfType<IslandPanel>(true);
+            return _islandPanel;
+        }
+    }
 }

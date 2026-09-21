@@ -16,6 +16,8 @@ namespace Services
         private RegionData _activeRegionData;
         private int _currentRegionIndex;
 
+        public event Action<int> OnActiveRegionChanged;
+
         public RegionConfig RegionConfig => _regionConfig;
         public RegionData ActiveRegionData => _activeRegionData;
         public BuildingsAnimationConfig ActiveRegion => _activeRegion;
@@ -37,6 +39,7 @@ namespace Services
         {
             Load();
             LoadRegion(_currentRegionIndex);
+            OnActiveRegionChanged?.Invoke(_currentRegionIndex);
             await UniTask.Yield();
         }
 
@@ -69,11 +72,26 @@ namespace Services
             PlayerPrefs.Save();
         }
 
+        public void SetRegion(int index)
+        {
+            if (_regionConfig == null || index < 0 || index >= _regionConfig.Count)
+            {
+                Debug.LogWarning($"[RegionService] Cannot set region to index {index}");
+                return;
+            }
+
+            _currentRegionIndex = index;
+            Save();
+            LoadRegion(_currentRegionIndex);
+            OnActiveRegionChanged?.Invoke(_currentRegionIndex);
+        }
+
         public void LoadNextRegion()
         {
             _currentRegionIndex++;
-            LoadRegion(_currentRegionIndex);
             Save();
+            LoadRegion(_currentRegionIndex);
+            OnActiveRegionChanged?.Invoke(_currentRegionIndex);
         }
 
         public void LoadRegion(int index)
