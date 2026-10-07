@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+#if UNITY_ANDROID
 using Unity.Notifications.Android;
 using UnityEngine.Android;
 using TMPro;
@@ -165,3 +166,4 @@ public class Notification : MonoBehaviour
         InitScript.DateOfExit = DateTime.Now.ToString();
     }
 }
+#endif
