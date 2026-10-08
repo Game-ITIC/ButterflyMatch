@@ -6,6 +6,7 @@ using Gley.DailyRewards.Internal;
 using Models;
 using Providers;
 using R3;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer.Unity;
@@ -61,7 +62,7 @@ namespace Presenters
                 return;
             }
 
-            var cardViews = Object.FindObjectsByType<DailyCardView>(FindObjectsInactive.Include, FindObjectsSortMode.None)
+            var cardViews = FindDailyCards()
                 .OrderBy(card => card.transform.GetSiblingIndex())
                 .ToList();
 
@@ -84,6 +85,17 @@ namespace Presenters
                 WireClaimButton(card);
                 _cards.Add(card);
             }
+        }
+
+        private static IEnumerable<DailyCardView> FindDailyCards()
+        {
+            var panels = Object.FindObjectsByType<DailyRewardsPanelFit>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            if(panels != null && panels.Length > 0)
+            {
+                return panels[0].GetComponentsInChildren<DailyCardView>(true);
+            }
+
+            return Object.FindObjectsByType<DailyCardView>(FindObjectsInactive.Include, FindObjectsSortMode.None);
         }
 
         private static void EnsureCardViews(List<DailyCardView> cardViews, int requiredCount)

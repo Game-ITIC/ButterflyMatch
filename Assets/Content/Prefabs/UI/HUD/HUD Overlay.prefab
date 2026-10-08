@@ -1250,8 +1250,8 @@ MonoBehaviour:
   m_StartAxis: 0
   m_CellSize: {x: 220, y: 280}
   m_Spacing: {x: 20, y: 60}
-  m_Constraint: 0
-  m_ConstraintCount: 2
+  m_Constraint: 1
+  m_ConstraintCount: 3
 --- !u!1 &5053495210579645856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2465,6 +2465,7 @@ GameObject:
   - component: {fileID: 6995217030955871596}
   - component: {fileID: 8553294925726217828}
   - component: {fileID: 3088450435923419444}
+  - component: {fileID: 7494350446971554392}
   m_Layer: 5
   m_Name: DailyRewardsPanel
   m_TagString: Untagged
@@ -2488,10 +2489,10 @@ RectTransform:
   - {fileID: 7378799702691499392}
   m_Father: {fileID: 2169762799842042799}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 115}
-  m_SizeDelta: {x: -160, y: -936.09973}
+  m_SizeDelta: {x: 920, y: 984}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8553294925726217828
 CanvasRenderer:
@@ -2531,6 +2532,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.56
+--- !u!114 &7494350446971554392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9185990513225562473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df9ad2e120f28b4ba4af42737d92a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.DailyRewardsPanelFit
+  designSize: {x: 920, y: 984}
+  designOffset: {x: 0, y: 115}
 --- !u!1001 &25503727694347046
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4144,6 +4159,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3034559734653043575, guid: 60fdfa496b8bf6d42803c0c6805bcc1f,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -31.000183
+      objectReference: {fileID: 0}
     - target: {fileID: 3475346119406091915, guid: 60fdfa496b8bf6d42803c0c6805bcc1f,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5252,13 +5272,16 @@ PrefabInstance:
     - {fileID: 509037675796406000, guid: 2ae8aeb340a82a248ba560fc35c4afb9, type: 3}
     - {fileID: 3492074853291306422, guid: 2ae8aeb340a82a248ba560fc35c4afb9, type: 3}
     - {fileID: 7380613724126337238, guid: 2ae8aeb340a82a248ba560fc35c4afb9, type: 3}
-    - {fileID: 7845914515444469648, guid: 2ae8aeb340a82a248ba560fc35c4afb9, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5282161598561961523, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 6995217030955871596}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8263263188120659896, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8980209465755726393}
     - targetCorrespondingSourceObject: {fileID: 766156382235585337, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
         type: 3}
       insertIndex: -1
@@ -5282,6 +5305,40 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6292243609543501212}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2738056835628106276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8263263188120659896, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6292243609543501212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8980209465755726393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738056835628106276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95866cd92bc602041b15b2f64e9ba23f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.DailyTasksTabController
+  dailyPanel: {fileID: 9185990513225562473}
+  tasksPanel: {fileID: 6407978526138361361}
+  dailyTabButton: {fileID: 9197458457534655715}
+  tasksTabButton: {fileID: 3015133356727918755}
+--- !u!114 &3015133356727918755 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9116813870411613503, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6292243609543501212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5845585267816581895 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 454083930563882651, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
@@ -5332,6 +5389,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffade7edb5b1df45a6c3642149606c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoundModifier
+--- !u!1 &6407978526138361361 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1134692415207179149, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6292243609543501212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6769865793900580517 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 766156382235585337, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
@@ -5382,6 +5445,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ffade7edb5b1df45a6c3642149606c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoundModifier
+--- !u!114 &9197458457534655715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2950250852923476351, guid: 2ae8aeb340a82a248ba560fc35c4afb9,
+    type: 3}
+  m_PrefabInstance: {fileID: 6292243609543501212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7184637225037395505
 PrefabInstance:
   m_ObjectHideFlags: 0

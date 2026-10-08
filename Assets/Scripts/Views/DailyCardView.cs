@@ -58,16 +58,20 @@ namespace Views
         {
             var claimed = _dayNumber - 1 < currentDay;
             var isCurrent = _dayNumber - 1 == currentDay;
+            // Claim is only valid for the current day after the Gley timer has expired.
             var available = isCurrent && timeExpired;
 
             if(claimButton != null)
             {
+                // Hide + lock when not claimable: ColorTint alone still looks like an active Get/Claim CTA.
+                claimButton.gameObject.SetActive(available);
                 claimButton.interactable = available;
             }
 
             if(glowObject != null)
             {
-                glowObject.SetActive(isCurrent && !claimed);
+                // Glow should only highlight a day that can actually be claimed now.
+                glowObject.SetActive(available);
             }
 
             if(canvasGroup == null)
