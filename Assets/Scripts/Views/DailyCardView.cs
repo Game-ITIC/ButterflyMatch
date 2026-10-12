@@ -92,8 +92,7 @@ namespace Views
         {
             if(claimButton == null)
             {
-                var claimTransform = transform.Find("GetButton");
-                claimButton = claimTransform != null ? claimTransform.GetComponent<Button>() : null;
+                claimButton = GetComponent<Button>();
             }
 
             if(itemImage == null)
@@ -102,9 +101,10 @@ namespace Views
                 itemImage = imageTransform != null ? imageTransform.GetComponent<Image>() : null;
             }
 
-            if(rewardText == null && claimButton != null)
+            if(rewardText == null)
             {
-                rewardText = claimButton.GetComponentInChildren<TMP_Text>(true);
+                var textTransform = transform.Find("Text (TMP)");
+                rewardText = textTransform != null ? textTransform.GetComponent<TMP_Text>() : null;
             }
 
             if(glowObject == null)
