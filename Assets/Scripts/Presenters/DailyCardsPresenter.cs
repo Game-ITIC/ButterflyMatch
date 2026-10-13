@@ -1,125 +1,66 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Gley.DailyRewards.API;
 using Gley.DailyRewards.Internal;
-using Models;
-using Providers;
-using R3;
+using Services.DailyRewards;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VContainer.Unity;
 using Views;
-using ZLinq;
 using Object = UnityEngine.Object;
 
 namespace Presenters
 {
     public class DailyCardsPresenter : IInitializable, IDisposable
     {
-        private readonly Systems.CurrencySystem.Interfaces.ICurrencyService _currencyService;
-        private readonly BoostersProvider _boostersProvider;
+        private readonly DailyRewardService _rewardService;
 
         private readonly List<DailyCardView> _cards = new();
-        private readonly CompositeDisposable _disposables = new();
+        private Button _dailyButton;
 
-        public DailyCardsPresenter(
-            Systems.CurrencySystem.Interfaces.ICurrencyService currencyService,
-            BoostersProvider boostersProvider)
+        public DailyCardsPresenter(DailyRewardService rewardService)
         {
-            _currencyService = currencyService;
-            _boostersProvider = boostersProvider;
+            _rewardService = rewardService;
         }
 
         public void Initialize()
         {
-            Calendar.AddClickListener(OnDayClaimed);
             BindCards();
-
-            if(_cards.Count == 0)
-            {
-                return;
-            }
-
+            WireDailyButton();
             RefreshCards();
-
-            Observable.Interval(TimeSpan.FromSeconds(0.5f))
-                .Subscribe(_ => RefreshCards())
-                .AddTo(_disposables);
         }
 
         private void BindCards()
         {
             _cards.Clear();
 
-            _ = Calendar.GetRemainingTimeSpan();
-
             var settings = Resources.Load<DailyRewardsData>(Constants.DATA_NAME_RUNTIME);
-            if(settings == null || settings.allDays == null || settings.allDays.Count == 0)
-            {
-                Debug.LogWarning("Daily rewards data is missing. Configure Gley Daily Rewards.");
-                return;
-            }
-
+            var rewards = _rewardService.GetAllRewards();
             var cardViews = Object.FindObjectsByType<DailyCardView>(FindObjectsInactive.Include, FindObjectsSortMode.None)
-                .OrderBy(card => card.transform.GetSiblingIndex())
+                .OrderBy(card => card.transform, new HierarchyOrderComparer())
                 .ToList();
 
-            if(cardViews.Count == 0)
+            if(cardViews.Count == 0 || rewards.Count == 0)
             {
-                Debug.LogWarning("Daily rewards UI is missing a DailyCardView template.");
                 return;
             }
 
-            EnsureCardViews(cardViews, settings.allDays.Count);
-
-            var daysToBind = Mathf.Min(cardViews.Count, settings.allDays.Count);
+            var daysToBind = Mathf.Min(cardViews.Count, rewards.Count);
 
             for(var i = 0; i < daysToBind; i++)
             {
                 var card = cardViews[i];
-                var day = settings.allDays[i];
+                var reward = rewards[i];
+                Sprite icon = null;
+                if(settings != null && settings.allDays != null && i < settings.allDays.Count)
+                {
+                    icon = settings.allDays[i].dayTexture;
+                }
 
-                card.Bind(i + 1, day.dayTexture, day.rewardValue);
+                card.Bind(i + 1, icon, reward.Amount);
                 WireClaimButton(card);
                 _cards.Add(card);
-            }
-        }
-
-        private static void EnsureCardViews(List<DailyCardView> cardViews, int requiredCount)
-        {
-            if(cardViews.Count == 0 || requiredCount <= cardViews.Count)
-            {
-                return;
-            }
-
-            var template = cardViews[0];
-            var parent = template.transform.parent;
-            if(parent == null)
-            {
-                return;
-            }
-
-            HidePlaceholderChildren(parent);
-
-            for(var i = cardViews.Count; i < requiredCount; i++)
-            {
-                var card = Object.Instantiate(template, parent);
-                card.name = $"{template.name} Day {i + 1}";
-                card.transform.SetSiblingIndex(i);
-                cardViews.Add(card);
-            }
-        }
-
-        private static void HidePlaceholderChildren(Transform parent)
-        {
-            for(var i = 0; i < parent.childCount; i++)
-            {
-                var child = parent.GetChild(i);
-                if(child.GetComponent<DailyCardView>() == null)
-                {
-                    child.gameObject.SetActive(false);
-                }
             }
         }
 
@@ -131,83 +72,138 @@ namespace Presenters
             }
 
             card.ClaimButton.onClick.RemoveAllListeners();
-            card.ClaimButton.onClick.AddListener(() => TryClaim(card));
+            card.ClaimButton.onClick.AddListener(ClaimToday);
         }
 
-        private void TryClaim(DailyCardView card)
+        private void WireDailyButton()
         {
-            var manager = CalendarManager.Instance;
-            var currentDay = manager.GetCurrentDay();
-            var timeExpired = manager.TimeExpired();
-
-            if(!card.CanClaim(currentDay, timeExpired))
+            _dailyButton = FindButton("Daily Button", "DailyButton");
+            if(_dailyButton == null)
             {
                 return;
             }
 
-            manager.ButtonClick(card.DayNumber, card.RewardValue, card.RewardSprite);
+            _dailyButton.onClick.RemoveListener(OpenPanel);
+            _dailyButton.onClick.AddListener(OpenPanel);
         }
 
-        private void RefreshCards()
+        private void OpenPanel()
         {
             if(_cards.Count == 0)
             {
                 return;
             }
 
-            var manager = CalendarManager.Instance;
-            var currentDay = manager.GetCurrentDay();
-            var timeExpired = manager.TimeExpired();
+            RefreshCards();
 
-            foreach (var card in _cards)
+            var taskPanel = _cards[0].GetComponentInParent<TaskPanel>(true);
+            if(taskPanel != null)
             {
-                card.ApplyState(currentDay, timeExpired);
+                taskPanel.ShowDailyRewards();
             }
         }
 
-        private void OnDayClaimed(int day, int value, Sprite icon)
+        private void ClaimToday()
         {
-            switch (day)
+            if(!_rewardService.CanClaimToday())
             {
-                case 1:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, value);
-                    break;
-                case 2:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, value);
-                    break;
-                case 3:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, value);
-                    break;
-                case 4:
-                {
-                    var booster = _boostersProvider.BoostersModels
-                        .AsValueEnumerable()
-                        .First(v => v.Type == BoostType.Bomb);
-                    booster.Add(value);
-                }
-                    break;
-                case 5:
-                {
-                    var booster = _boostersProvider.BoostersModels
-                        .AsValueEnumerable()
-                        .First(v => v.Type == BoostType.Shovel);
-                    booster.Add(value);
-                }
-                    break;
-                case 6:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, value);
-                    break;
-                case 7:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, value);
-                    break;
+                return;
             }
 
+            _rewardService.ClaimReward();
             RefreshCards();
+        }
+
+        private void RefreshCards()
+        {
+            var rewards = _rewardService.GetAllRewards();
+            if(_cards.Count == 0 || rewards.Count == 0)
+            {
+                return;
+            }
+
+            var dayIndex = _rewardService.GetCurrentDayIndex();
+            var cycleIndex = dayIndex % rewards.Count;
+            var canClaim = _rewardService.CanClaimToday();
+            var wrappedAfterLastDay = !canClaim && cycleIndex == 0 && dayIndex > 0;
+
+            for(var i = 0; i < _cards.Count; i++)
+            {
+                var isToday = canClaim && i == cycleIndex;
+                var isClaimed = wrappedAfterLastDay ? i == rewards.Count - 1 : i < cycleIndex;
+                _cards[i].ApplyCalendarState(isToday, isClaimed);
+            }
         }
 
         public void Dispose()
         {
-            _disposables.Dispose();
+            if(_dailyButton != null)
+            {
+                _dailyButton.onClick.RemoveListener(OpenPanel);
+            }
+        }
+
+        private static Button FindButton(params string[] names)
+        {
+            for(var sceneIndex = 0; sceneIndex < SceneManager.sceneCount; sceneIndex++)
+            {
+                var scene = SceneManager.GetSceneAt(sceneIndex);
+                if(!scene.isLoaded)
+                {
+                    continue;
+                }
+
+                foreach(var root in scene.GetRootGameObjects())
+                {
+                    var buttons = root.GetComponentsInChildren<Button>(true);
+                    foreach(var button in buttons)
+                    {
+                        foreach(var name in names)
+                        {
+                            if(string.Equals(button.gameObject.name.Trim(), name.Trim(), StringComparison.OrdinalIgnoreCase))
+                            {
+                                return button;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        private sealed class HierarchyOrderComparer : IComparer<Transform>
+        {
+            public int Compare(Transform a, Transform b)
+            {
+                var pathA = SiblingPath(a);
+                var pathB = SiblingPath(b);
+                var count = Mathf.Min(pathA.Count, pathB.Count);
+
+                for(var i = 0; i < count; i++)
+                {
+                    var difference = pathA[i].CompareTo(pathB[i]);
+                    if(difference != 0)
+                    {
+                        return difference;
+                    }
+                }
+
+                return pathA.Count.CompareTo(pathB.Count);
+            }
+
+            private static List<int> SiblingPath(Transform transform)
+            {
+                var path = new List<int>(8);
+                while(transform != null)
+                {
+                    path.Add(transform.GetSiblingIndex());
+                    transform = transform.parent;
+                }
+
+                path.Reverse();
+                return path;
+            }
         }
     }
 }

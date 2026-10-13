@@ -9,6 +9,7 @@ public class TaskPanel : MonoBehaviour
     [SerializeField] private Button[] _closeButtons;
     [SerializeField] private TaskView _taskViewPrefab;
     [SerializeField] private Transform _taskViewParent;
+    [SerializeField] private GameObject _animatedContent;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -22,26 +23,52 @@ public class TaskPanel : MonoBehaviour
     public TaskView TaskViewPrefab => _taskViewPrefab;
     public Transform TaskViewParent => _taskViewParent;
 
+    private GameObject AnimationTarget => _animatedContent != null ? _animatedContent : gameObject;
+
     public void Show()
     {
+        var dailyRewards = transform.Find("DailyRewardsPanel");
+        if (dailyRewards != null)
+            dailyRewards.gameObject.SetActive(false);
+
+        gameObject.SetActive(true);
         CurvedUIPanelAnimator.Show(
-            gameObject,
+            AnimationTarget,
             animatePanelTransitions ? panelOpenDuration : 0f,
             panelOpenCurve,
             panelFadeCurve);
     }
 
+    public void ShowDailyRewards()
+    {
+        if (_animatedContent != null)
+            _animatedContent.SetActive(false);
+
+        var dailyRewards = transform.Find("DailyRewardsPanel");
+        gameObject.SetActive(true);
+        if (dailyRewards != null)
+            dailyRewards.gameObject.SetActive(true);
+    }
+
     public void Hide()
     {
         CurvedUIPanelAnimator.Hide(
-            gameObject,
+            AnimationTarget,
             animatePanelTransitions ? panelCloseDuration : 0f,
             panelCloseCurve,
-            panelFadeCurve);
+            panelFadeCurve,
+            DeactivateRoot);
     }
 
     public void HideImmediate()
     {
-        CurvedUIPanelAnimator.HideImmediate(gameObject);
+        CurvedUIPanelAnimator.HideImmediate(AnimationTarget);
+        DeactivateRoot();
+    }
+
+    private void DeactivateRoot()
+    {
+        if (this != null)
+            gameObject.SetActive(false);
     }
 }

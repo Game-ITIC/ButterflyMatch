@@ -4,7 +4,6 @@ using Models.Tasks;
 using Services.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VContainer.Unity;
 
@@ -45,9 +44,6 @@ namespace Presenters
 
         private void SetupTaskButton()
         {
-            if (!_taskButton)
-                _taskButton = FindButtonInScene("TaskButton", "Task Button", "Tasks Button", "Task Button 01", "Daily Button", "DailyButton");
-
             if (!_taskButton) return;
 
             _taskButton.onClick.RemoveListener(OnTaskButtonClicked);
@@ -118,30 +114,6 @@ namespace Presenters
         private void OnTaskButtonClicked() => Show();
 
         private void OnCloseButtonClicked() => Hide();
-
-        private static Button FindButtonInScene(params string[] names)
-        {
-            for (var sceneIndex = 0; sceneIndex < SceneManager.sceneCount; sceneIndex++)
-            {
-                var scene = SceneManager.GetSceneAt(sceneIndex);
-                if (!scene.isLoaded) continue;
-
-                foreach (var root in scene.GetRootGameObjects())
-                {
-                    var buttons = root.GetComponentsInChildren<Button>(true);
-                    foreach (var button in buttons)
-                    {
-                        foreach (var name in names)
-                        {
-                            if (string.Equals(button.gameObject.name.Trim(), name.Trim(), StringComparison.OrdinalIgnoreCase))
-                                return button;
-                        }
-                    }
-                }
-            }
-
-            return null;
-        }
 
         public void Dispose()
         {

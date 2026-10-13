@@ -54,20 +54,19 @@ namespace Views
             }
         }
 
-        public void ApplyState(int currentDay, bool timeExpired)
+        public void ApplyCalendarState(bool isToday, bool isClaimed)
         {
-            var claimed = _dayNumber - 1 < currentDay;
-            var isCurrent = _dayNumber - 1 == currentDay;
-            var available = isCurrent && timeExpired;
+            ResolveReferences();
 
             if(claimButton != null)
             {
-                claimButton.interactable = available;
+                claimButton.enabled = isToday;
+                claimButton.interactable = isToday;
             }
 
             if(glowObject != null)
             {
-                glowObject.SetActive(isCurrent && !claimed);
+                glowObject.SetActive(isToday);
             }
 
             if(canvasGroup == null)
@@ -80,20 +79,14 @@ namespace Views
                 }
             }
 
-            canvasGroup.alpha = claimed ? 0.45f : 1f;
-        }
-
-        public bool CanClaim(int currentDay, bool timeExpired)
-        {
-            return _dayNumber - 1 == currentDay && timeExpired;
+            canvasGroup.alpha = isClaimed ? 0.45f : 1f;
         }
 
         private void ResolveReferences()
         {
             if(claimButton == null)
             {
-                var claimTransform = transform.Find("GetButton");
-                claimButton = claimTransform != null ? claimTransform.GetComponent<Button>() : null;
+                claimButton = GetComponent<Button>();
             }
 
             if(itemImage == null)
@@ -102,9 +95,10 @@ namespace Views
                 itemImage = imageTransform != null ? imageTransform.GetComponent<Image>() : null;
             }
 
-            if(rewardText == null && claimButton != null)
+            if(rewardText == null)
             {
-                rewardText = claimButton.GetComponentInChildren<TMP_Text>(true);
+                var textTransform = transform.Find("Text (TMP)");
+                rewardText = textTransform != null ? textTransform.GetComponent<TMP_Text>() : null;
             }
 
             if(glowObject == null)
