@@ -17,7 +17,16 @@ namespace Itic.Services
             var sw = Stopwatch.StartNew();
             Debug.Log("[Startup] === STEP 1/3: Starting Bootstrap Startup ===");
 
+#if UNITY_WEBGL && !UNITY_EDITOR
+            Application.targetFrameRate = Application.isMobilePlatform ? 30 : 60;
+            if (Application.isMobilePlatform)
+            {
+                QualitySettings.SetQualityLevel(0, true);
+                Application.focusChanged += focused => Application.targetFrameRate = focused ? 30 : 5;
+            }
+#else
             Application.targetFrameRate = 120;
+#endif
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
 
             try
