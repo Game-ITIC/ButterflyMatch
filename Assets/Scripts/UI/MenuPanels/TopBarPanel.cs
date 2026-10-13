@@ -25,7 +25,7 @@ public class TopBarPanel : MonoBehaviour
         get
         {
             if (_taskButton != null) return _taskButton;
-            _taskButton = FindChildButton("TaskButton", "Task Button", "Tasks Button", "Task Button 01", "Daily Button", "DailyButton");
+            _taskButton = FindChildButton("TaskButton", "Task Button", "Tasks Button", "Task Button 01");
             return _taskButton;
         }
     }
