@@ -205,39 +205,5 @@ namespace Presenters
                 return path;
             }
         }
-
-        private sealed class HierarchyOrderComparer : IComparer<Transform>
-        {
-            public int Compare(Transform a, Transform b)
-            {
-                var pathA = SiblingPath(a);
-                var pathB = SiblingPath(b);
-                var count = Mathf.Min(pathA.Count, pathB.Count);
-
-                for(var i = 0; i < count; i++)
-                {
-                    var difference = pathA[i].CompareTo(pathB[i]);
-                    if(difference != 0)
-                    {
-                        return difference;
-                    }
-                }
-
-                return pathA.Count.CompareTo(pathB.Count);
-            }
-
-            private static List<int> SiblingPath(Transform transform)
-            {
-                var path = new List<int>(8);
-                while(transform != null)
-                {
-                    path.Add(transform.GetSiblingIndex());
-                    transform = transform.parent;
-                }
-
-                path.Reverse();
-                return path;
-            }
-        }
     }
 }
