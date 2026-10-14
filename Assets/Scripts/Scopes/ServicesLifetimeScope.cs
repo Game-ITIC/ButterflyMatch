@@ -52,6 +52,7 @@ namespace Scopes
             builder.RegisterInstance(CurrencyConfig.CreateRuntimeDefault());
             builder.Register<PlayerPrefsCurrencySaveService>(Lifetime.Singleton).As<Systems.CurrencySystem.IPlayerSaveService>();
             builder.Register<CurrencyService>(Lifetime.Singleton).As<ICurrencyService>().AsSelf();
+            builder.Register<Services.DailyRewards.DailyRewardService>(Lifetime.Singleton);
             
             builder.Register<HealthSystem>(Lifetime.Singleton);
 

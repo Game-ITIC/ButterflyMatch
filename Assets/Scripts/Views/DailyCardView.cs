@@ -54,20 +54,19 @@ namespace Views
             }
         }
 
-        public void ApplyState(int currentDay, bool timeExpired)
+        public void ApplyCalendarState(bool isToday, bool isClaimed)
         {
-            var claimed = _dayNumber - 1 < currentDay;
-            var isCurrent = _dayNumber - 1 == currentDay;
-            var available = isCurrent && timeExpired;
+            ResolveReferences();
 
             if(claimButton != null)
             {
-                claimButton.interactable = available;
+                claimButton.enabled = isToday;
+                claimButton.interactable = isToday;
             }
 
             if(glowObject != null)
             {
-                glowObject.SetActive(isCurrent && !claimed);
+                glowObject.SetActive(isToday);
             }
 
             if(canvasGroup == null)
@@ -80,12 +79,7 @@ namespace Views
                 }
             }
 
-            canvasGroup.alpha = claimed ? 0.45f : 1f;
-        }
-
-        public bool CanClaim(int currentDay, bool timeExpired)
-        {
-            return _dayNumber - 1 == currentDay && timeExpired;
+            canvasGroup.alpha = isClaimed ? 0.45f : 1f;
         }
 
         private void ResolveReferences()

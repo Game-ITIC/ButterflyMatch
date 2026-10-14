@@ -27,12 +27,27 @@ public class TaskPanel : MonoBehaviour
 
     public void Show()
     {
+        var dailyRewards = transform.Find("DailyRewardsPanel");
+        if (dailyRewards != null)
+            dailyRewards.gameObject.SetActive(false);
+
         gameObject.SetActive(true);
         CurvedUIPanelAnimator.Show(
             AnimationTarget,
             animatePanelTransitions ? panelOpenDuration : 0f,
             panelOpenCurve,
             panelFadeCurve);
+    }
+
+    public void ShowDailyRewards()
+    {
+        if (_animatedContent != null)
+            _animatedContent.SetActive(false);
+
+        var dailyRewards = transform.Find("DailyRewardsPanel");
+        gameObject.SetActive(true);
+        if (dailyRewards != null)
+            dailyRewards.gameObject.SetActive(true);
     }
 
     public void Hide()
