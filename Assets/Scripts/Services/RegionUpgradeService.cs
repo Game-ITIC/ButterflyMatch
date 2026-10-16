@@ -71,6 +71,41 @@ namespace Services
 
         public bool IsPlaying { get; private set; }
 
+        public bool IsReady => playableGraph.IsValid() && clipPlayable.IsValid() && animationClip != null;
+
+        public void SetWriting(bool writing)
+        {
+            if (animator != null)
+            {
+                animator.keepAnimatorStateOnDisable = true;
+                animator.enabled = true;
+            }
+
+            if (!playableOutput.IsOutputValid())
+            {
+                return;
+            }
+
+            playableOutput.SetWeight(writing ? 1f : 0f);
+        }
+
+        public void HoldPose()
+        {
+            SetWriting(false);
+            if (animator == null)
+            {
+                return;
+            }
+
+            animator.keepAnimatorStateOnDisable = true;
+            animator.enabled = false;
+        }
+
+        public void CancelPlayback()
+        {
+            _cancellationTokenSource?.Cancel();
+        }
+
         [Button]
         public void JumpToFrame(int frame)
         {
@@ -81,19 +116,24 @@ namespace Services
             }
 
             _cancellationTokenSource?.Cancel();
+            SeekFrame(frame);
+            Debug.Log($"[RegionUpgradeService] ⏩ Jumped to frame {frame} ({FrameToTime(frame):F2}s) [Clip: {animationClip.name}]");
+        }
 
-            float frameRate = animationClip.frameRate;
-            double targetTime = frame / frameRate;
+        public void SeekFrame(int frame)
+        {
+            if (!IsReady)
+            {
+                return;
+            }
 
-            clipPlayable.SetTime(targetTime);
-            clipPlayable.SetSpeed(0); // Останавливаем
-            playableGraph.Evaluate(); // Принудительно обновляем
-
-            Debug.Log($"[RegionUpgradeService] ⏩ Jumped to frame {frame} ({targetTime:F2}s) [Clip: {animationClip.name}]");
+            clipPlayable.SetTime(FrameToTime(frame));
+            clipPlayable.SetSpeed(0);
+            playableGraph.Evaluate();
         }
 
         [Button]
-        public async UniTask PlayToFrame(int targetFrame)
+        public async UniTask PlayToFrame(int targetFrame, Action afterEvaluate = null)
         {
             if (!playableGraph.IsValid() || !clipPlayable.IsValid() || animationClip == null)
             {
@@ -118,7 +158,7 @@ namespace Services
             {
                 if (animator != null) animator.speed = 1f;
                 clipPlayable.SetSpeed(1);
-                await StopAtFrame(targetTime, token);
+                await StopAtFrame(targetTime, token, afterEvaluate);
 
                 if (!playableGraph.IsValid() || !clipPlayable.IsValid()) return;
 
@@ -136,13 +176,24 @@ namespace Services
             }
         }
 
-        [Button]
-        private async UniTask StopAtFrame(double targetTime, CancellationToken cancellationToken = default)
+        private double FrameToTime(int frame)
         {
+            return frame / animationClip.frameRate;
+        }
+
+        private async UniTask StopAtFrame(double targetTime, CancellationToken cancellationToken, Action afterEvaluate)
+        {
+            var timing = afterEvaluate == null ? PlayerLoopTiming.Update : PlayerLoopTiming.PostLateUpdate;
             while (playableGraph.IsValid() && clipPlayable.IsValid() && clipPlayable.GetTime() < targetTime)
             {
                 cancellationToken.ThrowIfCancellationRequested();
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                await UniTask.Yield(timing, cancellationToken);
+                if (!playableGraph.IsValid() || !clipPlayable.IsValid())
+                {
+                    return;
+                }
+
+                afterEvaluate?.Invoke();
             }
 
             if (playableGraph.IsValid() && clipPlayable.IsValid())
@@ -150,6 +201,7 @@ namespace Services
                 clipPlayable.SetTime(targetTime);
                 clipPlayable.SetSpeed(0);
                 playableGraph.Evaluate();
+                afterEvaluate?.Invoke();
             }
         }
 

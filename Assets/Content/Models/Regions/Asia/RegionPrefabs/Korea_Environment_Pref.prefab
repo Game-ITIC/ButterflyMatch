@@ -1222,6 +1222,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7496815627590055673}
   - component: {fileID: 2597834849366096396}
+  - component: {fileID: 9068090348218373900}
   m_Layer: 0
   m_Name: Korea_Environment_Pref
   m_TagString: Untagged
@@ -1270,7 +1271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2654948292e4c9eb569cde5fc0e2319, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingsAnimationConfig
-  animator: {fileID: 8577972153195739583}
+  animator: {fileID: 9068090348218373900}
   animationClip: {fileID: 7400000, guid: 60f66f70cea894a4dbd5e3d8b646bf7d, type: 2}
   data:
   - startFrame: 1
@@ -1281,6 +1282,28 @@ MonoBehaviour:
     endFrame: 180
   - startFrame: 200
     endFrame: 220
+--- !u!95 &9068090348218373900
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225021925073061284}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6259541838597172688
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,7 +1349,7 @@ GameObject:
   - component: {fileID: 3765347811959443956}
   - component: {fileID: 8577972153195739583}
   m_Layer: 0
-  m_Name: Korean_building
+  m_Name: Pagoda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1358,7 +1381,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6594810576683587560}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 7d31dc55afe0c084dbe1f31fb7b2c846, type: 2}
   m_CullingMode: 0

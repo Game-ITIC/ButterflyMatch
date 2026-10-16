@@ -11,6 +11,7 @@ public class MainMenuPanel : MonoBehaviour
     [SerializeField] private MenuActionPanel _menuActionPanel;
     [SerializeField] private MenuNavPanel _menuNavPanel;
     [SerializeField] private IslandPanel _islandPanel;
+    [SerializeField] private BuildingCatalogPanel _buildingCatalogPanel;
     [SerializeField] private LifePopup _lifePopup;
     [SerializeField] private RewardPopup _rewardPopup;
 
@@ -91,6 +92,26 @@ public class MainMenuPanel : MonoBehaviour
             if (_rewardPopup != null) return _rewardPopup;
             _rewardPopup = GetComponentInChildren<RewardPopup>(true);
             return _rewardPopup;
+        }
+    }
+
+    public IslandPanel IslandPanel
+    {
+        get
+        {
+            if (_islandPanel != null) return _islandPanel;
+            _islandPanel = GetComponentInChildren<IslandPanel>(true);
+            return _islandPanel;
+        }
+    }
+
+    public BuildingCatalogPanel BuildingCatalogPanel
+    {
+        get
+        {
+            if (_buildingCatalogPanel != null) return _buildingCatalogPanel;
+            _buildingCatalogPanel = GetComponentInChildren<BuildingCatalogPanel>(true);
+            return _buildingCatalogPanel;
         }
     }
 }

@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: KoreaIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: korea
+  displayName: Korea
+  icon: {fileID: -869753982007151114, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
+  islandPrefab: {fileID: 6225021925073061284, guid: 102d4ceced9d34c4a8de912ec2125993,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: korea-foundation
+    building: {fileID: 11400000, guid: 8bbf17e6d63663347a589f109191cbc1, type: 2}
+    starCost: 20
+    requiredBuildings: []
+    animationStep: 0
+    objectName: pagoda_part2
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: korea-walls
+    building: {fileID: 11400000, guid: ef506e0c2c028c24bb04cc93f506c50c, type: 2}
+    starCost: 22
+    requiredBuildings:
+    - {fileID: 11400000, guid: 8bbf17e6d63663347a589f109191cbc1, type: 2}
+    animationStep: 0
+    objectName: pagoda_part1
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: korea-roof
+    building: {fileID: 11400000, guid: 048e77dd529d7a84cb43436a8394febb, type: 2}
+    starCost: 24
+    requiredBuildings:
+    - {fileID: 11400000, guid: ef506e0c2c028c24bb04cc93f506c50c, type: 2}
+    animationStep: 0
+    objectName: pagoda_part3
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: korea-bridge
+    building: {fileID: 11400000, guid: fb67a8d80b570dd4a9a4a8f1bd754bdd, type: 2}
+    starCost: 26
+    requiredBuildings:
+    - {fileID: 11400000, guid: 048e77dd529d7a84cb43436a8394febb, type: 2}
+    animationStep: 0
+    objectName: bridge
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: korea-lantern
+    building: {fileID: 11400000, guid: cbe9c76999b35f048b5ca2e8c10e6eb4, type: 2}
+    starCost: 20
+    requiredBuildings:
+    - {fileID: 11400000, guid: 8bbf17e6d63663347a589f109191cbc1, type: 2}
+    animationStep: 3
+    objectName: 
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: korea-tree1
+    building: {fileID: 11400000, guid: ec48ee1ad9bf62240bcd44e7aff2adb1, type: 2}
+    starCost: 25
+    requiredBuildings: []
+    animationStep: -1
+    objectName: Tree 01
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: korea-tree2
+    building: {fileID: 11400000, guid: 469b6003c053a814aa3087f7dbfb2207, type: 2}
+    starCost: 25
+    requiredBuildings: []
+    animationStep: -1
+    objectName: Tree 01 (1)
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
