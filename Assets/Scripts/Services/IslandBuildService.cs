@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Configs;
 using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using Models;
 using Systems.CurrencySystem;
 using Systems.CurrencySystem.Interfaces;
@@ -18,13 +19,6 @@ namespace Services
         private readonly RegionUpgradeService _regionUpgradeService;
         private readonly RegionModel _regionModel;
         private const float TreeGrowSeconds = 0.9f;
-
-        private static readonly AnimationCurve TreeGrowCurve = new(
-            new Keyframe(0f, 0f),
-            new Keyframe(0.35f, 1.15f),
-            new Keyframe(0.6f, 0.95f),
-            new Keyframe(0.8f, 1.03f),
-            new Keyframe(1f, 1f));
 
         private readonly List<PartPose> _parts = new();
         private readonly List<GameObject> _spawned = new();
@@ -311,22 +305,18 @@ namespace Services
 
             var target = spawned.transform.localScale;
             spawned.transform.localScale = Vector3.zero;
-            var elapsed = 0f;
-            while (elapsed < TreeGrowSeconds)
+            var tween = spawned.transform
+                .DOScale(target, TreeGrowSeconds)
+                .SetEase(Ease.OutBack)
+                .SetTarget(spawned);
+            while (tween.IsActive() && !tween.IsComplete())
             {
                 await UniTask.Yield(PlayerLoopTiming.Update);
                 if (version != _version || spawned == null)
                 {
+                    tween.Kill();
                     return;
                 }
-
-                elapsed += Time.deltaTime;
-                spawned.transform.localScale = target * TreeGrowCurve.Evaluate(Mathf.Clamp01(elapsed / TreeGrowSeconds));
-            }
-
-            if (spawned != null)
-            {
-                spawned.transform.localScale = target;
             }
         }
 
@@ -652,6 +642,7 @@ namespace Services
             {
                 if (_spawned[i] != null)
                 {
+                    _spawned[i].transform.DOKill();
                     UnityEngine.Object.Destroy(_spawned[i]);
                 }
             }
