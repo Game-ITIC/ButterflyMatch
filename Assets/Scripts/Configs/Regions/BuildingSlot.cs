@@ -26,6 +26,7 @@ namespace Configs
         public IReadOnlyList<BuildingSO> RequiredBuildings => ListedRequirements();
         public int AnimationStep => animationStep;
         public string ObjectName => objectName;
+        public bool IsTree => ContainsTree(building != null ? building.BuildingId : slotId);
 
 #if UNITY_EDITOR
         public static BuildingSlot Create(string id, BuildingSO buildingAsset, int cost, BuildingSO[] required, int step, string animatedObject = null)
@@ -44,7 +45,12 @@ namespace Configs
 
         public bool RequirementsMet(IslandSO island, IList<string> builtSlotIds)
         {
-            var required = ListedRequirements();
+            if (IsTree)
+            {
+                return true;
+            }
+
+            var required = QueueRequirements();
             if (required == null || required.Count == 0)
             {
                 return true;
@@ -70,7 +76,7 @@ namespace Configs
 
         public string RequirementLabel()
         {
-            var required = ListedRequirements();
+            var required = QueueRequirements();
             if (required == null || required.Count == 0)
             {
                 return string.Empty;
@@ -104,6 +110,34 @@ namespace Configs
             }
 
             return requiredBuildings;
+        }
+
+        private List<BuildingSO> QueueRequirements()
+        {
+            var listed = ListedRequirements();
+            var queue = new List<BuildingSO>();
+            if (listed == null)
+            {
+                return queue;
+            }
+
+            for (var i = 0; i < listed.Count; i++)
+            {
+                var needed = listed[i];
+                if (needed == null || ContainsTree(needed.BuildingId))
+                {
+                    continue;
+                }
+
+                queue.Add(needed);
+            }
+
+            return queue;
+        }
+
+        private static bool ContainsTree(string id)
+        {
+            return !string.IsNullOrEmpty(id) && id.IndexOf("tree", StringComparison.OrdinalIgnoreCase) >= 0;
         }
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Configs;
-using Cysharp.Threading.Tasks;
 using Models;
 using Systems.CurrencySystem;
 using Systems.CurrencySystem.Interfaces;
@@ -17,17 +16,10 @@ namespace Services
         private readonly RegionService _regionService;
         private readonly RegionUpgradeService _regionUpgradeService;
         private readonly RegionModel _regionModel;
-        private readonly Dictionary<int, Vector3> _treeScales = new();
         private readonly List<PartPose> _parts = new();
-        private readonly HashSet<int> _shown = new();
-        private int _treeInstanceId;
+        private readonly List<GameObject> _spawned = new();
+        private readonly Dictionary<string, LocalPose> _treePoses = new();
         private int _capturedInstanceId;
-        private int _playVersion;
-        private int _treeAnim;
-        private bool _playing;
-        private bool _playingLantern;
-        private int _playingStep;
-        private string _playingKey;
         private Transform _animatorRoot;
 
         public IslandBuildService(
@@ -142,7 +134,7 @@ namespace Services
             }
 
             _store.MarkBuilt(island.IslandId, slot.SlotId);
-            PlayPurchased(slot);
+            Place(slot);
             Changed?.Invoke();
             return true;
         }
@@ -155,136 +147,216 @@ namespace Services
                 return;
             }
 
-            _playVersion++;
-            _treeAnim++;
-            _regionUpgradeService?.CancelPlayback();
-            if (EnsureGraph())
-            {
-                CaptureParts();
-                BindShown(island);
-                _playing = false;
-                _regionUpgradeService.HoldPose();
-                ApplyMask();
-            }
-
-            ApplyTrees(null);
+            ClearSpawned();
+            Prepare();
+            HidePieces();
+            PlaceBuilt(island);
+            _regionUpgradeService?.HoldPose();
         }
 
-        private void PlayPurchased(BuildingSlot slot)
+        private void PlaceBuilt(IslandSO island)
         {
-            var kind = KindOf(slot);
-            if (kind == BuildKind.Tree)
-            {
-                ApplyTrees(slot.ObjectName);
-                return;
-            }
-
-            if (kind == BuildKind.Lantern)
-            {
-                PlaySteps(null, true, true, null).Forget();
-                return;
-            }
-
-            if (!string.IsNullOrEmpty(slot.ObjectName))
-            {
-                PlaySteps(null, false, false, slot.ObjectName).Forget();
-                return;
-            }
-
-            PlaySteps(new List<int> { slot.AnimationStep }, false, false, null).Forget();
-        }
-
-        private async UniTask PlaySteps(List<int> steps, bool lantern, bool hideWholeGroup, string objectKey)
-        {
-            var version = ++_playVersion;
-            _regionUpgradeService?.CancelPlayback();
-            if (!EnsureGraph())
+            var slots = island != null ? island.Slots : null;
+            var built = island != null ? _store.GetBuilt(island.IslandId) : null;
+            if (slots == null || built == null)
             {
                 return;
             }
 
-            CaptureParts();
-            if (!string.IsNullOrEmpty(objectKey))
+            for (var i = 0; i < slots.Count; i++)
             {
-                steps = StepsForKey(objectKey);
-            }
-            else if (hideWholeGroup)
-            {
-                steps = StepsFor(lantern);
-            }
-
-            if (steps == null || steps.Count == 0)
-            {
-                return;
-            }
-
-            BindShown(ActiveIsland);
-            _playingKey = objectKey;
-            if (!string.IsNullOrEmpty(objectKey))
-            {
-                HideKey(objectKey);
-            }
-            else if (hideWholeGroup)
-            {
-                SetGroupShown(lantern, false);
-            }
-            else
-            {
-                HideStep(lantern, steps[0]);
-            }
-            _regionUpgradeService.SetWriting(true);
-            try
-            {
-                for (var i = 0; i < steps.Count; i++)
+                var slot = slots[i];
+                if (slot != null && built.Contains(slot.SlotId))
                 {
-                    if (version != _playVersion)
-                    {
-                        return;
-                    }
+                    Place(slot);
+                }
+            }
+        }
 
-                    var stepIndex = steps[i];
-                    var step = ClipStep(stepIndex);
-                    if (step == null)
+        private void Place(BuildingSlot slot)
+        {
+            if (slot == null || slot.Building == null)
+            {
+                return;
+            }
+
+            Prepare();
+            if (slot.IsTree)
+            {
+                SpawnPrefab(slot);
+                return;
+            }
+
+            RevealPiece(slot);
+            _regionUpgradeService?.HoldPose();
+        }
+
+        private void SpawnPrefab(BuildingSlot slot)
+        {
+            var anchor = FindAnchor(slot.ObjectName);
+            var prefab = slot.Building != null ? slot.Building.Prefab : null;
+            if (anchor == null || prefab == null)
+            {
+                return;
+            }
+
+            var pose = new LocalPose(anchor);
+            if (_treePoses.TryGetValue(anchor.name, out var saved) && saved.Scale.sqrMagnitude > 0.0001f)
+            {
+                pose = saved;
+            }
+
+            var spawned = UnityEngine.Object.Instantiate(prefab, anchor.parent);
+            spawned.name = slot.SlotId;
+            spawned.SetActive(true);
+            pose.Write(spawned.transform);
+            CopyMaterials(anchor, spawned.transform);
+            anchor.gameObject.SetActive(false);
+            _spawned.Add(spawned);
+        }
+
+        private static void CopyMaterials(Transform source, Transform spawned)
+        {
+            var sourceRenderers = source.GetComponentsInChildren<MeshRenderer>(true);
+            var spawnedRenderers = spawned.GetComponentsInChildren<MeshRenderer>(true);
+            for (var i = 0; i < spawnedRenderers.Length; i++)
+            {
+                var spawnedRenderer = spawnedRenderers[i];
+                for (var j = 0; j < sourceRenderers.Length; j++)
+                {
+                    if (!string.Equals(sourceRenderers[j].name, spawnedRenderer.name, StringComparison.Ordinal))
                     {
                         continue;
                     }
 
-                    _playing = true;
-                    _playingLantern = lantern;
-                    _playingStep = stepIndex;
-                    _regionUpgradeService.JumpToFrame(step.startFrame);
-                    ApplyMask();
-                    await _regionUpgradeService.PlayToFrame(step.endFrame, () =>
-                    {
-                        if (version == _playVersion)
-                        {
-                            ApplyMask();
-                        }
-                    });
-
-                    if (version != _playVersion)
-                    {
-                        return;
-                    }
-
-                    if (!string.IsNullOrEmpty(objectKey))
-                    {
-                        RevealKey(objectKey, stepIndex);
-                    }
-                    else
-                    {
-                        RevealStep(lantern, stepIndex);
-                    }
+                    spawnedRenderer.sharedMaterials = sourceRenderers[j].sharedMaterials;
+                    spawnedRenderer.enabled = true;
+                    break;
                 }
             }
-            finally
+        }
+
+        private void RevealPiece(BuildingSlot slot)
+        {
+            var lantern = KindOf(slot) == BuildKind.Lantern;
+            for (var i = 0; i < _parts.Count; i++)
             {
-                if (version == _playVersion)
+                var part = _parts[i];
+                if (part.Transform == null || !PieceMatches(part, slot, lantern))
                 {
-                    _playing = false;
-                    _playingKey = null;
-                    _regionUpgradeService.HoldPose();
-                    ApplyMask();
+                    continue;
+                }
+
+                part.Shown.Write(part.Transform);
+                part.Transform.gameObject.SetActive(true);
+            }
+        }
+
+        private bool PieceMatches(PartPose part, BuildingSlot slot, bool lantern)
+        {
+            if (!string.IsNullOrEmpty(slot.ObjectName))
+            {
+                return Matches(part.Transform, slot.ObjectName);
+            }
+
+            if (lantern)
+            {
+                return part.Lantern;
+            }
+
+            return !part.Lantern && part.Step == slot.AnimationStep;
+        }
+
+        private void Prepare()
+        {
+            var instance = _regionService != null ? _regionService.ActiveInstance : null;
+            if (instance == null)
+            {
+                return;
+            }
+
+            if (_capturedInstanceId != instance.GetInstanceID())
+            {
+                _parts.Clear();
+                _treePoses.Clear();
+            }
+
+            RememberTrees(instance.transform);
+            if (EnsureGraph())
+            {
+                CaptureParts();
+            }
+
+            HideTrees(instance.transform);
+            _regionUpgradeService?.HoldPose();
+        }
+
+        private void RememberTrees(Transform root)
+        {
+            var transforms = root.GetComponentsInChildren<Transform>(true);
+            for (var i = 0; i < transforms.Length; i++)
+            {
+                var tree = transforms[i];
+                if (!IsTreeRoot(tree))
+                {
+                    continue;
+                }
+
+                var live = new LocalPose(tree);
+                if (live.Scale.sqrMagnitude > 0.0001f)
+                {
+                    _treePoses[tree.name] = live;
+                }
+            }
+        }
+
+        private void HideTrees(Transform root)
+        {
+            var built = BuiltTreeNames();
+            var transforms = root.GetComponentsInChildren<Transform>(true);
+            for (var i = 0; i < transforms.Length; i++)
+            {
+                var tree = transforms[i];
+                if (!IsTreeRoot(tree) || built.Contains(tree.name))
+                {
+                    continue;
+                }
+
+                tree.gameObject.SetActive(false);
+            }
+        }
+
+        private HashSet<string> BuiltTreeNames()
+        {
+            var names = new HashSet<string>();
+            var island = ActiveIsland;
+            var slots = island != null ? island.Slots : null;
+            var built = island != null ? _store.GetBuilt(island.IslandId) : null;
+            if (slots == null || built == null)
+            {
+                return names;
+            }
+
+            for (var i = 0; i < slots.Count; i++)
+            {
+                var slot = slots[i];
+                if (slot != null && slot.IsTree && !string.IsNullOrEmpty(slot.ObjectName) && built.Contains(slot.SlotId))
+                {
+                    names.Add(slot.ObjectName);
+                }
+            }
+
+            return names;
+        }
+
+        private void HidePieces()
+        {
+            for (var i = 0; i < _parts.Count; i++)
+            {
+                var part = _parts[i];
+                if (part.Transform != null)
+                {
+                    part.Hidden.Write(part.Transform);
                 }
             }
         }
@@ -313,7 +385,7 @@ namespace Services
             for (var i = 0; i < transforms.Length; i++)
             {
                 var transform = transforms[i];
-                if (transform == null || transform == animator.transform)
+                if (transform == null || transform == animator.transform || IsTreeRoot(transform))
                 {
                     continue;
                 }
@@ -328,7 +400,7 @@ namespace Services
                 for (var i = 0; i < transforms.Length; i++)
                 {
                     var transform = transforms[i];
-                    if (transform == null || transform == animator.transform)
+                    if (transform == null || transform == animator.transform || IsTreeRoot(transform))
                     {
                         continue;
                     }
@@ -350,7 +422,6 @@ namespace Services
             }
 
             ClaimLanternStep();
-            Debug.Log($"[IslandBuildService] Captured {_parts.Count} animated parts on {animator.gameObject.name}.");
         }
 
         private void ClaimLanternStep()
@@ -378,148 +449,25 @@ namespace Services
             }
         }
 
-        private void BindShown(IslandSO island)
+        private Transform FindAnchor(string objectName)
         {
-            _shown.Clear();
-            if (IsKindBuilt(island, BuildKind.Lantern))
+            var instance = _regionService != null ? _regionService.ActiveInstance : null;
+            if (instance == null || string.IsNullOrEmpty(objectName))
             {
-                SetGroupShown(true, true);
+                return null;
             }
 
-            var slots = island != null ? island.Slots : null;
-            if (slots == null)
+            var transforms = instance.GetComponentsInChildren<Transform>(true);
+            for (var i = 0; i < transforms.Length; i++)
             {
-                return;
+                var transform = transforms[i];
+                if (transform != null && string.Equals(transform.name, objectName, StringComparison.OrdinalIgnoreCase))
+                {
+                    return transform;
+                }
             }
 
-            var built = _store.GetBuilt(island.IslandId);
-            for (var i = 0; i < slots.Count; i++)
-            {
-                var slot = slots[i];
-                if (slot == null || KindOf(slot) == BuildKind.Tree || built == null || !built.Contains(slot.SlotId))
-                {
-                    continue;
-                }
-
-                if (!string.IsNullOrEmpty(slot.ObjectName))
-                {
-                    RevealKey(slot.ObjectName, -1);
-                }
-                else if (KindOf(slot) == BuildKind.House && slot.AnimationStep >= 0)
-                {
-                    RevealStep(false, slot.AnimationStep);
-                }
-            }
-        }
-
-        private void SetGroupShown(bool lantern, bool shown)
-        {
-            for (var i = 0; i < _parts.Count; i++)
-            {
-                var part = _parts[i];
-                if (part.Lantern != lantern || part.Transform == null)
-                {
-                    continue;
-                }
-
-                var id = part.Transform.GetInstanceID();
-                if (shown)
-                {
-                    _shown.Add(id);
-                }
-                else
-                {
-                    _shown.Remove(id);
-                }
-            }
-        }
-
-        private void HideStep(bool lantern, int step)
-        {
-            for (var i = 0; i < _parts.Count; i++)
-            {
-                var part = _parts[i];
-                if (part.Lantern != lantern || part.Step != step || part.Transform == null)
-                {
-                    continue;
-                }
-
-                _shown.Remove(part.Transform.GetInstanceID());
-            }
-        }
-
-        private void RevealStep(bool lantern, int step)
-        {
-            for (var i = 0; i < _parts.Count; i++)
-            {
-                var part = _parts[i];
-                if (part.Lantern != lantern || part.Step != step || part.Transform == null)
-                {
-                    continue;
-                }
-
-                _shown.Add(part.Transform.GetInstanceID());
-            }
-        }
-
-        private void HideKey(string objectKey)
-        {
-            RevealKey(objectKey, -1, false);
-        }
-
-        private void RevealKey(string objectKey, int step)
-        {
-            RevealKey(objectKey, step, true);
-        }
-
-        private void RevealKey(string objectKey, int step, bool shown)
-        {
-            for (var i = 0; i < _parts.Count; i++)
-            {
-                var part = _parts[i];
-                if (part.Transform == null || (step >= 0 && part.Step != step) || !Matches(part.Transform, objectKey))
-                {
-                    continue;
-                }
-
-                var id = part.Transform.GetInstanceID();
-                if (shown)
-                {
-                    _shown.Add(id);
-                }
-                else
-                {
-                    _shown.Remove(id);
-                }
-            }
-        }
-
-        private List<int> StepsForKey(string objectKey)
-        {
-            var steps = new List<int>();
-            for (var i = 0; i < _parts.Count; i++)
-            {
-                var part = _parts[i];
-                if (part.Transform == null || steps.Contains(part.Step) || !Matches(part.Transform, objectKey))
-                {
-                    continue;
-                }
-
-                steps.Add(part.Step);
-            }
-
-            steps.Sort();
-            return steps;
-        }
-
-        private bool PartFollowsClip(PartPose part)
-        {
-            if (!string.IsNullOrEmpty(_playingKey))
-            {
-                return Matches(part.Transform, _playingKey);
-            }
-
-            return part.Lantern == _playingLantern;
+            return null;
         }
 
         private bool Matches(Transform transform, string objectKey)
@@ -543,77 +491,35 @@ namespace Services
             return false;
         }
 
-        private void ApplyMask()
+        private void ClearSpawned()
         {
-            for (var i = 0; i < _parts.Count; i++)
+            for (var i = _spawned.Count - 1; i >= 0; i--)
             {
-                var part = _parts[i];
-                var transform = part.Transform;
-                if (transform == null)
+                if (_spawned[i] != null)
                 {
-                    continue;
+                    UnityEngine.Object.Destroy(_spawned[i]);
                 }
-
-                if (_playing && part.Step == _playingStep && PartFollowsClip(part))
-                {
-                    continue;
-                }
-
-                var pose = _shown.Contains(transform.GetInstanceID()) ? part.Shown : part.Hidden;
-                pose.Write(transform);
-            }
-        }
-
-        private List<int> StepsFor(bool lantern)
-        {
-            var steps = new List<int>();
-            for (var i = 0; i < _parts.Count; i++)
-            {
-                var part = _parts[i];
-                if (part.Lantern != lantern || steps.Contains(part.Step))
-                {
-                    continue;
-                }
-
-                steps.Add(part.Step);
             }
 
-            steps.Sort();
-            return steps;
+            _spawned.Clear();
         }
 
-        private BuildingsAnimationData ClipStep(int step)
+        private bool EnsureGraph()
         {
-            var steps = _regionService != null && _regionService.ActiveRegion != null
-                ? _regionService.ActiveRegion.data
-                : null;
-            if (steps == null || step < 0 || step >= steps.Count)
-            {
-                return null;
-            }
-
-            return steps[step];
-        }
-
-        private bool IsKindBuilt(IslandSO island, BuildKind kind)
-        {
-            var slots = island != null ? island.Slots : null;
-            if (slots == null)
+            var instance = _regionService != null ? _regionService.ActiveInstance : null;
+            if (_regionUpgradeService == null || _regionModel?.RegionService?.ActiveRegion == null || instance == null)
             {
                 return false;
             }
 
-            var built = _store.GetBuilt(island.IslandId);
-            for (var i = 0; i < slots.Count; i++)
+            if (_capturedInstanceId != instance.GetInstanceID() || !_regionUpgradeService.IsReady)
             {
-                var slot = slots[i];
-                if (slot != null && KindOf(slot) == kind && built != null && built.Contains(slot.SlotId))
-                {
-                    return true;
-                }
+                _parts.Clear();
+                _regionUpgradeService.Initialize(_regionModel);
+                _capturedInstanceId = instance.GetInstanceID();
             }
 
-            return false;
+            return _regionUpgradeService.IsReady;
         }
 
         private BuildingSlot FindSlot(BuildKind kind)
@@ -644,11 +550,6 @@ namespace Services
                 return BuildKind.House;
             }
 
-            if (id.IndexOf("tree", StringComparison.OrdinalIgnoreCase) >= 0)
-            {
-                return BuildKind.Tree;
-            }
-
             if (id.IndexOf("lantern", StringComparison.OrdinalIgnoreCase) >= 0
                 || id.IndexOf("fonar", StringComparison.OrdinalIgnoreCase) >= 0)
             {
@@ -656,114 +557,6 @@ namespace Services
             }
 
             return BuildKind.House;
-        }
-
-        private void ApplyTrees(string animateName)
-        {
-            var island = ActiveIsland;
-            var instance = _regionService != null ? _regionService.ActiveInstance : null;
-            if (instance == null || island == null)
-            {
-                return;
-            }
-
-            if (_treeInstanceId != instance.GetInstanceID())
-            {
-                _treeScales.Clear();
-                _treeInstanceId = instance.GetInstanceID();
-            }
-
-            var shown = ShownTreeNames(island);
-            var transforms = instance.GetComponentsInChildren<Transform>(true);
-            Transform growing = null;
-            var growingScale = Vector3.zero;
-            for (var i = 0; i < transforms.Length; i++)
-            {
-                var tree = transforms[i];
-                if (!IsTreeRoot(tree))
-                {
-                    continue;
-                }
-
-                if (!_treeScales.TryGetValue(tree.GetInstanceID(), out var scale) || scale.sqrMagnitude <= 0.0001f)
-                {
-                    scale = tree.localScale;
-                    if (scale.sqrMagnitude <= 0.0001f)
-                    {
-                        continue;
-                    }
-
-                    _treeScales[tree.GetInstanceID()] = scale;
-                }
-
-                if (!shown.Contains(tree.name))
-                {
-                    tree.localScale = Vector3.zero;
-                    continue;
-                }
-
-                if (!string.IsNullOrEmpty(animateName) && string.Equals(tree.name, animateName, StringComparison.Ordinal))
-                {
-                    growing = tree;
-                    growingScale = scale;
-                    tree.localScale = Vector3.zero;
-                    continue;
-                }
-
-                tree.localScale = scale;
-            }
-
-            if (growing != null)
-            {
-                AnimateTree(growing, growingScale).Forget();
-            }
-        }
-
-        private HashSet<string> ShownTreeNames(IslandSO island)
-        {
-            var names = new HashSet<string>();
-            var slots = island != null ? island.Slots : null;
-            var built = island != null ? _store.GetBuilt(island.IslandId) : null;
-            if (slots == null || built == null)
-            {
-                return names;
-            }
-
-            for (var i = 0; i < slots.Count; i++)
-            {
-                var slot = slots[i];
-                if (slot == null || KindOf(slot) != BuildKind.Tree || string.IsNullOrEmpty(slot.ObjectName) || !built.Contains(slot.SlotId))
-                {
-                    continue;
-                }
-
-                names.Add(slot.ObjectName);
-            }
-
-            return names;
-        }
-
-        private async UniTask AnimateTree(Transform tree, Vector3 scale)
-        {
-            var version = ++_treeAnim;
-            const float duration = 0.7f;
-            var elapsed = 0f;
-            while (elapsed < duration)
-            {
-                if (version != _treeAnim || tree == null)
-                {
-                    return;
-                }
-
-                elapsed += Time.deltaTime;
-                tree.localScale = Vector3.Lerp(Vector3.zero, scale, Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(elapsed / duration)));
-                await UniTask.Yield();
-            }
-
-            if (version == _treeAnim && tree != null)
-            {
-                tree.localScale = scale;
-            }
         }
 
         private static bool IsTreeRoot(Transform tree)
@@ -806,31 +599,10 @@ namespace Services
             return Quaternion.Angle(transform.localRotation, pose.Rotation) > 1f;
         }
 
-        private bool EnsureGraph()
-        {
-            var instance = _regionService != null ? _regionService.ActiveInstance : null;
-            if (_regionUpgradeService == null || _regionModel?.RegionService?.ActiveRegion == null || instance == null)
-            {
-                return false;
-            }
-
-            if (_capturedInstanceId != instance.GetInstanceID() || !_regionUpgradeService.IsReady)
-            {
-                _parts.Clear();
-                _shown.Clear();
-                _regionUpgradeService.Initialize(_regionModel);
-                _capturedInstanceId = instance.GetInstanceID();
-                _treeInstanceId = 0;
-            }
-
-            return _regionUpgradeService.IsReady;
-        }
-
         private enum BuildKind
         {
             House,
-            Lantern,
-            Tree
+            Lantern
         }
 
         private struct LocalPose
