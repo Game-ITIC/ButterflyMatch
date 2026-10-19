@@ -16,6 +16,7 @@ namespace Configs
         [SerializeField] private BuildingSO[] requiredBuildings;
         [SerializeField] private int animationStep;
         [SerializeField] private string objectName;
+        [SerializeField] private string[] objectNames;
         [SerializeField] private Vector3 localPosition;
         [SerializeField] private Vector3 localEulerAngles;
         [SerializeField] private Vector3 localScale = Vector3.one;
@@ -27,6 +28,35 @@ namespace Configs
         public int AnimationStep => animationStep;
         public string ObjectName => objectName;
         public bool IsTree => ContainsTree(building != null ? building.BuildingId : slotId);
+        public bool NamesAPart => !string.IsNullOrEmpty(objectName) || HasObjectNames();
+
+        public bool Names(string candidate)
+        {
+            if (string.IsNullOrEmpty(candidate))
+            {
+                return false;
+            }
+
+            if (!string.IsNullOrEmpty(objectName) && string.Equals(objectName, candidate, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            if (objectNames == null)
+            {
+                return false;
+            }
+
+            for (var i = 0; i < objectNames.Length; i++)
+            {
+                if (string.Equals(objectNames[i], candidate, StringComparison.OrdinalIgnoreCase))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
 #if UNITY_EDITOR
         public static BuildingSlot Create(string id, BuildingSO buildingAsset, int cost, BuildingSO[] required, int step, string animatedObject = null)
@@ -39,6 +69,19 @@ namespace Configs
                 requiredBuildings = required,
                 animationStep = step,
                 objectName = animatedObject
+            };
+        }
+
+        public static BuildingSlot CreateGroup(string id, BuildingSO buildingAsset, int cost, BuildingSO[] required, string[] animatedObjects)
+        {
+            return new BuildingSlot
+            {
+                slotId = id,
+                building = buildingAsset,
+                starCost = cost,
+                requiredBuildings = required,
+                animationStep = 0,
+                objectNames = animatedObjects
             };
         }
 #endif
@@ -133,6 +176,11 @@ namespace Configs
             }
 
             return queue;
+        }
+
+        private bool HasObjectNames()
+        {
+            return objectNames != null && objectNames.Length > 0;
         }
 
         private static bool ContainsTree(string id)

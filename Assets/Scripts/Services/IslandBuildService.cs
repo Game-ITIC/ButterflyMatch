@@ -338,6 +338,8 @@ namespace Services
                     {
                         return;
                     }
+
+                    _shown.UnionWith(StepPieceIds(slot, stepIndex));
                 }
             }
             finally
@@ -445,6 +447,22 @@ namespace Services
             return ids;
         }
 
+        private List<int> StepPieceIds(BuildingSlot slot, int step)
+        {
+            var ids = new List<int>();
+            var lantern = KindOf(slot) == BuildKind.Lantern;
+            for (var i = 0; i < _parts.Count; i++)
+            {
+                var part = _parts[i];
+                if (part.Transform != null && part.Step == step && PieceMatches(part, slot, lantern))
+                {
+                    ids.Add(part.Transform.GetInstanceID());
+                }
+            }
+
+            return ids;
+        }
+
         private List<int> PieceSteps(BuildingSlot slot)
         {
             var steps = new List<int>();
@@ -499,9 +517,9 @@ namespace Services
 
         private bool PieceMatches(PartPose part, BuildingSlot slot, bool lantern)
         {
-            if (!string.IsNullOrEmpty(slot.ObjectName))
+            if (slot.NamesAPart)
             {
-                return Matches(part.Transform, slot.ObjectName);
+                return NamesPart(part.Transform, slot);
             }
 
             if (lantern)
@@ -678,17 +696,12 @@ namespace Services
             return null;
         }
 
-        private bool Matches(Transform transform, string objectKey)
+        private bool NamesPart(Transform transform, BuildingSlot slot)
         {
-            if (transform == null || string.IsNullOrEmpty(objectKey))
-            {
-                return false;
-            }
-
             var current = transform;
             while (current != null && current != _animatorRoot)
             {
-                if (string.Equals(current.name, objectKey, StringComparison.OrdinalIgnoreCase))
+                if (slot.Names(current.name))
                 {
                     return true;
                 }

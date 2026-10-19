@@ -68,14 +68,14 @@ namespace Presenters
             }
 
             _mainMenu?.IslandPanel?.Hide();
-            _panel.Show(_buildService.ActiveIsland, _buildService, Build);
+            _panel.Show(_buildService.ActiveIsland, _buildService, Build, true);
         }
 
         private void RefreshIfOpen()
         {
             if (_panel != null && _panel.gameObject.activeSelf)
             {
-                _panel.Show(_buildService.ActiveIsland, _buildService, Build);
+                _panel.Show(_buildService.ActiveIsland, _buildService, Build, false);
             }
         }
 

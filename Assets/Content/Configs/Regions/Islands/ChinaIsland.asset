@@ -28,113 +28,25 @@ MonoBehaviour:
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-plinth
+  - slotId: china-building
     building: {fileID: 11400000, guid: 0dce98c0c21a26a4999bbedc79651915, type: 2}
-    starCost: 8
+    starCost: 20
     requiredBuildings:
     - {fileID: 11400000, guid: d2bd43559c3eb8546a66f3ec246e296d, type: 2}
     animationStep: 0
-    objectName: Cube
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall1
-    building: {fileID: 11400000, guid: 309765bd76369a947ab184fd25caa2ff, type: 2}
-    starCost: 10
-    requiredBuildings:
-    - {fileID: 11400000, guid: 0dce98c0c21a26a4999bbedc79651915, type: 2}
-    animationStep: 0
-    objectName: Cube.019
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall2
-    building: {fileID: 11400000, guid: e797e435904391746ae393b9fe05209d, type: 2}
-    starCost: 10
-    requiredBuildings:
-    - {fileID: 11400000, guid: 309765bd76369a947ab184fd25caa2ff, type: 2}
-    animationStep: 0
-    objectName: Cube.013
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall3
-    building: {fileID: 11400000, guid: bc2832c1c5359ca4197f53c05ea0cb5b, type: 2}
-    starCost: 10
-    requiredBuildings:
-    - {fileID: 11400000, guid: e797e435904391746ae393b9fe05209d, type: 2}
-    animationStep: 0
-    objectName: Cube.017
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall4
-    building: {fileID: 11400000, guid: 609fa5649da77e54596722bf406c2fc9, type: 2}
-    starCost: 12
-    requiredBuildings:
-    - {fileID: 11400000, guid: bc2832c1c5359ca4197f53c05ea0cb5b, type: 2}
-    animationStep: 0
-    objectName: Cube.012
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall5
-    building: {fileID: 11400000, guid: 8c5a15a87a611ef43aea186b9e669c54, type: 2}
-    starCost: 12
-    requiredBuildings:
-    - {fileID: 11400000, guid: 609fa5649da77e54596722bf406c2fc9, type: 2}
-    animationStep: 0
-    objectName: Cube.007
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall6
-    building: {fileID: 11400000, guid: 391da3a3e0992064cb56c471b2d9eaca, type: 2}
-    starCost: 12
-    requiredBuildings:
-    - {fileID: 11400000, guid: 8c5a15a87a611ef43aea186b9e669c54, type: 2}
-    animationStep: 0
-    objectName: Cube.021
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall7
-    building: {fileID: 11400000, guid: 134e5cecccb421445ad9894419b00d46, type: 2}
-    starCost: 14
-    requiredBuildings:
-    - {fileID: 11400000, guid: 391da3a3e0992064cb56c471b2d9eaca, type: 2}
-    animationStep: 0
-    objectName: Cube.005
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall8
-    building: {fileID: 11400000, guid: 309de68228caa554db204d0e67902cb9, type: 2}
-    starCost: 14
-    requiredBuildings:
-    - {fileID: 11400000, guid: 134e5cecccb421445ad9894419b00d46, type: 2}
-    animationStep: 0
-    objectName: Cube.009
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall9
-    building: {fileID: 11400000, guid: 6edebfb60d4a9dc4c89d74e4da8b1652, type: 2}
-    starCost: 14
-    requiredBuildings:
-    - {fileID: 11400000, guid: 309de68228caa554db204d0e67902cb9, type: 2}
-    animationStep: 0
-    objectName: Cube.015
-    localPosition: {x: 0, y: 0, z: 0}
-    localEulerAngles: {x: 0, y: 0, z: 0}
-    localScale: {x: 1, y: 1, z: 1}
-  - slotId: china-wall10
-    building: {fileID: 11400000, guid: 849df883fccd6eb47bdc78b31afd9c21, type: 2}
-    starCost: 16
-    requiredBuildings:
-    - {fileID: 11400000, guid: 6edebfb60d4a9dc4c89d74e4da8b1652, type: 2}
-    animationStep: 0
-    objectName: Cube.006
+    objectName: 
+    objectNames:
+    - Cube
+    - Cube.019
+    - Cube.013
+    - Cube.017
+    - Cube.012
+    - Cube.007
+    - Cube.021
+    - Cube.005
+    - Cube.009
+    - Cube.015
+    - Cube.006
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
@@ -142,7 +54,7 @@ MonoBehaviour:
     building: {fileID: 11400000, guid: ea31d0faf5f55fc40b603b2b8a603ac9, type: 2}
     starCost: 18
     requiredBuildings:
-    - {fileID: 11400000, guid: 849df883fccd6eb47bdc78b31afd9c21, type: 2}
+    - {fileID: 11400000, guid: 0dce98c0c21a26a4999bbedc79651915, type: 2}
     animationStep: 0
     objectName: Cube.001
     localPosition: {x: 0, y: 0, z: 0}

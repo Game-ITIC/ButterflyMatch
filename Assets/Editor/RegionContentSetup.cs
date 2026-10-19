@@ -36,23 +36,20 @@ public static class RegionContentSetup
                 new[] { BuildingSlot.Create("japan-lantern", lantern, 5, new[] { japanHouse[1].Building }, 1) },
                 Trees("japan", treePrefab, Icon(0), 8, "Tree 01", "Tree 01 (1)", "Tree 01 (2)")));
 
-        var chinaHouse = Stack("china", housePrefab, Icon(1),
-            Named("Foundation", "Cube.004", 8),
-            Named("Plinth", "Cube", 8),
-            Named("Wall 1", "Cube.019", 10),
-            Named("Wall 2", "Cube.013", 10),
-            Named("Wall 3", "Cube.017", 10),
-            Named("Wall 4", "Cube.012", 12),
-            Named("Wall 5", "Cube.007", 12),
-            Named("Wall 6", "Cube.021", 12),
-            Named("Wall 7", "Cube.005", 14),
-            Named("Wall 8", "Cube.009", 14),
-            Named("Wall 9", "Cube.015", 14),
-            Named("Wall 10", "Cube.006", 16),
-            Named("Roof", "Cube.001", 18));
+        var chinaFoundation = Stack("china", housePrefab, Icon(1), Named("Foundation", "Cube.004", 8));
+        var chinaBuildingAsset = Building("chinaBuilding", "china-building", "Building", housePrefab, Icon(1), new[] { chinaFoundation[0].Building });
+        var chinaBuilding = BuildingSlot.CreateGroup(
+            "china-building",
+            chinaBuildingAsset,
+            20,
+            new[] { chinaFoundation[0].Building },
+            new[] { "Cube", "Cube.019", "Cube.013", "Cube.017", "Cube.012", "Cube.007", "Cube.021", "Cube.005", "Cube.009", "Cube.015", "Cube.006" });
+        var chinaRoofAsset = Building("chinaRoof", "china-roof", "Roof", housePrefab, Icon(1), new[] { chinaBuildingAsset });
+        var chinaRoof = BuildingSlot.Create("china-roof", chinaRoofAsset, 18, new[] { chinaBuildingAsset }, 0, "Cube.001");
         var china = Island("ChinaIsland", "china", "China", "Assets/Content/Models/Regions/Asia/China/ChinaPrefabs.prefab", Icon(1),
             Merge(
-                chinaHouse,
+                chinaFoundation,
+                new[] { chinaBuilding, chinaRoof },
                 Trees("china", treePrefab, Icon(1), 15, "Tree 01", "Tree 01 (1)")));
 
         var koreaHouse = Stack("korea", housePrefab, Icon(2),

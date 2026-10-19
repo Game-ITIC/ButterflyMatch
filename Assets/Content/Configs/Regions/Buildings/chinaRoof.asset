@@ -17,4 +17,4 @@ MonoBehaviour:
   icon: {fileID: 6070576942371131909, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
   prefab: {fileID: 6769029262384653217, guid: bafd4582aef715444a41365ddbe7a090, type: 3}
   requiredBuildings:
-  - {fileID: 11400000, guid: 849df883fccd6eb47bdc78b31afd9c21, type: 2}
+    - {fileID: 11400000, guid: 0dce98c0c21a26a4999bbedc79651915, type: 2}

@@ -24,7 +24,7 @@ public class BuildingCatalogPanel : MonoBehaviour
         }
     }
 
-    public void Show(IslandSO island, IslandBuildService buildService, Action<BuildingSlot> onBuild)
+    public void Show(IslandSO island, IslandBuildService buildService, Action<BuildingSlot> onBuild, bool resetScroll)
     {
         gameObject.SetActive(true);
         transform.SetAsLastSibling();
@@ -36,35 +36,24 @@ public class BuildingCatalogPanel : MonoBehaviour
 
         ClearCards();
         var slots = island != null ? island.Slots : null;
-        if (slots == null || _cardPrefab == null || _content == null)
+        if (slots == null || _cardPrefab == null || _content == null || buildService == null)
         {
             return;
         }
 
-        for (var i = 0; i < slots.Count; i++)
+        for (var pass = 0; pass < 2; pass++)
         {
-            var slot = slots[i];
-            if (slot == null || slot.Building == null || buildService.IsBuilt(slot))
+            var builtPass = pass == 1;
+            for (var i = 0; i < slots.Count; i++)
             {
-                continue;
-            }
+                var slot = slots[i];
+                if (slot == null || slot.Building == null || buildService.IsBuilt(slot) != builtPass)
+                {
+                    continue;
+                }
 
-            var requirementsMet = buildService.CanSelect(island, slot);
-            var canAfford = buildService.CanAfford(slot);
-            var subtitle = !requirementsMet
-                ? slot.RequirementLabel()
-                : canAfford ? $"{slot.StarCost} stars" : $"Need {slot.StarCost} stars";
-            var card = Instantiate(_cardPrefab, _content);
-            card.gameObject.SetActive(true);
-            var captured = slot;
-            card.Bind(
-                slot.Building.DisplayName,
-                subtitle,
-                slot.Building.Icon,
-                "Build",
-                requirementsMet && canAfford,
-                () => onBuild?.Invoke(captured));
-            _cards.Add(card);
+                AddCard(island, buildService, slot, onBuild);
+            }
         }
 
         if (_content is RectTransform contentRect)
@@ -72,10 +61,33 @@ public class BuildingCatalogPanel : MonoBehaviour
             LayoutRebuilder.ForceRebuildLayoutImmediate(contentRect);
         }
 
-        if (_scroll != null)
+        if (resetScroll && _scroll != null)
         {
             _scroll.verticalNormalizedPosition = 1f;
         }
+    }
+
+    private void AddCard(IslandSO island, IslandBuildService buildService, BuildingSlot slot, Action<BuildingSlot> onBuild)
+    {
+        var built = buildService.IsBuilt(slot);
+        var requirementsMet = buildService.CanSelect(island, slot);
+        var canAfford = buildService.CanAfford(slot);
+        var subtitle = built
+            ? "Built"
+            : !requirementsMet
+                ? slot.RequirementLabel()
+                : canAfford ? $"{slot.StarCost} stars" : $"Need {slot.StarCost} stars";
+        var card = Instantiate(_cardPrefab, _content);
+        card.gameObject.SetActive(true);
+        var captured = slot;
+        card.Bind(
+            slot.Building.DisplayName,
+            subtitle,
+            slot.Building.Icon,
+            built ? "Built" : "Build",
+            !built && requirementsMet && canAfford,
+            () => onBuild?.Invoke(captured));
+        _cards.Add(card);
     }
 
     public void Hide()
