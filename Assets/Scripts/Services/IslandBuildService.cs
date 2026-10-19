@@ -140,6 +140,12 @@ namespace Services
                 return false;
             }
 
+            Prepare();
+            if (!CanPlace(slot))
+            {
+                return false;
+            }
+
             if (_currencyService != null && !_currencyService.SpendCurrency(CurrencyType.Star, slot.StarCost))
             {
                 return false;
@@ -149,6 +155,46 @@ namespace Services
             Enqueue(slot);
             Changed?.Invoke();
             return true;
+        }
+
+        private bool CanPlace(BuildingSlot slot)
+        {
+            if (slot == null || slot.Building == null)
+            {
+                return false;
+            }
+
+            if (slot.IsTree)
+            {
+                var anchor = FindAnchor(slot.ObjectName);
+                if (anchor == null || slot.Building.Prefab == null)
+                {
+                    return false;
+                }
+
+                var scale = anchor.localScale;
+                if (_treePoses.TryGetValue(anchor.name, out var saved) && saved.Scale.sqrMagnitude > 0.0001f)
+                {
+                    scale = saved.Scale;
+                }
+
+                return scale.sqrMagnitude > 0.0001f;
+            }
+
+            return PieceSteps(slot).Count > 0;
+        }
+
+        private void Refund(BuildingSlot slot)
+        {
+            var island = ActiveIsland;
+            if (island == null || slot == null)
+            {
+                return;
+            }
+
+            _store.UnmarkBuilt(island.IslandId, slot.SlotId);
+            _currencyService?.AddCurrency(CurrencyType.Star, slot.StarCost);
+            Changed?.Invoke();
         }
 
         public void Restore()
@@ -218,23 +264,32 @@ namespace Services
 
         private async UniTask RunQueue(int version)
         {
-            while (version == _version && _queue.Count > 0)
+            try
             {
-                var slot = _queue.Dequeue();
-                Prepare();
-                if (slot.IsTree)
+                while (version == _version && _queue.Count > 0)
                 {
-                    await GrowTree(slot, version);
-                }
-                else
-                {
-                    await PlayPiece(slot, version);
+                    var slot = _queue.Dequeue();
+                    Prepare();
+                    if (slot.IsTree)
+                    {
+                        await GrowTree(slot, version);
+                    }
+                    else
+                    {
+                        await PlayPiece(slot, version);
+                    }
                 }
             }
-
-            if (version == _version)
+            catch (Exception exception)
             {
-                _running = false;
+                Debug.LogException(exception);
+            }
+            finally
+            {
+                if (version == _version)
+                {
+                    _running = false;
+                }
             }
         }
 
@@ -244,8 +299,11 @@ namespace Services
             var steps = PieceSteps(slot);
             if (steps.Count == 0 || !EnsureGraph())
             {
-                _shown.UnionWith(ids);
-                ApplyMask();
+                if (version == _version)
+                {
+                    Refund(slot);
+                }
+
                 return;
             }
 
@@ -300,6 +358,11 @@ namespace Services
             var spawned = SpawnPrefab(slot);
             if (spawned == null)
             {
+                if (version == _version)
+                {
+                    Refund(slot);
+                }
+
                 return;
             }
 

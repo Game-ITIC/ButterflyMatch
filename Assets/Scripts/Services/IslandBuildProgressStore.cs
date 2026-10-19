@@ -89,6 +89,17 @@ namespace Services
             Persist();
         }
 
+        public void UnmarkBuilt(string islandId, string slotId)
+        {
+            var entry = FindEntry(islandId);
+            if (entry == null || entry.slotIds == null || !entry.slotIds.Remove(slotId))
+            {
+                return;
+            }
+
+            Persist();
+        }
+
         private IslandBuiltSlots FindEntry(string islandId)
         {
             if (_save.islands == null || string.IsNullOrEmpty(islandId))
