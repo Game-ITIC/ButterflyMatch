@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bb52e15cfd73349af8ecad9cafb726, type: 3}
+  m_Name: chinaHouse1
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
+  buildingId: china-house1
+  displayName: House 1
+  icon: {fileID: 6070576942371131909, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
+  prefab: {fileID: 6769029262384653217, guid: bafd4582aef715444a41365ddbe7a090, type: 3}
+  requiredBuildings: []

@@ -14,12 +14,20 @@ namespace Services
 
         private BuildingsAnimationConfig _activeRegion;
         private RegionData _activeRegionData;
+        private GameObject _activeInstance;
+        private GameObject _startupPrefab;
         private int _currentRegionIndex;
 
         public RegionConfig RegionConfig => _regionConfig;
         public RegionData ActiveRegionData => _activeRegionData;
         public BuildingsAnimationConfig ActiveRegion => _activeRegion;
+        public GameObject ActiveInstance => _activeInstance;
         public int CurrentRegionIndex => _currentRegionIndex;
+
+        public void SetStartupPrefab(GameObject prefab)
+        {
+            _startupPrefab = prefab;
+        }
 
         public RegionService(RegionConfig regionConfig, Transform regionParent)
         {
@@ -36,7 +44,15 @@ namespace Services
         public async UniTask Warmup()
         {
             Load();
-            LoadRegion(_currentRegionIndex);
+            if (_startupPrefab != null)
+            {
+                LoadPrefab(_startupPrefab);
+            }
+            else
+            {
+                LoadRegion(_currentRegionIndex);
+            }
+
             await UniTask.Yield();
         }
 
@@ -78,23 +94,19 @@ namespace Services
 
         public void LoadRegion(int index)
         {
-            if (_activeRegion != null)
-            {
-                Object.Destroy(_activeRegion.gameObject);
-                _activeRegion = null;
-            }
-
             _activeRegionData = null;
 
             if (_regionConfig == null)
             {
                 Debug.LogError("[RegionService] RegionConfig is not assigned!");
+                DestroyActiveInstance();
                 return;
             }
 
             if (index < 0 || index >= _regionConfig.Count)
             {
                 Debug.LogWarning($"[RegionService] Invalid region index {index} (Total: {_regionConfig.Count})");
+                DestroyActiveInstance();
                 return;
             }
 
@@ -103,15 +115,49 @@ namespace Services
             if (_activeRegionData == null || _activeRegionData.regionPrefab == null)
             {
                 Debug.LogWarning($"[RegionService] Region data or regionPrefab is not assigned for index {index}");
+                DestroyActiveInstance();
                 return;
             }
 
-            var instance = Object.Instantiate(_activeRegionData.regionPrefab, _regionParent);
-            instance.SetActive(true);
-            _activeRegion = instance.GetComponent<BuildingsAnimationConfig>() ??
-                            instance.GetComponentInChildren<BuildingsAnimationConfig>(true);
+            LoadPrefab(_activeRegionData.regionPrefab);
+        }
 
-            SetupActiveRegionAnimator(instance);
+        public void LoadPrefab(GameObject prefab)
+        {
+            DestroyActiveInstance();
+
+            if (prefab == null)
+            {
+                Debug.LogWarning("[RegionService] Island prefab is not assigned.");
+                return;
+            }
+
+            if (_regionParent == null)
+            {
+                Debug.LogError("[RegionService] Region parent is not assigned.");
+                return;
+            }
+
+            _activeInstance = Object.Instantiate(prefab, _regionParent);
+            _activeInstance.SetActive(true);
+            _activeRegion = _activeInstance.GetComponent<BuildingsAnimationConfig>() ??
+                            _activeInstance.GetComponentInChildren<BuildingsAnimationConfig>(true);
+            SetupActiveRegionAnimator(_activeInstance);
+        }
+
+        private void DestroyActiveInstance()
+        {
+            if (_activeInstance != null)
+            {
+                Object.Destroy(_activeInstance);
+                _activeInstance = null;
+            }
+            else if (_activeRegion != null)
+            {
+                Object.Destroy(_activeRegion.gameObject);
+            }
+
+            _activeRegion = null;
         }
 
         private void SetupActiveRegionAnimator(GameObject instance)

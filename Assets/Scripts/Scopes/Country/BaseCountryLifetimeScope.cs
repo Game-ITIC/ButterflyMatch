@@ -29,6 +29,7 @@ namespace Scopes.Country
 
         [SerializeField] private CountryConfig countryConfig;
         [SerializeField] private RegionConfig regionConfig;
+        [SerializeField] private RegionSO regionSO;
         [SerializeField] private Transform regionParent;
 
         [Title("Tasks")]
@@ -49,6 +50,7 @@ namespace Scopes.Country
 
             RegisterInstanceIfPresent(builder, countryConfig);
             RegisterInstanceIfPresent(builder, regionConfig);
+            RegisterInstanceIfPresent(builder, regionSO);
             RegisterInstanceIfPresent(builder, tasksListSO);
 
             builder.Register<ITaskService, TaskService>(Lifetime.Singleton);
@@ -149,6 +151,18 @@ namespace Scopes.Country
 
                 builder.Register<RegionModel>(Lifetime.Singleton);
                 builder.Register<RegionUpgradeService>(Lifetime.Singleton);
+            }
+
+            if(regionConfig != null && regionSO != null && _mainMenuPanel != null)
+            {
+                builder.Register<IslandBuildProgressStore>(Lifetime.Singleton);
+                builder.Register<IslandBuildService>(Lifetime.Singleton);
+                builder.Register<BuildingCatalogPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+
+                if(menuNavPanel != null)
+                {
+                    builder.Register<IslandSelectPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+                }
             }
 
             if(tasksListSO != null)
