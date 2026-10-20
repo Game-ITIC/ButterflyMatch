@@ -87,7 +87,7 @@ namespace JuiceFresh.Scripts
             {
                 foreach (Item item in items)
                 {
-                    if (item != null)
+                    if (item != null && !item.destroying)
                         item.StopVisualAnimations();
                 }
             }
@@ -186,10 +186,7 @@ namespace JuiceFresh.Scripts
                 }
 
                 // Wait for all destroy animations to finish
-                while (!IsAllDestroyFinished())
-                {
-                    await UniTask.Delay(100, cancellationToken: cancellationToken); // 0.1f seconds = 100ms
-                }
+                await WaitUntilDestroyFinished(cancellationToken);
 
                 // Process falling items
                 ProcessFallingItems();
@@ -291,7 +288,7 @@ namespace JuiceFresh.Scripts
             List<Item> items = levelManager.GetItems();
             foreach (Item item in items)
             {
-                if (item != null)
+                if (item != null && !item.destroying)
                 {
                     item.StopVisualAnimations();
                 }
@@ -391,8 +388,16 @@ namespace JuiceFresh.Scripts
                 }
 
                 // Wait for all destroy animations to finish
+                float destroyWaitElapsed = 0f;
                 while (!IsAllDestroyFinished())
                 {
+                    destroyWaitElapsed += 0.1f;
+                    if (destroyWaitElapsed >= 2f)
+                    {
+                        ForceFinishStuckDestroyingItems();
+                        break;
+                    }
+
                     yield return new WaitForSeconds(0.1f);
                 }
 
@@ -498,6 +503,23 @@ namespace JuiceFresh.Scripts
             }
         }
 
+        private async UniTask WaitUntilDestroyFinished(CancellationToken cancellationToken)
+        {
+            const int maxWaitMs = 2000;
+            int waitedMs = 0;
+            while (!IsAllDestroyFinished())
+            {
+                if (waitedMs >= maxWaitMs)
+                {
+                    ForceFinishStuckDestroyingItems();
+                    break;
+                }
+
+                await UniTask.Delay(100, cancellationToken: cancellationToken);
+                waitedMs += 100;
+            }
+        }
+
         private bool IsAllDestroyFinished()
         {
             GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
@@ -509,6 +531,24 @@ namespace JuiceFresh.Scripts
             }
 
             return true;
+        }
+
+        private void ForceFinishStuckDestroyingItems()
+        {
+            GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+            foreach (GameObject item in items)
+            {
+                Item itemComponent = item.GetComponent<Item>();
+                if (itemComponent == null)
+                {
+                    continue;
+                }
+
+                if (itemComponent.destroying && !itemComponent.animationFinished)
+                {
+                    itemComponent.SetAnimationDestroyingFinished();
+                }
+            }
         }
 
         private void ProcessFallingItems()
