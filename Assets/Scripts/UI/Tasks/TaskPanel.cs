@@ -10,6 +10,7 @@ public class TaskPanel : MonoBehaviour
     [SerializeField] private TaskView _taskViewPrefab;
     [SerializeField] private Transform _taskViewParent;
     [SerializeField] private GameObject _animatedContent;
+    [SerializeField] private GameObject _emptyStateRoot;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -64,6 +65,12 @@ public class TaskPanel : MonoBehaviour
     {
         CurvedUIPanelAnimator.HideImmediate(AnimationTarget);
         DeactivateRoot();
+    }
+
+    public void SetEmptyStateVisible(bool isVisible)
+    {
+        if (_emptyStateRoot != null)
+            _emptyStateRoot.SetActive(isVisible);
     }
 
     private void DeactivateRoot()
