@@ -55,9 +55,13 @@ public class SoundBase : MonoBehaviour {
         audioSource = GetComponent<AudioSource>();
         DontDestroyOnLoad(gameObject);
         Instance = this;
+        Services.Settings.SettingsPreferences.ApplyAudio();
     }
 
     public void PlaySound(AudioClip clip) {
+        if (clip == null || audioSource == null || !InitScript.sound)
+            return;
+
         audioSource.PlayOneShot(clip);
     }
 

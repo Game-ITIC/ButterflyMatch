@@ -23,6 +23,13 @@ public class MusicBase : MonoBehaviour {
         transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
         Instance = this;
+        Services.Settings.SettingsPreferences.ApplyAudio();
+
+        var audioSource = GetComponent<AudioSource>();
+        if (audioSource != null && !Services.Settings.SettingsPreferences.MusicEnabled)
+        {
+            audioSource.Stop();
+        }
     }
 
     // Update is called once per frame

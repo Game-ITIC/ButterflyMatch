@@ -32,7 +32,11 @@ namespace JuiceFresh.States
             audioSource.Stop();
             audioSource.loop = true;
             audioSource.clip = MusicBase.Instance.music[1];
-            audioSource.Play();
+            Services.Settings.SettingsPreferences.ApplyAudio();
+            if (Services.Settings.SettingsPreferences.MusicEnabled)
+            {
+                audioSource.Play();
+            }
         }
 
         private void PrepareGame()

@@ -723,44 +723,18 @@ public class AnimationManager : MonoBehaviour
 
     public void SoundOff(GameObject Off)
     {
-        if (!Off.activeSelf)
-        {
-            SoundBase.Instance.GetComponent<AudioSource>().volume = 0;
-            InitScript.sound = false;
-
-            Off.SetActive(true);
-        }
-        else
-        {
-            SoundBase.Instance.GetComponent<AudioSource>().volume = 1;
-            InitScript.sound = true;
-
-            Off.SetActive(false);
-        }
-
-        PlayerPrefs.SetInt("Sound", (int)SoundBase.Instance.GetComponent<AudioSource>().volume);
-        PlayerPrefs.Save();
+        var enableSound = Off.activeSelf;
+        Services.Settings.SettingsPreferences.SoundEnabled = enableSound;
+        Services.Settings.SettingsPreferences.ApplyAudio();
+        Off.SetActive(!enableSound);
     }
 
     public void MusicOff(GameObject Off)
     {
-        if (!Off.activeSelf)
-        {
-            GameObject.Find("Music").GetComponent<AudioSource>().volume = 0;
-            InitScript.music = false;
-
-            Off.SetActive(true);
-        }
-        else
-        {
-            GameObject.Find("Music").GetComponent<AudioSource>().volume = 1;
-            InitScript.music = true;
-
-            Off.SetActive(false);
-        }
-
-        PlayerPrefs.SetInt("Music", (int)GameObject.Find("Music").GetComponent<AudioSource>().volume);
-        PlayerPrefs.Save();
+        var enableMusic = Off.activeSelf;
+        Services.Settings.SettingsPreferences.MusicEnabled = enableMusic;
+        Services.Settings.SettingsPreferences.ApplyAudio();
+        Off.SetActive(!enableMusic);
     }
 
     Target target;
