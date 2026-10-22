@@ -78,11 +78,40 @@ namespace Presenters
         public void RefreshViews(IReadOnlyList<TaskModel> tasks)
         {
             ClearViews();
-            if (tasks == null || !_taskPanel || !_taskPanel.TaskViewPrefab) return;
+            if (!_taskPanel)
+            {
+                return;
+            }
+
+            var hasAvailableTasks = false;
+            if (tasks != null)
+            {
+                for (var i = 0; i < tasks.Count; i++)
+                {
+                    var task = tasks[i];
+                    if (task != null && !task.isClaimed)
+                    {
+                        hasAvailableTasks = true;
+                        break;
+                    }
+                }
+            }
+
+            _taskPanel.SetEmptyStateVisible(!hasAvailableTasks);
+            if (!hasAvailableTasks || !_taskPanel.TaskViewPrefab)
+            {
+                return;
+            }
 
             var parent = _taskPanel.TaskViewParent ? _taskPanel.TaskViewParent : _taskPanel.transform;
-            foreach (var task in tasks)
+            for (var i = 0; i < tasks.Count; i++)
             {
+                var task = tasks[i];
+                if (task == null || task.isClaimed)
+                {
+                    continue;
+                }
+
                 var view = UnityEngine.Object.Instantiate(_taskPanel.TaskViewPrefab, parent);
                 BindTaskView(view, task);
                 _activeViews.Add(view);

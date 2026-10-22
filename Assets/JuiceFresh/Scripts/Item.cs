@@ -785,8 +785,19 @@ public class Item : MonoBehaviour
         LevelManager.THIS.CheckCollectedTarget(gameObject);
 
         bool hasDestroyAnimation = currentType != ItemsTypes.INGREDIENT && currentType != ItemsTypes.CHOCOBOMB;
+        float destroyWaitTimeout = 1.5f;
+        float destroyWaitElapsed = 0f;
         while (hasDestroyAnimation && !animationFinished)
+        {
+            destroyWaitElapsed += Time.fixedDeltaTime;
+            if (destroyWaitElapsed >= destroyWaitTimeout)
+            {
+                animationFinished = true;
+                break;
+            }
+
             yield return new WaitForFixedUpdate();
+        }
 
         square.DestroyBlock();
         
@@ -996,6 +1007,14 @@ public class Item : MonoBehaviour
 
     public void StopVisualAnimations()
     {
+        // Destroy tweens must not be killed mid-flight: ProcessBoard freezes the board
+        // right after striped boosters start DestroyItem, and Kill(complete:false) leaves
+        // destroying=true / animationFinished=false forever, so gravity never resumes.
+        if (destroying)
+        {
+            return;
+        }
+
         _animation.StopAll(resetVisual: true);
     }
     #endregion
