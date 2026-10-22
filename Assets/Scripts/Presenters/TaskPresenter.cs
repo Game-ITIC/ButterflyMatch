@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Models.Tasks;
 using Services.Tasks;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -84,6 +85,7 @@ namespace Presenters
             }
 
             var hasAvailableTasks = false;
+            var hasClaimableTasks = false;
             if (tasks != null)
             {
                 for (var i = 0; i < tasks.Count; i++)
@@ -92,12 +94,13 @@ namespace Presenters
                     if (task != null && !task.isClaimed)
                     {
                         hasAvailableTasks = true;
-                        break;
+                        hasClaimableTasks |= task.isCompleted;
                     }
                 }
             }
 
             _taskPanel.SetEmptyStateVisible(!hasAvailableTasks);
+            if (_taskButton) UIFeel.SetBreathing(_taskButton, hasClaimableTasks, 0.05f, 1.1f);
             if (!hasAvailableTasks || !_taskPanel.TaskViewPrefab)
             {
                 return;

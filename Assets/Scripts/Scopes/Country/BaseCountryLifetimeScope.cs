@@ -42,6 +42,11 @@ namespace Scopes.Country
 
             RegisterComponentIfPresent(builder, _mainMenuPanel);
 
+            if(_mainMenuPanel != null)
+            {
+                builder.Register<MenuUIFeelPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+            }
+
             var lifePopup = _mainMenuPanel != null ? _mainMenuPanel.LifePopup : null;
             RegisterComponentIfPresent(builder, lifePopup);
 

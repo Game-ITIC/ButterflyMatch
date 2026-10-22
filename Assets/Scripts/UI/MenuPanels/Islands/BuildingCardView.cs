@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -39,6 +40,7 @@ public class BuildingCardView : MonoBehaviour
             return;
         }
 
+        UIButtonFeel.Ensure(_button);
         _button.interactable = interactable;
         _button.onClick.RemoveAllListeners();
         if (interactable && onClick != null)

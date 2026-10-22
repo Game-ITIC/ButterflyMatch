@@ -55,6 +55,11 @@ namespace UI
                 animatePanelTransitions ? panelOpenDuration : 0f,
                 panelOpenCurve,
                 panelFadeCurve);
+
+            if(animatePanelTransitions)
+            {
+                UIFeel.PopIn(iconImage, panelOpenDuration * 0.4f, 0.3f, 0.45f);
+            }
         }
 
         private void Hide()

@@ -29,7 +29,7 @@ namespace Presenters
             _panel = _mainMenu != null ? _mainMenu.BuildingCatalogPanel : null;
             if (_panel != null)
             {
-                _panel.Hide();
+                _panel.HideImmediate();
             }
 
             if (_buildService != null)
@@ -73,7 +73,7 @@ namespace Presenters
 
         private void RefreshIfOpen()
         {
-            if (_panel != null && _panel.gameObject.activeSelf)
+            if (_panel != null && _panel.IsOpen)
             {
                 _panel.Show(_buildService.ActiveIsland, _buildService, Build, false);
             }

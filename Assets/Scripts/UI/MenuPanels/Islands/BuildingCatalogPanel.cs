@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Configs;
 using Services;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,18 @@ public class BuildingCatalogPanel : MonoBehaviour
     [SerializeField] private Button _closeButton;
     [SerializeField] private ScrollRect _scroll;
 
+    [Header("Animation Settings")]
+    [SerializeField] private bool animatePanelTransitions = true;
+    [SerializeField, Min(0f)] private float panelOpenDuration = 0.28f;
+    [SerializeField, Min(0f)] private float panelCloseDuration = 0.18f;
+    [SerializeField] private AnimationCurve panelOpenCurve = CurvedUIPanelAnimator.CreateDefaultOpenCurve();
+    [SerializeField] private AnimationCurve panelCloseCurve = CurvedUIPanelAnimator.CreateDefaultCloseCurve();
+    [SerializeField] private AnimationCurve panelFadeCurve = CurvedUIPanelAnimator.CreateDefaultFadeCurve();
+
     private readonly List<BuildingCardView> _cards = new();
+
+    // A panel that is fading out no longer counts as open.
+    public bool IsOpen => gameObject.activeSelf && (!TryGetComponent(out CanvasGroup group) || group.interactable);
 
     private void Awake()
     {
@@ -26,8 +38,15 @@ public class BuildingCatalogPanel : MonoBehaviour
 
     public void Show(IslandSO island, IslandBuildService buildService, Action<BuildingSlot> onBuild, bool resetScroll)
     {
-        gameObject.SetActive(true);
-        transform.SetAsLastSibling();
+        var opening = !IsOpen;
+        if (opening)
+        {
+            CurvedUIPanelAnimator.Show(
+                gameObject,
+                animatePanelTransitions ? panelOpenDuration : 0f,
+                panelOpenCurve,
+                panelFadeCurve);
+        }
 
         if (_title != null)
         {
@@ -65,6 +84,11 @@ public class BuildingCatalogPanel : MonoBehaviour
         {
             _scroll.verticalNormalizedPosition = 1f;
         }
+
+        if (opening && animatePanelTransitions)
+        {
+            UIFeel.Stagger(_cards);
+        }
     }
 
     private void AddCard(IslandSO island, IslandBuildService buildService, BuildingSlot slot, Action<BuildingSlot> onBuild)
@@ -92,7 +116,16 @@ public class BuildingCatalogPanel : MonoBehaviour
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        CurvedUIPanelAnimator.Hide(
+            gameObject,
+            animatePanelTransitions ? panelCloseDuration : 0f,
+            panelCloseCurve,
+            panelFadeCurve);
+    }
+
+    public void HideImmediate()
+    {
+        CurvedUIPanelAnimator.HideImmediate(gameObject);
     }
 
     private void ClearCards()

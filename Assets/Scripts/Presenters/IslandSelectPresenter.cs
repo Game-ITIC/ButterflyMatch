@@ -24,7 +24,7 @@ namespace Presenters
         {
             if (_panel != null)
             {
-                _panel.Hide();
+                _panel.HideImmediate();
             }
 
             if (_buildService != null)

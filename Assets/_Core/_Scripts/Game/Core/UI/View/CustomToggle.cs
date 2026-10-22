@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
@@ -82,6 +83,7 @@ public class CustomToggle : MonoBehaviour, IPointerClickHandler
         }
 
         _animation = StartCoroutine(AnimateRoutine());
+        UIFeel.Punch(_toggleHandle, 0.15f, 0.25f);
     }
 
     private IEnumerator AnimateRoutine()

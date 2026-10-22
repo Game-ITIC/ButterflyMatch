@@ -1,4 +1,5 @@
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -80,6 +81,7 @@ namespace Views
             }
 
             canvasGroup.alpha = isClaimed ? 0.45f : 1f;
+            UIFeel.SetBreathing(this, isToday, 0.04f, 1.2f);
         }
 
         private void ResolveReferences()

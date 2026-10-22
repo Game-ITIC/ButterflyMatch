@@ -12,6 +12,7 @@ using Providers;
 using R3;
 using Services;
 using Services.InApp;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer.Unity;
@@ -80,6 +81,12 @@ namespace Initializers
         public void Initialize()
         {
             EnsurePauseButtonBound();
+
+            UIButtonFeel.InstallInChildren(_gameCompleteView.transform.root);
+            if(_levelManager.Level != null)
+            {
+                UIButtonFeel.InstallInChildren(_levelManager.Level.transform);
+            }
 
             _gameCompleteView.Home.onClick.RemoveAllListeners();
             _gameCompleteView.Home.onClick.AddListener(() =>

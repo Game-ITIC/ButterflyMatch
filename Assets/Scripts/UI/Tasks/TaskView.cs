@@ -1,4 +1,5 @@
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -50,7 +51,10 @@ public class TaskView : MonoBehaviour
 
     public void SetClaimInteractable(bool isInteractable)
     {
-        if (_claimButton) _claimButton.interactable = isInteractable;
+        if (!_claimButton) return;
+        UIButtonFeel.Ensure(_claimButton);
+        _claimButton.interactable = isInteractable;
+        UIFeel.SetBreathing(_claimButton, isInteractable, 0.05f, 1.1f);
     }
 
     public void SetClaimAction(UnityAction action)

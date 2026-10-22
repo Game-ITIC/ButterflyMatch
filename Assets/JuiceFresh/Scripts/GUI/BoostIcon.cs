@@ -5,6 +5,7 @@ using DG.Tweening;
 using Models;
 using R3;
 using TMPro;
+using UI;
 using UnityEngine.UI;
 
 public class BoostIcon : MonoBehaviour
@@ -16,6 +17,8 @@ public class BoostIcon : MonoBehaviour
     public Button button;
 
     private BoosterModel _boosterModel;
+    private int _lastCount = -1;
+    private bool _selectedVisual;
 
     private CompositeDisposable _disposable = new();
 
@@ -34,6 +37,13 @@ public class BoostIcon : MonoBehaviour
     private void OnCountChanged(int newValue)
     {
         boostCount.text = newValue.ToString();
+
+        if(_lastCount >= 0 && newValue != _lastCount)
+        {
+            UIFeel.Punch(boostCount, 0.25f);
+        }
+
+        _lastCount = newValue;
     }
 
     void OnEnable()
@@ -168,6 +178,8 @@ public class BoostIcon : MonoBehaviour
 
     void Update()
     {
+        UpdateSelectedVisual();
+
         if(boostCount != null)
         {
             //boostCount.text = "" + PlayerPrefs.GetInt("" + type);
@@ -179,6 +191,19 @@ public class BoostIcon : MonoBehaviour
                     ShowPlus(true);
             }
         }
+    }
+
+    // The armed booster breathes until it is used or cancelled.
+    void UpdateSelectedVisual()
+    {
+        bool selected = LevelManager.THIS != null && LevelManager.THIS.activatedBoost == this;
+        if(selected == _selectedVisual)
+        {
+            return;
+        }
+
+        _selectedVisual = selected;
+        UIFeel.SetBreathing(this, selected, 0.08f, 0.5f);
     }
 
     private void OnDestroy()
