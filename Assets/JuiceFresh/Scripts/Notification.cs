@@ -28,8 +28,24 @@ public class Notification : MonoBehaviour
 
         AndroidNotificationCenter.RegisterNotificationChannel(channel);
 
-        // Запускаем отправку уведомлений через заданные интервалы времени
-        ScheduleDailyNotifications();
+        ApplyFromPreferences();
+    }
+
+    public static void ApplyFromPreferences()
+    {
+        if (Services.Settings.SettingsPreferences.NotificationsEnabled)
+        {
+            var instance = UnityEngine.Object.FindObjectOfType<Notification>(true);
+            if (instance != null)
+            {
+                instance.ScheduleDailyNotifications();
+            }
+        }
+        else
+        {
+            AndroidNotificationCenter.CancelAllScheduledNotifications();
+            AndroidNotificationCenter.CancelAllNotifications();
+        }
     }
 
     void Start()

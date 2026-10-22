@@ -148,7 +148,11 @@ public class PreWinAnimationsState : GameStateBase
         var audioSource = MusicBase.Instance.GetComponent<AudioSource>();
         audioSource.loop = true;
         audioSource.clip = MusicBase.Instance.music[0];
-        audioSource.Play();
+        Services.Settings.SettingsPreferences.ApplyAudio();
+        if (Services.Settings.SettingsPreferences.MusicEnabled)
+        {
+            audioSource.Play();
+        }
     }
 
     private void SaveLevelProgress()

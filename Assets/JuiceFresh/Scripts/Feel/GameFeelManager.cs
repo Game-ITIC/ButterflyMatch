@@ -1009,7 +1009,9 @@ public sealed class GameFeelManager : MonoBehaviour
 
     private void PlayHaptic(HapticPatterns.PresetType preset)
     {
-        if(!enableHaptics || preset == HapticPatterns.PresetType.None)
+        if(!enableHaptics
+           || !Services.Settings.SettingsPreferences.VibrationEnabled
+           || preset == HapticPatterns.PresetType.None)
         {
             return;
         }

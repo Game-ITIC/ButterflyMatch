@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Services.Settings;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -22,9 +23,13 @@ namespace Presenters
 
         public void Initialize()
         {
-            if (_settingsPanel == null) return;
+            if (_settingsPanel == null)
+            {
+                return;
+            }
 
             _settingsPanel.HideImmediate();
+            SettingsPreferences.ApplyAudio();
 
             if (_settingsButton == null)
             {
@@ -45,7 +50,10 @@ namespace Presenters
             {
                 foreach (var closeButton in _settingsPanel.CloseButtons)
                 {
-                    if (closeButton == null) continue;
+                    if (closeButton == null)
+                    {
+                        continue;
+                    }
 
                     UnityAction closeAction = OnCloseButtonClicked;
                     closeButton.onClick.RemoveListener(closeAction);
@@ -70,7 +78,10 @@ namespace Presenters
             for (var sceneIndex = 0; sceneIndex < SceneManager.sceneCount; sceneIndex++)
             {
                 var scene = SceneManager.GetSceneAt(sceneIndex);
-                if (!scene.isLoaded) continue;
+                if (!scene.isLoaded)
+                {
+                    continue;
+                }
 
                 foreach (var root in scene.GetRootGameObjects())
                 {

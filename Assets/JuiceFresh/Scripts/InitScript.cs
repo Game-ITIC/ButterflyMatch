@@ -173,6 +173,8 @@ public class InitScript : MonoBehaviour
             PlayerPrefs.SetInt("Stars", Stars);
             PlayerPrefs.SetInt("Music", 1);
             PlayerPrefs.SetInt("Sound", 1);
+            PlayerPrefs.SetInt("Vibration", 1);
+            PlayerPrefs.SetInt("Notifications", 1);
 
             PlayerPrefs.SetInt("Lauched", 1);
             PlayerPrefs.Save();
@@ -185,8 +187,7 @@ public class InitScript : MonoBehaviour
         //rate.GetComponent<RectTransform>().anchoredPosition = (Resources.Load("Prefabs/Rate") as GameObject).GetComponent<RectTransform>().anchoredPosition;
         //rate.transform.localScale = Vector3.one;
         //gameObject.AddComponent<InternetChecker>();
-        //  GameObject.Find("Music").GetComponent<AudioSource>().volume = PlayerPrefs.GetInt("Music");
-        // SoundBase.Instance.GetComponent<AudioSource>().volume = PlayerPrefs.GetInt("Sound");
+        Services.Settings.SettingsPreferences.ApplyAudio();
         DontDestroyOnLoad(this);
         //#if UNITY_ADS//1.3
 //		enableUnityAds = true;
@@ -570,10 +571,10 @@ public class InitScript : MonoBehaviour
 
     void OnApplicationFocus(bool focusStatus)
     {
-        //1.3.3
-        if (MusicBase.Instance)
+        // Resume mute/volume/pause only — do not Play() or the track restarts from 0.
+        if (focusStatus)
         {
-            MusicBase.Instance.GetComponent<AudioSource>().Play();
+            Services.Settings.SettingsPreferences.ApplyAudio();
         }
     }
 
