@@ -3310,6 +3310,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3642287822211749888, guid: a5952398f90c9774184f7f8dd9745dbd,
+        type: 3}
+      propertyPath: _rowsParent
+      value: 
+      objectReference: {fileID: 7034297155186581631}
     - target: {fileID: 3781162820680401386, guid: a5952398f90c9774184f7f8dd9745dbd,
         type: 3}
       propertyPath: m_Enabled
@@ -3539,6 +3544,12 @@ PrefabInstance:
 --- !u!224 &945942957470798342 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7968098533015462967, guid: a5952398f90c9774184f7f8dd9745dbd,
+    type: 3}
+  m_PrefabInstance: {fileID: 7184637225037395505}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7034297155186581631 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 155975086573688398, guid: a5952398f90c9774184f7f8dd9745dbd,
     type: 3}
   m_PrefabInstance: {fileID: 7184637225037395505}
   m_PrefabAsset: {fileID: 0}

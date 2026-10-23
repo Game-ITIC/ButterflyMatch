@@ -13,6 +13,7 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private SettingsToggleView _musicToggleView;
     [SerializeField] private SettingsToggleView _vibrationToggleView;
     [SerializeField] private SettingsToggleView _notificationToggleView;
+    [SerializeField] private Transform _rowsParent;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -28,13 +29,23 @@ public class SettingsPanel : MonoBehaviour
     public SettingsToggleView VibrationToggleView => _vibrationToggleView;
     public SettingsToggleView NotificationToggleView => _notificationToggleView;
 
+    private Transform RowsParent => _rowsParent != null
+        ? _rowsParent
+        : _soundToggleView != null ? _soundToggleView.transform.parent : null;
+
     public void Show()
     {
+        var opening = !gameObject.activeSelf;
         CurvedUIPanelAnimator.Show(
             gameObject,
             animatePanelTransitions ? panelOpenDuration : 0f,
             panelOpenCurve,
             panelFadeCurve);
+
+        if (opening && animatePanelTransitions)
+        {
+            UIFeel.StaggerChildren(RowsParent);
+        }
     }
 
     public void Hide()
