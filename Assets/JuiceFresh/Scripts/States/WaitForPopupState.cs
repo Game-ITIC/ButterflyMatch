@@ -189,17 +189,22 @@ namespace JuiceFresh.States
             float cellWidth = Mathf.Max(0.001f, levelManager.squareWidth);
             float gridWorldWidth = Mathf.Abs(rightX - leftX) + cellWidth;
 
-            // Use safe area dimensions so phones with gesture/notch areas keep comfortable margins.
-            Rect safe = Screen.safeArea;
-            float safeWidth = Mathf.Max(1f, safe.width);
-            float safeHeight = Mathf.Max(1f, safe.height);
-            float safeAspect = safeHeight / safeWidth;
+            // Side margin for swipes and the board frame (world units). It has to be added to the width:
+            // adding it to the orthographic (vertical) size left wide boards almost touching the screen edges.
+            float sideMargin = Mathf.Max(0.9f, cellWidth * 0.6f);
+            // The camera spans the full screen, so the visible width is 2 * ortho * screenWidth / screenHeight.
+            float screenAspect = Mathf.Max(1f, Screen.height) / Mathf.Max(1f, Screen.width);
+            float requiredOrtho = (gridWorldWidth + 2f * sideMargin) * screenAspect * 0.5f;
 
-            // Extra breathing room for swipes (in world units).
-            float swipePadding = Mathf.Max(1.25f, cellWidth * 0.85f);
-
-            // Required orthographic size to fit the board width inside the safe area.
-            float requiredOrtho = (gridWorldWidth * safeAspect) * 0.5f + swipePadding;
+            // Tall boards must still fit between the top bar and the booster row (~60% of the safe height).
+            Square bottomSquare = _levelManagerActions.GetSquare(0, levelManager.maxRows - 1);
+            if (bottomSquare != null)
+            {
+                float gridWorldHeight = Mathf.Abs(leftSquare.transform.position.y - bottomSquare.transform.position.y)
+                                        + Mathf.Max(0.001f, levelManager.squareHeight);
+                float safeShare = Mathf.Clamp01(Screen.safeArea.height / Mathf.Max(1f, Screen.height));
+                requiredOrtho = Mathf.Max(requiredOrtho, gridWorldHeight / (0.6f * Mathf.Max(0.5f, safeShare)) * 0.5f);
+            }
 
             // Set the camera size, clamped between the default and calculated values
             levelManager.GetComponent<Camera>().orthographicSize = Mathf.Max(defaultScale, requiredOrtho);
