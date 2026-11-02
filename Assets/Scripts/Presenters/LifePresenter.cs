@@ -67,6 +67,8 @@ namespace Presenters
         private void UpdateHealthBarStatus()
         {
             if (_healthBarView == null) return;
+            _healthBarView.SetCanRefill(!_healthSystem.HasUnlimitedLives
+                                        && _healthSystem.CurrentLives.Value < _healthSystem.MaxLives);
             var statusText = _healthSystem.GetLifeStatusText();
             if (_lastStatusText == statusText) return;
             _lastStatusText = statusText;

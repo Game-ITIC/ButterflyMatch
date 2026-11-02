@@ -32,6 +32,15 @@ public class HealthBarView : MonoBehaviour
         _lives = lives;
     }
 
+    // "+" makes no sense while lives are full or unlimited.
+    public void SetCanRefill(bool canRefill)
+    {
+        if (_addMoreButton != null && _addMoreButton.gameObject.activeSelf != canRefill)
+        {
+            _addMoreButton.gameObject.SetActive(canRefill);
+        }
+    }
+
     public void SetReloadStatus(string status)
     {
         if (_healthRelaodText != null)
