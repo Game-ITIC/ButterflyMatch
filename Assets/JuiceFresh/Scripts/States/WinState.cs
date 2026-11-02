@@ -8,6 +8,7 @@ using JuiceFresh.States;
 public class WinState : GameStateBase
 {
     private GameObject menuCompleteUI;
+    private bool _progressSaved;
 
     public WinState(LevelManager levelManager) : base(levelManager) { }
 
@@ -25,17 +26,12 @@ public class WinState : GameStateBase
         // Trigger the win events
         LevelManager.TriggerOnMenuComplete();
         LevelManager.TriggerOnWin();
-        
-        
-        int currentLevelPlay = PlayerPrefs.GetInt("LevelPlay", 1);
-        PlayerPrefs.SetInt("LevelPlay", currentLevelPlay + 1);
 
-        if(currentLevelPlay >= 3)
-        {
-            // _adRewardService.SetAdRewardType(AdRewardType.Booster, BoostType.ExtraMoves);
-            IronSourceManager.Instance.ShowRewardedAd();
-            PlayerPrefs.SetInt("LevelPlay", 1);
-        }
+        // The life taken at level start is returned on a win.
+        levelManager.HealthSystem?.RefundLevelLife();
+
+        // NOTE: the old "rewarded ad every 3rd level" was removed: rewarded ads must be opt-in.
+        // Interstitials with caps are handled separately (see Docs/GDD.md 8.2).
     }
 
     public override void UpdateState()
@@ -128,7 +124,27 @@ public class WinState : GameStateBase
             }
         }
 
+        SaveLevelProgressAndStars();
+    }
+
+    /// <summary>
+    /// Stars and level progress are saved together, at the moment of the win, so killing the app
+    /// on the win screen can no longer replay the same level for its stars again.
+    /// </summary>
+    private void SaveLevelProgressAndStars()
+    {
+        if(_progressSaved)
+        {
+            return;
+        }
+
+        _progressSaved = true;
+
         levelManager.CurrencyService.AddCurrency(Systems.CurrencySystem.CurrencyType.Star, levelManager.stars);
+
+        var openLevel = PlayerPrefs.GetInt("OpenLevel", 1);
+        PlayerPrefs.SetInt("OpenLevel", Mathf.Max(1, openLevel) + 1);
+        PlayerPrefs.Save();
     }
 
     private void OnNextLevelClicked()

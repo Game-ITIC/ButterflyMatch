@@ -543,6 +543,7 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
                         {
                             LevelManager.THIS.Limit += 5;
                             model.Use();
+                            BoostersProvider.Save();
                         }
                     }
                     // else
@@ -739,6 +740,14 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         if(coroutineManager != null)
         {
             coroutineManager.StopAllManagedCoroutines();
+        }
+
+        if(_states != null)
+        {
+            foreach (var state in _states.Values)
+            {
+                (state as IDisposable)?.Dispose();
+            }
         }
 
         THIS = null;

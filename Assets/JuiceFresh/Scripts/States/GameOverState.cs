@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace JuiceFresh.States
 {
-    public class GameOverState : GameStateBase
+    public class GameOverState : GameStateBase, System.IDisposable
     {
         private readonly AdRewardService _adRewardService;
         private readonly SceneLoader _sceneLoader;
@@ -19,14 +19,12 @@ namespace JuiceFresh.States
         {
             _adRewardService = adRewardService;
             _sceneLoader = sceneLoader;
-            _adRewardService.OnContinueRewardGranted
-                .Subscribe(OnRewardGranted)
-                .AddTo(_disposables);
         }
 
         private void OnRewardGranted(Unit unit)
         {
-            OnContinueClicked();
+            // Rewarded "continue" ad: free extra moves.
+            ApplyContinue();
         }
 
         public override void EnterState()
@@ -36,21 +34,20 @@ namespace JuiceFresh.States
             PlayGameOverSound();
             GameFeelManager.Instance?.OnLose();
 
+            // Listen for the continue reward only while the game over screen is open.
+            _disposables.Clear();
+            _adRewardService.OnContinueRewardGranted
+                .Subscribe(OnRewardGranted)
+                .AddTo(_disposables);
+
             ShowFailedUI();
 
             levelManager.GameEventDispatcher.DispatchLose();
             LevelManager.TriggerOnLose();
 
-            LevelManager.THIS.HealthSystem.TryUseLife();
-            int currentLevelPlay = PlayerPrefs.GetInt("LevelPlay", 1);
-            PlayerPrefs.SetInt("LevelPlay", currentLevelPlay + 1);
-
-            if(currentLevelPlay >= 3)
-            {
-                // _adRewardService.SetAdRewardType(AdRewardType.Booster, BoostType.ExtraMoves);
-                IronSourceManager.Instance.ShowRewardedAd();
-                PlayerPrefs.SetInt("LevelPlay", 1);
-            }
+            // The life was already taken at level start (HealthSystem.ConsumeLifeForLevel),
+            // so continuing does not cost an extra life.
+            // NOTE: the old "rewarded ad every 3rd level" was removed: rewarded ads must be opt-in.
         }
 
         public override void UpdateState()
@@ -60,6 +57,8 @@ namespace JuiceFresh.States
 
         public override void ExitState()
         {
+            _disposables.Clear();
+
             // Hide the failed UI if it's still visible
             if(_menuFailedUI != null && _menuFailedUI.activeSelf)
             {
@@ -128,7 +127,7 @@ namespace JuiceFresh.States
                 if(continueButton != null)
                 {
                     continueButton.onClick.RemoveAllListeners();
-                    continueButton.onClick.AddListener(() => OnContinueClicked());
+                    continueButton.onClick.AddListener(() => OnPaidContinueClicked());
 
                     // Update the cost text
                     TMP_Text costText = continueButton.transform.Find("Cost")?.GetComponent<TMP_Text>();
@@ -166,10 +165,24 @@ namespace JuiceFresh.States
             levelManager.gameStatus = GameState.Map;
         }
 
-        private void OnContinueClicked()
+        private void OnPaidContinueClicked()
         {
-            // Spend gems to continue
-            // InitScript.Instance.SpendGems(levelManager.FailedCost);
+            var currencyService = levelManager.CurrencyService;
+            if(currencyService == null
+               || !currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Cash, levelManager.FailedCost))
+            {
+                return;
+            }
+
+            ApplyContinue();
+        }
+
+        private void ApplyContinue()
+        {
+            if(_menuFailedUI == null || !_menuFailedUI.activeInHierarchy)
+            {
+                return;
+            }
 
             // Add extra moves or time
             if(levelManager.limitType == LIMIT.MOVES)
@@ -186,6 +199,11 @@ namespace JuiceFresh.States
 
             // Return to playing state
             levelManager.gameStatus = GameState.Playing;
+        }
+
+        public void Dispose()
+        {
+            _disposables.Dispose();
         }
     }
 }

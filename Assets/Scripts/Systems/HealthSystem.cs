@@ -18,6 +18,7 @@ namespace Systems
         private DateTime _lastSaveTime;
         private DateTime _unlimitedLivesUntil = DateTime.MinValue;
         private bool _isRegenerating = false;
+        private bool _levelLifeReserved;
 
         public ReactiveProperty<int> CurrentLives => _currentLives;
         public int MaxLives => _maxLives;
@@ -69,6 +70,40 @@ namespace Systems
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Called when a level attempt starts: the life is taken up front (so quitting / killing the app
+        /// mid-level costs a life) and returned by <see cref="RefundLevelLife"/> on a win.
+        /// </summary>
+        public bool ConsumeLifeForLevel()
+        {
+            _levelLifeReserved = false;
+
+            if(HasUnlimitedLives)
+            {
+                return true;
+            }
+
+            if(!TryUseLife())
+            {
+                return false;
+            }
+
+            _levelLifeReserved = true;
+            Debug.Log($"[HealthSystem] Life reserved for level. Lives left: {_currentLives.Value}");
+            return true;
+        }
+
+        public void RefundLevelLife()
+        {
+            if(!_levelLifeReserved)
+            {
+                return;
+            }
+
+            _levelLifeReserved = false;
+            AddLives(1);
         }
 
         public void AddLives(int amount)
