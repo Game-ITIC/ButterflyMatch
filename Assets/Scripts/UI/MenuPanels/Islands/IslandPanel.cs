@@ -2,27 +2,48 @@ using System;
 using System.Collections.Generic;
 using Configs;
 using Models;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class IslandPanel : MonoBehaviour
 {
+    // Legacy RegionConfig flow (IslandPresenter). The IslandSO flow uses CreateCard/ClearCards instead.
     public event Action<int> OnRegionSelected;
 
     [SerializeField] private Transform _container;
     [SerializeField] private RegionCardView _regionCardPrefab;
-    [SerializeField] private Button _closeButton;
+    [SerializeField] private Button[] _closeButtons;
 
-    private readonly List<RegionCardView> _spawnedCards = new();
+    [Header("Animation Settings")]
+    [SerializeField] private bool animatePanelTransitions = true;
+    [SerializeField, Min(0f)] private float panelOpenDuration = 0.28f;
+    [SerializeField, Min(0f)] private float panelCloseDuration = 0.18f;
+    [SerializeField] private AnimationCurve panelOpenCurve = CurvedUIPanelAnimator.CreateDefaultOpenCurve();
+    [SerializeField] private AnimationCurve panelCloseCurve = CurvedUIPanelAnimator.CreateDefaultCloseCurve();
+    [SerializeField] private AnimationCurve panelFadeCurve = CurvedUIPanelAnimator.CreateDefaultFadeCurve();
+
+    private readonly List<RegionCardView> _cards = new();
     private RegionConfig _regionConfig;
     private RegionModel _regionModel;
 
+    // A panel that is fading out no longer counts as open.
+    public bool IsOpen => gameObject.activeSelf && (!TryGetComponent(out CanvasGroup group) || group.interactable);
+
     private void Awake()
     {
-        if (_closeButton != null)
+        if (_closeButtons == null)
         {
-            _closeButton.onClick.RemoveAllListeners();
-            _closeButton.onClick.AddListener(Hide);
+            return;
+        }
+
+        for (var i = 0; i < _closeButtons.Length; i++)
+        {
+            var button = _closeButtons[i];
+            if (button != null)
+            {
+                button.onClick.AddListener(Hide);
+            }
         }
     }
 
@@ -34,13 +55,62 @@ public class IslandPanel : MonoBehaviour
 
     public void Show()
     {
-        gameObject.SetActive(true);
-        Refresh();
+        if (_regionConfig != null && _regionModel != null)
+        {
+            Refresh();
+        }
+
+        CurvedUIPanelAnimator.Show(
+            gameObject,
+            animatePanelTransitions ? panelOpenDuration : 0f,
+            panelOpenCurve,
+            panelFadeCurve);
+
+        if (animatePanelTransitions)
+        {
+            UIFeel.Stagger(_cards);
+        }
     }
 
     public void Hide()
     {
-        gameObject.SetActive(false);
+        CurvedUIPanelAnimator.Hide(
+            gameObject,
+            animatePanelTransitions ? panelCloseDuration : 0f,
+            panelCloseCurve,
+            panelFadeCurve);
+    }
+
+    public void HideImmediate()
+    {
+        CurvedUIPanelAnimator.HideImmediate(gameObject);
+    }
+
+    public RegionCardView CreateCard()
+    {
+        if (_regionCardPrefab == null || _container == null)
+        {
+            Debug.LogWarning("[IslandPanel] Card prefab or container is not assigned.", this);
+            return null;
+        }
+
+        var card = Instantiate(_regionCardPrefab, _container);
+        card.gameObject.SetActive(true);
+        _cards.Add(card);
+        return card;
+    }
+
+    public void ClearCards()
+    {
+        for (var i = _cards.Count - 1; i >= 0; i--)
+        {
+            if (_cards[i] != null)
+            {
+                Destroy(_cards[i].gameObject);
+            }
+        }
+
+        _cards.Clear();
     }
 
     public void Refresh()
@@ -50,65 +120,21 @@ public class IslandPanel : MonoBehaviour
             return;
         }
 
-        var targetContainer = _container != null ? _container : transform;
+        ClearCards();
 
-        // Collect any pre-existing cards in container if spawned list is empty
-        if (_spawnedCards.Count == 0)
-        {
-            var existingCards = targetContainer.GetComponentsInChildren<RegionCardView>(true);
-            foreach (var existing in existingCards)
-            {
-                if (existing != null && !_spawnedCards.Contains(existing))
-                {
-                    _spawnedCards.Add(existing);
-                }
-            }
-        }
-
-        int totalRegions = _regionConfig.Count;
-
-        for (int i = 0; i < totalRegions; i++)
+        for (int i = 0; i < _regionConfig.Count; i++)
         {
             var regionData = _regionConfig.GetRegionByIndex(i);
             if (regionData == null) continue;
 
-            RegionCardView cardView;
-            if (i < _spawnedCards.Count)
-            {
-                cardView = _spawnedCards[i];
-            }
-            else
-            {
-                if (_regionCardPrefab != null)
-                {
-                    cardView = Instantiate(_regionCardPrefab, targetContainer);
-                }
-                else
-                {
-                    Debug.LogWarning("[IslandPanel] _regionCardPrefab is not assigned!");
-                    break;
-                }
-                _spawnedCards.Add(cardView);
-            }
+            var card = CreateCard();
+            if (card == null) return;
 
-            if (cardView != null)
-            {
-                cardView.gameObject.SetActive(true);
-                float progress = _regionModel.GetRegionProgressNormalized(i);
-                bool isUnlocked = _regionModel.IsRegionUnlocked(i);
-                bool isCurrent = (_regionModel.RegionService != null && _regionModel.RegionService.CurrentRegionIndex == i);
+            float progress = _regionModel.GetRegionProgressNormalized(i);
+            bool isUnlocked = _regionModel.IsRegionUnlocked(i);
+            bool isCurrent = _regionModel.RegionService != null && _regionModel.RegionService.CurrentRegionIndex == i;
 
-                cardView.Setup(regionData, i, progress, isUnlocked, isCurrent, OnCardClicked);
-            }
-        }
-
-        // Hide extra cards if config has fewer items than spawned cards
-        for (int i = totalRegions; i < _spawnedCards.Count; i++)
-        {
-            if (_spawnedCards[i] != null)
-            {
-                _spawnedCards[i].gameObject.SetActive(false);
-            }
+            card.Setup(regionData, i, progress, isUnlocked, isCurrent, OnCardClicked);
         }
     }
 

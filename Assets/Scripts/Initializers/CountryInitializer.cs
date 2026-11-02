@@ -45,6 +45,7 @@ namespace Initializers
         private readonly RewardPopup _rewardPopup;
         private readonly MainMenuPanel _mainMenuPanel;
         private readonly RegionService _regionService;
+        private readonly IslandBuildService _islandBuildService;
 
         private CompositeDisposable _disposable = new();
         private bool _isUpgrading;
@@ -79,6 +80,7 @@ namespace Initializers
             _lifePopup = resolver.ResolveOrDefault<LifePopup>();
             _rewardPopup = resolver.ResolveOrDefault<RewardPopup>();
             _regionService = resolver.ResolveOrDefault<RegionService>();
+            _islandBuildService = resolver.ResolveOrDefault<IslandBuildService>();
             _mainMenuPanel = resolver.ResolveOrDefault<MainMenuPanel>();
         }
 
@@ -92,10 +94,24 @@ namespace Initializers
                 if(_regionService != null)
                 {
                     var stepSw = System.Diagnostics.Stopwatch.StartNew();
+                    if(_islandBuildService != null)
+                    {
+                        var activeIsland = _islandBuildService.ActiveIsland;
+                        if(activeIsland != null)
+                        {
+                            _regionService.SetStartupPrefab(activeIsland.IslandPrefab);
+                        }
+                    }
+
                     await _regionService.Warmup();
                     Debug.Log($"[CountryInitializer] _regionService.Warmup() finished in {stepSw.ElapsedMilliseconds} ms");
 
-                    if(_regionUpgradeService != null && _regionModel != null && _regionModel.RegionService?.ActiveRegion != null)
+                    if(_islandBuildService != null)
+                    {
+                        _islandBuildService.EnsureActiveIslandSaved();
+                        _islandBuildService.Restore();
+                    }
+                    else if(_regionUpgradeService != null && _regionModel != null && _regionModel.RegionService?.ActiveRegion != null)
                     {
                         _regionUpgradeService.Initialize(_regionModel);
                         _regionUpgradeService.JumpToFrame(0);
@@ -144,15 +160,18 @@ namespace Initializers
                 var buildActionButton = _mainMenuPanel?.MenuActionPanel?.BuildButton;
                 var buildButton = buildActionButton?.Button
                                   ?? FindButtonInScene("BuildButton", "Build Button", "Build");
-                if(buildButton != null && _regionModel != null && _regionUpgradeService != null)
+                if(_islandBuildService == null)
                 {
-                    Debug.Log($"[CountryInitializer] Bound Build button: {buildButton.gameObject.name}");
-                    buildButton.onClick.RemoveAllListeners();
-                    buildButton.onClick.AddListener(() => { Upgrade().Forget(); });
-                }
-                else if(buildButton == null)
-                {
-                    Debug.LogWarning("[CountryInitializer] Build button could not be found!");
+                    if(buildButton != null && _regionModel != null && _regionUpgradeService != null)
+                    {
+                        Debug.Log($"[CountryInitializer] Bound Build button: {buildButton.gameObject.name}");
+                        buildButton.onClick.RemoveAllListeners();
+                        buildButton.onClick.AddListener(() => { Upgrade().Forget(); });
+                    }
+                    else if(buildButton == null)
+                    {
+                        Debug.LogWarning("[CountryInitializer] Build button could not be found!");
+                    }
                 }
 
                 if(_inAppView != null && _inAppConfig != null && _inAppView.ButtonsParent != null)
@@ -194,6 +213,9 @@ namespace Initializers
 
         public void UpdateBuildButtonLabels()
         {
+            // With the island build system the build button is driven by IslandBuildService.
+            if (_islandBuildService != null) return;
+
             var buildActionButton = _mainMenuPanel?.MenuActionPanel?.BuildButton;
             var buildButton = buildActionButton?.Button
                               ?? FindButtonInScene("BuildButton", "Build Button", "Build");

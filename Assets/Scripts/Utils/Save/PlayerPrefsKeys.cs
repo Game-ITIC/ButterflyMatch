@@ -15,5 +15,6 @@ namespace Utils.Save
         public static readonly string AsiaBuildingsAnimation = "asia-buildings-animation";
 
         public static readonly string RegionIndex = "region-index";
+        public static readonly string IslandBuildProgress = "island-build-progress";
     }
 }

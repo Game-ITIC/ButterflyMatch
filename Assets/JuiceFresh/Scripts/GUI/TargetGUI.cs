@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UI;
 
 public class TargetGUI : MonoBehaviour {
     public Sprite star;
@@ -27,8 +28,14 @@ public class TargetGUI : MonoBehaviour {
     }
 
     public void Done() {
+        bool wasDone = check.activeSelf;
         text.SetActive(false);
         check.SetActive(true);
+
+        if (!wasDone) {
+            UIFeel.PopIn(check.transform, 0f, 0f, 0.4f);
+            UIFeel.Punch(transform, 0.15f, 0.35f);
+        }
     }
 
     public void SetBack(bool show) {

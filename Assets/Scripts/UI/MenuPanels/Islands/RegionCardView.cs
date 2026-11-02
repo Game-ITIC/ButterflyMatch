@@ -1,6 +1,7 @@
 using System;
 using Configs;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,91 +11,73 @@ public class RegionCardView : MonoBehaviour
     [SerializeField] private TMP_Text _progresPercentageText;
     [SerializeField] private Image _progressImage;
     [SerializeField] private Image _regionImage;
-    [SerializeField] private Button _cardButton;
+    [SerializeField] private Button _button;
 
-    private int _regionIndex;
-    private Action<int> _onClickCallback;
-
-    public int RegionIndex => _regionIndex;
+    public int RegionIndex { get; private set; }
     public bool IsUnlocked { get; private set; }
     public bool IsCurrent { get; private set; }
 
-    public void Setup(
-        RegionData data,
-        int index,
-        float progressNormalized,
-        bool isUnlocked,
-        bool isCurrent,
-        Action<int> onClick
-    )
+    public void Bind(string islandName, Sprite icon, int builtCount, int totalCount, bool interactable, string status, Action onClick)
     {
-        _regionIndex = index;
-        _onClickCallback = onClick;
+        if (_regionNameText != null)
+        {
+            _regionNameText.text = islandName;
+        }
+
+        if (_regionImage != null)
+        {
+            _regionImage.sprite = icon;
+            _regionImage.enabled = icon != null;
+        }
+
+        var progress = totalCount > 0 ? (float)builtCount / totalCount : 0f;
+        if (_progressImage != null)
+        {
+            _progressImage.type = Image.Type.Filled;
+            _progressImage.fillMethod = Image.FillMethod.Horizontal;
+            _progressImage.fillAmount = progress;
+        }
+
+        if (_progresPercentageText != null)
+        {
+            _progresPercentageText.text = string.IsNullOrEmpty(status)
+                ? $"{Mathf.RoundToInt(progress * 100f)}%"
+                : status;
+        }
+
+        if (_button == null)
+        {
+            return;
+        }
+
+        UIButtonFeel.Ensure(_button);
+        _button.interactable = interactable;
+        _button.onClick.RemoveAllListeners();
+        if (interactable && onClick != null)
+        {
+            _button.onClick.AddListener(() => onClick());
+        }
+    }
+
+    // Legacy RegionConfig flow (IslandPresenter).
+    public void Setup(RegionData data, int index, float progressNormalized, bool isUnlocked, bool isCurrent, Action<int> onClick)
+    {
+        RegionIndex = index;
         IsUnlocked = isUnlocked;
         IsCurrent = isCurrent;
 
         if (data == null) return;
 
-        if (_regionNameText != null)
-        {
-            _regionNameText.text = !string.IsNullOrEmpty(data.regionName) ? data.regionName : $"Region {index + 1}";
-        }
+        var name = !string.IsNullOrEmpty(data.regionName) ? data.regionName : $"Region {index + 1}";
+        var status = data.isComingSoon ? "Soon" : !isUnlocked ? "Locked" : null;
+        var interactable = isUnlocked && !data.isComingSoon;
 
-        if (_regionImage != null && data.regionIcon != null)
-        {
-            _regionImage.sprite = data.regionIcon;
-        }
-
-        if (_progressImage != null)
-        {
-            _progressImage.fillAmount = progressNormalized;
-        }
-
-        if (_progresPercentageText != null)
-        {
-            if (data.isComingSoon)
-            {
-                _progresPercentageText.text = "Soon";
-            }
-            else if (!isUnlocked)
-            {
-                _progresPercentageText.text = "Locked";
-            }
-            else
-            {
-                _progresPercentageText.text = $"{Mathf.RoundToInt(progressNormalized * 100f)}%";
-            }
-        }
+        Bind(name, data.regionIcon, Mathf.RoundToInt(progressNormalized * 100f), 100, interactable, status,
+            onClick != null ? () => onClick(index) : null);
 
         if (_regionImage != null)
         {
-            _regionImage.color = (!isUnlocked || data.isComingSoon)
-                ? new Color(0.65f, 0.65f, 0.65f, 0.75f)
-                : Color.white;
-        }
-
-        if (_cardButton == null)
-        {
-            _cardButton = GetComponent<Button>() ?? GetComponentInChildren<Button>();
-            if (_cardButton == null)
-            {
-                _cardButton = gameObject.AddComponent<Button>();
-            }
-        }
-
-        if (_cardButton != null)
-        {
-            _cardButton.interactable = isUnlocked && !data.isComingSoon;
-            _cardButton.onClick.RemoveAllListeners();
-            _cardButton.onClick.AddListener(OnButtonClicked);
-        }
-    }
-
-    private void OnButtonClicked()
-    {
-        if (IsUnlocked)
-        {
-            _onClickCallback?.Invoke(_regionIndex);
+            _regionImage.color = interactable ? Color.white : new Color(0.65f, 0.65f, 0.65f, 0.75f);
         }
     }
 }

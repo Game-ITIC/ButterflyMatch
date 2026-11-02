@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UI;
 
 [RequireComponent(typeof(TMP_Text))]
 public class Counter_ : MonoBehaviour
@@ -11,6 +12,8 @@ public class Counter_ : MonoBehaviour
     bool alert;
     public int totalCount;
     TargetGUI parentGUI;
+    private bool punchOnChange;
+    private string lastPunchText;
 
     private string DisplayText
     {
@@ -23,6 +26,8 @@ public class Counter_ : MonoBehaviour
     private void Awake()
     {
         text = GetComponent<TMP_Text>();
+        punchOnChange = name == "Limit" || name == "Score" || name == "TargetBlocks" || name == "TargetCages"
+                        || name == "TargetBombs" || name == "CountIngr";
     }
 
     // Use this for initialization
@@ -35,6 +40,7 @@ public class Counter_ : MonoBehaviour
     void OnEnable()
     {
         lastTime = 0;
+        lastPunchText = null;
         UpdateText();
         alert = false;
         if (name == "TargetScore" && LevelManager.THIS != null)
@@ -176,6 +182,9 @@ public class Counter_ : MonoBehaviour
         {
             DisplayText = "LEVEL " + PlayerPrefs.GetInt("OpenLevel");
         }
+        if (punchOnChange)
+            PunchIfChanged();
+
         if (name == "TargetDescription1")
         {
             if (LevelManager.THIS.target == Target.SCORE)
@@ -193,5 +202,25 @@ public class Counter_ : MonoBehaviour
         }
 
 
+    }
+
+    // Small bump whenever a gameplay counter changes so moves/score/targets read as alive.
+    void PunchIfChanged()
+    {
+        string current = DisplayText;
+        if (lastPunchText != null && !string.Equals(current, lastPunchText))
+        {
+            if (name != "Limit")
+            {
+                UIFeel.Punch(text, name == "Score" ? 0.08f : 0.18f);
+            }
+            else if (LevelManager.THIS.limitType == LIMIT.MOVES)
+            {
+                // Time limit text has its scale forced every frame, so only the moves counter punches.
+                UIFeel.Punch(text, LevelManager.THIS.Limit <= 5 ? 0.28f : 0.15f);
+            }
+        }
+
+        lastPunchText = current;
     }
 }

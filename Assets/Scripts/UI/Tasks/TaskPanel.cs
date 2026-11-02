@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using Views;
 
 public class TaskPanel : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class TaskPanel : MonoBehaviour
     [SerializeField] private TaskView _taskViewPrefab;
     [SerializeField] private Transform _taskViewParent;
     [SerializeField] private GameObject _animatedContent;
+    [SerializeField] private GameObject _emptyStateRoot;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -19,15 +21,28 @@ public class TaskPanel : MonoBehaviour
     [SerializeField] private AnimationCurve panelCloseCurve = CurvedUIPanelAnimator.CreateDefaultCloseCurve();
     [SerializeField] private AnimationCurve panelFadeCurve = CurvedUIPanelAnimator.CreateDefaultFadeCurve();
 
+    private readonly List<DailyCardView> _dailyCards = new();
+    private Transform _dailyRewards;
+
     public IReadOnlyList<Button> CloseButtons => _closeButtons ?? Array.Empty<Button>();
     public TaskView TaskViewPrefab => _taskViewPrefab;
     public Transform TaskViewParent => _taskViewParent;
 
     private GameObject AnimationTarget => _animatedContent != null ? _animatedContent : gameObject;
 
+    private Transform DailyRewards
+    {
+        get
+        {
+            if (_dailyRewards == null)
+                _dailyRewards = transform.Find("DailyRewardsPanel");
+            return _dailyRewards;
+        }
+    }
+
     public void Show()
     {
-        var dailyRewards = transform.Find("DailyRewardsPanel");
+        var dailyRewards = DailyRewards;
         if (dailyRewards != null)
             dailyRewards.gameObject.SetActive(false);
 
@@ -37,6 +52,9 @@ public class TaskPanel : MonoBehaviour
             animatePanelTransitions ? panelOpenDuration : 0f,
             panelOpenCurve,
             panelFadeCurve);
+
+        if (animatePanelTransitions)
+            UIFeel.StaggerChildren(_taskViewParent);
     }
 
     public void ShowDailyRewards()
@@ -44,16 +62,33 @@ public class TaskPanel : MonoBehaviour
         if (_animatedContent != null)
             _animatedContent.SetActive(false);
 
-        var dailyRewards = transform.Find("DailyRewardsPanel");
+        var dailyRewards = DailyRewards;
         gameObject.SetActive(true);
-        if (dailyRewards != null)
-            dailyRewards.gameObject.SetActive(true);
+        if (dailyRewards == null)
+            return;
+
+        CurvedUIPanelAnimator.Show(
+            dailyRewards.gameObject,
+            animatePanelTransitions ? panelOpenDuration : 0f,
+            panelOpenCurve,
+            panelFadeCurve);
+
+        if (animatePanelTransitions)
+        {
+            dailyRewards.GetComponentsInChildren(false, _dailyCards);
+            UIFeel.Stagger(_dailyCards);
+        }
     }
 
     public void Hide()
     {
+        var dailyRewards = DailyRewards;
+        var target = dailyRewards != null && dailyRewards.gameObject.activeSelf
+            ? dailyRewards.gameObject
+            : AnimationTarget;
+
         CurvedUIPanelAnimator.Hide(
-            AnimationTarget,
+            target,
             animatePanelTransitions ? panelCloseDuration : 0f,
             panelCloseCurve,
             panelFadeCurve,
@@ -64,6 +99,12 @@ public class TaskPanel : MonoBehaviour
     {
         CurvedUIPanelAnimator.HideImmediate(AnimationTarget);
         DeactivateRoot();
+    }
+
+    public void SetEmptyStateVisible(bool isVisible)
+    {
+        if (_emptyStateRoot != null)
+            _emptyStateRoot.SetActive(isVisible);
     }
 
     private void DeactivateRoot()

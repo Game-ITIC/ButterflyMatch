@@ -21,11 +21,19 @@ namespace Views
 
         public void Show()
         {
+            var opening = !gameObject.activeSelf;
             CurvedUIPanelAnimator.Show(
                 gameObject,
                 animatePanelTransitions ? panelOpenDuration : 0f,
                 panelOpenCurve,
                 panelFadeCurve);
+
+            // Product cards are spawned after the menu feel install, so they get press feedback here.
+            UIButtonFeel.InstallInChildren(buttonsParent);
+            if(opening && animatePanelTransitions)
+            {
+                UIFeel.StaggerChildren(buttonsParent);
+            }
         }
 
         public void Hide()

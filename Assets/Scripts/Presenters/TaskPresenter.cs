@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Models.Tasks;
 using Services.Tasks;
+using UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -78,11 +79,42 @@ namespace Presenters
         public void RefreshViews(IReadOnlyList<TaskModel> tasks)
         {
             ClearViews();
-            if (tasks == null || !_taskPanel || !_taskPanel.TaskViewPrefab) return;
+            if (!_taskPanel)
+            {
+                return;
+            }
+
+            var hasAvailableTasks = false;
+            var hasClaimableTasks = false;
+            if (tasks != null)
+            {
+                for (var i = 0; i < tasks.Count; i++)
+                {
+                    var task = tasks[i];
+                    if (task != null && !task.isClaimed)
+                    {
+                        hasAvailableTasks = true;
+                        hasClaimableTasks |= task.isCompleted;
+                    }
+                }
+            }
+
+            _taskPanel.SetEmptyStateVisible(!hasAvailableTasks);
+            if (_taskButton) UIFeel.SetBreathing(_taskButton, hasClaimableTasks, 0.05f, 1.1f);
+            if (!hasAvailableTasks || !_taskPanel.TaskViewPrefab)
+            {
+                return;
+            }
 
             var parent = _taskPanel.TaskViewParent ? _taskPanel.TaskViewParent : _taskPanel.transform;
-            foreach (var task in tasks)
+            for (var i = 0; i < tasks.Count; i++)
             {
+                var task = tasks[i];
+                if (task == null || task.isClaimed)
+                {
+                    continue;
+                }
+
                 var view = UnityEngine.Object.Instantiate(_taskPanel.TaskViewPrefab, parent);
                 BindTaskView(view, task);
                 _activeViews.Add(view);

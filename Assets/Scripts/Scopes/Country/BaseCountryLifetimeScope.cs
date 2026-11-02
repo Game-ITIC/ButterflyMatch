@@ -29,6 +29,7 @@ namespace Scopes.Country
 
         [SerializeField] private CountryConfig countryConfig;
         [SerializeField] private RegionConfig regionConfig;
+        [SerializeField] private RegionSO regionSO;
         [SerializeField] private Transform regionParent;
 
         [Title("Tasks")]
@@ -41,6 +42,11 @@ namespace Scopes.Country
 
             RegisterComponentIfPresent(builder, _mainMenuPanel);
 
+            if(_mainMenuPanel != null)
+            {
+                builder.Register<MenuUIFeelPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+            }
+
             var lifePopup = _mainMenuPanel != null ? _mainMenuPanel.LifePopup : null;
             RegisterComponentIfPresent(builder, lifePopup);
 
@@ -49,6 +55,7 @@ namespace Scopes.Country
 
             RegisterInstanceIfPresent(builder, countryConfig);
             RegisterInstanceIfPresent(builder, regionConfig);
+            RegisterInstanceIfPresent(builder, regionSO);
             RegisterInstanceIfPresent(builder, tasksListSO);
 
             builder.Register<ITaskService, TaskService>(Lifetime.Singleton);
@@ -116,7 +123,9 @@ namespace Scopes.Country
             if(islandPanel == null) islandPanel = FindObjectOfType<IslandPanel>(true);
             RegisterComponentIfPresent(builder, islandPanel);
 
-            if(islandPanel != null && regionConfig != null)
+            // Legacy RegionConfig island picker; IslandSelectPresenter owns the panel when the RegionSO flow is active.
+            var usesIslandBuildFlow = regionSO != null && _mainMenuPanel != null && menuNavPanel != null;
+            if(islandPanel != null && regionConfig != null && !usesIslandBuildFlow)
             {
                 Button navIslandButton = null;
                 var otherNavButtons = new System.Collections.Generic.List<Button>();
@@ -172,6 +181,18 @@ namespace Scopes.Country
 
                 builder.Register<RegionModel>(Lifetime.Singleton);
                 builder.Register<RegionUpgradeService>(Lifetime.Singleton);
+            }
+
+            if(regionConfig != null && regionSO != null && _mainMenuPanel != null)
+            {
+                builder.Register<IslandBuildProgressStore>(Lifetime.Singleton);
+                builder.Register<IslandBuildService>(Lifetime.Singleton);
+                builder.Register<BuildingCatalogPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+
+                if(menuNavPanel != null)
+                {
+                    builder.Register<IslandSelectPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+                }
             }
 
             if(tasksListSO != null)

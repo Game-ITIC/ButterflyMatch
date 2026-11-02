@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Gley.DailyRewards.Internal;
 using Services.DailyRewards;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -110,8 +111,10 @@ namespace Presenters
                 return;
             }
 
+            var claimedCard = FindTodayCard();
             _rewardService.ClaimReward();
             RefreshCards();
+            UIFeel.Punch(claimedCard, 0.15f, 0.35f);
         }
 
         private void RefreshCards()
@@ -133,6 +136,23 @@ namespace Presenters
                 var isClaimed = wrappedAfterLastDay ? i == rewards.Count - 1 : i < cycleIndex;
                 _cards[i].ApplyCalendarState(isToday, isClaimed);
             }
+
+            if(_dailyButton != null)
+            {
+                UIFeel.SetBreathing(_dailyButton, canClaim, 0.05f, 1.1f);
+            }
+        }
+
+        private DailyCardView FindTodayCard()
+        {
+            var rewards = _rewardService.GetAllRewards();
+            if(_cards.Count == 0 || rewards.Count == 0)
+            {
+                return null;
+            }
+
+            var cycleIndex = _rewardService.GetCurrentDayIndex() % rewards.Count;
+            return cycleIndex < _cards.Count ? _cards[cycleIndex] : null;
         }
 
         public void Dispose()
