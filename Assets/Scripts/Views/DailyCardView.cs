@@ -9,6 +9,7 @@ namespace Views
     {
         [SerializeField] private Image itemImage;
         [SerializeField] private TMP_Text rewardText;
+        [SerializeField] private TMP_Text dayText;
         [SerializeField] private Button claimButton;
         [SerializeField] private GameObject glowObject;
         [SerializeField] private CanvasGroup canvasGroup;
@@ -52,6 +53,11 @@ namespace Views
             if(rewardText != null)
             {
                 rewardText.text = rewardValue.ToString();
+            }
+
+            if(dayText != null)
+            {
+                dayText.text = GameLocalization.L10n.Format("daily_day", dayNumber);
             }
         }
 
@@ -101,6 +107,12 @@ namespace Views
             {
                 var textTransform = transform.Find("Text (TMP)");
                 rewardText = textTransform != null ? textTransform.GetComponent<TMP_Text>() : null;
+            }
+
+            if(dayText == null)
+            {
+                var dayTransform = transform.Find("DayLabel");
+                dayText = dayTransform != null ? dayTransform.GetComponent<TMP_Text>() : null;
             }
 
             if(glowObject == null)

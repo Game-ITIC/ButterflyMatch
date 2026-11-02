@@ -125,12 +125,28 @@ namespace Presenters
         {
             if (!view || task == null) return;
 
-            view.SetTitle(task.title);
+            view.SetTitle(BuildTitle(task));
             view.SetSubtitle($"{task.currentProgress} / {task.targetAmount}");
             view.SetIcon(task.sprite);
             view.SetClaimButtonText(task.reward != null ? task.reward.amount.ToString() : "");
             view.SetClaimInteractable(task.isCompleted && !task.isClaimed);
             view.SetClaimAction(() => _taskService?.ClaimTask(task.id));
+        }
+
+        // Every template is titled "Collect Item", so all rows read the same; say what to do and how many.
+        private static string BuildTitle(TaskModel task)
+        {
+            string key;
+            switch (task.type)
+            {
+                case Meta.Quests.Models.QuestType.CollectItems: key = "task_collect_n"; break;
+                case Meta.Quests.Models.QuestType.UseItems: key = "task_use_n"; break;
+                case Meta.Quests.Models.QuestType.CompleteLevels: key = "task_levels_n"; break;
+                case Meta.Quests.Models.QuestType.PerfectLevels: key = "task_perfect_n"; break;
+                default: return GameLocalization.L10n.Translate(task.title);
+            }
+
+            return GameLocalization.L10n.Format(key, task.targetAmount);
         }
 
         public void ClearViews()
