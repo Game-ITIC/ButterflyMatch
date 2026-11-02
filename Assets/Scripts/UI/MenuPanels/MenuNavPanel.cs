@@ -40,6 +40,24 @@ public class MenuNavPanel : MonoBehaviour
 
     public Button[] NavigationButtons => new[] { IslandButton, MenuButton, ShopButton };
 
+    [SerializeField, Range(0f, 1f)] private float _inactiveAlpha = 0.6f;
+
+    // Highlights the tab whose screen is open; the others fade back.
+    public void SetSelected(Button selected)
+    {
+        SetTabAlpha(IslandButton, selected);
+        SetTabAlpha(MenuButton, selected);
+        SetTabAlpha(ShopButton, selected);
+    }
+
+    private void SetTabAlpha(Button tab, Button selected)
+    {
+        if (tab == null) return;
+        var group = tab.GetComponent<CanvasGroup>();
+        if (group == null) group = tab.gameObject.AddComponent<CanvasGroup>();
+        group.alpha = tab == selected ? 1f : _inactiveAlpha;
+    }
+
     private Button FindChildButton(params string[] names)
     {
         var buttons = GetComponentsInChildren<Button>(true);

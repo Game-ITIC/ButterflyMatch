@@ -28,6 +28,26 @@ namespace Configs
         }
     }
 
+    /// <summary>Where a product is shown in the shop.</summary>
+    public enum ShopSection
+    {
+        Gems = 0,
+        Featured = 1,
+        NoAds = 2,
+        Bundles = 3,
+        Daily = 4,
+        Hidden = 5
+    }
+
+    public enum ShopBadge
+    {
+        None = 0,
+        Popular = 1,
+        BestValue = 2,
+        OneTime = 3,
+        Sale = 4
+    }
+
     [CreateAssetMenu(fileName = nameof(InAppConfig), menuName = nameof(Configs) + "/" + nameof(InAppConfig))]
     public class InAppConfig : ScriptableObject
     {
@@ -41,6 +61,14 @@ namespace Configs
         [TableList]
         [FormerlySerializedAs("<InAppProducts>k__BackingField")]
         public List<InAppProduct> InAppProducts;
+
+        [Header("Reward icons")]
+        public Sprite GemIcon;
+        public Sprite BombIcon;
+        public Sprite ShovelIcon;
+        public Sprite ExtraMovesIcon;
+        public Sprite LivesIcon;
+        public Sprite UnlimitedLivesIcon;
 
         public InAppProductView GetProductViewPrefab(ProductColumnWidth columnWidth)
         {
@@ -72,5 +100,9 @@ namespace Configs
         public int lives;
         public int unlimitedLivesMinutes;
         public bool oneTimePurchase;
+        public ShopSection section;
+        public ShopBadge badge;
+        [Tooltip("Shown as a '+N%' bonus tag on gem packs. 0 = hidden.")]
+        public int bonusPercent;
     }
 }

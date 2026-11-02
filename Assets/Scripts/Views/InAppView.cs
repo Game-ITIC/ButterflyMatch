@@ -19,9 +19,12 @@ namespace Views
 
         public Transform ButtonsParent => buttonsParent;
 
+        public event System.Action<bool> VisibilityChanged;
+
         public void Show()
         {
             var opening = !gameObject.activeSelf;
+            VisibilityChanged?.Invoke(true);
             CurvedUIPanelAnimator.Show(
                 gameObject,
                 animatePanelTransitions ? panelOpenDuration : 0f,
@@ -38,6 +41,7 @@ namespace Views
 
         public void Hide()
         {
+            VisibilityChanged?.Invoke(false);
             CurvedUIPanelAnimator.Hide(
                 gameObject,
                 animatePanelTransitions ? panelCloseDuration : 0f,

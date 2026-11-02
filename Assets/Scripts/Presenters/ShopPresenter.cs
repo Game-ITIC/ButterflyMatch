@@ -25,9 +25,18 @@ namespace Presenters
             }
         }
 
+        private MenuNavPanel _navPanel;
+
         public void Initialize()
         {
             if (_inAppView == null) return;
+
+            _navPanel = _shopButton != null ? _shopButton.GetComponentInParent<MenuNavPanel>(true) : null;
+            if (_navPanel != null)
+            {
+                _navPanel.SetSelected(_navPanel.MenuButton);
+                _inAppView.VisibilityChanged += OnShopVisibilityChanged;
+            }
 
             if (_shopButton != null)
             {
@@ -58,8 +67,15 @@ namespace Presenters
             _inAppView.Hide();
         }
 
+        private void OnShopVisibilityChanged(bool isVisible)
+        {
+            if (_navPanel != null) _navPanel.SetSelected(isVisible ? _shopButton : _navPanel.MenuButton);
+        }
+
         public void Dispose()
         {
+            if (_inAppView != null) _inAppView.VisibilityChanged -= OnShopVisibilityChanged;
+
             foreach (var (button, action) in _boundActions)
             {
                 if (button != null && action != null)
