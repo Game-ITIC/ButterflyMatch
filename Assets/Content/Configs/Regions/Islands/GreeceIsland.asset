@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: GreeceIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: greece
+  displayName: Greece
+  icon: {fileID: 21300000, guid: fb34e80088f14ce4d957fc0915a0852a, type: 3}
+  islandPrefab: {fileID: 9070022975583013952, guid: 8992d40c2ece89c4080172d105be6269,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: greece-terrace
+    building: {fileID: 11400000, guid: e6860ec2ccb6ec748b0b0506772578a9, type: 2}
+    starCost: 18
+    requiredBuildings: []
+    animationStep: 0
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-chapel
+    building: {fileID: 11400000, guid: 345f631a391d81a449c4809479828b29, type: 2}
+    starCost: 20
+    requiredBuildings:
+    - {fileID: 11400000, guid: e6860ec2ccb6ec748b0b0506772578a9, type: 2}
+    animationStep: 1
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-dome
+    building: {fileID: 11400000, guid: c294481eef0faca48bc99fc67bf0e338, type: 2}
+    starCost: 22
+    requiredBuildings:
+    - {fileID: 11400000, guid: 345f631a391d81a449c4809479828b29, type: 2}
+    animationStep: 2
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-belltower
+    building: {fileID: 11400000, guid: a08c7342dcc76f84c9bbbcd21ab4bbcd, type: 2}
+    starCost: 24
+    requiredBuildings:
+    - {fileID: 11400000, guid: c294481eef0faca48bc99fc67bf0e338, type: 2}
+    animationStep: 3
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-cliffstairs
+    building: {fileID: 11400000, guid: e16d2b00e9028fe4aa388d7b9999abe3, type: 2}
+    starCost: 26
+    requiredBuildings:
+    - {fileID: 11400000, guid: a08c7342dcc76f84c9bbbcd21ab4bbcd, type: 2}
+    animationStep: 4
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-pergola
+    building: {fileID: 11400000, guid: 8e07cdbfbd4f678459c3074433f192fd, type: 2}
+    starCost: 28
+    requiredBuildings:
+    - {fileID: 11400000, guid: e16d2b00e9028fe4aa388d7b9999abe3, type: 2}
+    animationStep: 5
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-diningtable
+    building: {fileID: 11400000, guid: 10704fab32a1146448ee8ed20d0de331, type: 2}
+    starCost: 30
+    requiredBuildings:
+    - {fileID: 11400000, guid: 8e07cdbfbd4f678459c3074433f192fd, type: 2}
+    animationStep: 6
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-balcony
+    building: {fileID: 11400000, guid: 1750edfe2cb67ce4f9c81c7755b84982, type: 2}
+    starCost: 32
+    requiredBuildings:
+    - {fileID: 11400000, guid: 10704fab32a1146448ee8ed20d0de331, type: 2}
+    animationStep: 7
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-bougainvillea
+    building: {fileID: 11400000, guid: 14148bb32bd997549a9a59aec405ba5c, type: 2}
+    starCost: 34
+    requiredBuildings:
+    - {fileID: 11400000, guid: 1750edfe2cb67ce4f9c81c7755b84982, type: 2}
+    animationStep: 8
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: greece-olivetree
+    building: {fileID: 11400000, guid: 4cecefe091de59e4b9f45384aa936be0, type: 2}
+    starCost: 36
+    requiredBuildings:
+    - {fileID: 11400000, guid: 14148bb32bd997549a9a59aec405ba5c, type: 2}
+    animationStep: 9
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
