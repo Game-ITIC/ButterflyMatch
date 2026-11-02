@@ -1,0 +1,823 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_it
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: it
+  m_SharedData: {fileID: 11400000, guid: c66fbca871b198b43a5b7f53c90b48d5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 2389598208
+    m_Localized: Gioca
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541248
+    m_Localized: LIVELLO {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541249
+    m_Localized: Costruisci
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541250
+    m_Localized: Costruito
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541251
+    m_Localized: Chiudi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541252
+    m_Localized: Negozio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541253
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541254
+    m_Localized: Isola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541255
+    m_Localized: Eventi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541256
+    m_Localized: Compito
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541257
+    m_Localized: Compiti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541258
+    m_Localized: Giornaliero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541259
+    m_Localized: Nessun compito disponibile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541260
+    m_Localized: Impostazioni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541261
+    m_Localized: Suoni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541262
+    m_Localized: Musica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541263
+    m_Localized: Vibrazione
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541264
+    m_Localized: Notifiche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541265
+    m_Localized: Lingua
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541266
+    m_Localized: FATTO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541267
+    m_Localized: Non hai vite.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541268
+    m_Localized: Gratis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541269
+    m_Localized: Ottieni una vita!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541270
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541271
+    m_Localized: Compra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541272
+    m_Localized: Compiti di costruzione
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541273
+    m_Localized: AVANTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541274
+    m_Localized: HOME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541275
+    m_Localized: RIPRENDI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541276
+    m_Localized: RICOMINCIA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541277
+    m_Localized: 'Ricevi:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541278
+    m_Localized: Guarda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541279
+    m_Localized: 'HAI:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541280
+    m_Localized: "Ottieni pi\xF9 vite"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541281
+    m_Localized: Compra il set completo e gioca subito!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735552
+    m_Localized: Controlla la connessione a internet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735553
+    m_Localized: COME GIOCARE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735554
+    m_Localized: "Abbina 3 o pi\xF9 dello stesso colore per vincere!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735555
+    m_Localized: Obiettivo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735556
+    m_Localized: Max
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735557
+    m_Localized: Caricamento {0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735558
+    m_Localized: Presto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735559
+    m_Localized: '{0} stelle'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735560
+    m_Localized: Servono {0} stelle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735561
+    m_Localized: 'Prima costruisci: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735562
+    m_Localized: Ricompensa raddoppiata!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735563
+    m_Localized: Hai ottenuto {0} mosse extra!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735564
+    m_Localized: 'Hai ottenuto: {0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735565
+    m_Localized: Retino
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735566
+    m_Localized: Fulmine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735567
+    m_Localized: Bomba
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735568
+    m_Localized: Mosse extra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735569
+    m_Localized: Rimuove una farfalla
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735570
+    m_Localized: Rimuove una fila
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735571
+    m_Localized: Fa esplodere un'area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735572
+    m_Localized: +5 mosse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735573
+    m_Localized: Ottieni {0} stelle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735574
+    m_Localized: Raggiungi {0} punti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735575
+    m_Localized: Distruggi tutti i blocchi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735576
+    m_Localized: Porta gli insetti in fondo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735577
+    m_Localized: Raccogli le farfalle richieste
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735578
+    m_Localized: Distruggi i blocchi di miele
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735579
+    m_Localized: Elimina le bombe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735580
+    m_Localized: +{0} mosse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735581
+    m_Localized: +{0} s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735582
+    m_Localized: 'Record: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735583
+    m_Localized: PAUSA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735584
+    m_Localized: POTENZIAMENTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735585
+    m_Localized: VITE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735586
+    m_Localized: LIVELLO COMPLETATO!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735587
+    m_Localized: GAME OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735588
+    m_Localized: MOSSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735589
+    m_Localized: PUNTI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735590
+    m_Localized: BRAVO!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735591
+    m_Localized: OTTIMO!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735592
+    m_Localized: FANTASTICO!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735593
+    m_Localized: NESSUNA MOSSA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735594
+    m_Localized: REGIONI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735595
+    m_Localized: Raccogli oggetti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735596
+    m_Localized: Asia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735597
+    m_Localized: Nord
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735598
+    m_Localized: Giappone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735599
+    m_Localized: Cina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735600
+    m_Localized: Corea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735601
+    m_Localized: Norvegia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735602
+    m_Localized: Lapponia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735603
+    m_Localized: Islanda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735604
+    m_Localized: Fondamenta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735605
+    m_Localized: Struttura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735606
+    m_Localized: Casa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735607
+    m_Localized: Edificio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735608
+    m_Localized: Tetto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735609
+    m_Localized: Albero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735610
+    m_Localized: Muro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735611
+    m_Localized: Mura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735612
+    m_Localized: Passerella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735613
+    m_Localized: Massi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735614
+    m_Localized: Pennoni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735615
+    m_Localized: Stendardo della sala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735616
+    m_Localized: Tetto della sala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735617
+    m_Localized: Ringhiera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735618
+    m_Localized: Gagliardetti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735619
+    m_Localized: Casetta laterale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735620
+    m_Localized: Sala di pietra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929856
+    m_Localized: Sala di legno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929857
+    m_Localized: Base
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929858
+    m_Localized: Trave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929859
+    m_Localized: Colonne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929860
+    m_Localized: Rifiniture dorate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929861
+    m_Localized: Doratura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929862
+    m_Localized: Scala
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929863
+    m_Localized: Bordo del tetto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929864
+    m_Localized: Ponte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929865
+    m_Localized: Terreno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929866
+    m_Localized: Pagoda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929867
+    m_Localized: Lanterna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929868
+    m_Localized: Corna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929869
+    m_Localized: Barili
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929870
+    m_Localized: Panche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929871
+    m_Localized: "Fal\xF2"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929872
+    m_Localized: Carretto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929873
+    m_Localized: Stendibiancheria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929874
+    m_Localized: Capanna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929875
+    m_Localized: Tetto della capanna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929876
+    m_Localized: Pini
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929877
+    m_Localized: Spiedo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929878
+    m_Localized: Stendardo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929879
+    m_Localized: Bracieri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929880
+    m_Localized: Cancello
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929881
+    m_Localized: Casa lunga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929882
+    m_Localized: Tetto della casa lunga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929883
+    m_Localized: Palizzata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929884
+    m_Localized: Tende
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929885
+    m_Localized: Campo d'addestramento
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929886
+    m_Localized: Torre di guardia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965437116416
+    m_Localized: "Rimuove banner e pubblicit\xE0 per sempre"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476544
+    m_Localized: Gemme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476545
+    m_Localized: Pacchetti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476546
+    m_Localized: Offerta del giorno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476547
+    m_Localized: +{0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476548
+    m_Localized: Popolare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476549
+    m_Localized: "Pi\xF9 conveniente"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476550
+    m_Localized: Offerta unica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476551
+    m_Localized: Saldi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476552
+    m_Localized: '{0} h'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476553
+    m_Localized: '{0} min'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476554
+    m_Localized: "Senza pubblicit\xE0"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476555
+    m_Localized: Cristalli iniziali
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476556
+    m_Localized: Pacchetto piccolo di cristalli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476557
+    m_Localized: Pacchetto medio di cristalli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476558
+    m_Localized: Pacchetto grande di cristalli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476559
+    m_Localized: Pacchetto enorme di cristalli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476560
+    m_Localized: Pacchetto reale di cristalli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476561
+    m_Localized: Pacchetto iniziale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476562
+    m_Localized: Pacchetto principiante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476563
+    m_Localized: Pacchetto costruttore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476564
+    m_Localized: Pacchetto maestro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476565
+    m_Localized: Offerta gemme del giorno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476566
+    m_Localized: Offerta potenziamenti del giorno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476567
+    m_Localized: Offerta vite del giorno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476568
+    m_Localized: Offerta mosse del giorno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476569
+    m_Localized: 5 mosse extra!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3358491303936
+    m_Localized: TEMPO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277660868608
+    m_Localized: Europa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228736
+    m_Localized: Francia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228737
+    m_Localized: Grecia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228738
+    m_Localized: Italia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228739
+    m_Localized: Sentieri
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228740
+    m_Localized: "Caff\xE8"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228741
+    m_Localized: Piani superiori
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228742
+    m_Localized: Tetto a mansarda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228743
+    m_Localized: Base della torre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228744
+    m_Localized: Cima della torre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228745
+    m_Localized: Terrazza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228746
+    m_Localized: Lampioni
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228747
+    m_Localized: Bicicletta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228748
+    m_Localized: Giardini
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228749
+    m_Localized: Cappella
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617344
+    m_Localized: Cupola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617345
+    m_Localized: Campanile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617346
+    m_Localized: Scala sulla scogliera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617347
+    m_Localized: Pergolato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617348
+    m_Localized: Tavolo da pranzo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617349
+    m_Localized: Balcone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617350
+    m_Localized: Bouganville
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617351
+    m_Localized: Ulivo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617352
+    m_Localized: Piazza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617353
+    m_Localized: Pizzeria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617354
+    m_Localized: Tetto di tegole
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617355
+    m_Localized: Tendone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617356
+    m_Localized: Luci a filo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617357
+    m_Localized: Scooter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617358
+    m_Localized: Cipresso
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617359
+    m_Localized: Fioriere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562787201024
+    m_Localized: 'Gemme: +{0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562824949760
+    m_Localized: Giorno {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137218105344
+    m_Localized: Raccogli {0} farfalle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299648
+    m_Localized: Usa {0} potenziamenti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299649
+    m_Localized: Completa {0} livelli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299650
+    m_Localized: Ottieni 3 stelle in {0} livelli
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

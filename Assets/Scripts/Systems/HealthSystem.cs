@@ -195,7 +195,7 @@ namespace Systems
             }
 
             return _currentLives.Value >= _maxLives
-                ? FullLivesText
+                ? GameLocalization.L10n.Get("lives_full", FullLivesText)
                 : FormatTime(TimeUntilNextLife);
         }
 

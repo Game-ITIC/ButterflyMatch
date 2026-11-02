@@ -1,0 +1,829 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: UI Shared Data
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.SharedTableData
+  m_TableCollectionName: UI
+  m_TableCollectionNameGuidString: c66fbca871b198b43a5b7f53c90b48d5
+  m_Entries:
+  - m_Id: 2389598208
+    m_Key: play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541248
+    m_Key: level_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541249
+    m_Key: build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541250
+    m_Key: built
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541251
+    m_Key: close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541252
+    m_Key: shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541253
+    m_Key: menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541254
+    m_Key: island
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541255
+    m_Key: events
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541256
+    m_Key: task
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541257
+    m_Key: tasks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541258
+    m_Key: daily
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541259
+    m_Key: no_tasks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541260
+    m_Key: settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541261
+    m_Key: sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541262
+    m_Key: music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541263
+    m_Key: vibrations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541264
+    m_Key: notifications
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541265
+    m_Key: language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541266
+    m_Key: done
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541267
+    m_Key: no_life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541268
+    m_Key: free
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541269
+    m_Key: get_life
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541270
+    m_Key: ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541271
+    m_Key: buy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541272
+    m_Key: builds_tasks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541273
+    m_Key: next
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541274
+    m_Key: home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541275
+    m_Key: resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541276
+    m_Key: restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541277
+    m_Key: you_get
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541278
+    m_Key: watch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541279
+    m_Key: you_have
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541280
+    m_Key: get_more_lives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541281
+    m_Key: buy_full_set
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735552
+    m_Key: check_internet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735553
+    m_Key: how_to_play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735554
+    m_Key: tutorial_match
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735555
+    m_Key: goal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735556
+    m_Key: lives_full
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735557
+    m_Key: loading_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735558
+    m_Key: soon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735559
+    m_Key: stars_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735560
+    m_Key: need_stars_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735561
+    m_Key: build_first
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735562
+    m_Key: reward_x2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735563
+    m_Key: reward_extra_moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735564
+    m_Key: you_got_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735565
+    m_Key: boost_shovel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735566
+    m_Key: boost_energy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735567
+    m_Key: boost_bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735568
+    m_Key: boost_extramoves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735569
+    m_Key: boost_desc_shovel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735570
+    m_Key: boost_desc_energy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735571
+    m_Key: boost_desc_bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735572
+    m_Key: boost_desc_extramoves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735573
+    m_Key: target_stars
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735574
+    m_Key: target_score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735575
+    m_Key: target_blocks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735576
+    m_Key: target_collect
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735577
+    m_Key: target_items
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735578
+    m_Key: target_cages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735579
+    m_Key: target_bombs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735580
+    m_Key: keep_play_moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735581
+    m_Key: keep_play_secs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735582
+    m_Key: best_score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735583
+    m_Key: pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735584
+    m_Key: boosters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735585
+    m_Key: lives_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735586
+    m_Key: level_complete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735587
+    m_Key: game_over
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735588
+    m_Key: moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735589
+    m_Key: score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735590
+    m_Key: nice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735591
+    m_Key: great
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735592
+    m_Key: amazing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735593
+    m_Key: no_matches
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735594
+    m_Key: regions_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735595
+    m_Key: task_collect_item
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735596
+    m_Key: region_asia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735597
+    m_Key: region_north
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735598
+    m_Key: island_japan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735599
+    m_Key: island_china
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735600
+    m_Key: island_korea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735601
+    m_Key: island_norway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735602
+    m_Key: island_lapland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735603
+    m_Key: island_iceland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735604
+    m_Key: bld_foundation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735605
+    m_Key: bld_frame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735606
+    m_Key: bld_house
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735607
+    m_Key: bld_building
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735608
+    m_Key: bld_roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735609
+    m_Key: bld_tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735610
+    m_Key: bld_wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735611
+    m_Key: bld_walls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735612
+    m_Key: bld_boardwalk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735613
+    m_Key: bld_boulders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735614
+    m_Key: bld_flag_poles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735615
+    m_Key: bld_hall_banner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735616
+    m_Key: bld_hall_roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735617
+    m_Key: bld_railing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735618
+    m_Key: bld_rim_banners
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735619
+    m_Key: bld_side_house
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735620
+    m_Key: bld_stone_hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929856
+    m_Key: bld_timber_hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929857
+    m_Key: bld_base
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929858
+    m_Key: bld_beam
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929859
+    m_Key: bld_columns
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929860
+    m_Key: bld_gold_trim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929861
+    m_Key: bld_goldwork
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929862
+    m_Key: bld_ladder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929863
+    m_Key: bld_roof_edge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929864
+    m_Key: bld_bridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929865
+    m_Key: bld_ground
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929866
+    m_Key: bld_pagoda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929867
+    m_Key: bld_lantern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929868
+    m_Key: bld_antlers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929869
+    m_Key: bld_barrels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929870
+    m_Key: bld_benches
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929871
+    m_Key: bld_campfire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929872
+    m_Key: bld_cart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929873
+    m_Key: bld_clothesline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929874
+    m_Key: bld_hut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929875
+    m_Key: bld_hut_roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929876
+    m_Key: bld_pines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929877
+    m_Key: bld_spit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929878
+    m_Key: bld_banner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929879
+    m_Key: bld_fire_pits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929880
+    m_Key: bld_gate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929881
+    m_Key: bld_longhouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929882
+    m_Key: bld_longhouse_roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929883
+    m_Key: bld_palisade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929884
+    m_Key: bld_tents
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929885
+    m_Key: bld_training_yard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929886
+    m_Key: bld_watchtower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965437116416
+    m_Key: shop_no_ads_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476544
+    m_Key: shop_section_gems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476545
+    m_Key: shop_section_bundles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476546
+    m_Key: shop_section_daily
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476547
+    m_Key: shop_bonus_percent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476548
+    m_Key: shop_badge_popular
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476549
+    m_Key: shop_badge_best_value
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476550
+    m_Key: shop_badge_one_time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476551
+    m_Key: shop_badge_sale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476552
+    m_Key: shop_duration_hours
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476553
+    m_Key: shop_duration_minutes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476554
+    m_Key: shop_product_remove_ads
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476555
+    m_Key: shop_product_crystals_starter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476556
+    m_Key: shop_product_crystals_small
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476557
+    m_Key: shop_product_crystals_medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476558
+    m_Key: shop_product_crystals_big
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476559
+    m_Key: shop_product_crystals_huge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476560
+    m_Key: shop_product_crystals_royal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476561
+    m_Key: shop_product_starter_bundle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476562
+    m_Key: shop_product_beginner_bundle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476563
+    m_Key: shop_product_builder_bundle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476564
+    m_Key: shop_product_master_bundle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476565
+    m_Key: shop_product_daily_gems_discount
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476566
+    m_Key: shop_product_daily_boosters_offer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476567
+    m_Key: shop_product_daily_unlimited_lives_offer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476568
+    m_Key: shop_product_daily_moves_offer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476569
+    m_Key: continue_extra_moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3358491303936
+    m_Key: time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277660868608
+    m_Key: region_europe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228736
+    m_Key: island_france
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228737
+    m_Key: island_greece
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228738
+    m_Key: island_italy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228739
+    m_Key: bld_paths
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228740
+    m_Key: bld_cafe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228741
+    m_Key: bld_upper_floors
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228742
+    m_Key: bld_mansard_roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228743
+    m_Key: bld_tower_base
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228744
+    m_Key: bld_tower_top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228745
+    m_Key: bld_terrace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228746
+    m_Key: bld_street_lamps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228747
+    m_Key: bld_bicycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228748
+    m_Key: bld_gardens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228749
+    m_Key: bld_chapel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617344
+    m_Key: bld_dome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617345
+    m_Key: bld_bell_tower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617346
+    m_Key: bld_cliff_stairs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617347
+    m_Key: bld_pergola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617348
+    m_Key: bld_dining_table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617349
+    m_Key: bld_balcony
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617350
+    m_Key: bld_bougainvillea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617351
+    m_Key: bld_olive_tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617352
+    m_Key: bld_plaza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617353
+    m_Key: bld_pizzeria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617354
+    m_Key: bld_tile_roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617355
+    m_Key: bld_awning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617356
+    m_Key: bld_string_lights
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617357
+    m_Key: bld_scooter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617358
+    m_Key: bld_cypress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617359
+    m_Key: bld_planters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562787201024
+    m_Key: reward_gems_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562824949760
+    m_Key: daily_day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137218105344
+    m_Key: task_collect_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299648
+    m_Key: task_use_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299649
+    m_Key: task_levels_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299650
+    m_Key: task_perfect_n
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 5010017145247760522
+  references:
+    version: 2
+    RefIds:
+    - rid: 5010017145247760522
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1793622431438

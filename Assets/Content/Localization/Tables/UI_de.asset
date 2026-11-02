@@ -1,0 +1,823 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_de
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: c66fbca871b198b43a5b7f53c90b48d5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 2389598208
+    m_Localized: Spielen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541248
+    m_Localized: LEVEL {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541249
+    m_Localized: Bauen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541250
+    m_Localized: Gebaut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541251
+    m_Localized: "Schlie\xDFen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541252
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541253
+    m_Localized: "Men\xFC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541254
+    m_Localized: Insel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541255
+    m_Localized: Events
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541256
+    m_Localized: Aufgabe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541257
+    m_Localized: Aufgaben
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541258
+    m_Localized: "T\xE4glich"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541259
+    m_Localized: "Keine Aufgaben verf\xFCgbar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541260
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541261
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541262
+    m_Localized: Musik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541263
+    m_Localized: Vibration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541264
+    m_Localized: Mitteilungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541265
+    m_Localized: Sprache
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541266
+    m_Localized: FERTIG
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541267
+    m_Localized: Du hast keine Leben.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541268
+    m_Localized: Gratis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541269
+    m_Localized: "Du erh\xE4ltst ein Leben!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541270
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541271
+    m_Localized: Kaufen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541272
+    m_Localized: Bauaufgaben
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541273
+    m_Localized: WEITER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541274
+    m_Localized: "MEN\xDC"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541275
+    m_Localized: WEITER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541276
+    m_Localized: NEUSTART
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541277
+    m_Localized: 'Erhalten:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541278
+    m_Localized: Ansehen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541279
+    m_Localized: 'DU HAST:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541280
+    m_Localized: Mehr Leben holen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541281
+    m_Localized: Kauf das volle Set und spiel sofort!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735552
+    m_Localized: "Pr\xFCfe deine Internetverbindung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735553
+    m_Localized: SO WIRD GESPIELT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735554
+    m_Localized: Verbinde 3 oder mehr gleiche Farben, um zu gewinnen!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735555
+    m_Localized: Ziel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735556
+    m_Localized: Voll
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735557
+    m_Localized: "L\xE4dt {0}%"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735558
+    m_Localized: Bald
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735559
+    m_Localized: '{0} Sterne'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735560
+    m_Localized: "{0} Sterne n\xF6tig"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735561
+    m_Localized: 'Baue zuerst: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735562
+    m_Localized: Belohnung verdoppelt!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735563
+    m_Localized: "Du hast {0} Extraz\xFCge erhalten!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735564
+    m_Localized: 'Du hast erhalten: {0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735565
+    m_Localized: Kescher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735566
+    m_Localized: Blitz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735567
+    m_Localized: Bombe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735568
+    m_Localized: "Extraz\xFCge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735569
+    m_Localized: Entfernt einen Schmetterling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735570
+    m_Localized: Entfernt eine Reihe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735571
+    m_Localized: Sprengt einen Bereich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735572
+    m_Localized: "+5 Z\xFCge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735573
+    m_Localized: Sammle {0} Sterne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735574
+    m_Localized: Erreiche {0} Punkte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735575
+    m_Localized: "Zerst\xF6re alle Bl\xF6cke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735576
+    m_Localized: Bring die Insekten nach unten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735577
+    m_Localized: "Sammle die ben\xF6tigten Schmetterlinge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735578
+    m_Localized: "Zerst\xF6re die Honigbl\xF6cke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735579
+    m_Localized: "Entsch\xE4rfe die Bomben"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735580
+    m_Localized: "+{0} Z\xFCge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735581
+    m_Localized: +{0} Sek.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735582
+    m_Localized: 'Rekord: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735583
+    m_Localized: PAUSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735584
+    m_Localized: BOOSTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735585
+    m_Localized: LEBEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735586
+    m_Localized: LEVEL GESCHAFFT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735587
+    m_Localized: GAME OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735588
+    m_Localized: "Z\xDCGE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735589
+    m_Localized: PUNKTE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735590
+    m_Localized: SUPER!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735591
+    m_Localized: KLASSE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735592
+    m_Localized: FANTASTISCH!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735593
+    m_Localized: "KEINE Z\xDCGE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735594
+    m_Localized: REGIONEN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735595
+    m_Localized: "Sammle Gegenst\xE4nde"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735596
+    m_Localized: Asien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735597
+    m_Localized: Norden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735598
+    m_Localized: Japan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735599
+    m_Localized: China
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735600
+    m_Localized: Korea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735601
+    m_Localized: Norwegen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735602
+    m_Localized: Lappland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735603
+    m_Localized: Island
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735604
+    m_Localized: Fundament
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735605
+    m_Localized: "Ger\xFCst"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735606
+    m_Localized: Haus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735607
+    m_Localized: "Geb\xE4ude"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735608
+    m_Localized: Dach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735609
+    m_Localized: Baum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735610
+    m_Localized: Mauer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735611
+    m_Localized: Mauern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735612
+    m_Localized: Steg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735613
+    m_Localized: Felsen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735614
+    m_Localized: Fahnenmasten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735615
+    m_Localized: Hallenbanner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735616
+    m_Localized: Hallendach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735617
+    m_Localized: "Gel\xE4nder"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735618
+    m_Localized: Wimpel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735619
+    m_Localized: Nebenhaus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735620
+    m_Localized: Steinhalle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929856
+    m_Localized: Holzhalle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929857
+    m_Localized: Sockel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929858
+    m_Localized: Balken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929859
+    m_Localized: "S\xE4ulen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929860
+    m_Localized: Goldverzierung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929861
+    m_Localized: Goldarbeit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929862
+    m_Localized: Leiter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929863
+    m_Localized: Dachkante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929864
+    m_Localized: "Br\xFCcke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929865
+    m_Localized: Boden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929866
+    m_Localized: Pagode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929867
+    m_Localized: Laterne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929868
+    m_Localized: Geweih
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929869
+    m_Localized: "F\xE4sser"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929870
+    m_Localized: "B\xE4nke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929871
+    m_Localized: Lagerfeuer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929872
+    m_Localized: Karren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929873
+    m_Localized: "W\xE4scheleine"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929874
+    m_Localized: "H\xFCtte"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929875
+    m_Localized: "H\xFCttendach"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929876
+    m_Localized: Kiefern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929877
+    m_Localized: "Spie\xDF"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929878
+    m_Localized: Banner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929879
+    m_Localized: Feuerstellen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929880
+    m_Localized: Tor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929881
+    m_Localized: Langhaus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929882
+    m_Localized: Langhausdach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929883
+    m_Localized: Palisade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929884
+    m_Localized: Zelte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929885
+    m_Localized: "\xDCbungsplatz"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929886
+    m_Localized: Wachturm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965437116416
+    m_Localized: "Entfernt Banner und Pop-up-Werbung f\xFCr immer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476544
+    m_Localized: Edelsteine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476545
+    m_Localized: Pakete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476546
+    m_Localized: Angebot des Tages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476547
+    m_Localized: +{0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476548
+    m_Localized: Beliebt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476549
+    m_Localized: Bester Wert
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476550
+    m_Localized: Einmaliges Angebot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476551
+    m_Localized: Rabatt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476552
+    m_Localized: '{0} Std.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476553
+    m_Localized: '{0} Min.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476554
+    m_Localized: Werbefrei
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476555
+    m_Localized: Start-Kristalle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476556
+    m_Localized: Kleines Kristallpaket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476557
+    m_Localized: Mittleres Kristallpaket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476558
+    m_Localized: "Gro\xDFes Kristallpaket"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476559
+    m_Localized: Riesiges Kristallpaket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476560
+    m_Localized: "K\xF6nigliches Kristallpaket"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476561
+    m_Localized: Startpaket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476562
+    m_Localized: "Anf\xE4ngerpaket"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476563
+    m_Localized: Baumeisterpaket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476564
+    m_Localized: Meisterpaket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476565
+    m_Localized: 'Tagesangebot: Edelsteine'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476566
+    m_Localized: 'Tagesangebot: Booster'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476567
+    m_Localized: 'Tagesangebot: Leben'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476568
+    m_Localized: "Tagesangebot: Z\xFCge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476569
+    m_Localized: "5 Extraz\xFCge!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3358491303936
+    m_Localized: ZEIT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277660868608
+    m_Localized: Europa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228736
+    m_Localized: Frankreich
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228737
+    m_Localized: Griechenland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228738
+    m_Localized: Italien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228739
+    m_Localized: Wege
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228740
+    m_Localized: "Caf\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228741
+    m_Localized: Obergeschosse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228742
+    m_Localized: Mansarddach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228743
+    m_Localized: Turmsockel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228744
+    m_Localized: Turmspitze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228745
+    m_Localized: Terrasse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228746
+    m_Localized: "Stra\xDFenlaternen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228747
+    m_Localized: Fahrrad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228748
+    m_Localized: "G\xE4rten"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228749
+    m_Localized: Kapelle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617344
+    m_Localized: Kuppel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617345
+    m_Localized: Glockenturm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617346
+    m_Localized: Klippentreppe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617347
+    m_Localized: Pergola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617348
+    m_Localized: Esstisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617349
+    m_Localized: Balkon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617350
+    m_Localized: Bougainvillea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617351
+    m_Localized: Olivenbaum
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617352
+    m_Localized: Platz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617353
+    m_Localized: Pizzeria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617354
+    m_Localized: Ziegeldach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617355
+    m_Localized: Markise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617356
+    m_Localized: Lichterkette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617357
+    m_Localized: Motorroller
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617358
+    m_Localized: Zypresse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617359
+    m_Localized: "Pflanzk\xFCbel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562787201024
+    m_Localized: 'Edelsteine: +{0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562824949760
+    m_Localized: Tag {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137218105344
+    m_Localized: Sammle {0} Schmetterlinge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299648
+    m_Localized: Nutze {0}-mal Booster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299649
+    m_Localized: Schaffe {0} Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299650
+    m_Localized: Hol 3 Sterne in {0} Leveln
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

@@ -1,0 +1,201 @@
+key|en|ru|es|pt-BR|de|fr|it|tr|id|ja|ko|zh-Hans
+play|Play|Играть|Jugar|Jogar|Spielen|Jouer|Gioca|Oyna|Main|プレイ|플레이|开始
+level_n|LEVEL {0}|УРОВЕНЬ {0}|NIVEL {0}|NÍVEL {0}|LEVEL {0}|NIVEAU {0}|LIVELLO {0}|SEVİYE {0}|LEVEL {0}|レベル {0}|레벨 {0}|第{0}关
+build|Build|Построить|Construir|Construir|Bauen|Construire|Costruisci|İnşa et|Bangun|建てる|건설|建造
+built|Built|Построено|Construido|Construído|Gebaut|Construit|Costruito|İnşa edildi|Dibangun|建設済み|완료|已建造
+close|Close|Закрыть|Cerrar|Fechar|Schließen|Fermer|Chiudi|Kapat|Tutup|閉じる|닫기|关闭
+shop|Shop|Магазин|Tienda|Loja|Shop|Boutique|Negozio|Mağaza|Toko|ショップ|상점|商店
+menu|Menu|Меню|Menú|Menu|Menü|Menu|Menu|Menü|Menu|メニュー|메뉴|菜单
+island|Island|Остров|Isla|Ilha|Insel|Île|Isola|Ada|Pulau|島|섬|岛屿
+events|Events|События|Eventos|Eventos|Events|Événements|Eventi|Etkinlikler|Event|イベント|이벤트|活动
+task|Task|Задание|Tarea|Tarefa|Aufgabe|Tâche|Compito|Görev|Tugas|タスク|과제|任务
+tasks|Tasks|Задания|Tareas|Tarefas|Aufgaben|Tâches|Compiti|Görevler|Tugas|タスク|과제|任务
+daily|Daily|Ежедневно|Diario|Diário|Täglich|Quotidien|Giornaliero|Günlük|Harian|デイリー|일일 보상|每日
+no_tasks|No tasks available|Нет доступных заданий|No hay tareas disponibles|Nenhuma tarefa disponível|Keine Aufgaben verfügbar|Aucune tâche disponible|Nessun compito disponibile|Görev yok|Tidak ada tugas|タスクはありません|과제가 없습니다|暂无任务
+settings|Settings|Настройки|Ajustes|Configurações|Einstellungen|Paramètres|Impostazioni|Ayarlar|Pengaturan|設定|설정|设置
+sound|Sound|Звук|Sonido|Som|Sound|Son|Suoni|Ses|Suara|サウンド|사운드|音效
+music|Music|Музыка|Música|Música|Musik|Musique|Musica|Müzik|Musik|音楽|음악|音乐
+vibrations|Vibrations|Вибрация|Vibración|Vibração|Vibration|Vibrations|Vibrazione|Titreşim|Getaran|振動|진동|振动
+notifications|Notifications|Уведомления|Notificaciones|Notificações|Mitteilungen|Notifications|Notifiche|Bildirimler|Notifikasi|通知|알림|通知
+language|Language|Язык|Idioma|Idioma|Sprache|Langue|Lingua|Dil|Bahasa|言語|언어|语言
+done|DONE|ГОТОВО|LISTO|OK|FERTIG|OK|FATTO|TAMAM|SELESAI|完了|완료|完成
+no_life|You don't have a life.|У вас нет жизней.|No tienes vidas.|Você não tem vidas.|Du hast keine Leben.|Tu n'as plus de vies.|Non hai vite.|Hiç canın yok.|Kamu tidak punya nyawa.|ライフがありません。|생명이 없습니다.|你没有生命了。
+free|Free|Бесплатно|Gratis|Grátis|Gratis|Gratuit|Gratis|Ücretsiz|Gratis|無料|무료|免费
+get_life|You get a life.|Вы получили жизнь!|¡Obtienes una vida!|Você ganhou uma vida!|Du erhältst ein Leben!|Tu gagnes une vie !|Ottieni una vita!|Bir can kazandın!|Kamu dapat satu nyawa!|ライフを1つ獲得！|생명 1개를 얻었습니다!|获得1条生命！
+ok|OK|ОК|OK|OK|OK|OK|OK|TAMAM|OK|OK|확인|确定
+buy|Buy|Купить|Comprar|Comprar|Kaufen|Acheter|Compra|Satın al|Beli|購入|구매|购买
+builds_tasks|Builds Tasks|Задания стройки|Tareas de construcción|Tarefas de construção|Bauaufgaben|Tâches de construction|Compiti di costruzione|İnşa görevleri|Tugas bangunan|建設タスク|건설 과제|建造任务
+next|NEXT|ДАЛЕЕ|SIGUIENTE|PRÓXIMO|WEITER|SUIVANT|AVANTI|İLERİ|LANJUT|次へ|다음|下一关
+home|HOME|МЕНЮ|INICIO|INÍCIO|MENÜ|ACCUEIL|HOME|ANA MENÜ|BERANDA|ホーム|홈|主页
+resume|RESUME|ПРОДОЛЖИТЬ|CONTINUAR|CONTINUAR|WEITER|REPRENDRE|RIPRENDI|DEVAM|LANJUTKAN|再開|계속|继续
+restart|RESTART|ЗАНОВО|REINICIAR|REINICIAR|NEUSTART|REJOUER|RICOMINCIA|YENİDEN|ULANGI|やり直す|다시 시작|重新开始
+you_get|You Get:|Награда:|Ganas:|Ganhe:|Erhalten:|Gain :|Ricevi:|Ödül:|Dapat:|獲得：|획득:|获得：
+watch|Watch|Смотреть|Ver|Assistir|Ansehen|Regarder|Guarda|İzle|Tonton|視聴|시청|观看
+you_have|YOU HAVE:|У ВАС:|TIENES:|VOCÊ TEM:|DU HAST:|TU AS :|HAI:|SENDE OLAN:|KAMU PUNYA:|所持：|보유:|拥有：
+get_more_lives|Get more lives|Получить жизни|Consigue más vidas|Ganhe mais vidas|Mehr Leben holen|Obtiens plus de vies|Ottieni più vite|Daha fazla can al|Dapatkan nyawa|ライフを増やす|생명 더 얻기|获取更多生命
+buy_full_set|You can buy full set and play now!|Купите полный набор и играйте сейчас!|¡Compra el set completo y juega ya!|Compre o pacote completo e jogue agora!|Kauf das volle Set und spiel sofort!|Achète le pack complet et joue maintenant !|Compra il set completo e gioca subito!|Tam seti al ve hemen oyna!|Beli paket lengkap dan main sekarang!|フルセットを買って今すぐプレイ！|풀 세트를 구매하고 바로 플레이하세요!|购买全套，立即开玩！
+check_internet|Check your internet connection|Проверьте подключение к интернету|Comprueba tu conexión a internet|Verifique sua conexão com a internet|Prüfe deine Internetverbindung|Vérifie ta connexion internet|Controlla la connessione a internet|İnternet bağlantını kontrol et|Periksa koneksi internetmu|インターネット接続を確認してください|인터넷 연결을 확인하세요|请检查网络连接
+how_to_play|HOW TO PLAY|КАК ИГРАТЬ|CÓMO JUGAR|COMO JOGAR|SO WIRD GESPIELT|COMMENT JOUER|COME GIOCARE|NASIL OYNANIR|CARA BERMAIN|遊び方|게임 방법|玩法说明
+tutorial_match|Match 3 or more of the same color to win!|Соберите 3 или больше одного цвета, чтобы победить!|¡Junta 3 o más del mismo color para ganar!|Junte 3 ou mais da mesma cor para vencer!|Verbinde 3 oder mehr gleiche Farben, um zu gewinnen!|Aligne 3 éléments ou plus de la même couleur pour gagner !|Abbina 3 o più dello stesso colore per vincere!|Kazanmak için aynı renkten 3 veya daha fazlasını eşleştir!|Cocokkan 3 atau lebih warna yang sama untuk menang!|同じ色を3つ以上そろえてクリア！|같은 색을 3개 이상 맞춰 승리하세요!|将3个或更多同色连在一起即可获胜！
+goal|Goal|Цель|Objetivo|Objetivo|Ziel|Objectif|Obiettivo|Hedef|Target|目標|목표|目标
+lives_full|Full|Макс.|Lleno|Cheio|Voll|Max|Max|Dolu|Penuh|満タン|가득|已满
+loading_n|Loading {0}%|Загрузка {0}%|Cargando {0}%|Carregando {0}%|Lädt {0}%|Chargement {0}%|Caricamento {0}%|Yükleniyor %{0}|Memuat {0}%|読み込み中 {0}%|로딩 중 {0}%|加载中 {0}%
+soon|Soon|Скоро|Pronto|Em breve|Bald|Bientôt|Presto|Yakında|Segera|近日公開|곧 공개|即将推出
+stars_n|{0} stars|Звёзд: {0}|{0} estrellas|{0} estrelas|{0} Sterne|{0} étoiles|{0} stelle|{0} yıldız|{0} bintang|スター{0}個|별 {0}개|{0}颗星
+need_stars_n|Need {0} stars|Нужно звёзд: {0}|Necesitas {0} estrellas|Precisa de {0} estrelas|{0} Sterne nötig|Il faut {0} étoiles|Servono {0} stelle|{0} yıldız gerekli|Butuh {0} bintang|スターが{0}個必要|별 {0}개 필요|需要{0}颗星
+build_first|Build {0} first|Сначала постройте: {0}|Primero construye: {0}|Construa primeiro: {0}|Baue zuerst: {0}|Construis d'abord : {0}|Prima costruisci: {0}|Önce bunu inşa et: {0}|Bangun dulu: {0}|先に建設：{0}|먼저 건설: {0}|请先建造：{0}
+reward_x2|You doubled your reward!|Награда удвоена!|¡Duplicaste tu recompensa!|Você dobrou sua recompensa!|Belohnung verdoppelt!|Récompense doublée !|Ricompensa raddoppiata!|Ödülün ikiye katlandı!|Hadiahmu jadi dua kali lipat!|報酬が2倍になった！|보상이 2배가 되었습니다!|奖励翻倍！
+reward_extra_moves|You got {0} extra moves!|Дополнительные ходы: +{0}!|¡Conseguiste {0} movimientos extra!|Você ganhou {0} movimentos extras!|Du hast {0} Extrazüge erhalten!|Tu as gagné {0} coups bonus !|Hai ottenuto {0} mosse extra!|{0} ekstra hamle kazandın!|Kamu dapat {0} langkah tambahan!|手数が{0}増えた！|추가 이동 {0}회 획득!|获得{0}次额外步数！
+you_got_n|You got: {0}!|Вы получили: {0}!|¡Conseguiste: {0}!|Você ganhou: {0}!|Du hast erhalten: {0}!|Tu as obtenu : {0} !|Hai ottenuto: {0}!|Kazandın: {0}!|Kamu dapat: {0}!|{0}を獲得！|{0} 획득!|获得{0}！
+boost_shovel|Net|Сачок|Red|Rede|Kescher|Filet|Retino|Ağ|Jaring|虫取り網|잠자리채|捕虫网
+boost_energy|Lightning|Молния|Rayo|Raio|Blitz|Éclair|Fulmine|Şimşek|Petir|稲妻|번개|闪电
+boost_bomb|Bomb|Бомба|Bomba|Bomba|Bombe|Bombe|Bomba|Bomba|Bom|ボム|폭탄|炸弹
+boost_extramoves|Extra Moves|Доп. ходы|Movimientos extra|Movimentos extras|Extrazüge|Coups bonus|Mosse extra|Ekstra hamle|Langkah tambahan|追加手数|추가 이동|额外步数
+boost_desc_shovel|Removes one butterfly|Убирает одну бабочку|Elimina una mariposa|Remove uma borboleta|Entfernt einen Schmetterling|Retire un papillon|Rimuove una farfalla|Bir kelebeği kaldırır|Menghapus satu kupu-kupu|チョウを1匹消す|나비 하나를 제거합니다|消除一只蝴蝶
+boost_desc_energy|Removes a row|Убирает ряд|Elimina una fila|Remove uma fileira|Entfernt eine Reihe|Retire une rangée|Rimuove una fila|Bir sırayı kaldırır|Menghapus satu baris|1列を消す|한 줄을 제거합니다|消除一整行
+boost_desc_bomb|Explodes an area|Взрывает область|Explota un área|Explode uma área|Sprengt einen Bereich|Fait exploser une zone|Fa esplodere un'area|Bir alanı patlatır|Meledakkan satu area|周囲を爆破する|주변을 폭파합니다|炸掉一片区域
+boost_desc_extramoves|+5 extra moves|+5 ходов|+5 movimientos|+5 movimentos|+5 Züge|+5 coups|+5 mosse|+5 hamle|+5 langkah|手数+5|이동 +5|步数+5
+target_stars|Collect {0} stars|Соберите звёзды: {0}|Consigue {0} estrellas|Consiga {0} estrelas|Sammle {0} Sterne|Obtiens {0} étoiles|Ottieni {0} stelle|{0} yıldız topla|Kumpulkan {0} bintang|スターを{0}個集めよう|별 {0}개를 모으세요|收集{0}颗星
+target_score|Reach {0} points|Наберите {0} очков|Consigue {0} puntos|Faça {0} pontos|Erreiche {0} Punkte|Atteins {0} points|Raggiungi {0} punti|{0} puana ulaş|Capai {0} poin|{0}点を目指そう|{0}점을 달성하세요|达到{0}分
+target_blocks|Destroy all blocks|Разбейте все блоки|Destruye todos los bloques|Destrua todos os blocos|Zerstöre alle Blöcke|Détruis tous les blocs|Distruggi tutti i blocchi|Tüm blokları yok et|Hancurkan semua balok|ブロックをすべて壊そう|모든 블록을 부수세요|摧毁所有方块
+target_collect|Bring the insects to the bottom|Доведите насекомых до низа|Lleva los insectos hasta abajo|Leve os insetos até o fundo|Bring die Insekten nach unten|Amène les insectes en bas|Porta gli insetti in fondo|Böcekleri en alta indir|Bawa serangga ke bawah|虫を一番下まで運ぼう|곤충을 맨 아래로 내리세요|把昆虫送到底部
+target_items|Collect the required butterflies|Соберите нужных бабочек|Consigue las mariposas necesarias|Colete as borboletas necessárias|Sammle die benötigten Schmetterlinge|Récupère les papillons demandés|Raccogli le farfalle richieste|Gereken kelebekleri topla|Kumpulkan kupu-kupu yang dibutuhkan|必要なチョウを集めよう|필요한 나비를 모으세요|收集所需的蝴蝶
+target_cages|Destroy the honey blocks|Разбейте медовые блоки|Destruye los bloques de miel|Destrua os blocos de mel|Zerstöre die Honigblöcke|Détruis les blocs de miel|Distruggi i blocchi di miele|Bal bloklarını yok et|Hancurkan balok madu|ハチミツブロックを壊そう|꿀 블록을 부수세요|摧毁蜂蜜方块
+target_bombs|Get rid of the bombs|Обезвредьте бомбы|Deshazte de las bombas|Livre-se das bombas|Entschärfe die Bomben|Débarrasse-toi des bombes|Elimina le bombe|Bombalardan kurtul|Singkirkan bomnya|爆弾を片付けよう|폭탄을 없애세요|清除炸弹
+keep_play_moves|+{0} moves|Ходы +{0}|+{0} movimientos|+{0} movimentos|+{0} Züge|+{0} coups|+{0} mosse|+{0} hamle|+{0} langkah|手数+{0}|이동 +{0}|步数+{0}
+keep_play_secs|+{0} sec|Время +{0} с|+{0} s|+{0} s|+{0} Sek.|+{0} s|+{0} s|+{0} sn|+{0} detik|+{0}秒|+{0}초|+{0}秒
+best_score|Best score: {0}|Рекорд: {0}|Récord: {0}|Recorde: {0}|Rekord: {0}|Record : {0}|Record: {0}|En iyi skor: {0}|Skor terbaik: {0}|ベストスコア：{0}|최고 점수: {0}|最高分：{0}
+pause|PAUSE|ПАУЗА|PAUSA|PAUSA|PAUSE|PAUSE|PAUSA|DURAKLAT|JEDA|ポーズ|일시정지|暂停
+boosters|BOOSTERS|БУСТЕРЫ|POTENCIADORES|BÔNUS|BOOSTER|BONUS|POTENZIAMENTI|GÜÇLENDİRİCİ|BOOSTER|ブースター|부스터|道具
+lives_title|LIVES|ЖИЗНИ|VIDAS|VIDAS|LEBEN|VIES|VITE|CANLAR|NYAWA|ライフ|생명|生命
+level_complete|LEVEL COMPLETE!|УРОВЕНЬ ПРОЙДЕН!|¡NIVEL SUPERADO!|NÍVEL CONCLUÍDO!|LEVEL GESCHAFFT!|NIVEAU RÉUSSI !|LIVELLO COMPLETATO!|SEVİYE TAMAMLANDI!|LEVEL SELESAI!|レベルクリア！|레벨 클리어!|过关！
+game_over|GAME OVER|ИГРА ОКОНЧЕНА|FIN DEL JUEGO|FIM DE JOGO|GAME OVER|PERDU !|GAME OVER|OYUN BİTTİ|GAME OVER|ゲームオーバー|게임 오버|游戏结束
+moves|MOVES|ХОДЫ|JUGADAS|JOGADAS|ZÜGE|COUPS|MOSSE|HAMLE|LANGKAH|手数|이동|步数
+score|SCORE|ОЧКИ|PUNTOS|PONTOS|PUNKTE|SCORE|PUNTI|SKOR|SKOR|スコア|점수|分数
+nice|NICE!|КЛАСС!|¡BIEN!|LEGAL!|SUPER!|BIEN !|BRAVO!|GÜZEL!|BAGUS!|ナイス！|좋아요!|不错！
+great|GREAT!|ОТЛИЧНО!|¡GENIAL!|ÓTIMO!|KLASSE!|SUPER !|OTTIMO!|HARİKA!|HEBAT!|グレート！|훌륭해요!|很棒！
+amazing|AMAZING!|ПОТРЯСАЮЩЕ!|¡INCREÍBLE!|INCRÍVEL!|FANTASTISCH!|INCROYABLE !|FANTASTICO!|MUHTEŞEM!|LUAR BIASA!|すごい！|놀라워요!|太棒了！
+no_matches|NO MATCHES|НЕТ ХОДОВ|SIN JUGADAS|SEM JOGADAS|KEINE ZÜGE|AUCUN COUP|NESSUNA MOSSA|EŞLEŞME YOK|TIDAK ADA COCOK|マッチなし|매치 없음|无可消除
+regions_title|REGIONS|РЕГИОНЫ|REGIONES|REGIÕES|REGIONEN|RÉGIONS|REGIONI|BÖLGELER|WILAYAH|地域|지역|地区
+task_collect_item|Collect Item|Собрать предметы|Recolecta objetos|Colete itens|Sammle Gegenstände|Collecte des objets|Raccogli oggetti|Eşya topla|Kumpulkan item|アイテムを集める|아이템 수집|收集物品
+region_asia|Asia|Азия|Asia|Ásia|Asien|Asie|Asia|Asya|Asia|アジア|아시아|亚洲
+region_north|North|Север|Norte|Norte|Norden|Nord|Nord|Kuzey|Utara|北国|북방|北方
+island_japan|Japan|Япония|Japón|Japão|Japan|Japon|Giappone|Japonya|Jepang|日本|일본|日本
+island_china|China|Китай|China|China|China|Chine|Cina|Çin|Tiongkok|中国|중국|中国
+island_korea|Korea|Корея|Corea|Coreia|Korea|Corée|Corea|Kore|Korea|韓国|한국|韩国
+island_norway|Norway|Норвегия|Noruega|Noruega|Norwegen|Norvège|Norvegia|Norveç|Norwegia|ノルウェー|노르웨이|挪威
+island_lapland|Lapland|Лапландия|Laponia|Lapônia|Lappland|Laponie|Lapponia|Laponya|Lapland|ラップランド|라플란드|拉普兰
+island_iceland|Iceland|Исландия|Islandia|Islândia|Island|Islande|Islanda|İzlanda|Islandia|アイスランド|아이슬란드|冰岛
+bld_foundation|Foundation|Фундамент|Cimientos|Fundação|Fundament|Fondations|Fondamenta|Temel|Fondasi|土台|기초|地基
+bld_frame|Frame|Каркас|Estructura|Estrutura|Gerüst|Charpente|Struttura|İskelet|Rangka|骨組み|골조|框架
+bld_house|House|Дом|Casa|Casa|Haus|Maison|Casa|Ev|Rumah|家|집|房屋
+bld_building|Building|Здание|Edificio|Edifício|Gebäude|Bâtiment|Edificio|Bina|Gedung|建物|건물|建筑
+bld_roof|Roof|Крыша|Tejado|Telhado|Dach|Toit|Tetto|Çatı|Atap|屋根|지붕|屋顶
+bld_tree|Tree|Дерево|Árbol|Árvore|Baum|Arbre|Albero|Ağaç|Pohon|木|나무|树
+bld_wall|Wall|Стена|Muro|Muro|Mauer|Mur|Muro|Duvar|Tembok|壁|벽|墙
+bld_walls|Walls|Стены|Murallas|Muralhas|Mauern|Remparts|Mura|Surlar|Benteng|城壁|성벽|城墙
+bld_boardwalk|Boardwalk|Настил|Pasarela|Passarela|Steg|Ponton|Passerella|Tahta yol|Titian|板張りの道|나무 길|木栈道
+bld_boulders|Boulders|Валуны|Rocas|Rochas|Felsen|Rochers|Massi|Kayalar|Bebatuan|大岩|바위|巨石
+bld_flag_poles|Flag Poles|Флагштоки|Mástiles|Mastros|Fahnenmasten|Mâts|Pennoni|Bayrak direkleri|Tiang bendera|旗竿|깃대|旗杆
+bld_hall_banner|Hall Banner|Знамя зала|Estandarte del salón|Estandarte do salão|Hallenbanner|Bannière du hall|Stendardo della sala|Salon sancağı|Panji aula|広間の旗|전당 깃발|大厅旗帜
+bld_hall_roof|Hall Roof|Крыша зала|Tejado del salón|Telhado do salão|Hallendach|Toit du hall|Tetto della sala|Salon çatısı|Atap aula|広間の屋根|전당 지붕|大厅屋顶
+bld_railing|Railing|Перила|Barandilla|Grade|Geländer|Rambarde|Ringhiera|Korkuluk|Pagar|手すり|난간|栏杆
+bld_rim_banners|Rim Banners|Знамёна|Banderines|Flâmulas|Wimpel|Fanions|Gagliardetti|Flamalar|Umbul-umbul|飾り旗|장식 깃발|檐边旗
+bld_side_house|Side House|Пристройка|Casa lateral|Casa anexa|Nebenhaus|Annexe|Casetta laterale|Yan ev|Rumah samping|離れ|별채|侧屋
+bld_stone_hall|Stone Hall|Каменный зал|Salón de piedra|Salão de pedra|Steinhalle|Salle de pierre|Sala di pietra|Taş salon|Aula batu|石の広間|석조 전당|石厅
+bld_timber_hall|Timber Hall|Деревянный зал|Salón de madera|Salão de madeira|Holzhalle|Salle en bois|Sala di legno|Ahşap salon|Aula kayu|木の広間|목조 전당|木厅
+bld_base|Base|Основание|Base|Base|Sockel|Socle|Base|Kaide|Dasar|基壇|토대|底座
+bld_beam|Beam|Балка|Viga|Viga|Balken|Poutre|Trave|Kiriş|Balok|梁|들보|横梁
+bld_columns|Columns|Колонны|Columnas|Colunas|Säulen|Colonnes|Colonne|Sütunlar|Pilar|柱|기둥|柱子
+bld_gold_trim|Gold Trim|Золотая отделка|Ribete dorado|Acabamento dourado|Goldverzierung|Liseré doré|Rifiniture dorate|Altın süs|Hiasan emas|金の縁飾り|금장식 테두리|金边
+bld_goldwork|Goldwork|Позолота|Orfebrería|Douração|Goldarbeit|Dorures|Doratura|Altın işleme|Ukiran emas|金細工|금세공|金饰
+bld_ladder|Ladder|Лестница|Escalera|Escada|Leiter|Échelle|Scala|Merdiven|Tangga|はしご|사다리|梯子
+bld_roof_edge|Roof Edge|Край крыши|Alero|Beiral|Dachkante|Bord du toit|Bordo del tetto|Saçak|Tepi atap|軒|처마|屋檐
+bld_bridge|Bridge|Мост|Puente|Ponte|Brücke|Pont|Ponte|Köprü|Jembatan|橋|다리|桥
+bld_ground|Ground|Земля|Terreno|Terreno|Boden|Terrain|Terreno|Zemin|Tanah|地面|땅|地面
+bld_pagoda|Pagoda|Пагода|Pagoda|Pagode|Pagode|Pagode|Pagoda|Pagoda|Pagoda|五重塔|탑|宝塔
+bld_lantern|Lantern|Фонарь|Farol|Lanterna|Laterne|Lanterne|Lanterna|Fener|Lentera|灯籠|등롱|灯笼
+bld_antlers|Antlers|Рога|Astas|Chifres|Geweih|Bois de cerf|Corna|Boynuzlar|Tanduk rusa|鹿の角|사슴뿔|鹿角
+bld_barrels|Barrels|Бочки|Barriles|Barris|Fässer|Tonneaux|Barili|Fıçılar|Tong|樽|통|木桶
+bld_benches|Benches|Скамейки|Bancos|Bancos|Bänke|Bancs|Panche|Banklar|Bangku|ベンチ|벤치|长凳
+bld_campfire|Campfire|Костёр|Fogata|Fogueira|Lagerfeuer|Feu de camp|Falò|Kamp ateşi|Api unggun|たき火|모닥불|篝火
+bld_cart|Cart|Телега|Carreta|Carroça|Karren|Charrette|Carretto|Araba|Gerobak|荷車|수레|推车
+bld_clothesline|Clothesline|Бельевая верёвка|Tendedero|Varal|Wäscheleine|Corde à linge|Stendibiancheria|Çamaşır ipi|Jemuran|物干し|빨랫줄|晾衣绳
+bld_hut|Hut|Хижина|Cabaña|Cabana|Hütte|Cabane|Capanna|Kulübe|Pondok|小屋|오두막|小屋
+bld_hut_roof|Hut Roof|Крыша хижины|Techo de cabaña|Telhado da cabana|Hüttendach|Toit de cabane|Tetto della capanna|Kulübe çatısı|Atap pondok|小屋の屋根|오두막 지붕|小屋屋顶
+bld_pines|Pines|Сосны|Pinos|Pinheiros|Kiefern|Pins|Pini|Çamlar|Pohon pinus|松の木|소나무|松树
+bld_spit|Spit|Вертел|Asador|Espeto|Spieß|Broche|Spiedo|Şiş|Panggangan|焼き串|꼬치구이대|烤架
+bld_banner|Banner|Знамя|Estandarte|Estandarte|Banner|Bannière|Stendardo|Sancak|Panji|旗|깃발|旗帜
+bld_fire_pits|Fire Pits|Очаги|Hogueras|Fogueiras|Feuerstellen|Foyers|Bracieri|Ateş çukurları|Tungku api|焚き火台|화덕|火坑
+bld_gate|Gate|Ворота|Puerta|Portão|Tor|Porte|Cancello|Kapı|Gerbang|門|문|大门
+bld_longhouse|Longhouse|Длинный дом|Casa larga|Casa longa|Langhaus|Maison longue|Casa lunga|Uzun ev|Rumah panjang|ロングハウス|롱하우스|长屋
+bld_longhouse_roof|Longhouse Roof|Крыша длинного дома|Tejado de la casa larga|Telhado da casa longa|Langhausdach|Toit de la maison longue|Tetto della casa lunga|Uzun ev çatısı|Atap rumah panjang|ロングハウスの屋根|롱하우스 지붕|长屋屋顶
+bld_palisade|Palisade|Частокол|Empalizada|Paliçada|Palisade|Palissade|Palizzata|Çit|Pagar kayu|柵|목책|木栅栏
+bld_tents|Tents|Шатры|Tiendas|Tendas|Zelte|Tentes|Tende|Çadırlar|Tenda|テント|천막|帐篷
+bld_training_yard|Training Yard|Тренировочный двор|Patio de entrenamiento|Campo de treino|Übungsplatz|Terrain d'entraînement|Campo d'addestramento|Eğitim alanı|Lapangan latihan|訓練場|훈련장|训练场
+bld_watchtower|Watchtower|Сторожевая башня|Atalaya|Torre de vigia|Wachturm|Tour de guet|Torre di guardia|Gözetleme kulesi|Menara pengawas|見張り塔|망루|瞭望塔
+shop_no_ads_desc|Remove banners and pop-up ads forever|Убирает баннеры и всплывающую рекламу навсегда|Elimina los banners y anuncios emergentes para siempre|Remove banners e anúncios pop-up para sempre|Entfernt Banner und Pop-up-Werbung für immer|Supprime les bannières et pubs pour toujours|Rimuove banner e pubblicità per sempre|Afiş ve açılır reklamları sonsuza dek kaldırır|Hapus banner dan iklan pop-up selamanya|バナーとポップアップ広告を永久に削除|배너와 팝업 광고를 영구 제거|永久移除横幅和弹窗广告
+shop_section_gems|Gems|Кристаллы|Gemas|Gemas|Edelsteine|Gemmes|Gemme|Taşlar|Permata|ジェム|보석|宝石
+shop_section_bundles|Bundles|Наборы|Packs|Pacotes|Pakete|Packs|Pacchetti|Paketler|Paket|パック|패키지|礼包
+shop_section_daily|Deal of the Day|Предложение дня|Oferta del día|Oferta do dia|Angebot des Tages|Offre du jour|Offerta del giorno|Günün fırsatı|Promo hari ini|本日のお得|오늘의 특가|每日特惠
+shop_bonus_percent|+{0}%|+{0}%|+{0}%|+{0}%|+{0}%|+{0} %|+{0}%|+%{0}|+{0}%|+{0}%|+{0}%|+{0}%
+shop_badge_popular|Popular|Популярное|Popular|Popular|Beliebt|Populaire|Popolare|Popüler|Populer|人気|인기|热门
+shop_badge_best_value|Best Value|Выгодно|Mejor oferta|Melhor valor|Bester Wert|Meilleure offre|Più conveniente|En avantajlı|Paling hemat|お得|최고 가치|最超值
+shop_badge_one_time|One-time offer|Разовое предложение|Oferta única|Oferta única|Einmaliges Angebot|Offre unique|Offerta unica|Tek seferlik teklif|Penawaran sekali|1回限り|1회 한정|限购一次
+shop_badge_sale|Sale|Скидка|Rebaja|Promoção|Rabatt|Promo|Saldi|İndirim|Diskon|セール|할인|特价
+shop_duration_hours|{0}h|{0} ч|{0} h|{0} h|{0} Std.|{0} h|{0} h|{0} sa|{0} jam|{0}時間|{0}시간|{0}小时
+shop_duration_minutes|{0}m|{0} мин|{0} min|{0} min|{0} Min.|{0} min|{0} min|{0} dk|{0} mnt|{0}分|{0}분|{0}分钟
+shop_product_remove_ads|No Ads|Без рекламы|Sin anuncios|Sem anúncios|Werbefrei|Sans pub|Senza pubblicità|Reklamsız|Tanpa iklan|広告なし|광고 제거|免广告
+shop_product_crystals_starter|Starter Crystals|Стартовые кристаллы|Cristales iniciales|Cristais iniciais|Start-Kristalle|Cristaux de départ|Cristalli iniziali|Başlangıç kristalleri|Kristal pemula|スタータークリスタル|스타터 크리스탈|新手水晶
+shop_product_crystals_small|Small Crystals|Малый набор кристаллов|Pack pequeño de cristales|Pacote pequeno de cristais|Kleines Kristallpaket|Petit pack de cristaux|Pacchetto piccolo di cristalli|Küçük kristal paketi|Paket kristal kecil|クリスタル（小）|크리스탈 소형 팩|小水晶包
+shop_product_crystals_medium|Medium Crystals|Средний набор кристаллов|Pack mediano de cristales|Pacote médio de cristais|Mittleres Kristallpaket|Pack moyen de cristaux|Pacchetto medio di cristalli|Orta kristal paketi|Paket kristal sedang|クリスタル（中）|크리스탈 중형 팩|中水晶包
+shop_product_crystals_big|Big Crystals|Большой набор кристаллов|Pack grande de cristales|Pacote grande de cristais|Großes Kristallpaket|Grand pack de cristaux|Pacchetto grande di cristalli|Büyük kristal paketi|Paket kristal besar|クリスタル（大）|크리스탈 대형 팩|大水晶包
+shop_product_crystals_huge|Huge Crystals|Огромный набор кристаллов|Pack enorme de cristales|Pacote enorme de cristais|Riesiges Kristallpaket|Énorme pack de cristaux|Pacchetto enorme di cristalli|Dev kristal paketi|Paket kristal raksasa|クリスタル（特大）|크리스탈 특대형 팩|超大水晶包
+shop_product_crystals_royal|Royal Crystals|Королевский набор кристаллов|Pack real de cristales|Pacote real de cristais|Königliches Kristallpaket|Pack royal de cristaux|Pacchetto reale di cristalli|Kraliyet kristal paketi|Paket kristal kerajaan|ロイヤルクリスタル|로열 크리스탈 팩|皇家水晶包
+shop_product_starter_bundle|Starter Bundle|Стартовый набор|Pack inicial|Pacote inicial|Startpaket|Pack de départ|Pacchetto iniziale|Başlangıç paketi|Paket pemula|スターターパック|스타터 패키지|新手礼包
+shop_product_beginner_bundle|Beginner Bundle|Набор новичка|Pack de principiante|Pacote de iniciante|Anfängerpaket|Pack débutant|Pacchetto principiante|Acemi paketi|Paket pendatang|ビギナーパック|초보자 패키지|入门礼包
+shop_product_builder_bundle|Builder Bundle|Набор строителя|Pack de constructor|Pacote do construtor|Baumeisterpaket|Pack bâtisseur|Pacchetto costruttore|İnşaatçı paketi|Paket pembangun|ビルダーパック|건축가 패키지|建造者礼包
+shop_product_master_bundle|Master Bundle|Набор мастера|Pack maestro|Pacote mestre|Meisterpaket|Pack maître|Pacchetto maestro|Usta paketi|Paket master|マスターパック|마스터 패키지|大师礼包
+shop_product_daily_gems_discount|Daily Gems Deal|Кристаллы дня|Oferta diaria de gemas|Oferta diária de gemas|Tagesangebot: Edelsteine|Gemmes du jour|Offerta gemme del giorno|Günlük taş fırsatı|Promo permata harian|本日のジェム|오늘의 보석 특가|每日宝石特惠
+shop_product_daily_boosters_offer|Daily Booster Deal|Бустеры дня|Oferta diaria de potenciadores|Oferta diária de bônus|Tagesangebot: Booster|Bonus du jour|Offerta potenziamenti del giorno|Günlük güçlendirici fırsatı|Promo booster harian|本日のブースター|오늘의 부스터 특가|每日道具特惠
+shop_product_daily_unlimited_lives_offer|Daily Lives Deal|Жизни дня|Oferta diaria de vidas|Oferta diária de vidas|Tagesangebot: Leben|Vies du jour|Offerta vite del giorno|Günlük can fırsatı|Promo nyawa harian|本日のライフ|오늘의 생명 특가|每日生命特惠
+shop_product_daily_moves_offer|Daily Moves Deal|Ходы дня|Oferta diaria de movimientos|Oferta diária de movimentos|Tagesangebot: Züge|Coups du jour|Offerta mosse del giorno|Günlük hamle fırsatı|Promo langkah harian|本日の手数|오늘의 이동 특가|每日步数特惠
+continue_extra_moves|Get 5 extra moves!|Ещё 5 ходов!|¡5 movimientos extra!|+5 movimentos!|5 Extrazüge!|5 coups bonus !|5 mosse extra!|5 ekstra hamle!|5 langkah tambahan!|手数+5！|이동 +5!|额外5步！
+time|TIME|ВРЕМЯ|TIEMPO|TEMPO|ZEIT|TEMPS|TEMPO|SÜRE|WAKTU|タイム|시간|时间
+region_europe|Europe|Европа|Europa|Europa|Europa|Europe|Europa|Avrupa|Eropa|ヨーロッパ|유럽|欧洲
+island_france|France|Франция|Francia|França|Frankreich|France|Francia|Fransa|Prancis|フランス|프랑스|法国
+island_greece|Greece|Греция|Grecia|Grécia|Griechenland|Grèce|Grecia|Yunanistan|Yunani|ギリシャ|그리스|希腊
+island_italy|Italy|Италия|Italia|Itália|Italien|Italie|Italia|İtalya|Italia|イタリア|이탈리아|意大利
+bld_paths|Paths|Дорожки|Senderos|Caminhos|Wege|Allées|Sentieri|Patikalar|Jalan setapak|小道|오솔길|小路
+bld_cafe|Cafe|Кафе|Café|Café|Café|Café|Caffè|Kafe|Kafe|カフェ|카페|咖啡馆
+bld_upper_floors|Upper Floors|Верхние этажи|Pisos superiores|Andares superiores|Obergeschosse|Étages|Piani superiori|Üst katlar|Lantai atas|上の階|위층|楼上
+bld_mansard_roof|Mansard Roof|Мансардная крыша|Tejado abuhardillado|Telhado mansarda|Mansarddach|Toit mansardé|Tetto a mansarda|Mansart çatı|Atap mansard|マンサード屋根|맨사드 지붕|复折屋顶
+bld_tower_base|Tower Base|Основание башни|Base de la torre|Base da torre|Turmsockel|Base de la tour|Base della torre|Kule tabanı|Dasar menara|塔の土台|탑 기단|塔基
+bld_tower_top|Tower Top|Верх башни|Cima de la torre|Topo da torre|Turmspitze|Sommet de la tour|Cima della torre|Kule tepesi|Puncak menara|塔の上部|탑 꼭대기|塔顶
+bld_terrace|Terrace|Терраса|Terraza|Terraço|Terrasse|Terrasse|Terrazza|Teras|Teras|テラス|테라스|露台
+bld_street_lamps|Street Lamps|Фонари|Farolas|Postes de luz|Straßenlaternen|Réverbères|Lampioni|Sokak lambaları|Lampu jalan|街灯|가로등|路灯
+bld_bicycle|Bicycle|Велосипед|Bicicleta|Bicicleta|Fahrrad|Vélo|Bicicletta|Bisiklet|Sepeda|自転車|자전거|自行车
+bld_gardens|Gardens|Сады|Jardines|Jardins|Gärten|Jardins|Giardini|Bahçeler|Taman|庭園|정원|花园
+bld_chapel|Chapel|Часовня|Capilla|Capela|Kapelle|Chapelle|Cappella|Şapel|Kapel|礼拝堂|예배당|小教堂
+bld_dome|Dome|Купол|Cúpula|Cúpula|Kuppel|Dôme|Cupola|Kubbe|Kubah|ドーム|돔|穹顶
+bld_bell_tower|Bell Tower|Колокольня|Campanario|Campanário|Glockenturm|Clocher|Campanile|Çan kulesi|Menara lonceng|鐘楼|종탑|钟楼
+bld_cliff_stairs|Cliff Stairs|Лестница в скале|Escalera del acantilado|Escada do penhasco|Klippentreppe|Escalier de la falaise|Scala sulla scogliera|Kayalık merdiveni|Tangga tebing|崖の階段|절벽 계단|崖边阶梯
+bld_pergola|Pergola|Пергола|Pérgola|Pérgola|Pergola|Pergola|Pergolato|Pergola|Pergola|パーゴラ|퍼걸러|藤架
+bld_dining_table|Dining Table|Обеденный стол|Mesa de comedor|Mesa de jantar|Esstisch|Table à manger|Tavolo da pranzo|Yemek masası|Meja makan|食卓|식탁|餐桌
+bld_balcony|Balcony|Балкон|Balcón|Varanda|Balkon|Balcon|Balcone|Balkon|Balkon|バルコニー|발코니|阳台
+bld_bougainvillea|Bougainvillea|Бугенвиллея|Buganvilla|Buganvília|Bougainvillea|Bougainvillier|Bouganville|Begonvil|Bugenvil|ブーゲンビリア|부겐빌레아|三角梅
+bld_olive_tree|Olive Tree|Оливковое дерево|Olivo|Oliveira|Olivenbaum|Olivier|Ulivo|Zeytin ağacı|Pohon zaitun|オリーブの木|올리브 나무|橄榄树
+bld_plaza|Plaza|Площадь|Plaza|Praça|Platz|Place|Piazza|Meydan|Alun-alun|広場|광장|广场
+bld_pizzeria|Pizzeria|Пиццерия|Pizzería|Pizzaria|Pizzeria|Pizzeria|Pizzeria|Pizzacı|Kedai pizza|ピッツェリア|피자 가게|披萨店
+bld_tile_roof|Tile Roof|Черепичная крыша|Tejado de tejas|Telhado de telhas|Ziegeldach|Toit de tuiles|Tetto di tegole|Kiremit çatı|Atap genteng|瓦屋根|기와 지붕|瓦屋顶
+bld_awning|Awning|Навес|Toldo|Toldo|Markise|Auvent|Tendone|Tente|Kanopi|日よけ|차양|遮阳篷
+bld_string_lights|String Lights|Гирлянда|Guirnalda de luces|Varal de luzes|Lichterkette|Guirlande lumineuse|Luci a filo|Işık zinciri|Lampu hias|ストリングライト|줄 조명|串灯
+bld_scooter|Scooter|Мопед|Motoneta|Lambreta|Motorroller|Scooter|Scooter|Skuter|Skuter|スクーター|스쿠터|小摩托
+bld_cypress|Cypress|Кипарис|Ciprés|Cipreste|Zypresse|Cyprès|Cipresso|Selvi|Pohon sipres|糸杉|사이프러스|柏树
+bld_planters|Planters|Кашпо|Macetas|Floreiras|Pflanzkübel|Jardinières|Fioriere|Saksılar|Pot tanaman|プランター|화분|花盆
+reward_gems_n|Gems: +{0}!|Кристаллы: +{0}!|¡Gemas: +{0}!|Gemas: +{0}!|Edelsteine: +{0}!|Gemmes : +{0} !|Gemme: +{0}!|Taşlar: +{0}!|Permata: +{0}!|ジェム +{0}！|보석 +{0}!|宝石 +{0}！
+daily_day|Day {0}|День {0}|Día {0}|Dia {0}|Tag {0}|Jour {0}|Giorno {0}|{0}. Gün|Hari {0}|{0}日目|{0}일차|第{0}天
+task_collect_n|Collect {0} butterflies|Собери бабочек: {0}|Recoge {0} mariposas|Colete {0} borboletas|Sammle {0} Schmetterlinge|Récolte {0} papillons|Raccogli {0} farfalle|{0} kelebek topla|Kumpulkan {0} kupu-kupu|チョウを{0}匹集める|나비 {0}마리 모으기|收集{0}只蝴蝶
+task_use_n|Use boosters {0} times|Используй бустеры: {0}|Usa potenciadores {0} veces|Use bônus {0} vezes|Nutze {0}-mal Booster|Utilise {0} bonus|Usa {0} potenziamenti|{0} kez güçlendirici kullan|Gunakan booster {0} kali|ブースターを{0}回使う|부스터 {0}회 사용|使用道具{0}次
+task_levels_n|Complete {0} levels|Пройди уровней: {0}|Completa {0} niveles|Complete {0} níveis|Schaffe {0} Level|Termine {0} niveaux|Completa {0} livelli|{0} seviye tamamla|Selesaikan {0} level|{0}レベルをクリア|레벨 {0}개 클리어|完成{0}关
+task_perfect_n|Get 3 stars in {0} levels|Пройди на 3 звезды: {0}|Consigue 3 estrellas en {0} niveles|Ganhe 3 estrelas em {0} níveis|Hol 3 Sterne in {0} Leveln|Obtiens 3 étoiles dans {0} niveaux|Ottieni 3 stelle in {0} livelli|{0} seviyede 3 yıldız al|Dapatkan 3 bintang di {0} level|{0}レベルで星3つ|레벨 {0}개에서 별 3개|{0}关获得三星

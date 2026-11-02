@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UI;
+using GameLocalization;
 
 [RequireComponent(typeof(TMP_Text))]
 public class Counter_ : MonoBehaviour
@@ -70,15 +71,15 @@ public class Counter_ : MonoBehaviour
         if (name == "LabelKeepPlay")
         {
             if (LevelManager.THIS.limitType == LIMIT.MOVES)
-                DisplayText = "GET + " + LevelManager.THIS.ExtraFailedMoves + " moves";
+                SetTargetText(L10n.Format("keep_play_moves", LevelManager.THIS.ExtraFailedMoves));
             else
-                DisplayText = "GET + " + LevelManager.THIS.ExtraFailedSecs + " secs";
+                SetTargetText(L10n.Format("keep_play_secs", LevelManager.THIS.ExtraFailedSecs));
 
         }
 
         if (name == "BestScore")
         {
-            DisplayText = "Best score:" + PlayerPrefs.GetInt("Score" + PlayerPrefs.GetInt("OpenLevel"));
+            SetTargetText(L10n.Format("best_score", PlayerPrefs.GetInt("Score" + PlayerPrefs.GetInt("OpenLevel"))));
         }
 
         if (name == "Limit")
@@ -176,32 +177,40 @@ public class Counter_ : MonoBehaviour
 
         if (name == "Gems")
         {
-            DisplayText = "" + (LevelManager.THIS.CurrencyService != null ? (int)(LevelManager.THIS.CurrencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Cash)?.Value ?? 0) : 0);
+            DisplayText = "" + (LevelManager.THIS.CurrencyService != null ? (int)(LevelManager.THIS.CurrencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond)?.Value ?? 0) : 0);
         }
         if (name == "Level")
         {
-            DisplayText = "LEVEL " + PlayerPrefs.GetInt("OpenLevel");
+            SetTargetText(L10n.Format("level_n", PlayerPrefs.GetInt("OpenLevel")));
         }
         if (punchOnChange)
             PunchIfChanged();
 
         if (name == "TargetDescription1")
         {
+            var descriptions = LevelManager.THIS.targetDiscriptions;
             if (LevelManager.THIS.target == Target.SCORE)
-                DisplayText = LevelManager.THIS.targetDiscriptions[6].Replace("%n", "" + LevelManager.THIS.GetScoresOfTargetStars()).Replace("%s", "" + (int)LevelManager.THIS.starsTargetCount);
+                SetTargetText(L10n.Format("target_stars", (int)LevelManager.THIS.starsTargetCount));
             else if (LevelManager.THIS.target == Target.BLOCKS)
-                DisplayText = LevelManager.THIS.targetDiscriptions[1];
+                SetTargetText(L10n.Get("target_blocks", descriptions[1]));
             else if (LevelManager.THIS.target == Target.COLLECT)
-                DisplayText = LevelManager.THIS.targetDiscriptions[2];
+                SetTargetText(L10n.Get("target_collect", descriptions[2]));
             else if (LevelManager.THIS.target == Target.ITEMS)
-                DisplayText = LevelManager.THIS.targetDiscriptions[3];
+                SetTargetText(L10n.Get("target_items", descriptions[3]));
             else if (LevelManager.THIS.target == Target.CAGES)
-                DisplayText = LevelManager.THIS.targetDiscriptions[4];
+                SetTargetText(L10n.Get("target_cages", descriptions[4]));
             else if (LevelManager.THIS.target == Target.BOMBS)
-                DisplayText = LevelManager.THIS.targetDiscriptions[5];
+                SetTargetText(L10n.Get("target_bombs", descriptions[5]));
         }
 
 
+    }
+
+    // Assign only when changed: avoids re-layout of the TMP mesh every frame.
+    void SetTargetText(string value)
+    {
+        if (!string.Equals(DisplayText, value))
+            DisplayText = value;
     }
 
     // Small bump whenever a gameplay counter changes so moves/score/targets read as alive.

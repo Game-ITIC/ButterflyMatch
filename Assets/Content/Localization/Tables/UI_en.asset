@@ -1,0 +1,823 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_en
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: c66fbca871b198b43a5b7f53c90b48d5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 2389598208
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541248
+    m_Localized: LEVEL {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541249
+    m_Localized: Build
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541250
+    m_Localized: Built
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541251
+    m_Localized: Close
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541252
+    m_Localized: Shop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541253
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541254
+    m_Localized: Island
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541255
+    m_Localized: Events
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541256
+    m_Localized: Task
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541257
+    m_Localized: Tasks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541258
+    m_Localized: Daily
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541259
+    m_Localized: No tasks available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541260
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541261
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541262
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541263
+    m_Localized: Vibrations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541264
+    m_Localized: Notifications
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541265
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541266
+    m_Localized: DONE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541267
+    m_Localized: You don't have a life.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541268
+    m_Localized: Free
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541269
+    m_Localized: You get a life.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541270
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541271
+    m_Localized: Buy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541272
+    m_Localized: Builds Tasks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541273
+    m_Localized: NEXT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541274
+    m_Localized: HOME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541275
+    m_Localized: RESUME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541276
+    m_Localized: RESTART
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541277
+    m_Localized: 'You Get:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541278
+    m_Localized: Watch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541279
+    m_Localized: 'YOU HAVE:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541280
+    m_Localized: Get more lives
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541281
+    m_Localized: You can buy full set and play now!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735552
+    m_Localized: Check your internet connection
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735553
+    m_Localized: HOW TO PLAY
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735554
+    m_Localized: Match 3 or more of the same color to win!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735555
+    m_Localized: Goal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735556
+    m_Localized: Full
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735557
+    m_Localized: Loading {0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735558
+    m_Localized: Soon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735559
+    m_Localized: '{0} stars'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735560
+    m_Localized: Need {0} stars
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735561
+    m_Localized: Build {0} first
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735562
+    m_Localized: You doubled your reward!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735563
+    m_Localized: You got {0} extra moves!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735564
+    m_Localized: 'You got: {0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735565
+    m_Localized: Net
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735566
+    m_Localized: Lightning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735567
+    m_Localized: Bomb
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735568
+    m_Localized: Extra Moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735569
+    m_Localized: Removes one butterfly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735570
+    m_Localized: Removes a row
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735571
+    m_Localized: Explodes an area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735572
+    m_Localized: +5 extra moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735573
+    m_Localized: Collect {0} stars
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735574
+    m_Localized: Reach {0} points
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735575
+    m_Localized: Destroy all blocks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735576
+    m_Localized: Bring the insects to the bottom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735577
+    m_Localized: Collect the required butterflies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735578
+    m_Localized: Destroy the honey blocks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735579
+    m_Localized: Get rid of the bombs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735580
+    m_Localized: +{0} moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735581
+    m_Localized: +{0} sec
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735582
+    m_Localized: 'Best score: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735583
+    m_Localized: PAUSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735584
+    m_Localized: BOOSTERS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735585
+    m_Localized: LIVES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735586
+    m_Localized: LEVEL COMPLETE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735587
+    m_Localized: GAME OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735588
+    m_Localized: MOVES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735589
+    m_Localized: SCORE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735590
+    m_Localized: NICE!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735591
+    m_Localized: GREAT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735592
+    m_Localized: AMAZING!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735593
+    m_Localized: NO MATCHES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735594
+    m_Localized: REGIONS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735595
+    m_Localized: Collect Item
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735596
+    m_Localized: Asia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735597
+    m_Localized: North
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735598
+    m_Localized: Japan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735599
+    m_Localized: China
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735600
+    m_Localized: Korea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735601
+    m_Localized: Norway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735602
+    m_Localized: Lapland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735603
+    m_Localized: Iceland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735604
+    m_Localized: Foundation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735605
+    m_Localized: Frame
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735606
+    m_Localized: House
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735607
+    m_Localized: Building
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735608
+    m_Localized: Roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735609
+    m_Localized: Tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735610
+    m_Localized: Wall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735611
+    m_Localized: Walls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735612
+    m_Localized: Boardwalk
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735613
+    m_Localized: Boulders
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735614
+    m_Localized: Flag Poles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735615
+    m_Localized: Hall Banner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735616
+    m_Localized: Hall Roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735617
+    m_Localized: Railing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735618
+    m_Localized: Rim Banners
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735619
+    m_Localized: Side House
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735620
+    m_Localized: Stone Hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929856
+    m_Localized: Timber Hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929857
+    m_Localized: Base
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929858
+    m_Localized: Beam
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929859
+    m_Localized: Columns
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929860
+    m_Localized: Gold Trim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929861
+    m_Localized: Goldwork
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929862
+    m_Localized: Ladder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929863
+    m_Localized: Roof Edge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929864
+    m_Localized: Bridge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929865
+    m_Localized: Ground
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929866
+    m_Localized: Pagoda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929867
+    m_Localized: Lantern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929868
+    m_Localized: Antlers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929869
+    m_Localized: Barrels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929870
+    m_Localized: Benches
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929871
+    m_Localized: Campfire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929872
+    m_Localized: Cart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929873
+    m_Localized: Clothesline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929874
+    m_Localized: Hut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929875
+    m_Localized: Hut Roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929876
+    m_Localized: Pines
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929877
+    m_Localized: Spit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929878
+    m_Localized: Banner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929879
+    m_Localized: Fire Pits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929880
+    m_Localized: Gate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929881
+    m_Localized: Longhouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929882
+    m_Localized: Longhouse Roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929883
+    m_Localized: Palisade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929884
+    m_Localized: Tents
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929885
+    m_Localized: Training Yard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929886
+    m_Localized: Watchtower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965437116416
+    m_Localized: Remove banners and pop-up ads forever
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476544
+    m_Localized: Gems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476545
+    m_Localized: Bundles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476546
+    m_Localized: Deal of the Day
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476547
+    m_Localized: +{0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476548
+    m_Localized: Popular
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476549
+    m_Localized: Best Value
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476550
+    m_Localized: One-time offer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476551
+    m_Localized: Sale
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476552
+    m_Localized: '{0}h'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476553
+    m_Localized: '{0}m'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476554
+    m_Localized: No Ads
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476555
+    m_Localized: Starter Crystals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476556
+    m_Localized: Small Crystals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476557
+    m_Localized: Medium Crystals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476558
+    m_Localized: Big Crystals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476559
+    m_Localized: Huge Crystals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476560
+    m_Localized: Royal Crystals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476561
+    m_Localized: Starter Bundle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476562
+    m_Localized: Beginner Bundle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476563
+    m_Localized: Builder Bundle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476564
+    m_Localized: Master Bundle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476565
+    m_Localized: Daily Gems Deal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476566
+    m_Localized: Daily Booster Deal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476567
+    m_Localized: Daily Lives Deal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476568
+    m_Localized: Daily Moves Deal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476569
+    m_Localized: Get 5 extra moves!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3358491303936
+    m_Localized: TIME
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277660868608
+    m_Localized: Europe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228736
+    m_Localized: France
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228737
+    m_Localized: Greece
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228738
+    m_Localized: Italy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228739
+    m_Localized: Paths
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228740
+    m_Localized: Cafe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228741
+    m_Localized: Upper Floors
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228742
+    m_Localized: Mansard Roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228743
+    m_Localized: Tower Base
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228744
+    m_Localized: Tower Top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228745
+    m_Localized: Terrace
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228746
+    m_Localized: Street Lamps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228747
+    m_Localized: Bicycle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228748
+    m_Localized: Gardens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228749
+    m_Localized: Chapel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617344
+    m_Localized: Dome
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617345
+    m_Localized: Bell Tower
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617346
+    m_Localized: Cliff Stairs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617347
+    m_Localized: Pergola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617348
+    m_Localized: Dining Table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617349
+    m_Localized: Balcony
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617350
+    m_Localized: Bougainvillea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617351
+    m_Localized: Olive Tree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617352
+    m_Localized: Plaza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617353
+    m_Localized: Pizzeria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617354
+    m_Localized: Tile Roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617355
+    m_Localized: Awning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617356
+    m_Localized: String Lights
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617357
+    m_Localized: Scooter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617358
+    m_Localized: Cypress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617359
+    m_Localized: Planters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562787201024
+    m_Localized: 'Gems: +{0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562824949760
+    m_Localized: Day {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137218105344
+    m_Localized: Collect {0} butterflies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299648
+    m_Localized: Use boosters {0} times
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299649
+    m_Localized: Complete {0} levels
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299650
+    m_Localized: Get 3 stars in {0} levels
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

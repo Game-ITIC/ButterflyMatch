@@ -39,7 +39,7 @@ public class BoostShop : MonoBehaviour
         //}
         var boostProduct = boostProducts[(int)boostType];
         icon.sprite = boostProduct.icon;
-        description.text = boostProduct.description;
+        description.text = GameLocalization.L10n.Get("boost_desc_" + boostType.ToString().ToLowerInvariant(), boostProduct.description);
         var countTextTransform = transform.Find("Image/Buttons/BuyButton/Count");
         var priceTextTransform = transform.Find("Image/Buttons/BuyButton/Price");
 
@@ -77,9 +77,9 @@ public class BoostShop : MonoBehaviour
         var boostProduct = boostProducts[(int)boostType];
         icon.sprite = boostProduct.icon;
 
-        LevelManager.Instance.AdRewardService.SetAdRewardType(AdRewardType.Booster, boostType);
-        LevelManager.Instance.AdRewardService.SetInfo(boostProduct.icon, $"You got {boostType}");
-        LevelManager.Instance.IronSourceManager.ShowRewardedAd();
+        var adRewardService = LevelManager.Instance.AdRewardService;
+        adRewardService.SetInfo(boostProduct.icon, GameLocalization.L10n.Format("you_got_n", GameLocalization.L10n.Get("boost_" + boostType.ToString().ToLowerInvariant(), boostType.ToString())));
+        adRewardService.TryShowRewarded(AdRewardType.Booster, boostType);
     }
 }
 

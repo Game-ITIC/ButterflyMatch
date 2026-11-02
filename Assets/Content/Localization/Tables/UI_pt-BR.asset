@@ -1,0 +1,823 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_pt-BR
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: pt-BR
+  m_SharedData: {fileID: 11400000, guid: c66fbca871b198b43a5b7f53c90b48d5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 2389598208
+    m_Localized: Jogar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541248
+    m_Localized: "N\xCDVEL {0}"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541249
+    m_Localized: Construir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541250
+    m_Localized: "Constru\xEDdo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541251
+    m_Localized: Fechar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541252
+    m_Localized: Loja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541253
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541254
+    m_Localized: Ilha
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541255
+    m_Localized: Eventos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541256
+    m_Localized: Tarefa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541257
+    m_Localized: Tarefas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541258
+    m_Localized: "Di\xE1rio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541259
+    m_Localized: "Nenhuma tarefa dispon\xEDvel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541260
+    m_Localized: "Configura\xE7\xF5es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541261
+    m_Localized: Som
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541262
+    m_Localized: "M\xFAsica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541263
+    m_Localized: "Vibra\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541264
+    m_Localized: "Notifica\xE7\xF5es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541265
+    m_Localized: Idioma
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541266
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541267
+    m_Localized: "Voc\xEA n\xE3o tem vidas."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541268
+    m_Localized: "Gr\xE1tis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541269
+    m_Localized: "Voc\xEA ganhou uma vida!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541270
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541271
+    m_Localized: Comprar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541272
+    m_Localized: "Tarefas de constru\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541273
+    m_Localized: "PR\xD3XIMO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541274
+    m_Localized: "IN\xCDCIO"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541275
+    m_Localized: CONTINUAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541276
+    m_Localized: REINICIAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541277
+    m_Localized: 'Ganhe:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541278
+    m_Localized: Assistir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541279
+    m_Localized: "VOC\xCA TEM:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541280
+    m_Localized: Ganhe mais vidas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541281
+    m_Localized: Compre o pacote completo e jogue agora!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735552
+    m_Localized: "Verifique sua conex\xE3o com a internet"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735553
+    m_Localized: COMO JOGAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735554
+    m_Localized: Junte 3 ou mais da mesma cor para vencer!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735555
+    m_Localized: Objetivo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735556
+    m_Localized: Cheio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735557
+    m_Localized: Carregando {0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735558
+    m_Localized: Em breve
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735559
+    m_Localized: '{0} estrelas'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735560
+    m_Localized: Precisa de {0} estrelas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735561
+    m_Localized: 'Construa primeiro: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735562
+    m_Localized: "Voc\xEA dobrou sua recompensa!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735563
+    m_Localized: "Voc\xEA ganhou {0} movimentos extras!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735564
+    m_Localized: "Voc\xEA ganhou: {0}!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735565
+    m_Localized: Rede
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735566
+    m_Localized: Raio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735567
+    m_Localized: Bomba
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735568
+    m_Localized: Movimentos extras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735569
+    m_Localized: Remove uma borboleta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735570
+    m_Localized: Remove uma fileira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735571
+    m_Localized: "Explode uma \xE1rea"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735572
+    m_Localized: +5 movimentos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735573
+    m_Localized: Consiga {0} estrelas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735574
+    m_Localized: "Fa\xE7a {0} pontos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735575
+    m_Localized: Destrua todos os blocos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735576
+    m_Localized: "Leve os insetos at\xE9 o fundo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735577
+    m_Localized: "Colete as borboletas necess\xE1rias"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735578
+    m_Localized: Destrua os blocos de mel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735579
+    m_Localized: Livre-se das bombas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735580
+    m_Localized: +{0} movimentos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735581
+    m_Localized: +{0} s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735582
+    m_Localized: 'Recorde: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735583
+    m_Localized: PAUSA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735584
+    m_Localized: "B\xD4NUS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735585
+    m_Localized: VIDAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735586
+    m_Localized: "N\xCDVEL CONCLU\xCDDO!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735587
+    m_Localized: FIM DE JOGO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735588
+    m_Localized: JOGADAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735589
+    m_Localized: PONTOS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735590
+    m_Localized: LEGAL!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735591
+    m_Localized: "\xD3TIMO!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735592
+    m_Localized: "INCR\xCDVEL!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735593
+    m_Localized: SEM JOGADAS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735594
+    m_Localized: "REGI\xD5ES"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735595
+    m_Localized: Colete itens
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735596
+    m_Localized: "\xC1sia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735597
+    m_Localized: Norte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735598
+    m_Localized: "Jap\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735599
+    m_Localized: China
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735600
+    m_Localized: Coreia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735601
+    m_Localized: Noruega
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735602
+    m_Localized: "Lap\xF4nia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735603
+    m_Localized: "Isl\xE2ndia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735604
+    m_Localized: "Funda\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735605
+    m_Localized: Estrutura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735606
+    m_Localized: Casa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735607
+    m_Localized: "Edif\xEDcio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735608
+    m_Localized: Telhado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735609
+    m_Localized: "\xC1rvore"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735610
+    m_Localized: Muro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735611
+    m_Localized: Muralhas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735612
+    m_Localized: Passarela
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735613
+    m_Localized: Rochas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735614
+    m_Localized: Mastros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735615
+    m_Localized: "Estandarte do sal\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735616
+    m_Localized: "Telhado do sal\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735617
+    m_Localized: Grade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735618
+    m_Localized: "Fl\xE2mulas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735619
+    m_Localized: Casa anexa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735620
+    m_Localized: "Sal\xE3o de pedra"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929856
+    m_Localized: "Sal\xE3o de madeira"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929857
+    m_Localized: Base
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929858
+    m_Localized: Viga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929859
+    m_Localized: Colunas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929860
+    m_Localized: Acabamento dourado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929861
+    m_Localized: "Doura\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929862
+    m_Localized: Escada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929863
+    m_Localized: Beiral
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929864
+    m_Localized: Ponte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929865
+    m_Localized: Terreno
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929866
+    m_Localized: Pagode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929867
+    m_Localized: Lanterna
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929868
+    m_Localized: Chifres
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929869
+    m_Localized: Barris
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929870
+    m_Localized: Bancos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929871
+    m_Localized: Fogueira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929872
+    m_Localized: "Carro\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929873
+    m_Localized: Varal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929874
+    m_Localized: Cabana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929875
+    m_Localized: Telhado da cabana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929876
+    m_Localized: Pinheiros
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929877
+    m_Localized: Espeto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929878
+    m_Localized: Estandarte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929879
+    m_Localized: Fogueiras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929880
+    m_Localized: "Port\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929881
+    m_Localized: Casa longa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929882
+    m_Localized: Telhado da casa longa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929883
+    m_Localized: "Pali\xE7ada"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929884
+    m_Localized: Tendas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929885
+    m_Localized: Campo de treino
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929886
+    m_Localized: Torre de vigia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965437116416
+    m_Localized: "Remove banners e an\xFAncios pop-up para sempre"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476544
+    m_Localized: Gemas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476545
+    m_Localized: Pacotes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476546
+    m_Localized: Oferta do dia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476547
+    m_Localized: +{0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476548
+    m_Localized: Popular
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476549
+    m_Localized: Melhor valor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476550
+    m_Localized: "Oferta \xFAnica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476551
+    m_Localized: "Promo\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476552
+    m_Localized: '{0} h'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476553
+    m_Localized: '{0} min'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476554
+    m_Localized: "Sem an\xFAncios"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476555
+    m_Localized: Cristais iniciais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476556
+    m_Localized: Pacote pequeno de cristais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476557
+    m_Localized: "Pacote m\xE9dio de cristais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476558
+    m_Localized: Pacote grande de cristais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476559
+    m_Localized: Pacote enorme de cristais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476560
+    m_Localized: Pacote real de cristais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476561
+    m_Localized: Pacote inicial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476562
+    m_Localized: Pacote de iniciante
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476563
+    m_Localized: Pacote do construtor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476564
+    m_Localized: Pacote mestre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476565
+    m_Localized: "Oferta di\xE1ria de gemas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476566
+    m_Localized: "Oferta di\xE1ria de b\xF4nus"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476567
+    m_Localized: "Oferta di\xE1ria de vidas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476568
+    m_Localized: "Oferta di\xE1ria de movimentos"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476569
+    m_Localized: +5 movimentos!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3358491303936
+    m_Localized: TEMPO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277660868608
+    m_Localized: Europa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228736
+    m_Localized: "Fran\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228737
+    m_Localized: "Gr\xE9cia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228738
+    m_Localized: "It\xE1lia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228739
+    m_Localized: Caminhos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228740
+    m_Localized: "Caf\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228741
+    m_Localized: Andares superiores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228742
+    m_Localized: Telhado mansarda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228743
+    m_Localized: Base da torre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228744
+    m_Localized: Topo da torre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228745
+    m_Localized: "Terra\xE7o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228746
+    m_Localized: Postes de luz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228747
+    m_Localized: Bicicleta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228748
+    m_Localized: Jardins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228749
+    m_Localized: Capela
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617344
+    m_Localized: "C\xFApula"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617345
+    m_Localized: "Campan\xE1rio"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617346
+    m_Localized: Escada do penhasco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617347
+    m_Localized: "P\xE9rgola"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617348
+    m_Localized: Mesa de jantar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617349
+    m_Localized: Varanda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617350
+    m_Localized: "Buganv\xEDlia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617351
+    m_Localized: Oliveira
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617352
+    m_Localized: "Pra\xE7a"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617353
+    m_Localized: Pizzaria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617354
+    m_Localized: Telhado de telhas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617355
+    m_Localized: Toldo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617356
+    m_Localized: Varal de luzes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617357
+    m_Localized: Lambreta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617358
+    m_Localized: Cipreste
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617359
+    m_Localized: Floreiras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562787201024
+    m_Localized: 'Gemas: +{0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562824949760
+    m_Localized: Dia {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137218105344
+    m_Localized: Colete {0} borboletas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299648
+    m_Localized: "Use b\xF4nus {0} vezes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299649
+    m_Localized: "Complete {0} n\xEDveis"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299650
+    m_Localized: "Ganhe 3 estrelas em {0} n\xEDveis"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

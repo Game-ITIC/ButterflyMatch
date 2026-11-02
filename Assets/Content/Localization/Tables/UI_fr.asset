@@ -1,0 +1,824 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_fr
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: c66fbca871b198b43a5b7f53c90b48d5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 2389598208
+    m_Localized: Jouer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541248
+    m_Localized: NIVEAU {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541249
+    m_Localized: Construire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541250
+    m_Localized: Construit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541251
+    m_Localized: Fermer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541252
+    m_Localized: Boutique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541253
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541254
+    m_Localized: "\xCEle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541255
+    m_Localized: "\xC9v\xE9nements"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541256
+    m_Localized: "T\xE2che"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541257
+    m_Localized: "T\xE2ches"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541258
+    m_Localized: Quotidien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541259
+    m_Localized: "Aucune t\xE2che disponible"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541260
+    m_Localized: "Param\xE8tres"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541261
+    m_Localized: Son
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541262
+    m_Localized: Musique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541263
+    m_Localized: Vibrations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541264
+    m_Localized: Notifications
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541265
+    m_Localized: Langue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541266
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541267
+    m_Localized: Tu n'as plus de vies.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541268
+    m_Localized: Gratuit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541269
+    m_Localized: Tu gagnes une vie !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541270
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541271
+    m_Localized: Acheter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541272
+    m_Localized: "T\xE2ches de construction"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541273
+    m_Localized: SUIVANT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541274
+    m_Localized: ACCUEIL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541275
+    m_Localized: REPRENDRE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541276
+    m_Localized: REJOUER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541277
+    m_Localized: 'Gain :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541278
+    m_Localized: Regarder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541279
+    m_Localized: 'TU AS :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541280
+    m_Localized: Obtiens plus de vies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541281
+    m_Localized: "Ach\xE8te le pack complet et joue maintenant !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735552
+    m_Localized: "V\xE9rifie ta connexion internet"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735553
+    m_Localized: COMMENT JOUER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735554
+    m_Localized: "Aligne 3 \xE9l\xE9ments ou plus de la m\xEAme couleur pour gagner
+      !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735555
+    m_Localized: Objectif
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735556
+    m_Localized: Max
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735557
+    m_Localized: Chargement {0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735558
+    m_Localized: "Bient\xF4t"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735559
+    m_Localized: "{0} \xE9toiles"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735560
+    m_Localized: "Il faut {0} \xE9toiles"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735561
+    m_Localized: 'Construis d''abord : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735562
+    m_Localized: "R\xE9compense doubl\xE9e !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735563
+    m_Localized: "Tu as gagn\xE9 {0} coups bonus !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735564
+    m_Localized: 'Tu as obtenu : {0} !'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735565
+    m_Localized: Filet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735566
+    m_Localized: "\xC9clair"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735567
+    m_Localized: Bombe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735568
+    m_Localized: Coups bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735569
+    m_Localized: Retire un papillon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735570
+    m_Localized: "Retire une rang\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735571
+    m_Localized: Fait exploser une zone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735572
+    m_Localized: +5 coups
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735573
+    m_Localized: "Obtiens {0} \xE9toiles"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735574
+    m_Localized: Atteins {0} points
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735575
+    m_Localized: "D\xE9truis tous les blocs"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735576
+    m_Localized: "Am\xE8ne les insectes en bas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735577
+    m_Localized: "R\xE9cup\xE8re les papillons demand\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735578
+    m_Localized: "D\xE9truis les blocs de miel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735579
+    m_Localized: "D\xE9barrasse-toi des bombes"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735580
+    m_Localized: +{0} coups
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735581
+    m_Localized: +{0} s
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735582
+    m_Localized: 'Record : {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735583
+    m_Localized: PAUSE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735584
+    m_Localized: BONUS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735585
+    m_Localized: VIES
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735586
+    m_Localized: "NIVEAU R\xC9USSI !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735587
+    m_Localized: PERDU !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735588
+    m_Localized: COUPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735589
+    m_Localized: SCORE
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735590
+    m_Localized: BIEN !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735591
+    m_Localized: SUPER !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735592
+    m_Localized: INCROYABLE !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735593
+    m_Localized: AUCUN COUP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735594
+    m_Localized: "R\xC9GIONS"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735595
+    m_Localized: Collecte des objets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735596
+    m_Localized: Asie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735597
+    m_Localized: Nord
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735598
+    m_Localized: Japon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735599
+    m_Localized: Chine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735600
+    m_Localized: "Cor\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735601
+    m_Localized: "Norv\xE8ge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735602
+    m_Localized: Laponie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735603
+    m_Localized: Islande
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735604
+    m_Localized: Fondations
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735605
+    m_Localized: Charpente
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735606
+    m_Localized: Maison
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735607
+    m_Localized: "B\xE2timent"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735608
+    m_Localized: Toit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735609
+    m_Localized: Arbre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735610
+    m_Localized: Mur
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735611
+    m_Localized: Remparts
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735612
+    m_Localized: Ponton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735613
+    m_Localized: Rochers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735614
+    m_Localized: "M\xE2ts"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735615
+    m_Localized: "Banni\xE8re du hall"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735616
+    m_Localized: Toit du hall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735617
+    m_Localized: Rambarde
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735618
+    m_Localized: Fanions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735619
+    m_Localized: Annexe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735620
+    m_Localized: Salle de pierre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929856
+    m_Localized: Salle en bois
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929857
+    m_Localized: Socle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929858
+    m_Localized: Poutre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929859
+    m_Localized: Colonnes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929860
+    m_Localized: "Liser\xE9 dor\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929861
+    m_Localized: Dorures
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929862
+    m_Localized: "\xC9chelle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929863
+    m_Localized: Bord du toit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929864
+    m_Localized: Pont
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929865
+    m_Localized: Terrain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929866
+    m_Localized: Pagode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929867
+    m_Localized: Lanterne
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929868
+    m_Localized: Bois de cerf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929869
+    m_Localized: Tonneaux
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929870
+    m_Localized: Bancs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929871
+    m_Localized: Feu de camp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929872
+    m_Localized: Charrette
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929873
+    m_Localized: "Corde \xE0 linge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929874
+    m_Localized: Cabane
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929875
+    m_Localized: Toit de cabane
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929876
+    m_Localized: Pins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929877
+    m_Localized: Broche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929878
+    m_Localized: "Banni\xE8re"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929879
+    m_Localized: Foyers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929880
+    m_Localized: Porte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929881
+    m_Localized: Maison longue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929882
+    m_Localized: Toit de la maison longue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929883
+    m_Localized: Palissade
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929884
+    m_Localized: Tentes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929885
+    m_Localized: "Terrain d'entra\xEEnement"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929886
+    m_Localized: Tour de guet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965437116416
+    m_Localized: "Supprime les banni\xE8res et pubs pour toujours"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476544
+    m_Localized: Gemmes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476545
+    m_Localized: Packs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476546
+    m_Localized: Offre du jour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476547
+    m_Localized: +{0} %
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476548
+    m_Localized: Populaire
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476549
+    m_Localized: Meilleure offre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476550
+    m_Localized: Offre unique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476551
+    m_Localized: Promo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476552
+    m_Localized: '{0} h'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476553
+    m_Localized: '{0} min'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476554
+    m_Localized: Sans pub
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476555
+    m_Localized: "Cristaux de d\xE9part"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476556
+    m_Localized: Petit pack de cristaux
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476557
+    m_Localized: Pack moyen de cristaux
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476558
+    m_Localized: Grand pack de cristaux
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476559
+    m_Localized: "\xC9norme pack de cristaux"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476560
+    m_Localized: Pack royal de cristaux
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476561
+    m_Localized: "Pack de d\xE9part"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476562
+    m_Localized: "Pack d\xE9butant"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476563
+    m_Localized: "Pack b\xE2tisseur"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476564
+    m_Localized: "Pack ma\xEEtre"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476565
+    m_Localized: Gemmes du jour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476566
+    m_Localized: Bonus du jour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476567
+    m_Localized: Vies du jour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476568
+    m_Localized: Coups du jour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476569
+    m_Localized: 5 coups bonus !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3358491303936
+    m_Localized: TEMPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277660868608
+    m_Localized: Europe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228736
+    m_Localized: France
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228737
+    m_Localized: "Gr\xE8ce"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228738
+    m_Localized: Italie
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228739
+    m_Localized: "All\xE9es"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228740
+    m_Localized: "Caf\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228741
+    m_Localized: "\xC9tages"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228742
+    m_Localized: "Toit mansard\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228743
+    m_Localized: Base de la tour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228744
+    m_Localized: Sommet de la tour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228745
+    m_Localized: Terrasse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228746
+    m_Localized: "R\xE9verb\xE8res"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228747
+    m_Localized: "V\xE9lo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228748
+    m_Localized: Jardins
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228749
+    m_Localized: Chapelle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617344
+    m_Localized: "D\xF4me"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617345
+    m_Localized: Clocher
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617346
+    m_Localized: Escalier de la falaise
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617347
+    m_Localized: Pergola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617348
+    m_Localized: "Table \xE0 manger"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617349
+    m_Localized: Balcon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617350
+    m_Localized: Bougainvillier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617351
+    m_Localized: Olivier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617352
+    m_Localized: Place
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617353
+    m_Localized: Pizzeria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617354
+    m_Localized: Toit de tuiles
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617355
+    m_Localized: Auvent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617356
+    m_Localized: Guirlande lumineuse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617357
+    m_Localized: Scooter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617358
+    m_Localized: "Cypr\xE8s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617359
+    m_Localized: "Jardini\xE8res"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562787201024
+    m_Localized: 'Gemmes : +{0} !'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562824949760
+    m_Localized: Jour {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137218105344
+    m_Localized: "R\xE9colte {0} papillons"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299648
+    m_Localized: Utilise {0} bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299649
+    m_Localized: Termine {0} niveaux
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299650
+    m_Localized: "Obtiens 3 \xE9toiles dans {0} niveaux"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

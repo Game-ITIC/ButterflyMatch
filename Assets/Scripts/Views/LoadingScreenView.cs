@@ -95,7 +95,7 @@ namespace Views
                 return;
             }
 
-            percentText.text = $"Loading {Mathf.RoundToInt(normalized * 100f)}%";
+            percentText.text = GameLocalization.L10n.Format("loading_n", Mathf.RoundToInt(normalized * 100f));
         }
     }
 }

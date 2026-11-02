@@ -1,0 +1,823 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: UI_id
+  m_EditorClassIdentifier: Unity.Localization::UnityEngine.Localization.Tables.StringTable
+  m_LocaleId:
+    m_Code: id
+  m_SharedData: {fileID: 11400000, guid: c66fbca871b198b43a5b7f53c90b48d5, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 2389598208
+    m_Localized: Main
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541248
+    m_Localized: LEVEL {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541249
+    m_Localized: Bangun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541250
+    m_Localized: Dibangun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541251
+    m_Localized: Tutup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541252
+    m_Localized: Toko
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541253
+    m_Localized: Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541254
+    m_Localized: Pulau
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541255
+    m_Localized: Event
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541256
+    m_Localized: Tugas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541257
+    m_Localized: Tugas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541258
+    m_Localized: Harian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541259
+    m_Localized: Tidak ada tugas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541260
+    m_Localized: Pengaturan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541261
+    m_Localized: Suara
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541262
+    m_Localized: Musik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541263
+    m_Localized: Getaran
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541264
+    m_Localized: Notifikasi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541265
+    m_Localized: Bahasa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541266
+    m_Localized: SELESAI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541267
+    m_Localized: Kamu tidak punya nyawa.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541268
+    m_Localized: Gratis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541269
+    m_Localized: Kamu dapat satu nyawa!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541270
+    m_Localized: OK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541271
+    m_Localized: Beli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541272
+    m_Localized: Tugas bangunan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541273
+    m_Localized: LANJUT
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541274
+    m_Localized: BERANDA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541275
+    m_Localized: LANJUTKAN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541276
+    m_Localized: ULANGI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541277
+    m_Localized: 'Dapat:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541278
+    m_Localized: Tonton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541279
+    m_Localized: 'KAMU PUNYA:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541280
+    m_Localized: Dapatkan nyawa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2431541281
+    m_Localized: Beli paket lengkap dan main sekarang!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735552
+    m_Localized: Periksa koneksi internetmu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735553
+    m_Localized: CARA BERMAIN
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735554
+    m_Localized: Cocokkan 3 atau lebih warna yang sama untuk menang!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735555
+    m_Localized: Target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735556
+    m_Localized: Penuh
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735557
+    m_Localized: Memuat {0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735558
+    m_Localized: Segera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735559
+    m_Localized: '{0} bintang'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735560
+    m_Localized: Butuh {0} bintang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735561
+    m_Localized: 'Bangun dulu: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735562
+    m_Localized: Hadiahmu jadi dua kali lipat!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735563
+    m_Localized: Kamu dapat {0} langkah tambahan!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735564
+    m_Localized: 'Kamu dapat: {0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735565
+    m_Localized: Jaring
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735566
+    m_Localized: Petir
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735567
+    m_Localized: Bom
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735568
+    m_Localized: Langkah tambahan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735569
+    m_Localized: Menghapus satu kupu-kupu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735570
+    m_Localized: Menghapus satu baris
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735571
+    m_Localized: Meledakkan satu area
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735572
+    m_Localized: +5 langkah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735573
+    m_Localized: Kumpulkan {0} bintang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735574
+    m_Localized: Capai {0} poin
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735575
+    m_Localized: Hancurkan semua balok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735576
+    m_Localized: Bawa serangga ke bawah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735577
+    m_Localized: Kumpulkan kupu-kupu yang dibutuhkan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735578
+    m_Localized: Hancurkan balok madu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735579
+    m_Localized: Singkirkan bomnya
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735580
+    m_Localized: +{0} langkah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735581
+    m_Localized: +{0} detik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735582
+    m_Localized: 'Skor terbaik: {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735583
+    m_Localized: JEDA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735584
+    m_Localized: BOOSTER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735585
+    m_Localized: NYAWA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735586
+    m_Localized: LEVEL SELESAI!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735587
+    m_Localized: GAME OVER
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735588
+    m_Localized: LANGKAH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735589
+    m_Localized: SKOR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735590
+    m_Localized: BAGUS!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735591
+    m_Localized: HEBAT!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735592
+    m_Localized: LUAR BIASA!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735593
+    m_Localized: TIDAK ADA COCOK
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735594
+    m_Localized: WILAYAH
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735595
+    m_Localized: Kumpulkan item
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735596
+    m_Localized: Asia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735597
+    m_Localized: Utara
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735598
+    m_Localized: Jepang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735599
+    m_Localized: Tiongkok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735600
+    m_Localized: Korea
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735601
+    m_Localized: Norwegia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735602
+    m_Localized: Lapland
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735603
+    m_Localized: Islandia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735604
+    m_Localized: Fondasi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735605
+    m_Localized: Rangka
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735606
+    m_Localized: Rumah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735607
+    m_Localized: Gedung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735608
+    m_Localized: Atap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735609
+    m_Localized: Pohon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735610
+    m_Localized: Tembok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735611
+    m_Localized: Benteng
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735612
+    m_Localized: Titian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735613
+    m_Localized: Bebatuan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735614
+    m_Localized: Tiang bendera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735615
+    m_Localized: Panji aula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735616
+    m_Localized: Atap aula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735617
+    m_Localized: Pagar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735618
+    m_Localized: Umbul-umbul
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735619
+    m_Localized: Rumah samping
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2435735620
+    m_Localized: Aula batu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929856
+    m_Localized: Aula kayu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929857
+    m_Localized: Dasar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929858
+    m_Localized: Balok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929859
+    m_Localized: Pilar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929860
+    m_Localized: Hiasan emas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929861
+    m_Localized: Ukiran emas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929862
+    m_Localized: Tangga
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929863
+    m_Localized: Tepi atap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929864
+    m_Localized: Jembatan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929865
+    m_Localized: Tanah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929866
+    m_Localized: Pagoda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929867
+    m_Localized: Lentera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929868
+    m_Localized: Tanduk rusa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929869
+    m_Localized: Tong
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929870
+    m_Localized: Bangku
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929871
+    m_Localized: Api unggun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929872
+    m_Localized: Gerobak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929873
+    m_Localized: Jemuran
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929874
+    m_Localized: Pondok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929875
+    m_Localized: Atap pondok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929876
+    m_Localized: Pohon pinus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929877
+    m_Localized: Panggangan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929878
+    m_Localized: Panji
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929879
+    m_Localized: Tungku api
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929880
+    m_Localized: Gerbang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929881
+    m_Localized: Rumah panjang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929882
+    m_Localized: Atap rumah panjang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929883
+    m_Localized: Pagar kayu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929884
+    m_Localized: Tenda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929885
+    m_Localized: Lapangan latihan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2439929886
+    m_Localized: Menara pengawas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965437116416
+    m_Localized: Hapus banner dan iklan pop-up selamanya
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476544
+    m_Localized: Permata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476545
+    m_Localized: Paket
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476546
+    m_Localized: Promo hari ini
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476547
+    m_Localized: +{0}%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476548
+    m_Localized: Populer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476549
+    m_Localized: Paling hemat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476550
+    m_Localized: Penawaran sekali
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476551
+    m_Localized: Diskon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476552
+    m_Localized: '{0} jam'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476553
+    m_Localized: '{0} mnt'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476554
+    m_Localized: Tanpa iklan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476555
+    m_Localized: Kristal pemula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476556
+    m_Localized: Paket kristal kecil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476557
+    m_Localized: Paket kristal sedang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476558
+    m_Localized: Paket kristal besar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476559
+    m_Localized: Paket kristal raksasa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476560
+    m_Localized: Paket kristal kerajaan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476561
+    m_Localized: Paket pemula
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476562
+    m_Localized: Paket pendatang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476563
+    m_Localized: Paket pembangun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476564
+    m_Localized: Paket master
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476565
+    m_Localized: Promo permata harian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476566
+    m_Localized: Promo booster harian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476567
+    m_Localized: Promo nyawa harian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476568
+    m_Localized: Promo langkah harian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1965466476569
+    m_Localized: 5 langkah tambahan!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3358491303936
+    m_Localized: WAKTU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277660868608
+    m_Localized: Eropa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228736
+    m_Localized: Prancis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228737
+    m_Localized: Yunani
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228738
+    m_Localized: Italia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228739
+    m_Localized: Jalan setapak
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228740
+    m_Localized: Kafe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228741
+    m_Localized: Lantai atas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228742
+    m_Localized: Atap mansard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228743
+    m_Localized: Dasar menara
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228744
+    m_Localized: Puncak menara
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228745
+    m_Localized: Teras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228746
+    m_Localized: Lampu jalan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228747
+    m_Localized: Sepeda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228748
+    m_Localized: Taman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277690228749
+    m_Localized: Kapel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617344
+    m_Localized: Kubah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617345
+    m_Localized: Menara lonceng
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617346
+    m_Localized: Tangga tebing
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617347
+    m_Localized: Pergola
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617348
+    m_Localized: Meja makan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617349
+    m_Localized: Balkon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617350
+    m_Localized: Bugenvil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617351
+    m_Localized: Pohon zaitun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617352
+    m_Localized: Alun-alun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617353
+    m_Localized: Kedai pizza
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617354
+    m_Localized: Atap genteng
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617355
+    m_Localized: Kanopi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617356
+    m_Localized: Lampu hias
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617357
+    m_Localized: Skuter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617358
+    m_Localized: Pohon sipres
+    m_Metadata:
+      m_Items: []
+  - m_Id: 28277698617359
+    m_Localized: Pot tanaman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562787201024
+    m_Localized: 'Permata: +{0}!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 67562824949760
+    m_Localized: Hari {0}
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137218105344
+    m_Localized: Kumpulkan {0} kupu-kupu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299648
+    m_Localized: Gunakan booster {0} kali
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299649
+    m_Localized: Selesaikan {0} level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 68137222299650
+    m_Localized: Dapatkan 3 bintang di {0} level
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

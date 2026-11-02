@@ -14,11 +14,14 @@ public class MovesTime : MonoBehaviour
     IEnumerator WaitForLoading()
     {
         yield return LevelManager.THIS;
-        if (LevelManager.THIS.limitType == LIMIT.MOVES)
-            GetComponent<Image>().sprite = sprites[0];
-        else
-            GetComponent<Image>().sprite = sprites[1];
+        var moves = LevelManager.THIS.limitType == LIMIT.MOVES;
+        GetComponent<Image>().sprite = moves ? sprites[0] : sprites[1];
+        if (label != null)
+            label.text = moves ? GameLocalization.L10n.Get("moves", "MOVES") : GameLocalization.L10n.Get("time", "TIME");
     }
+
+    // Localized replacement of the baked "MOVES"/"TIME" sprite text (optional).
+    public TMPro.TMP_Text label;
 
     // Update is called once per frame
     void Update()
