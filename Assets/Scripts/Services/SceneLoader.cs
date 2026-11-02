@@ -77,7 +77,50 @@ namespace Itic.Scopes
             }
         }
 
+        private bool _isLoading;
+
+        /// <summary>True while a scene transition is running; further load requests are ignored.</summary>
+        public bool IsLoading => _isLoading;
+
         private async UniTask LoadSceneAsync(int index)
+        {
+            if(_isLoading)
+            {
+                Debug.LogWarning($"[SceneLoader] Ignoring load of scene index {index}: another scene load is in progress.");
+                return;
+            }
+
+            _isLoading = true;
+            try
+            {
+                await LoadSceneInternalAsync(index);
+            }
+            finally
+            {
+                _isLoading = false;
+            }
+        }
+
+        private async UniTask LoadSceneAsync(string sceneName)
+        {
+            if(_isLoading)
+            {
+                Debug.LogWarning($"[SceneLoader] Ignoring load of scene '{sceneName}': another scene load is in progress.");
+                return;
+            }
+
+            _isLoading = true;
+            try
+            {
+                await LoadSceneInternalAsync(sceneName);
+            }
+            finally
+            {
+                _isLoading = false;
+            }
+        }
+
+        private async UniTask LoadSceneInternalAsync(int index)
         {
             var sw = Stopwatch.StartNew();
             Debug.Log($"[SceneLoader] === STEP 3/3: Starting load scene by build index '{index}' ===");
@@ -123,7 +166,7 @@ namespace Itic.Scopes
             Debug.Log($"[SceneLoader] === STEP 3/3 Complete: Scene '{scene.name}' loaded in total {sw.ElapsedMilliseconds} ms ===");
         }
 
-        private async UniTask LoadSceneAsync(string sceneName)
+        private async UniTask LoadSceneInternalAsync(string sceneName)
         {
             var sw = Stopwatch.StartNew();
             Debug.Log($"[SceneLoader] === STEP 3/3: Starting load scene '{sceneName}' ===");
