@@ -1,19 +1,19 @@
-using System;
 using System.Collections.Generic;
-using Configs;
-using Models;
+using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Regions panel: one titled section per RegionSO with a row of island cards (filled by IslandSelectPresenter).
 public class IslandPanel : MonoBehaviour
 {
-    // Legacy RegionConfig flow (IslandPresenter). The IslandSO flow uses CreateCard/ClearCards instead.
-    public event Action<int> OnRegionSelected;
-
     [SerializeField] private Transform _container;
     [SerializeField] private RegionCardView _regionCardPrefab;
     [SerializeField] private Button[] _closeButtons;
+
+    // Region section template (title + _container card row). BeginRegion clones it for every region after the first.
+    [SerializeField] private RectTransform _regionSection;
+    [SerializeField] private TMP_Text _regionTitle;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -24,8 +24,9 @@ public class IslandPanel : MonoBehaviour
     [SerializeField] private AnimationCurve panelFadeCurve = CurvedUIPanelAnimator.CreateDefaultFadeCurve();
 
     private readonly List<RegionCardView> _cards = new();
-    private RegionConfig _regionConfig;
-    private RegionModel _regionModel;
+    private readonly List<GameObject> _sections = new();
+    private Transform _activeContainer;
+    private int _regionCount;
 
     // A panel that is fading out no longer counts as open.
     public bool IsOpen => gameObject.activeSelf && (!TryGetComponent(out CanvasGroup group) || group.interactable);
@@ -47,19 +48,8 @@ public class IslandPanel : MonoBehaviour
         }
     }
 
-    public void Initialize(RegionConfig regionConfig, RegionModel regionModel)
-    {
-        _regionConfig = regionConfig;
-        _regionModel = regionModel;
-    }
-
     public void Show()
     {
-        if (_regionConfig != null && _regionModel != null)
-        {
-            Refresh();
-        }
-
         CurvedUIPanelAnimator.Show(
             gameObject,
             animatePanelTransitions ? panelOpenDuration : 0f,
@@ -86,15 +76,54 @@ public class IslandPanel : MonoBehaviour
         CurvedUIPanelAnimator.HideImmediate(gameObject);
     }
 
+    // Starts a titled region section; following CreateCard calls go into its card row.
+    // The first region reuses the template section, later regions get a clone of it.
+    public void BeginRegion(string title)
+    {
+        if (_regionSection == null || _container == null)
+        {
+            return;
+        }
+
+        var section = _regionSection;
+        var container = _container;
+        var titleText = _regionTitle;
+        if (_regionCount > 0)
+        {
+            section = Instantiate(_regionSection, _regionSection.parent);
+            section.SetSiblingIndex(_regionSection.GetSiblingIndex() + _regionCount);
+            container = Counterpart(_container, _regionSection, section);
+            titleText = _regionTitle != null ? Counterpart(_regionTitle.transform, _regionSection, section).GetComponent<TMP_Text>() : null;
+            _sections.Add(section.gameObject);
+
+            // The template row already holds the previous region's cards; drop the copies.
+            for (var i = container.childCount - 1; i >= 0; i--)
+            {
+                var child = container.GetChild(i).gameObject;
+                child.SetActive(false);
+                Destroy(child);
+            }
+        }
+
+        if (titleText != null)
+        {
+            titleText.text = title;
+        }
+
+        _activeContainer = container;
+        _regionCount++;
+    }
+
     public RegionCardView CreateCard()
     {
-        if (_regionCardPrefab == null || _container == null)
+        var container = _activeContainer != null ? _activeContainer : _container;
+        if (_regionCardPrefab == null || container == null)
         {
             Debug.LogWarning("[IslandPanel] Card prefab or container is not assigned.", this);
             return null;
         }
 
-        var card = Instantiate(_regionCardPrefab, _container);
+        var card = Instantiate(_regionCardPrefab, container);
         card.gameObject.SetActive(true);
         _cards.Add(card);
         return card;
@@ -111,35 +140,36 @@ public class IslandPanel : MonoBehaviour
         }
 
         _cards.Clear();
-    }
 
-    public void Refresh()
-    {
-        if (_regionConfig == null || _regionModel == null)
+        for (var i = _sections.Count - 1; i >= 0; i--)
         {
-            return;
+            if (_sections[i] != null)
+            {
+                _sections[i].SetActive(false);
+                Destroy(_sections[i]);
+            }
         }
 
-        ClearCards();
-
-        for (int i = 0; i < _regionConfig.Count; i++)
-        {
-            var regionData = _regionConfig.GetRegionByIndex(i);
-            if (regionData == null) continue;
-
-            var card = CreateCard();
-            if (card == null) return;
-
-            float progress = _regionModel.GetRegionProgressNormalized(i);
-            bool isUnlocked = _regionModel.IsRegionUnlocked(i);
-            bool isCurrent = _regionModel.RegionService != null && _regionModel.RegionService.CurrentRegionIndex == i;
-
-            card.Setup(regionData, i, progress, isUnlocked, isCurrent, OnCardClicked);
-        }
+        _sections.Clear();
+        _activeContainer = null;
+        _regionCount = 0;
     }
 
-    private void OnCardClicked(int index)
+    // Finds the clone's transform that matches templateChild (same sibling-index path under the section root).
+    private static Transform Counterpart(Transform templateChild, Transform templateRoot, Transform cloneRoot)
     {
-        OnRegionSelected?.Invoke(index);
+        var path = new List<int>();
+        for (var t = templateChild; t != null && t != templateRoot; t = t.parent)
+        {
+            path.Add(t.GetSiblingIndex());
+        }
+
+        var result = cloneRoot;
+        for (var i = path.Count - 1; i >= 0; i--)
+        {
+            result = result.GetChild(path[i]);
+        }
+
+        return result;
     }
 }

@@ -50,7 +50,7 @@ public class BuildingCatalogPanel : MonoBehaviour
 
         if (_title != null)
         {
-            _title.text = island != null ? island.DisplayName : "Build";
+            _title.text = island != null ? GameLocalization.L10n.Translate(island.DisplayName) : GameLocalization.L10n.Get("build", "Build");
         }
 
         ClearCards();
@@ -97,18 +97,18 @@ public class BuildingCatalogPanel : MonoBehaviour
         var requirementsMet = buildService.CanSelect(island, slot);
         var canAfford = buildService.CanAfford(slot);
         var subtitle = built
-            ? "Built"
+            ? GameLocalization.L10n.Get("built", "Built")
             : !requirementsMet
                 ? slot.RequirementLabel()
-                : canAfford ? $"{slot.StarCost} stars" : $"Need {slot.StarCost} stars";
+                : canAfford ? GameLocalization.L10n.Format("stars_n", slot.StarCost) : GameLocalization.L10n.Format("need_stars_n", slot.StarCost);
         var card = Instantiate(_cardPrefab, _content);
         card.gameObject.SetActive(true);
         var captured = slot;
         card.Bind(
-            slot.Building.DisplayName,
+            GameLocalization.L10n.Translate(slot.Building.DisplayName),
             subtitle,
             slot.Building.Icon,
-            built ? "Built" : "Build",
+            built ? GameLocalization.L10n.Get("built", "Built") : GameLocalization.L10n.Get("build", "Build"),
             !built && requirementsMet && canAfford,
             () => onBuild?.Invoke(captured));
         _cards.Add(card);

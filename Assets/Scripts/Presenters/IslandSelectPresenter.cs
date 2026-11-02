@@ -81,18 +81,31 @@ namespace Presenters
 
         private void Refresh()
         {
-            if (_panel == null || _buildService == null || _buildService.Region == null)
+            if (_panel == null || _buildService == null || _buildService.Regions == null)
             {
                 return;
             }
 
             _panel.ClearCards();
-            var islands = _buildService.Region.Islands;
-            if (islands == null)
+            var regions = _buildService.Regions;
+            for (var r = 0; r < regions.Count; r++)
             {
-                return;
-            }
+                var islands = regions[r] != null ? regions[r].Islands : null;
+                if (islands == null)
+                {
+                    continue;
+                }
 
+                _panel.BeginRegion(GameLocalization.L10n.Translate(regions[r].DisplayName));
+                if (!AddCards(islands))
+                {
+                    return;
+                }
+            }
+        }
+
+        private bool AddCards(System.Collections.Generic.IReadOnlyList<Configs.IslandSO> islands)
+        {
             for (var i = 0; i < islands.Count; i++)
             {
                 var island = islands[i];
@@ -104,14 +117,14 @@ namespace Presenters
                 var card = _panel.CreateCard();
                 if (card == null)
                 {
-                    return;
+                    return false;
                 }
 
                 var built = _buildService.CountBuilt(island);
-                var status = island.IsComingSoon ? "Soon" : null;
+                var status = island.IsComingSoon ? GameLocalization.L10n.Get("soon", "Soon") : null;
                 var captured = island;
                 card.Bind(
-                    island.DisplayName,
+                    GameLocalization.L10n.Translate(island.DisplayName),
                     island.Icon,
                     built,
                     island.SlotCount,
@@ -119,6 +132,8 @@ namespace Presenters
                     status,
                     () => Select(captured));
             }
+
+            return true;
         }
 
         private void Select(Configs.IslandSO island)

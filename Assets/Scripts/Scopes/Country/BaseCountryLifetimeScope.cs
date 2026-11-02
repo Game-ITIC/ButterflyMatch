@@ -28,8 +28,9 @@ namespace Scopes.Country
         [SerializeField] private MainMenuPanel _mainMenuPanel;
 
         [SerializeField] private CountryConfig countryConfig;
-        [SerializeField] private RegionConfig regionConfig;
-        [SerializeField] private RegionSO regionSO;
+        // Regions in progression order (Asia, North, ...); their islands are listed in this order in the Regions panel.
+        [ListDrawerSettings(ShowIndexLabels = true)]
+        [SerializeField] private RegionSO[] regions;
         [SerializeField] private Transform regionParent;
 
         [Title("Tasks")]
@@ -54,8 +55,6 @@ namespace Scopes.Country
             RegisterComponentIfPresent(builder, rewardPopup);
 
             RegisterInstanceIfPresent(builder, countryConfig);
-            RegisterInstanceIfPresent(builder, regionConfig);
-            RegisterInstanceIfPresent(builder, regionSO);
             RegisterInstanceIfPresent(builder, tasksListSO);
 
             builder.Register<ITaskService, TaskService>(Lifetime.Singleton);
@@ -123,27 +122,6 @@ namespace Scopes.Country
             if(islandPanel == null) islandPanel = FindObjectOfType<IslandPanel>(true);
             RegisterComponentIfPresent(builder, islandPanel);
 
-            // Legacy RegionConfig island picker; IslandSelectPresenter owns the panel when the RegionSO flow is active.
-            var usesIslandBuildFlow = regionSO != null && _mainMenuPanel != null && menuNavPanel != null;
-            if(islandPanel != null && regionConfig != null && !usesIslandBuildFlow)
-            {
-                Button navIslandButton = null;
-                var otherNavButtons = new System.Collections.Generic.List<Button>();
-
-                if(menuNavPanel != null)
-                {
-                    navIslandButton = menuNavPanel.IslandButton;
-                    if(menuNavPanel.MenuButton != null) otherNavButtons.Add(menuNavPanel.MenuButton);
-                    if(menuNavPanel.ShopButton != null) otherNavButtons.Add(menuNavPanel.ShopButton);
-                }
-
-                builder.Register<IslandPresenter>(Lifetime.Scoped)
-                    .As<IInitializable>()
-                    .WithParameter(islandPanel)
-                    .WithParameter(navIslandButton)
-                    .WithParameter<System.Collections.Generic.IEnumerable<Button>>(otherNavButtons);
-            }
-
             if(topBarPanel != null)
             {
                 if(topBarPanel.StarView != null)
@@ -173,20 +151,18 @@ namespace Scopes.Country
             builder.Register<DailyCardsPresenter>(Lifetime.Scoped)
                 .As<IInitializable>();
 
-            if(regionConfig != null)
+            if(HasRegions())
             {
                 builder.Register<RegionService>(Lifetime.Singleton)
-                    .WithParameter(regionConfig)
                     .WithParameter(regionParent);
-
-                builder.Register<RegionModel>(Lifetime.Singleton);
                 builder.Register<RegionUpgradeService>(Lifetime.Singleton);
             }
 
-            if(regionConfig != null && regionSO != null && _mainMenuPanel != null)
+            if(HasRegions() && _mainMenuPanel != null)
             {
                 builder.Register<IslandBuildProgressStore>(Lifetime.Singleton);
-                builder.Register<IslandBuildService>(Lifetime.Singleton);
+                builder.Register<IslandBuildService>(Lifetime.Singleton)
+                    .WithParameter<System.Collections.Generic.IReadOnlyList<RegionSO>>(regions);
                 builder.Register<BuildingCatalogPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
 
                 if(menuNavPanel != null)
@@ -232,6 +208,24 @@ namespace Scopes.Country
             {
                 builder.RegisterComponent(component);
             }
+        }
+
+        private bool HasRegions()
+        {
+            if(regions == null)
+            {
+                return false;
+            }
+
+            for(var i = 0; i < regions.Length; i++)
+            {
+                if(regions[i] != null)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private static void RegisterInstanceIfPresent<T>(IContainerBuilder builder, T instance)

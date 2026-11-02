@@ -1,4 +1,3 @@
-using Configs;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -43,24 +42,7 @@ public static class MainMenuBuildAnimationSetupUtility
             return;
         }
 
-        var regionConfig = AssetDatabase.LoadAssetAtPath<RegionConfig>("Assets/Content/Configs/RegionConfig.asset");
-        if (regionConfig == null)
-        {
-            var guids = AssetDatabase.FindAssets("t:RegionConfig");
-            if (guids.Length > 0)
-            {
-                var path = AssetDatabase.GUIDToAssetPath(guids[0]);
-                regionConfig = AssetDatabase.LoadAssetAtPath<RegionConfig>(path);
-            }
-        }
-
         var serializedScope = new SerializedObject(lifetimeScope);
-        var regionConfigProperty = serializedScope.FindProperty("regionConfig");
-        if (regionConfigProperty != null && regionConfig != null)
-        {
-            regionConfigProperty.objectReferenceValue = regionConfig;
-        }
-
         var regionParentProperty = serializedScope.FindProperty("regionParent");
         if (regionParentProperty != null && world != null)
         {
@@ -71,7 +53,7 @@ public static class MainMenuBuildAnimationSetupUtility
         EditorUtility.SetDirty(lifetimeScope);
         EditorSceneManager.MarkSceneDirty(lifetimeScope.gameObject.scene);
 
-        Debug.Log($"Configured MainMenu BaseCountryLifetimeScope with RegionConfig: {(regionConfig != null ? regionConfig.name : "null")} and World parent.", lifetimeScope);
+        Debug.Log("Configured MainMenu BaseCountryLifetimeScope World parent.", lifetimeScope);
     }
 
     private static void RemoveLegacyAnimationComponents(GameObject root)

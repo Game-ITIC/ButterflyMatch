@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: IcelandIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: iceland
+  displayName: Iceland
+  icon: {fileID: 21300000, guid: 4bbe410d02bb36e40a5c6a5c96155a05, type: 3}
+  islandPrefab: {fileID: 3181164859895087748, guid: a4fb8ab84ca552945945396512e81fdb,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: iceland-stonehall
+    building: {fileID: 11400000, guid: f63727b7f82fcfb4292f37bec3c4add2, type: 2}
+    starCost: 14
+    requiredBuildings: []
+    animationStep: 0
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-timberhall
+    building: {fileID: 11400000, guid: 68db0dd0048c8a14097821a73b6f9a71, type: 2}
+    starCost: 16
+    requiredBuildings:
+    - {fileID: 11400000, guid: f63727b7f82fcfb4292f37bec3c4add2, type: 2}
+    animationStep: 1
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-hallroof
+    building: {fileID: 11400000, guid: 402d689700a368f44bf872f5cf946fb9, type: 2}
+    starCost: 18
+    requiredBuildings:
+    - {fileID: 11400000, guid: 68db0dd0048c8a14097821a73b6f9a71, type: 2}
+    animationStep: 2
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-hallbanner
+    building: {fileID: 11400000, guid: debec21acd0b56a42b6428e25ff0c4bb, type: 2}
+    starCost: 20
+    requiredBuildings:
+    - {fileID: 11400000, guid: 402d689700a368f44bf872f5cf946fb9, type: 2}
+    animationStep: 3
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-sidehouse
+    building: {fileID: 11400000, guid: 0b19574e81a8ac241bad49aec1fe1d06, type: 2}
+    starCost: 22
+    requiredBuildings:
+    - {fileID: 11400000, guid: debec21acd0b56a42b6428e25ff0c4bb, type: 2}
+    animationStep: 4
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-boardwalk
+    building: {fileID: 11400000, guid: d825987caf66f234ebc69e8459aeedf3, type: 2}
+    starCost: 24
+    requiredBuildings:
+    - {fileID: 11400000, guid: 0b19574e81a8ac241bad49aec1fe1d06, type: 2}
+    animationStep: 5
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-railing
+    building: {fileID: 11400000, guid: 349efd4bb6fd93747b11dd1d09468c43, type: 2}
+    starCost: 26
+    requiredBuildings:
+    - {fileID: 11400000, guid: d825987caf66f234ebc69e8459aeedf3, type: 2}
+    animationStep: 6
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-rimbanners
+    building: {fileID: 11400000, guid: 0ff2d07de8c31844fb1cff50fb7fc2b1, type: 2}
+    starCost: 28
+    requiredBuildings:
+    - {fileID: 11400000, guid: 349efd4bb6fd93747b11dd1d09468c43, type: 2}
+    animationStep: 7
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-flagpoles
+    building: {fileID: 11400000, guid: af2426654cb949a49926187064b3fb52, type: 2}
+    starCost: 30
+    requiredBuildings:
+    - {fileID: 11400000, guid: 0ff2d07de8c31844fb1cff50fb7fc2b1, type: 2}
+    animationStep: 8
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: iceland-boulders
+    building: {fileID: 11400000, guid: cc5fa0906acbb754cbc5a59a5d4faa81, type: 2}
+    starCost: 32
+    requiredBuildings:
+    - {fileID: 11400000, guid: af2426654cb949a49926187064b3fb52, type: 2}
+    animationStep: 9
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}

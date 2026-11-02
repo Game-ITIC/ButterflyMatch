@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: LaplandIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: lapland
+  displayName: Lapland
+  icon: {fileID: 21300000, guid: a2296a6b9492bf747a5e05a7aed46166, type: 3}
+  islandPrefab: {fileID: 3116972218856453386, guid: c09f1c94cffb100409e784d6de25364a,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: lapland-hut
+    building: {fileID: 11400000, guid: f8768decb25ea5544a504fae799fde26, type: 2}
+    starCost: 12
+    requiredBuildings: []
+    animationStep: 0
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-hutroof
+    building: {fileID: 11400000, guid: 0865294896887654fb5487b553191eee, type: 2}
+    starCost: 14
+    requiredBuildings:
+    - {fileID: 11400000, guid: f8768decb25ea5544a504fae799fde26, type: 2}
+    animationStep: 1
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-antlers
+    building: {fileID: 11400000, guid: 19ad1b01f32a02f4ba6f6b2cb881c474, type: 2}
+    starCost: 16
+    requiredBuildings:
+    - {fileID: 11400000, guid: 0865294896887654fb5487b553191eee, type: 2}
+    animationStep: 2
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-cart
+    building: {fileID: 11400000, guid: fb669f1d4a0a1a249a7c5c2da7d13509, type: 2}
+    starCost: 18
+    requiredBuildings:
+    - {fileID: 11400000, guid: 19ad1b01f32a02f4ba6f6b2cb881c474, type: 2}
+    animationStep: 3
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-barrels
+    building: {fileID: 11400000, guid: f7d58008da7341d4f8f88c1e7f911bef, type: 2}
+    starCost: 20
+    requiredBuildings:
+    - {fileID: 11400000, guid: fb669f1d4a0a1a249a7c5c2da7d13509, type: 2}
+    animationStep: 4
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-campfire
+    building: {fileID: 11400000, guid: 242c1a14c25f71242940e14cabbbef2d, type: 2}
+    starCost: 22
+    requiredBuildings:
+    - {fileID: 11400000, guid: f7d58008da7341d4f8f88c1e7f911bef, type: 2}
+    animationStep: 5
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-spit
+    building: {fileID: 11400000, guid: 3d7ca52e043ce6640aa4c99b2c60c69f, type: 2}
+    starCost: 24
+    requiredBuildings:
+    - {fileID: 11400000, guid: 242c1a14c25f71242940e14cabbbef2d, type: 2}
+    animationStep: 6
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-benches
+    building: {fileID: 11400000, guid: 9b16dab197d422b42a272a6078f68e68, type: 2}
+    starCost: 26
+    requiredBuildings:
+    - {fileID: 11400000, guid: 3d7ca52e043ce6640aa4c99b2c60c69f, type: 2}
+    animationStep: 7
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-clothesline
+    building: {fileID: 11400000, guid: 90b7715761a5b6149916b557c59bb440, type: 2}
+    starCost: 28
+    requiredBuildings:
+    - {fileID: 11400000, guid: 9b16dab197d422b42a272a6078f68e68, type: 2}
+    animationStep: 8
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: lapland-pines
+    building: {fileID: 11400000, guid: 169beb39bc22e1344a0a3db8a5d78dee, type: 2}
+    starCost: 30
+    requiredBuildings:
+    - {fileID: 11400000, guid: 90b7715761a5b6149916b557c59bb440, type: 2}
+    animationStep: 9
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}

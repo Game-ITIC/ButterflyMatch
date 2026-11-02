@@ -66,8 +66,77 @@ public static class RegionContentSetup
         var region = LoadOrCreate<RegionSO>($"{Root}/AsiaRegion.asset");
         region.Configure("asia", "Asia", Icon(0), new[] { japan, china, korea });
         EditorUtility.SetDirty(region);
-        AssignRegion(region);
+        AssignRegion(region, 0);
         AssetDatabase.SaveAssets();
+    }
+
+    private const string NorthModels = "Assets/Content/Models/Regions/North";
+
+    // North islands come from NorthRegionBuilder (Tools/Regions/Build North Region Islands): each prefab has
+    // ten animation steps S01..S10, so every island is a linear chain of ten build steps like Japan.
+    [MenuItem("Tools/JigsawMatch2/Setup North Region Islands")]
+    public static void SetupNorth()
+    {
+        EnsureFolders();
+
+        var norway = NorthIsland("NorwayIsland", "norway", "Norway", "VikingCamp", 10,
+            "Palisade", "Gate", "Longhouse", "Longhouse Roof", "Tents",
+            "Watchtower", "Banner", "Training Yard", "Fire Pits", "Pines");
+        var lapland = NorthIsland("LaplandIsland", "lapland", "Lapland", "FrostCamp", 12,
+            "Hut", "Hut Roof", "Antlers", "Cart", "Barrels",
+            "Campfire", "Spit", "Benches", "Clothesline", "Pines");
+        var iceland = NorthIsland("IcelandIsland", "iceland", "Iceland", "FrostKeep", 14,
+            "Stone Hall", "Timber Hall", "Hall Roof", "Hall Banner", "Side House",
+            "Boardwalk", "Railing", "Rim Banners", "Flag Poles", "Boulders");
+
+        var region = LoadOrCreate<RegionSO>($"{Root}/NorthRegion.asset");
+        region.Configure("north", "North", norway.Icon, new[] { norway, lapland, iceland });
+        EditorUtility.SetDirty(region);
+        AssignRegion(region, 1);
+        AssetDatabase.SaveAssets();
+    }
+
+    private const string EuropeModels = "Assets/Content/Models/Regions/Europe";
+
+    // Europe islands come from EuropeRegionBuilder (Tools/Regions/Build Europe Region Islands), same ten-step layout as North.
+    [MenuItem("Tools/JigsawMatch2/Setup Europe Region Islands")]
+    public static void SetupEurope()
+    {
+        EnsureFolders();
+
+        var france = BlenderIsland(EuropeModels, "FranceIsland", "france", "France", "ParisCafe", 16,
+            "Paths", "Cafe", "Upper Floors", "Mansard Roof", "Tower Base",
+            "Tower Top", "Terrace", "Street Lamps", "Bicycle", "Gardens");
+        var greece = BlenderIsland(EuropeModels, "GreeceIsland", "greece", "Greece", "SantoriniChapel", 18,
+            "Terrace", "Chapel", "Dome", "Bell Tower", "Cliff Stairs",
+            "Pergola", "Dining Table", "Balcony", "Bougainvillea", "Olive Tree");
+        var italy = BlenderIsland(EuropeModels, "ItalyIsland", "italy", "Italy", "PisaPlaza", 20,
+            "Plaza", "Tower Base", "Tower Top", "Pizzeria", "Tile Roof",
+            "Awning", "String Lights", "Scooter", "Cypress", "Planters");
+
+        var region = LoadOrCreate<RegionSO>($"{Root}/EuropeRegion.asset");
+        region.Configure("europe", "Europe", france.Icon, new[] { france, greece, italy });
+        EditorUtility.SetDirty(region);
+        AssignRegion(region, 2);
+        AssetDatabase.SaveAssets();
+    }
+
+    private static IslandSO NorthIsland(string fileName, string id, string displayName, string modelId, int firstCost, params string[] stepNames)
+    {
+        return BlenderIsland(NorthModels, fileName, id, displayName, modelId, firstCost, stepNames);
+    }
+
+    private static IslandSO BlenderIsland(string modelsRoot, string fileName, string id, string displayName, string modelId, int firstCost, params string[] stepNames)
+    {
+        var prefabPath = $"{modelsRoot}/{modelId}/{modelId}_Island_Pref.prefab";
+        var icon = AssetDatabase.LoadAssetAtPath<Sprite>($"{modelsRoot}/{modelId}/{modelId}_Icon.png");
+        var stages = new Stage[stepNames.Length];
+        for (var i = 0; i < stepNames.Length; i++)
+        {
+            stages[i] = Piece(i, stepNames[i], firstCost + i * 2);
+        }
+
+        return Island(fileName, id, displayName, prefabPath, icon, Chain(id, prefabPath, icon, stages));
     }
 
     private readonly struct Stage
@@ -207,7 +276,8 @@ public static class RegionContentSetup
         return island;
     }
 
-    private static void AssignRegion(RegionSO region)
+    // Puts the region at its progression slot in the MainMenu scope's ordered "regions" list.
+    private static void AssignRegion(RegionSO region, int order)
     {
         var scene = EditorSceneManager.GetSceneByPath(MenuScene);
         if (!scene.isLoaded)
@@ -225,7 +295,25 @@ public static class RegionContentSetup
             }
 
             var serialized = new SerializedObject(scope);
-            serialized.FindProperty("regionSO").objectReferenceValue = region;
+            var list = serialized.FindProperty("regions");
+            for (var r = list.arraySize - 1; r >= 0; r--)
+            {
+                if (list.GetArrayElementAtIndex(r).objectReferenceValue == region)
+                {
+                    list.DeleteArrayElementAtIndex(r);
+                }
+            }
+
+            if (list.arraySize <= order)
+            {
+                list.arraySize = order + 1;
+            }
+            else
+            {
+                list.InsertArrayElementAtIndex(order);
+            }
+
+            list.GetArrayElementAtIndex(order).objectReferenceValue = region;
             serialized.ApplyModifiedPropertiesWithoutUndo();
             EditorUtility.SetDirty(scope);
         }
@@ -233,11 +321,27 @@ public static class RegionContentSetup
         EditorSceneManager.SaveScene(scene);
     }
 
+    // Asia island icons: 0 = Japan, 1 = China, 2 = Korea.
+    private const string AsiaIconSheet = "Assets/Content/UI/Regions/Сгенерированное изображение 1 (2).png";
+    private static readonly string[] AsiaIconSprites =
+    {
+        "Сгенерированное изображение 1 (2)_2",
+        "Сгенерированное изображение 1 (2)_0",
+        "Сгенерированное изображение 1 (2)_1",
+    };
+
     private static Sprite Icon(int index)
     {
-        var config = AssetDatabase.LoadAssetAtPath<RegionConfig>("Assets/Content/Configs/RegionConfig.asset");
-        var region = config != null ? config.GetRegionByIndex(index) : null;
-        return region != null ? region.regionIcon : null;
+        var assets = AssetDatabase.LoadAllAssetsAtPath(AsiaIconSheet);
+        for (var i = 0; i < assets.Length; i++)
+        {
+            if (assets[i] is Sprite sprite && sprite.name == AsiaIconSprites[index])
+            {
+                return sprite;
+            }
+        }
+
+        return null;
     }
 
     private static T LoadOrCreate<T>(string path) where T : ScriptableObject

@@ -12,6 +12,7 @@ namespace Presenters
         private readonly MainMenuPanel _mainMenu;
         private readonly IslandBuildService _buildService;
         private readonly Button _buildButton;
+        private readonly MenuActionButton _buildActionButton;
         private BuildingCatalogPanel _panel;
         private UnityAction _openAction;
 
@@ -19,9 +20,10 @@ namespace Presenters
         {
             _mainMenu = mainMenu;
             _buildService = buildService;
-            _buildButton = mainMenu != null && mainMenu.MenuActionPanel != null
-                ? mainMenu.MenuActionPanel.BuildButton != null ? mainMenu.MenuActionPanel.BuildButton.Button : null
+            _buildActionButton = mainMenu != null && mainMenu.MenuActionPanel != null
+                ? mainMenu.MenuActionPanel.BuildButton
                 : null;
+            _buildButton = _buildActionButton != null ? _buildActionButton.Button : null;
         }
 
         public void Initialize()
@@ -35,7 +37,10 @@ namespace Presenters
             if (_buildService != null)
             {
                 _buildService.Changed += RefreshIfOpen;
+                _buildService.Changed += RefreshBuildCost;
             }
+
+            RefreshBuildCost();
 
             if (_buildButton == null)
             {
@@ -52,6 +57,7 @@ namespace Presenters
             if (_buildService != null)
             {
                 _buildService.Changed -= RefreshIfOpen;
+                _buildService.Changed -= RefreshBuildCost;
             }
 
             if (_buildButton != null && _openAction != null)
@@ -77,6 +83,33 @@ namespace Presenters
             {
                 _panel.Show(_buildService.ActiveIsland, _buildService, Build, false);
             }
+        }
+
+        /// <summary>
+        /// The menu Build button shows the star cost of the next building that can be built now
+        /// (the cheapest unbuilt slot whose requirements are met). Empty when the island is finished.
+        /// </summary>
+        private void RefreshBuildCost()
+        {
+            if (_buildActionButton == null || _buildService == null)
+            {
+                return;
+            }
+
+            var island = _buildService.ActiveIsland;
+            var cost = -1;
+            if (island != null && island.Slots != null)
+            {
+                foreach (var slot in island.Slots)
+                {
+                    if (_buildService.CanSelect(island, slot) && (cost < 0 || slot.StarCost < cost))
+                    {
+                        cost = slot.StarCost;
+                    }
+                }
+            }
+
+            _buildActionButton.SetSubLabel(cost >= 0 ? cost.ToString() : string.Empty);
         }
 
         private void Build(BuildingSlot slot)

@@ -1,5 +1,4 @@
 using System;
-using Configs;
 using TMPro;
 using UI;
 using UnityEngine;
@@ -12,10 +11,6 @@ public class RegionCardView : MonoBehaviour
     [SerializeField] private Image _progressImage;
     [SerializeField] private Image _regionImage;
     [SerializeField] private Button _button;
-
-    public int RegionIndex { get; private set; }
-    public bool IsUnlocked { get; private set; }
-    public bool IsCurrent { get; private set; }
 
     public void Bind(string islandName, Sprite icon, int builtCount, int totalCount, bool interactable, string status, Action onClick)
     {
@@ -56,28 +51,6 @@ public class RegionCardView : MonoBehaviour
         if (interactable && onClick != null)
         {
             _button.onClick.AddListener(() => onClick());
-        }
-    }
-
-    // Legacy RegionConfig flow (IslandPresenter).
-    public void Setup(RegionData data, int index, float progressNormalized, bool isUnlocked, bool isCurrent, Action<int> onClick)
-    {
-        RegionIndex = index;
-        IsUnlocked = isUnlocked;
-        IsCurrent = isCurrent;
-
-        if (data == null) return;
-
-        var name = !string.IsNullOrEmpty(data.regionName) ? data.regionName : $"Region {index + 1}";
-        var status = data.isComingSoon ? "Soon" : !isUnlocked ? "Locked" : null;
-        var interactable = isUnlocked && !data.isComingSoon;
-
-        Bind(name, data.regionIcon, Mathf.RoundToInt(progressNormalized * 100f), 100, interactable, status,
-            onClick != null ? () => onClick(index) : null);
-
-        if (_regionImage != null)
-        {
-            _regionImage.color = interactable ? Color.white : new Color(0.65f, 0.65f, 0.65f, 0.75f);
         }
     }
 }

@@ -20,25 +20,24 @@ namespace Utils.Editor
     public static class NorthRegionBuilder
     {
         private const string RootDir = "Assets/Content/Models/Regions/North";
-        private const string RegionConfigPath = "Assets/Content/Configs/RegionConfig.asset";
         private const string MaterialTemplatePath = "Assets/Content/Models/Regions/Asia/Japan/Japan_island_Mat.mat";
         private const int Fps = 24;
         private const int PopFrames = 16;
         private const int StepGapFrames = 12;
 
-        private struct IslandDef
+        internal struct IslandDef
         {
+            public string Root;
             public string Id;
             public string Display;
-            public int StarCost;
             public float Yaw;
         }
 
         private static readonly IslandDef[] Islands =
         {
-            new IslandDef { Id = "VikingCamp", Display = "Norway", StarCost = 25, Yaw = -12f },
-            new IslandDef { Id = "FrostCamp", Display = "Lapland", StarCost = 30, Yaw = -12f },
-            new IslandDef { Id = "FrostKeep", Display = "Iceland", StarCost = 35, Yaw = -12f },
+            new IslandDef { Root = RootDir, Id = "VikingCamp", Display = "Norway", Yaw = -12f },
+            new IslandDef { Root = RootDir, Id = "FrostCamp", Display = "Lapland", Yaw = -12f },
+            new IslandDef { Root = RootDir, Id = "FrostKeep", Display = "Iceland", Yaw = -12f },
         };
 
         // Placement under the menu "World" transform, matching where the Asia islands sit in front of the camera.
@@ -54,24 +53,30 @@ namespace Utils.Editor
 
         public static string BuildAll()
         {
+            var log = BuildIslands(Islands);
+            // Island/region configs (IslandSO + NorthRegion RegionSO) for the RegionSO flow.
+            RegionContentSetup.SetupNorth();
+            return log;
+        }
+
+        // Shared by every Blender-generated region (North, Europe): prefab + build clip + icon per island.
+        internal static string BuildIslands(IslandDef[] defs)
+        {
             var log = new System.Text.StringBuilder();
-            var built = new List<(IslandDef def, GameObject prefab, Sprite icon)>();
-            foreach (var def in Islands)
+            foreach (var def in defs)
             {
                 var prefab = BuildIsland(def, log);
                 if (prefab == null) continue;
-                var icon = RenderIcon(def, prefab);
-                built.Add((def, prefab, icon));
+                RenderIcon(def, prefab);
             }
 
-            AddToRegionConfig(built, log);
             AssetDatabase.SaveAssets();
             return log.ToString();
         }
 
         private static GameObject BuildIsland(IslandDef def, System.Text.StringBuilder log)
         {
-            var dir = $"{RootDir}/{def.Id}";
+            var dir = $"{def.Root}/{def.Id}";
             var islandFbx = $"{dir}/{def.Id}_Island.fbx";
             var bldFbx = $"{dir}/{def.Id}_Buildings.fbx";
             if (!File.Exists(islandFbx) || !File.Exists(bldFbx))
@@ -311,16 +316,19 @@ namespace Utils.Editor
         private static Sprite RenderIcon(IslandDef def, GameObject prefab)
         {
             const int size = 512;
-            var path = $"{RootDir}/{def.Id}/{def.Id}_Icon.png";
+            var path = $"{def.Root}/{def.Id}/{def.Id}_Icon.png";
             var far = new Vector3(5000f, 0f, 5000f);
             var go = (GameObject)Object.Instantiate(prefab);
             go.hideFlags = HideFlags.HideAndDontSave;
             go.transform.SetPositionAndRotation(far, Quaternion.Euler(0f, 180f + def.Yaw, 0f));
             go.transform.localScale = Vector3.one;
+            // Show the fully built island: sample the build clip at its end. The prefab's cfg.animator is
+            // only filled at runtime by RegionService, so fall back to the Animator in the hierarchy.
             var cfg = go.GetComponent<BuildingsAnimationConfig>();
-            if (cfg != null && cfg.animationClip != null && cfg.animator != null)
+            var animator = cfg != null && cfg.animator != null ? cfg.animator : go.GetComponentInChildren<Animator>(true);
+            if (cfg != null && cfg.animationClip != null && animator != null)
             {
-                cfg.animationClip.SampleAnimation(cfg.animator.gameObject, cfg.animationClip.length);
+                cfg.animationClip.SampleAnimation(animator.gameObject, cfg.animationClip.length);
             }
 
             var bounds = new Bounds(far, Vector3.zero);
@@ -376,53 +384,6 @@ namespace Utils.Editor
             }
 
             return AssetDatabase.LoadAssetAtPath<Sprite>(path);
-        }
-
-        private static void AddToRegionConfig(List<(IslandDef def, GameObject prefab, Sprite icon)> built,
-            System.Text.StringBuilder log)
-        {
-            var config = AssetDatabase.LoadAssetAtPath<RegionConfig>(RegionConfigPath);
-            if (config == null)
-            {
-                log.AppendLine("RegionConfig not found");
-                return;
-            }
-
-            var so = new SerializedObject(config);
-            var regions = so.FindProperty("regions");
-            foreach (var (def, prefab, icon) in built)
-            {
-                SerializedProperty entry = null;
-                for (var i = 0; i < regions.arraySize; i++)
-                {
-                    var e = regions.GetArrayElementAtIndex(i);
-                    if (e.FindPropertyRelative("regionName").stringValue == def.Display)
-                    {
-                        entry = e;
-                        break;
-                    }
-                }
-
-                if (entry == null)
-                {
-                    regions.arraySize++;
-                    entry = regions.GetArrayElementAtIndex(regions.arraySize - 1);
-                    log.AppendLine($"RegionConfig: added '{def.Display}' at index {regions.arraySize - 1}");
-                }
-                else
-                {
-                    log.AppendLine($"RegionConfig: updated '{def.Display}'");
-                }
-
-                entry.FindPropertyRelative("regionName").stringValue = def.Display;
-                entry.FindPropertyRelative("regionIcon").objectReferenceValue = icon;
-                entry.FindPropertyRelative("regionPrefab").objectReferenceValue = prefab;
-                entry.FindPropertyRelative("isComingSoon").boolValue = false;
-                entry.FindPropertyRelative("starCost").intValue = def.StarCost;
-            }
-
-            so.ApplyModifiedPropertiesWithoutUndo();
-            EditorUtility.SetDirty(config);
         }
     }
 }

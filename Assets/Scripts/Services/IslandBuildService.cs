@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Configs;
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using Models;
 using Systems.CurrencySystem;
 using Systems.CurrencySystem.Interfaces;
 using UnityEngine;
@@ -12,12 +11,11 @@ namespace Services
 {
     public class IslandBuildService
     {
-        private readonly RegionSO _region;
+        private readonly IReadOnlyList<RegionSO> _regions;
         private readonly IslandBuildProgressStore _store;
         private readonly ICurrencyService _currencyService;
         private readonly RegionService _regionService;
         private readonly RegionUpgradeService _regionUpgradeService;
-        private readonly RegionModel _regionModel;
         private const float TreeGrowSeconds = 0.9f;
 
         private readonly List<PartPose> _parts = new();
@@ -35,37 +33,64 @@ namespace Services
         private Transform _animatorRoot;
 
         public IslandBuildService(
-            RegionSO region,
+            IReadOnlyList<RegionSO> regions,
             IslandBuildProgressStore store,
             ICurrencyService currencyService,
             RegionService regionService,
-            RegionUpgradeService regionUpgradeService,
-            RegionModel regionModel)
+            RegionUpgradeService regionUpgradeService)
         {
-            _region = region;
+            _regions = regions ?? Array.Empty<RegionSO>();
             _store = store;
             _currencyService = currencyService;
             _regionService = regionService;
             _regionUpgradeService = regionUpgradeService;
-            _regionModel = regionModel;
         }
 
         public event Action Changed;
 
-        public RegionSO Region => _region;
+        // Regions in progression order (Asia, North, ...).
+        public IReadOnlyList<RegionSO> Regions => _regions;
 
         public IslandSO ActiveIsland
         {
             get
             {
-                var selected = _region != null ? _region.FindIsland(_store.ActiveIslandId) : null;
+                var selected = FindIsland(_store.ActiveIslandId);
                 if (selected != null && !selected.IsComingSoon)
                 {
                     return selected;
                 }
 
-                return _region != null ? _region.FirstPlayable() : null;
+                return FirstPlayable();
             }
+        }
+
+        private IslandSO FindIsland(string islandId)
+        {
+            for (var i = 0; i < _regions.Count; i++)
+            {
+                var island = _regions[i] != null ? _regions[i].FindIsland(islandId) : null;
+                if (island != null)
+                {
+                    return island;
+                }
+            }
+
+            return null;
+        }
+
+        private IslandSO FirstPlayable()
+        {
+            for (var i = 0; i < _regions.Count; i++)
+            {
+                var island = _regions[i] != null ? _regions[i].FirstPlayable() : null;
+                if (island != null)
+                {
+                    return island;
+                }
+            }
+
+            return null;
         }
 
         public void EnsureActiveIslandSaved()
@@ -729,7 +754,7 @@ namespace Services
         private bool EnsureGraph()
         {
             var instance = _regionService != null ? _regionService.ActiveInstance : null;
-            if (_regionUpgradeService == null || _regionModel?.RegionService?.ActiveRegion == null || instance == null)
+            if (_regionUpgradeService == null || _regionService?.ActiveRegion == null || instance == null)
             {
                 return false;
             }
@@ -737,7 +762,7 @@ namespace Services
             if (_capturedInstanceId != instance.GetInstanceID() || !_regionUpgradeService.IsReady)
             {
                 _parts.Clear();
-                _regionUpgradeService.Initialize(_regionModel);
+                _regionUpgradeService.Initialize(_regionService);
                 _capturedInstanceId = instance.GetInstanceID();
             }
 

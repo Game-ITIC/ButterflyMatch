@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5f2b0c3e9a4f7b0d1c2e3f4a5b6c7d, type: 3}
+  m_Name: NorthRegion
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.RegionSO
+  regionId: north
+  displayName: North
+  icon: {fileID: 21300000, guid: cebebdae21b1bf049b4a1ec52e364244, type: 3}
+  islands:
+  - {fileID: 11400000, guid: acfd3110c413aec40834be8e7ac06a18, type: 2}
+  - {fileID: 11400000, guid: 0e92a5b7c9adc7b4e9a7e7e8fad95d24, type: 2}
+  - {fileID: 11400000, guid: c9119385e91bf604fa035096fadf0945, type: 2}

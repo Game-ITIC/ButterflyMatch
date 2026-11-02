@@ -1,143 +1,41 @@
-using System;
 using Configs;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using Utils.Save;
 using Object = UnityEngine.Object;
 
 namespace Services
 {
+    // Spawns the active island prefab under the menu world and exposes its build animation config.
+    // Which island is active is decided by IslandBuildService (RegionSO/IslandSO flow).
     public class RegionService
     {
-        private readonly RegionConfig _regionConfig;
         private readonly Transform _regionParent;
 
         private BuildingsAnimationConfig _activeRegion;
-        private RegionData _activeRegionData;
         private GameObject _activeInstance;
         private GameObject _startupPrefab;
-        private int _currentRegionIndex;
 
-        public event Action<int> OnActiveRegionChanged;
-
-        public RegionConfig RegionConfig => _regionConfig;
-        public RegionData ActiveRegionData => _activeRegionData;
         public BuildingsAnimationConfig ActiveRegion => _activeRegion;
         public GameObject ActiveInstance => _activeInstance;
-        public int CurrentRegionIndex => _currentRegionIndex;
+
+        public RegionService(Transform regionParent)
+        {
+            _regionParent = regionParent;
+        }
 
         public void SetStartupPrefab(GameObject prefab)
         {
             _startupPrefab = prefab;
         }
 
-        public RegionService(RegionConfig regionConfig, Transform regionParent)
-        {
-            _regionConfig = regionConfig;
-            _regionParent = regionParent;
-        }
-
-        public bool CanLoadNextRegion()
-        {
-            var nextRegionIndex = _currentRegionIndex + 1;
-            return _regionConfig != null && nextRegionIndex >= 0 && nextRegionIndex < _regionConfig.Count;
-        }
-
         public async UniTask Warmup()
         {
-            Load();
             if (_startupPrefab != null)
             {
                 LoadPrefab(_startupPrefab);
             }
-            else
-            {
-                LoadRegion(_currentRegionIndex);
-            }
 
-            OnActiveRegionChanged?.Invoke(_currentRegionIndex);
             await UniTask.Yield();
-        }
-
-        private void Load()
-        {
-            _currentRegionIndex = PlayerPrefs.GetInt(PlayerPrefsKeys.RegionIndex, 0);
-            var maxCount = GetTotalRegionsCount();
-
-            if (maxCount <= 0)
-            {
-                _currentRegionIndex = -1;
-                return;
-            }
-
-            if (_currentRegionIndex < 0 || _currentRegionIndex >= maxCount)
-            {
-                _currentRegionIndex = 0;
-                Save();
-            }
-        }
-
-        private int GetTotalRegionsCount()
-        {
-            return _regionConfig != null ? _regionConfig.Count : 0;
-        }
-
-        private void Save()
-        {
-            PlayerPrefs.SetInt(PlayerPrefsKeys.RegionIndex, _currentRegionIndex);
-            PlayerPrefs.Save();
-        }
-
-        public void SetRegion(int index)
-        {
-            if (_regionConfig == null || index < 0 || index >= _regionConfig.Count)
-            {
-                Debug.LogWarning($"[RegionService] Cannot set region to index {index}");
-                return;
-            }
-
-            _currentRegionIndex = index;
-            Save();
-            LoadRegion(_currentRegionIndex);
-            OnActiveRegionChanged?.Invoke(_currentRegionIndex);
-        }
-
-        public void LoadNextRegion()
-        {
-            _currentRegionIndex++;
-            Save();
-            LoadRegion(_currentRegionIndex);
-            OnActiveRegionChanged?.Invoke(_currentRegionIndex);
-        }
-
-        public void LoadRegion(int index)
-        {
-            _activeRegionData = null;
-
-            if (_regionConfig == null)
-            {
-                Debug.LogError("[RegionService] RegionConfig is not assigned!");
-                DestroyActiveInstance();
-                return;
-            }
-
-            if (index < 0 || index >= _regionConfig.Count)
-            {
-                Debug.LogWarning($"[RegionService] Invalid region index {index} (Total: {_regionConfig.Count})");
-                DestroyActiveInstance();
-                return;
-            }
-
-            _activeRegionData = _regionConfig.GetRegionByIndex(index);
-
-            if (_activeRegionData == null || _activeRegionData.regionPrefab == null)
-            {
-                Debug.LogWarning($"[RegionService] Region data or regionPrefab is not assigned for index {index}");
-                DestroyActiveInstance();
-                return;
-            }
-
-            LoadPrefab(_activeRegionData.regionPrefab);
         }
 
         public void LoadPrefab(GameObject prefab)

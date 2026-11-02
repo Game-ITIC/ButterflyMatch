@@ -1,6 +1,5 @@
 using System;
 using Cysharp.Threading.Tasks;
-using Models;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -15,17 +14,14 @@ namespace Services
         private AnimationPlayableOutput playableOutput;
         private AnimationClipPlayable clipPlayable;
 
-        private RegionModel _regionModel;
         public Animator animator;
         public AnimationClip animationClip;
 
         private CancellationTokenSource _cancellationTokenSource;
 
-        public void Initialize(RegionModel regionModel)
+        public void Initialize(RegionService regionService)
         {
-            _regionModel = regionModel;
-
-            if (regionModel?.RegionService?.ActiveRegion == null)
+            if (regionService?.ActiveRegion == null)
             {
                 Debug.LogWarning("[RegionUpgradeService] Cannot initialize: ActiveRegion is null!");
                 return;
@@ -36,7 +32,7 @@ namespace Services
                 playableGraph.Destroy();
             }
 
-            var activeRegion = regionModel.RegionService.ActiveRegion;
+            var activeRegion = regionService.ActiveRegion;
             animator = activeRegion.animator;
             if (animator == null)
             {

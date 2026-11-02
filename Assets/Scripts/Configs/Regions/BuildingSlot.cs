@@ -139,10 +139,10 @@ namespace Configs
                     names.Append(", ");
                 }
 
-                names.Append(needed.DisplayName);
+                names.Append(GameLocalization.L10n.Translate(needed.DisplayName));
             }
 
-            return names.Length == 0 ? string.Empty : "Build " + names + " first";
+            return names.Length == 0 ? string.Empty : GameLocalization.L10n.Format("build_first", names.ToString());
         }
 
         private IReadOnlyList<BuildingSO> ListedRequirements()
@@ -183,9 +183,30 @@ namespace Configs
             return objectNames != null && objectNames.Length > 0;
         }
 
+        // Tree slots are named "tree" or "<island>-tree<N>". Match only that last segment, so ids that merely
+        // contain the letters (e.g. "france-streetlamps", "greece-olivetree") stay regular animated steps.
         private static bool ContainsTree(string id)
         {
-            return !string.IsNullOrEmpty(id) && id.IndexOf("tree", StringComparison.OrdinalIgnoreCase) >= 0;
+            if (string.IsNullOrEmpty(id))
+            {
+                return false;
+            }
+
+            var start = id.LastIndexOf('-') + 1;
+            if (id.Length - start < 4 || string.Compare(id, start, "tree", 0, 4, StringComparison.OrdinalIgnoreCase) != 0)
+            {
+                return false;
+            }
+
+            for (var i = start + 4; i < id.Length; i++)
+            {
+                if (!char.IsDigit(id[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }

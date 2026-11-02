@@ -21,14 +21,10 @@ namespace Scopes
     {
         [SerializeField] private IslandProvider islandProvider;
 
+        // Coins (Cash) were removed from the game (Docs/GDD.md 3): only stars and gems are shown.
         [Space(10)]
         [Title("UI Components")]
         [LabelWidth(130)]
-        [LabelText("Coins Display")]
-        [Tooltip("Text view for displaying player's coins")]
-        [SerializeField]
-        private TextView coinTextView;
-
         [LabelText("Stars Display")] [Tooltip("Text view for displaying player's stars")] [SerializeField]
         private TextView starTextView;
 
@@ -50,14 +46,6 @@ namespace Scopes
 
             builder.Register<ITaskService, TaskService>(Lifetime.Singleton);
             builder.Register<RewardService>(Lifetime.Singleton);
-
-            if (coinTextView != null)
-            {
-                builder.Register<CurrencyPresenter>(Lifetime.Scoped)
-                    .As<IInitializable>()
-                    .WithParameter<ICurrencyView>(coinTextView)
-                    .WithParameter(CurrencyType.Cash);
-            }
 
             if (starTextView != null)
             {

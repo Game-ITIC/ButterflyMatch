@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: NorwayIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: norway
+  displayName: Norway
+  icon: {fileID: 21300000, guid: cebebdae21b1bf049b4a1ec52e364244, type: 3}
+  islandPrefab: {fileID: 8080905529158418877, guid: 6e721b69468a445429ff2766ddd0d03d,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: norway-palisade
+    building: {fileID: 11400000, guid: 31c5a02551c3e464bbaa8598c66ba3d9, type: 2}
+    starCost: 10
+    requiredBuildings: []
+    animationStep: 0
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-gate
+    building: {fileID: 11400000, guid: 48600e56a7892f34b8b68158f48301a6, type: 2}
+    starCost: 12
+    requiredBuildings:
+    - {fileID: 11400000, guid: 31c5a02551c3e464bbaa8598c66ba3d9, type: 2}
+    animationStep: 1
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-longhouse
+    building: {fileID: 11400000, guid: 322e1e2c3a589ff4e903ed1a5b17055b, type: 2}
+    starCost: 14
+    requiredBuildings:
+    - {fileID: 11400000, guid: 48600e56a7892f34b8b68158f48301a6, type: 2}
+    animationStep: 2
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-longhouseroof
+    building: {fileID: 11400000, guid: 62aa5d9fc8109a240a4bf1533013916d, type: 2}
+    starCost: 16
+    requiredBuildings:
+    - {fileID: 11400000, guid: 322e1e2c3a589ff4e903ed1a5b17055b, type: 2}
+    animationStep: 3
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-tents
+    building: {fileID: 11400000, guid: d40aa5a3b6ec8f44b8e4e5d56932b255, type: 2}
+    starCost: 18
+    requiredBuildings:
+    - {fileID: 11400000, guid: 62aa5d9fc8109a240a4bf1533013916d, type: 2}
+    animationStep: 4
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-watchtower
+    building: {fileID: 11400000, guid: 5449401100ab1294d9aff8f244b66602, type: 2}
+    starCost: 20
+    requiredBuildings:
+    - {fileID: 11400000, guid: d40aa5a3b6ec8f44b8e4e5d56932b255, type: 2}
+    animationStep: 5
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-banner
+    building: {fileID: 11400000, guid: 0723c8996f196844cb4b0f78611d2c2c, type: 2}
+    starCost: 22
+    requiredBuildings:
+    - {fileID: 11400000, guid: 5449401100ab1294d9aff8f244b66602, type: 2}
+    animationStep: 6
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-trainingyard
+    building: {fileID: 11400000, guid: 7b243082ad65ef5499622042cfa6b409, type: 2}
+    starCost: 24
+    requiredBuildings:
+    - {fileID: 11400000, guid: 0723c8996f196844cb4b0f78611d2c2c, type: 2}
+    animationStep: 7
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-firepits
+    building: {fileID: 11400000, guid: c496a9a5b89a37745b855bee6289c2af, type: 2}
+    starCost: 26
+    requiredBuildings:
+    - {fileID: 11400000, guid: 7b243082ad65ef5499622042cfa6b409, type: 2}
+    animationStep: 8
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: norway-pines
+    building: {fileID: 11400000, guid: d539af952c45f8e489938944bf685aa0, type: 2}
+    starCost: 28
+    requiredBuildings:
+    - {fileID: 11400000, guid: c496a9a5b89a37745b855bee6289c2af, type: 2}
+    animationStep: 9
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
