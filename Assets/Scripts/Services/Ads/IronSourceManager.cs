@@ -128,7 +128,8 @@ public class IronSourceManager : MonoBehaviour
             return;
         }
 
-        _banner = new LevelPlayBannerAd(_config.BannerId);
+        // Shown only where allowed (main menu), so it must not auto-display on load.
+        _banner = new LevelPlayBannerAd(_config.BannerId, displayOnLoad: false, respectSafeArea: true);
 
         _banner.OnAdLoaded += BannerOnAdLoadedEvent;
         _banner.OnAdLoadFailed += BannerOnAdLoadFailedEvent;
@@ -151,6 +152,24 @@ public class IronSourceManager : MonoBehaviour
         _banner.LoadAd();
     }
 
+    // GDD 8.3: the banner is shown only in the main menu; hidden in levels and on loading screens.
+    private bool _bannerAllowed;
+
+    /// <summary>Allows or forbids the banner on the current screen (set by SceneLoader on every scene change).</summary>
+    public void SetBannerAllowed(bool allowed)
+    {
+        _bannerAllowed = allowed;
+
+        if (allowed)
+        {
+            ShowBannerAd();
+        }
+        else
+        {
+            _banner?.HideAd();
+        }
+    }
+
     public void ShowBannerAd()
     {
         if (HasRemoveAds)
@@ -159,7 +178,7 @@ public class IronSourceManager : MonoBehaviour
             return;
         }
 
-        if (_banner != null)
+        if (_banner != null && _bannerLoaded && _bannerAllowed)
         {
             _banner.ShowAd();
         }

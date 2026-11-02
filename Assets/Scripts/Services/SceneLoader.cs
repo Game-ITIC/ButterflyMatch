@@ -126,6 +126,7 @@ namespace Itic.Scopes
             Debug.Log($"[SceneLoader] === STEP 3/3: Starting load scene by build index '{index}' ===");
 
             await EnsureLoadingScreenVisibleAsync();
+            IronSourceManager.Instance?.SetBannerAllowed(false);
 
             var activeScene = SceneManager.GetActiveScene();
             Debug.Log($"[SceneLoader] Unloading current scene '{activeScene.name}'...");
@@ -163,6 +164,7 @@ namespace Itic.Scopes
 
             OnSceneLoaded?.Invoke();
             await _screenService.HideLoadingScreenAsync();
+            UpdateBannerForScene(scene);
             Debug.Log($"[SceneLoader] === STEP 3/3 Complete: Scene '{scene.name}' loaded in total {sw.ElapsedMilliseconds} ms ===");
         }
 
@@ -172,6 +174,7 @@ namespace Itic.Scopes
             Debug.Log($"[SceneLoader] === STEP 3/3: Starting load scene '{sceneName}' ===");
 
             await EnsureLoadingScreenVisibleAsync();
+            IronSourceManager.Instance?.SetBannerAllowed(false);
 
             var activeScene = SceneManager.GetActiveScene();
             Debug.Log($"[SceneLoader] Unloading current scene '{activeScene.name}'...");
@@ -209,7 +212,14 @@ namespace Itic.Scopes
 
             OnSceneLoaded?.Invoke();
             await _screenService.HideLoadingScreenAsync();
+            UpdateBannerForScene(scene);
             Debug.Log($"[SceneLoader] === STEP 3/3 Complete: Scene '{sceneName}' loaded in total {sw.ElapsedMilliseconds} ms ===");
+        }
+
+        /// <summary>GDD 8.3: the banner is allowed only in the main menu.</summary>
+        private static void UpdateBannerForScene(Scene scene)
+        {
+            IronSourceManager.Instance?.SetBannerAllowed(scene.name == "MainMenu");
         }
 
         private async UniTask InstallSceneScopeAsync(Scene scene)
