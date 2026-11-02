@@ -8,10 +8,8 @@ namespace Systems.CurrencySystem
 {
     public class CurrencyService : ICurrencyService
     {
-        private static readonly HashSet<CurrencyType> NegativeAllowedCurrencies = new()
-        {
-            CurrencyType.Cash
-        };
+        // No currency may go negative: Spend must fail when the balance is too low.
+        private static readonly HashSet<CurrencyType> NegativeAllowedCurrencies = new();
 
         private readonly Dictionary<CurrencyType, ReactiveProperty<ICurrency>> _currencies = new();
         private readonly object _lock = new();
@@ -87,7 +85,7 @@ namespace Systems.CurrencySystem
                 if (!IsKnownCurrency(type))
                     return null;
 
-                return _currencies.TryGetValue(type, out var currency) ? currency.Value : null;
+                return EnsureCurrencyProperty(type).Value;
             }
         }
 

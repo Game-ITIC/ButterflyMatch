@@ -106,9 +106,11 @@ namespace Services.DailyRewards
                     break;
                 case DailyRewardGrantType.Bomb:
                     _boostersProvider?.GetBoosterModel(BoostType.Bomb).Add(reward.Amount);
+                    _boostersProvider?.Save();
                     break;
                 case DailyRewardGrantType.Shovel:
                     _boostersProvider?.GetBoosterModel(BoostType.Shovel).Add(reward.Amount);
+                    _boostersProvider?.Save();
                     break;
             }
         }

@@ -1,14 +1,23 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using Utils.Save;
-using ZLinq;
 
 namespace Providers
 {
     public class BoostersProvider
     {
+        private static readonly BoostType[] AllTypes =
+        {
+            BoostType.Shovel,
+            BoostType.Energy,
+            BoostType.Bomb,
+            BoostType.ExtraMoves,
+        };
+
         public List<BoosterModel> BoostersModels { get; private set; } = new();
 
         public BoostersProvider()
@@ -18,35 +27,73 @@ namespace Providers
 
         public BoosterModel GetBoosterModel(BoostType boostType)
         {
-            return BoostersModels.AsValueEnumerable().First(v => v.Type == boostType);
+            for (var i = 0; i < BoostersModels.Count; i++)
+            {
+                if(BoostersModels[i].Type == boostType)
+                {
+                    return BoostersModels[i];
+                }
+            }
+
+            // Missing in an old save: create it instead of throwing.
+            var model = new BoosterModel(boostType);
+            BoostersModels.Add(model);
+            return model;
         }
-        
+
         public void Load()
         {
-            var value = PlayerPrefs.GetString(PlayerPrefsKeys.Boosters, "empty");
+            BoostersModels = new List<BoosterModel>();
 
-            if (value == "empty")
+            var value = PlayerPrefs.GetString(PlayerPrefsKeys.Boosters, "empty");
+            if(value != "empty")
             {
-                BoostersModels = new List<BoosterModel>
+                try
                 {
-                    new(BoostType.Shovel),
-                    new(BoostType.Energy),
-                    new(BoostType.Bomb),
-                    new(BoostType.ExtraMoves),
-                };
+                    foreach (var token in JArray.Parse(value))
+                    {
+                        var type = (BoostType)token.Value<int>("Type");
+                        var countToken = token["Count"];
+
+                        // Old saves serialized the whole ReactiveProperty: {"Count":{"Value":3,...}}.
+                        var count = countToken == null ? 0
+                            : countToken.Type == JTokenType.Object ? countToken.Value<int>("Value")
+                            : countToken.Value<int>();
+
+                        var model = GetBoosterModel(type);
+                        model.Add(Mathf.Max(0, count) - model.Count.Value);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError($"[BoostersProvider] Failed to load boosters, resetting: {ex.Message}");
+                    BoostersModels = new List<BoosterModel>();
+                }
             }
-            else
+
+            foreach (var type in AllTypes)
             {
-                BoostersModels = JsonConvert.DeserializeObject<List<BoosterModel>>(value);
+                GetBoosterModel(type);
             }
         }
-        
+
         public void Save()
         {
-            var value = JsonConvert.SerializeObject(BoostersModels);
+            var data = new List<BoosterSaveData>(BoostersModels.Count);
+            foreach (var model in BoostersModels)
+            {
+                data.Add(new BoosterSaveData { Type = (int)model.Type, Count = model.Count.Value });
+            }
 
-            PlayerPrefs.SetString(PlayerPrefsKeys.Boosters, value);
+            PlayerPrefs.SetString(PlayerPrefsKeys.Boosters, JsonConvert.SerializeObject(data));
             PlayerPrefs.Save();
+        }
+
+        [Serializable]
+        private struct BoosterSaveData
+        {
+            public int Type;
+            public int Count;
         }
     }
 }

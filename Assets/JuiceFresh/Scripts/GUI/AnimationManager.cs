@@ -705,13 +705,13 @@ public class AnimationManager : MonoBehaviour
         SoundBase.Instance.PlaySound(SoundBase.Instance.click);
         var currencyService = LevelManager.THIS.CurrencyService;
 
-        if (currencyService != null && currencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Cash)?.Value >= price)
+        // Spend first: the booster is only added when the payment went through.
+        if (currencyService != null && currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Cash, price))
         {
             SoundBase.Instance.PlaySound(SoundBase.Instance.cash);
-            var booster = LevelManager.THIS.BoostersProvider.BoostersModels.AsValueEnumerable()
-                .First(v => v.Type == boostType);
-            booster.Add(count);
-            currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Cash, price);
+            var boostersProvider = LevelManager.THIS.BoostersProvider;
+            boostersProvider.GetBoosterModel(boostType).Add(count);
+            boostersProvider.Save();
 
             CloseMenu();
             LevelManager.THIS.GameProvider.RewardPopup.Init(new RewardInfo { Icon = icon, Description = $"You got {boostType}" });

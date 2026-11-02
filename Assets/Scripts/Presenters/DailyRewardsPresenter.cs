@@ -55,6 +55,7 @@ namespace Presenters
                         .AsValueEnumerable()
                         .First(v => v.Type == BoostType.Bomb);
                     booster.Add(value);
+                    _boostersProvider.Save();
                 }
                     break;
                 case 5:
@@ -63,6 +64,7 @@ namespace Presenters
                         .AsValueEnumerable()
                         .First(v => v.Type == BoostType.Shovel);
                     booster.Add(value);
+                    _boostersProvider.Save();
                 }
                     break;
                 case 6:
