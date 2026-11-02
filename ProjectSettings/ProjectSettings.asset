@@ -44,8 +44,8 @@ PlayerSettings:
   m_HolographicTrackingLossScreen: {fileID: 0}
   defaultScreenWidth: 1024
   defaultScreenHeight: 768
-  defaultScreenWidthWeb: 540
-  defaultScreenHeightWeb: 960
+  defaultScreenWidthWeb: 600
+  defaultScreenHeightWeb: 800
   m_StereoRenderingPath: 0
   m_ActiveColorSpace: 0
   unsupportedMSAAFallback: 0
@@ -68,7 +68,7 @@ PlayerSettings:
   preserveFramebufferAlpha: 0
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
-  androidRenderOutsideSafeArea: 1
+  androidRenderOutsideSafeArea: 0
   androidUseSwappy: 0
   androidDisplayOptions: 1
   androidBlitType: 0
@@ -539,9 +539,6 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_StaticBatching: 1
     m_DynamicBatching: 1
-  - m_BuildTarget: WebGL
-    m_StaticBatching: 0
-    m_DynamicBatching: 1
   m_BuildTargetShaderSettings: []
   m_BuildTargetGraphicsJobs:
   - m_BuildTarget: MacStandaloneSupport
@@ -872,7 +869,7 @@ PlayerSettings:
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 1
   webGLWasmArithmeticExceptions: 0
-  webGLLinkerTarget: 1
+  webGLLinkerTarget: 0
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   webGLInitialMemorySize: 32
@@ -902,7 +899,7 @@ PlayerSettings:
     Server: UNITY_MCP_READY;UNITY_MCP_DEPS_3
     Standalone: LEVELPLAY_DEPENDENCIES_INSTALLED;DOTWEEN;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;SORTIFY;UNITY_MCP_READY;UNITY_MCP_DEPS_3
     VisionOS: DOTWEEN;SORTIFY;UNITY_MCP_READY;UNITY_MCP_DEPS_3
-    WebGL: DOTWEEN;SORTIFY;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;UNITY_MCP_READY;UNITY_MCP_DEPS_3
+    WebGL: DOTWEEN;SORTIFY;UNITY_MCP_READY;UNITY_MCP_DEPS_3
     Windows Store Apps: UNITY_ADS;DOTWEEN;UNITY_MCP_READY;UNITY_MCP_DEPS_3
     XboxOne: DOTWEEN;SORTIFY;UNITY_MCP_READY;UNITY_MCP_DEPS_3
     iPhone: UNITY_ADS;gameanalytics_admob_enabled;gameanalytics_ironsource_enabled;DOTWEEN;UNITY_MCP_READY;UNITY_MCP_DEPS_3
