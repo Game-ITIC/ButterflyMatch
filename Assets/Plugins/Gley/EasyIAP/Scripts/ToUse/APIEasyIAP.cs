@@ -14,6 +14,22 @@ namespace Gley.EasyIAP
     public static class API
     {
         /// <summary>
+        /// [Project patch] Grants a delivered purchase. Called from ProcessPurchase for EVERY delivered purchase,
+        /// including purchases re-delivered on startup or completed later (pending payments).
+        /// Args: store product, transaction id. Return true when the reward was granted and saved.
+        /// While no handler is set, purchases stay Pending in the store and are granted on FlushPendingPurchases().
+        /// </summary>
+        public static Func<StoreProduct, string, bool> PurchaseGrantHandler { get; set; }
+
+        /// <summary>
+        /// [Project patch] Grants and confirms purchases that arrived while no grant handler was set.
+        /// </summary>
+        public static void FlushPendingPurchases()
+        {
+            IAPManager.Instance.FlushPendingPurchases();
+        }
+
+        /// <summary>
         /// Initialize store products. Call this method once at the beginning of your game.
         /// </summary>
         /// <param name="completeMethod">Callback method, returns a list of all store products. Use this method for initializations</param>

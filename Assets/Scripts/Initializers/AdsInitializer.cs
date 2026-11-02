@@ -23,6 +23,7 @@ namespace Initializers
         private readonly InternetChecker _internetChecker;
         private readonly InternetState _internetState;
         private readonly ScreenService _screenService;
+        private readonly Services.InApp.InAppGrantService _inAppGrantService;
 
 #if UNITY_EDITOR
         private const int INTERNET_CHECK_TIMEOUT = 3000;
@@ -39,19 +40,24 @@ namespace Initializers
             InternetChecker internetChecker,
             SceneLoader sceneLoader,
             InternetState internetState,
-            ScreenService screenService
+            ScreenService screenService,
+            Services.InApp.InAppGrantService inAppGrantService
         )
         {
             _ironSourceInitializer = ironSourceInitializer;
             _internetChecker = internetChecker;
             _internetState = internetState;
             _screenService = screenService;
+            _inAppGrantService = inAppGrantService;
         }
 
         public async UniTask Warmup()
         {
             var sw = Stopwatch.StartNew();
             Debug.Log("[AdsInitializer] Starting AdsInitializer.Warmup()...");
+
+            // Must be attached before the store initializes: purchases re-delivered on startup are granted here.
+            _inAppGrantService.Attach();
 
             await _screenService.ShowLoadingScreenAsync();
             _screenService.SetLoadingProgress(0f);
@@ -89,7 +95,7 @@ namespace Initializers
             {
                 Debug.LogError($"[AdsInitializer] Warmup failed with exception ({sw.ElapsedMilliseconds} ms): {ex}");
                 _internetState.HasInternet = false;
-                _internetState.HasRemoveAds = false;
+                _internetState.HasRemoveAds = _inAppGrantService.HasRemoveAds;
             }
 
             await UniTask.SwitchToMainThread();
@@ -168,18 +174,23 @@ namespace Initializers
                         Debug.Log($"[AdsInitializer] EasyIAP callback: status={status}, message='{message}' (took {sw.ElapsedMilliseconds} ms)");
                         if (status == IAPOperationStatus.Success)
                         {
-                            _internetState.HasRemoveAds = API.IsActive(ShopProductNames.RemoveAds);
+                            if(API.IsActive(ShopProductNames.RemoveAds))
+                            {
+                                _inAppGrantService.SetRemoveAds();
+                            }
+
+                            _internetState.HasRemoveAds = _inAppGrantService.HasRemoveAds;
                         }
                         else
                         {
                             Debug.LogWarning($"[AdsInitializer] EasyIAP init non-success status: {status} ({message})");
-                            _internetState.HasRemoveAds = false;
+                            _internetState.HasRemoveAds = _inAppGrantService.HasRemoveAds;
                         }
                     }
                     catch (Exception ex)
                     {
                         Debug.LogError($"[AdsInitializer] Error processing EasyIAP callback: {ex}");
-                        _internetState.HasRemoveAds = false;
+                        _internetState.HasRemoveAds = _inAppGrantService.HasRemoveAds;
                     }
                     finally
                     {
@@ -194,13 +205,13 @@ namespace Initializers
             {
                 await UniTask.SwitchToMainThread();
                 Debug.LogWarning($"[AdsInitializer] InitializeIAP timed out after {sw.ElapsedMilliseconds} ms (limit: {IAP_INIT_TIMEOUT} ms). Continuing without IAP cache...");
-                _internetState.HasRemoveAds = false;
+                _internetState.HasRemoveAds = _inAppGrantService.HasRemoveAds;
             }
             catch (Exception ex)
             {
                 await UniTask.SwitchToMainThread();
                 Debug.LogError($"[AdsInitializer] InitializeIAP failed ({sw.ElapsedMilliseconds} ms): {ex}");
-                _internetState.HasRemoveAds = false;
+                _internetState.HasRemoveAds = _inAppGrantService.HasRemoveAds;
             }
         }
     }

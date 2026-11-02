@@ -64,6 +64,7 @@ namespace Scopes
             builder.Register<AdEventModel>(Lifetime.Singleton);
             builder.Register<AdsInitializer>(Lifetime.Singleton);
             builder.Register<AdRewardService>(Lifetime.Singleton).AsImplementedInterfaces().AsSelf();
+            builder.Register<Services.InApp.InAppGrantService>(Lifetime.Singleton);
 
             builder.RegisterEntryPoint<ServicesStartup>();
         }

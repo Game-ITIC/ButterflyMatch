@@ -36,12 +36,52 @@ namespace Gley.EasyIAP.Internal
         private UnityAction<IAPOperationStatus, string> OnInitComplete;
         private UnityAction<IAPOperationStatus, string, StoreProduct> OnCompleteMethod;
         private UnityAction RestoreDone;
+        private readonly List<Product> pendingPurchases = new List<Product>();
 
         /// <summary>
         /// Static instance of the class for easy access
         /// </summary>
         private static IAPManager instance;
         private bool initializePurchasing;
+
+        /// <summary>
+        /// [Project patch] Grants and confirms purchases that were left Pending because no grant handler was set.
+        /// </summary>
+        public void FlushPendingPurchases()
+        {
+            var grantHandler = API.PurchaseGrantHandler;
+            if (grantHandler == null || m_StoreController == null || shopProducts == null || pendingPurchases.Count == 0)
+            {
+                return;
+            }
+
+            for (int p = pendingPurchases.Count - 1; p >= 0; p--)
+            {
+                var product = pendingPurchases[p];
+                var storeProduct = shopProducts.FirstOrDefault(s => String.Equals(s.GetStoreID(), product.definition.id, StringComparison.Ordinal));
+                if (storeProduct == null)
+                {
+                    continue;
+                }
+
+                bool granted;
+                try
+                {
+                    granted = grantHandler(storeProduct, product.transactionID);
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogException(ex);
+                    granted = false;
+                }
+
+                if (granted)
+                {
+                    m_StoreController.ConfirmPendingPurchase(product);
+                    pendingPurchases.RemoveAt(p);
+                }
+            }
+        }
 
         public static IAPManager Instance
         {
@@ -301,13 +341,20 @@ namespace Gley.EasyIAP.Internal
 
             this.OnCompleteMethod = OnCompleteMethod;
 
-            for (int i = 0; i < shopProducts.Count; i++)
+            if (shopProducts != null)
             {
-                if (shopProducts[i].productName == productName.ToString())
+                for (int i = 0; i < shopProducts.Count; i++)
                 {
-                    BuyProductID(shopProducts[i].GetStoreID());
+                    if (shopProducts[i].productName == productName.ToString())
+                    {
+                        BuyProductID(shopProducts[i].GetStoreID());
+                        return;
+                    }
                 }
             }
+
+            // [Project patch] Never leave the caller waiting forever.
+            OnCompleteMethod?.Invoke(IAPOperationStatus.Fail, "Product " + productName + " not found or store not initialized.", null);
         }
 
         /// <summary>
@@ -397,6 +444,36 @@ namespace Gley.EasyIAP.Internal
                             {
                                 shopProducts[i].active = true;
                             }
+                        }
+
+                        // [Project patch] Grant by product id here, not in the UI callback, so purchases
+                        // re-delivered on startup / completed later are never lost.
+                        var grantHandler = API.PurchaseGrantHandler;
+                        if (grantHandler == null)
+                        {
+                            if (!pendingPurchases.Contains(e.purchasedProduct))
+                            {
+                                pendingPurchases.Add(e.purchasedProduct);
+                            }
+                            return PurchaseProcessingResult.Pending;
+                        }
+
+                        bool granted;
+                        try
+                        {
+                            granted = grantHandler(shopProducts[i], e.purchasedProduct.transactionID);
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.LogException(ex);
+                            granted = false;
+                        }
+
+                        if (!granted)
+                        {
+                            // Keep it pending: the store re-delivers it on next launch.
+                            OnCompleteMethod?.Invoke(IAPOperationStatus.Fail, "Grant failed", null);
+                            return PurchaseProcessingResult.Pending;
                         }
 
                         if (OnCompleteMethod != null)
@@ -1063,6 +1140,10 @@ namespace Gley.EasyIAP.Internal
         internal bool IsInitialized()
         {
             return false;
+        }
+
+        public void FlushPendingPurchases()
+        {
         }
 
         public void BuyProduct(ShopProductNames productName, UnityAction<IAPOperationStatus, string, StoreProduct> completeMethod)
