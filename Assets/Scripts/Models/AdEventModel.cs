@@ -1,4 +1,4 @@
-﻿using R3;
+using R3;
 using Services;
 
 namespace Models
@@ -8,6 +8,7 @@ namespace Models
         public Subject<Unit> OnRewardedReward = new();
         public Subject<Unit> OnRewardGranted = new();
         public Subject<Unit> OnRewardedFailed = new();
+        public Subject<Unit> OnRewardedClosed = new();
 
         public void InvokeOnRewardedReward()
         {
@@ -23,6 +24,10 @@ namespace Models
         {
             OnRewardedFailed.OnNext(Unit.Default);
         }
-        
+
+        public void InvokeOnRewardedClosed()
+        {
+            OnRewardedClosed.OnNext(Unit.Default);
+        }
     }
 }

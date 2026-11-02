@@ -26,15 +26,26 @@ public class IronSourceManager : MonoBehaviour
 
     private IronSourceConfigSO _config;
     private AdEventModel _adEventModel;
-    
+    private Data.InternetState _internetState;
+
+    private bool HasRemoveAds => _internetState != null && _internetState.HasRemoveAds;
+
     [Inject]
     void Construct(
         IronSourceConfigSO config,
-        AdEventModel adEventModel
+        AdEventModel adEventModel,
+        Data.InternetState internetState
         )
     {
         _config = config;
         _adEventModel = adEventModel;
+        _internetState = internetState;
+    }
+
+    /// <summary>Called when the No Ads purchase is granted: removes the banner right away.</summary>
+    public void ApplyRemoveAds()
+    {
+        DestroyBannerAd();
     }
 
     private void Awake()
@@ -68,7 +79,9 @@ public class IronSourceManager : MonoBehaviour
         }
 
         _initializationRequested = true;
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
         LevelPlay.ValidateIntegration();
+#endif
 
         if(!_initializationEventsSubscribed)
         {
@@ -110,6 +123,11 @@ public class IronSourceManager : MonoBehaviour
 
     private void RegisterBanner()
     {
+        if (HasRemoveAds)
+        {
+            return;
+        }
+
         _banner = new LevelPlayBannerAd(_config.BannerId);
 
         _banner.OnAdLoaded += BannerOnAdLoadedEvent;
@@ -135,6 +153,12 @@ public class IronSourceManager : MonoBehaviour
 
     public void ShowBannerAd()
     {
+        if (HasRemoveAds)
+        {
+            DestroyBannerAd();
+            return;
+        }
+
         if (_banner != null)
         {
             _banner.ShowAd();
@@ -214,7 +238,7 @@ public class IronSourceManager : MonoBehaviour
 
     public void ShowInterstitial()
     {
-        if (_interstitial == null)
+        if (_interstitial == null || HasRemoveAds)
         {
             return;
         }
@@ -250,10 +274,13 @@ public class IronSourceManager : MonoBehaviour
 
     private void InterstitialOnAdDisplayedEvent(LevelPlayAdInfo obj)
     {
+        AudioListener.pause = true;
     }
 
     private void InterstitialOnAdDisplayFailedEvent(LevelPlayAdDisplayInfoError obj)
     {
+        AudioListener.pause = false;
+        LoadInterstitial();
     }
 
     private void InterstitialOnAdClickedEvent(LevelPlayAdInfo obj)
@@ -262,6 +289,7 @@ public class IronSourceManager : MonoBehaviour
 
     private void InterstitialOnAdClosedEvent(LevelPlayAdInfo obj)
     {
+        AudioListener.pause = false;
         LoadInterstitial();
     }
 
@@ -296,21 +324,27 @@ public class IronSourceManager : MonoBehaviour
         _rewarded.LoadAd();
     }
 
-    public void ShowRewardedAd()
+    public bool IsRewardedReady()
+    {
+        return _rewarded != null && _rewarded.IsAdReady();
+    }
+
+    /// <summary>Prefer AdRewardService.TryShowRewarded so the reward is bound to this show.</summary>
+    public bool ShowRewardedAd()
     {
         if (_rewarded == null)
         {
-            return;
+            return false;
         }
 
         if (_rewarded.IsAdReady())
         {
             _rewarded.ShowAd();
+            return true;
         }
-        else
-        {
-            LoadRewardedAd();
-        }
+
+        LoadRewardedAd();
+        return false;
     }
 
     public void DestroyRewardedAd()
@@ -338,14 +372,20 @@ public class IronSourceManager : MonoBehaviour
 
     private void RewardedOnAdDisplayedEvent(LevelPlayAdInfo adInfo)
     {
+        AudioListener.pause = true;
     }
 
     private void RewardedOnAdDisplayFailedEvent(LevelPlayAdDisplayInfoError adInfoError)
     {
+        AudioListener.pause = false;
+        _adEventModel?.InvokeOnRewardedFailed();
+        LoadRewardedAd();
     }
 
     private void RewardedOnAdClosedEvent(LevelPlayAdInfo adInfo)
     {
+        AudioListener.pause = false;
+        _adEventModel?.InvokeOnRewardedClosed();
         LoadRewardedAd();
     }
 
