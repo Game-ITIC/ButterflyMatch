@@ -139,8 +139,8 @@ namespace JuiceFresh.States
 
                     // Enable/disable based on whether player has enough gems/coins
                     bool canAfford = levelManager.CurrencyService != null
-                                     && levelManager.CurrencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Cash) != null
-                                     && levelManager.CurrencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Cash).Value >= levelManager.FailedCost;
+                                     && levelManager.CurrencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond) != null
+                                     && levelManager.CurrencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond).Value >= levelManager.FailedCost;
                     continueButton.interactable = canAfford;
                 }
             }
@@ -169,7 +169,7 @@ namespace JuiceFresh.States
         {
             var currencyService = levelManager.CurrencyService;
             if(currencyService == null
-               || !currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Cash, levelManager.FailedCost))
+               || !currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Diamond, levelManager.FailedCost))
             {
                 return;
             }

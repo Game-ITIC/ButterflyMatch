@@ -103,9 +103,7 @@ namespace Services
 
             switch (grantedType)
             {
-                case AdRewardType.Coin:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, 50);
-                    break;
+                case AdRewardType.Coin: // legacy: coins were removed, treated as gems
                 case AdRewardType.Gem:
                     _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, 50);
                     break;
@@ -115,14 +113,8 @@ namespace Services
                     _boostersProvider.Save();
                     break;
                 case AdRewardType.X2:
-                    if(LevelManager.THIS != null && LevelManager.THIS.stars >= 3)
-                    {
-                        _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, _gameConfig.CoinRewardForLevelPass + _gameConfig.CoinRewardFor3StarPass);
-                    }
-                    else
-                    {
-                        _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, _gameConfig.CoinRewardForLevelPass);
-                    }
+                    // Win-screen bonus ad (GDD 8.1 win_bonus): gems, not doubled coins.
+                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, _gameConfig.WinAdDiamondReward);
                     break;
                 case AdRewardType.Life:
                     _healthSystem.AddLives(1);

@@ -24,7 +24,7 @@ namespace Meta.Quests.Services
             switch (reward.type)
             {
                 case RewardType.Coins:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, reward.amount);
+                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, reward.amount);
                     break;
                 case RewardType.Gems:
                     _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, reward.amount);

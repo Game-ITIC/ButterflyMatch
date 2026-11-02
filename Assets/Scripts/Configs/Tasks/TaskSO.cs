@@ -17,8 +17,8 @@ namespace Configs.Tasks
         public Sprite icon;
 
         [Header("Rewards")]
-        public RewardType rewardType = RewardType.Coins;
-        public Vector2Int rewardRange = new(10, 100);
+        public RewardType rewardType = RewardType.Gems;
+        public Vector2Int rewardRange = new(10, 20);
         public List<string> possibleBoosterIds = new();
 
         [Header("Localization")]

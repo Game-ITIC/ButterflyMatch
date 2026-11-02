@@ -18,8 +18,8 @@ MonoBehaviour:
   amountRange: {x: 1, y: 10}
   selectionWeight: 1
   title: 'Collect Item '
-  icon: {fileID: 21300000, guid: 4a9e13b8bcaa2fe44a73978320d25b48, type: 3}
-  rewardType: 0
-  rewardRange: {x: 10, y: 100}
+  icon: {fileID: -555909508, guid: b2f97baa93a4bc344850d1bd71b5050b, type: 3}
+  rewardType: 1
+  rewardRange: {x: 10, y: 20}
   possibleBoosterIds: []
   localizationKeyPrefix: quest_collect

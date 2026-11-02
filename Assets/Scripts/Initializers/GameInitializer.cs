@@ -39,6 +39,7 @@ namespace Initializers
         private readonly BoostShopView _boostShopView;
         private readonly GameConfig _gameConfig;
         private readonly Systems.CurrencySystem.Interfaces.ICurrencyService _currencyService;
+        private readonly Systems.HealthSystem _healthSystem;
         private Button _pauseButton;
 
         private CompositeDisposable _disposable = new();
@@ -58,7 +59,8 @@ namespace Initializers
             GameProvider gameProvider,
             BoostShopView boostShopView,
             GameConfig gameConfig,
-            Systems.CurrencySystem.Interfaces.ICurrencyService currencyService
+            Systems.CurrencySystem.Interfaces.ICurrencyService currencyService,
+            Systems.HealthSystem healthSystem
         )
         {
             // _ironSourceManager = ironSourceManager;
@@ -76,6 +78,7 @@ namespace Initializers
             _boostShopView = boostShopView;
             _gameConfig = gameConfig;
             _currencyService = currencyService;
+            _healthSystem = healthSystem;
         }
 
         public void Initialize()
@@ -88,95 +91,24 @@ namespace Initializers
                 UIButtonFeel.InstallInChildren(_levelManager.Level.transform);
             }
 
+            // Level progress (OpenLevel) and stars are saved in WinState at the moment of the win.
             _gameCompleteView.Home.onClick.RemoveAllListeners();
-            _gameCompleteView.Home.onClick.AddListener(() =>
-                                                       {
-                                                           var currentLevel = PlayerPrefs.GetInt("OpenLevel", 1);
-                                                           PlayerPrefs.SetInt("OpenLevel", currentLevel + 1);
-
-                                                           // TODO Gomnokod change
-
-                                                           if(LevelManager.THIS.stars >= 3)
-                                                           {
-                                                               _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, _gameConfig.CoinRewardForLevelPass + _gameConfig.CoinRewardFor3StarPass);
-                                                           }
-                                                           else
-                                                           {
-                                                               _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, _gameConfig.CoinRewardForLevelPass);
-                                                           }
-
-                                                           _sceneLoader.LoadMenuAsync().Forget();
-                                                       });
+            _gameCompleteView.Home.onClick.AddListener(() => _sceneLoader.LoadMenuAsync().Forget());
 
             _gameCompleteView.Next.onClick.RemoveAllListeners();
-            _gameCompleteView.Next.onClick.AddListener(() =>
-                                                       {
-                                                           var currentLevel = PlayerPrefs.GetInt("OpenLevel", 1);
+            _gameCompleteView.Next.onClick.AddListener(LoadGameOrMenuIfNoLives);
 
-                                                           PlayerPrefs.SetInt("OpenLevel", currentLevel + 1);
-
-                                                           if(LevelManager.THIS.stars >= 3)
-                                                           {
-                                                               _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, _gameConfig.CoinRewardForLevelPass + _gameConfig.CoinRewardFor3StarPass);
-                                                           }
-                                                           else
-                                                           {
-                                                               _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, _gameConfig.CoinRewardForLevelPass);
-                                                           }
-
-                                                           _sceneLoader.LoadGameAsync().Forget();
-                                                       });
+            var adsPrice = _gameCompleteView.AdsButton.transform.Find("Price");
+            if(adsPrice != null && adsPrice.TryGetComponent(out TMPro.TMP_Text adsPriceText))
+            {
+                adsPriceText.text = "+" + _gameConfig.WinAdDiamondReward;
+            }
 
             _gameCompleteView.AdsButton.onClick.RemoveAllListeners();
-            _gameCompleteView.AdsButton.onClick.AddListener(() =>
-                                                            {
-                                                                CompositeDisposable localDisposable = new();
-                                                                _adRewardService.SetAdRewardType(AdRewardType.X2);
-                                                                _adEventModel.OnRewardGranted.Subscribe(_ =>
-                                                                                                        {
-                                                                                                            _gameProvider.RewardPopup.Init(new RewardInfo
-                                                                                                            {
-                                                                                                                Icon = _gameProvider.CoinSprite, Description = "You 2x your reward"
-                                                                                                            });
+            _gameCompleteView.AdsButton.onClick.AddListener(() => _adRewardService.TryShowRewarded(AdRewardType.X2));
 
-                                                                                                            if(LevelManager.THIS.stars >= 3)
-                                                                                                            {
-                                                                                                                _gameCompleteView.CoinsCollectedText.text =
-                                                                                                                    ((_gameConfig.CoinRewardForLevelPass +
-                                                                                                                      _gameConfig.CoinRewardFor3StarPass) *
-                                                                                                                     2).ToString();
-                                                                                                            }
-                                                                                                            else
-                                                                                                            {
-                                                                                                                _gameCompleteView.CoinsCollectedText.text =
-                                                                                                                    (_gameConfig.CoinRewardForLevelPass * 2).ToString();
-                                                                                                            }
-
-
-                                                                                                            _gameCompleteView.AdsButton.gameObject.SetActive(false);
-                                                                                                        })
-                                                                    .AddTo(localDisposable);
-
-                                                                _adEventModel.OnRewardedReward.Subscribe(_ => { localDisposable.Dispose(); }).AddTo(localDisposable);
-                                                                IronSourceManager.Instance.ShowRewardedAd();
-                                                            });
-            _gameOverView.AdsButton.onClick.AddListener(() =>
-                                                        {
-                                                            CompositeDisposable localDisposable = new();
-                                                            _adRewardService.SetAdRewardType(AdRewardType.Continue);
-                                                            _adEventModel.OnRewardGranted.Subscribe(_ =>
-                                                                                                    {
-                                                                                                        _gameProvider.RewardPopup.Init(new RewardInfo
-                                                                                                        {
-                                                                                                            Icon = _gameProvider.ExtraStepSprite,
-                                                                                                            Description = "You got yourself extra 5 steps!"
-                                                                                                        });
-                                                                                                    })
-                                                                .AddTo(localDisposable);
-
-                                                            _adEventModel.OnRewardedReward.Subscribe(_ => { localDisposable.Dispose(); }).AddTo(localDisposable);
-                                                            IronSourceManager.Instance.ShowRewardedAd();
-                                                        });
+            _gameOverView.AdsButton.onClick.RemoveAllListeners();
+            _gameOverView.AdsButton.onClick.AddListener(() => _adRewardService.TryShowRewarded(AdRewardType.Continue));
 
             _gamePauseView.Home.onClick.RemoveAllListeners();
             _gamePauseView.Home.onClick.AddListener(ReturnToMainMenu);
@@ -198,14 +130,13 @@ namespace Initializers
             _gameOverView.Home.onClick.AddListener(ReturnToMainMenuAfterLose);
 
 
-            _adEventModel.OnRewardGranted.Subscribe(_ =>
-                                                    {
-                                                        _boostShopView.Hide();
-                                                        var popup = _gameProvider.RewardPopup;
-                                                        popup.Init(_adRewardService.GetInfo());
-                                                        popup.Show();
-                                                    })
-                .AddTo(_disposable);
+            // One subscription for the whole game scene (disposed with it), keyed by the granted reward type.
+            _adRewardService.OnRewardGrantedTyped.Subscribe(OnAdRewardGranted).AddTo(_disposable);
+
+            if(!_healthSystem.ConsumeLifeForLevel())
+            {
+                Debug.LogWarning("[GameInitializer] Level started without lives.");
+            }
 
             _levelManager.InvokeStart();
         }
@@ -213,7 +144,51 @@ namespace Initializers
         public void RestartGame()
         {
             Time.timeScale = 1f;
-            _sceneLoader.LoadGameAsync().Forget();
+            LoadGameOrMenuIfNoLives();
+        }
+
+        /// <summary>Starting a new attempt needs a life; without one go to the menu (it offers the life popup).</summary>
+        private void LoadGameOrMenuIfNoLives()
+        {
+            if(_healthSystem.CanPlay)
+            {
+                _sceneLoader.LoadGameAsync().Forget();
+            }
+            else
+            {
+                _sceneLoader.LoadMenuAsync().Forget();
+            }
+        }
+
+        private void OnAdRewardGranted(AdRewardType rewardType)
+        {
+            _boostShopView.Hide();
+            var popup = _gameProvider.RewardPopup;
+
+            switch (rewardType)
+            {
+                case AdRewardType.X2:
+                    // Win-screen bonus: gems (stars stay as earned, GDD 4.2).
+                    popup.Init(new RewardInfo
+                    {
+                        Icon = _gameProvider.DiamondSprite,
+                        Description = GameLocalization.L10n.Format("reward_gems_n", _gameConfig.WinAdDiamondReward)
+                    });
+                    _gameCompleteView.AdsButton.gameObject.SetActive(false);
+                    break;
+                case AdRewardType.Continue:
+                    popup.Init(new RewardInfo
+                    {
+                        Icon = _gameProvider.ExtraStepSprite,
+                        Description = GameLocalization.L10n.Format("reward_extra_moves", _levelManager.ExtraFailedMoves)
+                    });
+                    break;
+                default:
+                    popup.Init(_adRewardService.GetInfo());
+                    break;
+            }
+
+            popup.Show();
         }
 
         public void ReturnToMainMenu()
@@ -225,7 +200,6 @@ namespace Initializers
         public void ReturnToMainMenuAfterLose()
         {
             Time.timeScale = 1f;
-            _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, _gameConfig.CoinRewardForLevelLose);
             _sceneLoader.LoadMenuAsync().Forget();
         }
 

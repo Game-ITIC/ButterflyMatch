@@ -53,12 +53,8 @@ public class WinState : GameStateBase
         // Find and show the complete menu UI
         menuCompleteUI = GameObject.Find("CanvasGlobal").transform.Find("MenuComplete").gameObject;
         menuCompleteUI.SetActive(true);
-        // LevelManager.THIS.CoinModel.Increase(100);
-
-
-        LevelManager.THIS.GameCompleteView.CoinsCollectedText.text = LevelManager.THIS.stars >= 3
-            ? (LevelManager.THIS.GameConfig.CoinRewardForLevelPass + LevelManager.THIS.GameConfig.CoinRewardFor3StarPass).ToString()
-            : LevelManager.THIS.GameConfig.CoinRewardForLevelPass.ToString();
+        // A win pays only stars (Docs/GDD.md 4.1); the reward line shows them with a star icon.
+        LevelManager.THIS.GameCompleteView.CoinsCollectedText.text = levelManager.stars.ToString();
 
         // Set up the menu content
         SetupCompleteMenu();

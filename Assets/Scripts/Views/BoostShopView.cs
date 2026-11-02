@@ -20,7 +20,7 @@ namespace Views
         {   
             if (CurrencyService != null)
             {
-                var observable = CurrencyService.GetCurrencyObservable(Systems.CurrencySystem.CurrencyType.Cash);
+                var observable = CurrencyService.GetCurrencyObservable(Systems.CurrencySystem.CurrencyType.Diamond);
                 if (observable != null)
                 {
                     currentCoinsText.text = ((int)observable.Value.Value).ToString();

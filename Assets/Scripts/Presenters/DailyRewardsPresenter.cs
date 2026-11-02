@@ -41,13 +41,13 @@ namespace Presenters
             switch (day)
             {
                 case 1:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, value);
+                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, value);
                     break;
                 case 2:
                     _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, value);
                     break;
                 case 3:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, value);
+                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, value);
                     break;
                 case 4:
                 {
@@ -68,7 +68,7 @@ namespace Presenters
                 }
                     break;
                 case 6:
-                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Cash, value);
+                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, value);
                     break;
                 case 7:
                     _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, value);

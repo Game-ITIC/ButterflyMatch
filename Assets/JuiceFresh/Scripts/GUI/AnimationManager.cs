@@ -468,9 +468,9 @@ public class AnimationManager : MonoBehaviour
         if (gameObject.name == "MenuPreGameOver")
         {
             var currencyService = LevelManager.THIS.CurrencyService;
-            if (currencyService != null && currencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Cash)?.Value >= 12)
+            if (currencyService != null && currencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond)?.Value >= 12)
             {
-                currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Cash, 12);
+                currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Diamond, 12);
                 LevelManager.Instance.gameStatus = GameState.WaitAfterClose;
                 gameObject.SetActive(false);
             }
@@ -659,9 +659,9 @@ public class AnimationManager : MonoBehaviour
     public void BuyFailed(GameObject button)
     {
         var currencyService = LevelManager.THIS.CurrencyService;
-        if (currencyService != null && currencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Cash)?.Value >= LevelManager.THIS.FailedCost)
+        if (currencyService != null && currencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond)?.Value >= LevelManager.THIS.FailedCost)
         {
-            currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Cash, LevelManager.THIS.FailedCost);
+            currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Diamond, LevelManager.THIS.FailedCost);
             GoOnFailed();
         }
     }
@@ -706,7 +706,7 @@ public class AnimationManager : MonoBehaviour
         var currencyService = LevelManager.THIS.CurrencyService;
 
         // Spend first: the booster is only added when the payment went through.
-        if (currencyService != null && currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Cash, price))
+        if (currencyService != null && currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Diamond, price))
         {
             SoundBase.Instance.PlaySound(SoundBase.Instance.cash);
             var boostersProvider = LevelManager.THIS.BoostersProvider;
@@ -714,7 +714,7 @@ public class AnimationManager : MonoBehaviour
             boostersProvider.Save();
 
             CloseMenu();
-            LevelManager.THIS.GameProvider.RewardPopup.Init(new RewardInfo { Icon = icon, Description = $"You got {boostType}" });
+            LevelManager.THIS.GameProvider.RewardPopup.Init(new RewardInfo { Icon = icon, Description = GameLocalization.L10n.Format("you_got_n", GameLocalization.L10n.Get("boost_" + boostType.ToString().ToLowerInvariant(), boostType.ToString())) });
             LevelManager.THIS.GameProvider.RewardPopup.Show();
         }
     }

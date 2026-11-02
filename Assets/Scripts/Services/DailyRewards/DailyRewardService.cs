@@ -10,7 +10,6 @@ namespace Services.DailyRewards
 {
     public enum DailyRewardGrantType
     {
-        Cash,
         Diamond,
         Bomb,
         Shovel
@@ -35,13 +34,14 @@ namespace Services.DailyRewards
 
         private static readonly DailyRewardDefinition[] Rewards =
         {
-            new(DailyRewardGrantType.Cash, 50),
-            new(DailyRewardGrantType.Diamond, 2),
-            new(DailyRewardGrantType.Cash, 100),
+            // Docs/GDD.md 9 (coins removed).
+            new(DailyRewardGrantType.Diamond, 10),
+            new(DailyRewardGrantType.Diamond, 20),
             new(DailyRewardGrantType.Bomb, 1),
+            new(DailyRewardGrantType.Diamond, 30),
             new(DailyRewardGrantType.Shovel, 1),
-            new(DailyRewardGrantType.Cash, 150),
-            new(DailyRewardGrantType.Diamond, 5)
+            new(DailyRewardGrantType.Diamond, 40),
+            new(DailyRewardGrantType.Diamond, 100)
         };
 
         private readonly ICurrencyService _currencyService;
@@ -98,9 +98,6 @@ namespace Services.DailyRewards
         {
             switch (reward.GrantType)
             {
-                case DailyRewardGrantType.Cash:
-                    _currencyService?.AddCurrency(CurrencyType.Cash, reward.Amount);
-                    break;
                 case DailyRewardGrantType.Diamond:
                     _currencyService?.AddCurrency(CurrencyType.Diamond, reward.Amount);
                     break;

@@ -23,19 +23,21 @@ MonoBehaviour:
   minutes: 0
   seconds: 0
   allDays:
-  - dayTexture: {fileID: 21300000, guid: 6acbfac82d3fcff4194a629f967b3b32, type: 3}
-    rewardValue: 50
-  - dayTexture: {fileID: 21300000, guid: 9bcbb1e0eb92fe248b98d0e1fe7346b8, type: 3}
-    rewardValue: 2
-  - dayTexture: {fileID: 21300000, guid: 6acbfac82d3fcff4194a629f967b3b32, type: 3}
+  - dayTexture: {fileID: 798257208, guid: 4b9c5ed782f3338439b3dd0c94a6bf84, type: 3}
+    rewardValue: 10
+  - dayTexture: {fileID: 798257208, guid: 4b9c5ed782f3338439b3dd0c94a6bf84, type: 3}
+    rewardValue: 20
+  - dayTexture: {fileID: -5708036874844557674, guid: b774383eb87286941ba6e4e0e2616afd,
+      type: 3}
+    rewardValue: 1
+  - dayTexture: {fileID: 798257208, guid: 4b9c5ed782f3338439b3dd0c94a6bf84, type: 3}
+    rewardValue: 30
+  - dayTexture: {fileID: -3500828791934055406, guid: b774383eb87286941ba6e4e0e2616afd,
+      type: 3}
+    rewardValue: 1
+  - dayTexture: {fileID: 798257208, guid: 4b9c5ed782f3338439b3dd0c94a6bf84, type: 3}
+    rewardValue: 40
+  - dayTexture: {fileID: 798257208, guid: 4b9c5ed782f3338439b3dd0c94a6bf84, type: 3}
     rewardValue: 100
-  - dayTexture: {fileID: 21300000, guid: 7f987c4cec8abc14e9290cad8b360423, type: 3}
-    rewardValue: 1
-  - dayTexture: {fileID: 21300000, guid: 3fc721a8c8b8265429d186044a6a7b71, type: 3}
-    rewardValue: 1
-  - dayTexture: {fileID: 21300000, guid: 6acbfac82d3fcff4194a629f967b3b32, type: 3}
-    rewardValue: 150
-  - dayTexture: {fileID: 21300000, guid: 9bcbb1e0eb92fe248b98d0e1fe7346b8, type: 3}
-    rewardValue: 5
   usePlaymaker: 0
   useUVS: 0
