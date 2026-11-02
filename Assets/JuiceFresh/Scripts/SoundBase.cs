@@ -53,6 +53,8 @@ public class SoundBase : MonoBehaviour {
         // to live under the scene camera, so detach instances placed as children.
         transform.SetParent(null);
         audioSource = GetComponent<AudioSource>();
+        // Respect the Settings toggle ("Sound": 1 on / 0 off) saved from the main menu.
+        if (audioSource != null) audioSource.volume = PlayerPrefs.GetInt("Sound", 1) == 0 ? 0f : 1f;
         DontDestroyOnLoad(gameObject);
         Instance = this;
     }

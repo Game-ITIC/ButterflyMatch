@@ -23,6 +23,10 @@ public class MusicBase : MonoBehaviour {
         transform.SetParent(null);
         DontDestroyOnLoad(gameObject);
         Instance = this;
+
+        // Respect the Settings toggle ("Music": 1 on / 0 off) saved from the main menu.
+        var source = GetComponent<AudioSource>();
+        if (source != null) source.volume = PlayerPrefs.GetInt("Music", 1) == 0 ? 0f : 1f;
     }
 
     // Update is called once per frame
