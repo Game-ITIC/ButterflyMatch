@@ -33,6 +33,10 @@ EditorBuildSettings:
     path: Assets/_Scenes/MainMenu.unity
     guid: eeebe0157439afa4fbc1d734d2efd262
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 874a694771e60504882fd44a45d6c54a,
+      type: 2}
     com.unity.editor.playmodeStartScene: {fileID: 102900000, guid: d52ac898d4cebbb4eb71c520a1d84d28,
       type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: 995edc03c2b813d4e9a7bbf95ed03297,
+      type: 2}
   m_UseUCBPForAssetBundles: 0
