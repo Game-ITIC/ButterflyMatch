@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 6022789727742647902}
   - component: {fileID: 8583481918270100716}
   - component: {fileID: 8054909772172030425}
+  - component: {fileID: 8580377290805043862}
   m_Layer: 5
   m_Name: HUD Top Bar
   m_TagString: Untagged
@@ -219,6 +220,23 @@ MonoBehaviour:
   _healthBarView: {fileID: 4794460278681257861}
   _starView: {fileID: 587937311439407992}
   _gemView: {fileID: 2592510976840669687}
+--- !u!114 &8580377290805043862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592279058469231575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 317425dee80e8724f8e569e11e246f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.SafeAreaFitter
+  mode: 0
+  applyTop: 1
+  applyBottom: 1
+  applyLeft: 1
+  applyRight: 1
 --- !u!1001 &26335564186729140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -360,10 +378,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7819859348228464924, guid: d0b82358d9bd8784bb2961a57b3e30b5,
         type: 3}
+      propertyPath: m_fontSizeMin
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 7819859348228464924, guid: d0b82358d9bd8784bb2961a57b3e30b5,
+        type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 6134174294357665652, guid: 022907de2d357be459bb8964da1c8502,
         type: 2}
+    - target: {fileID: 7819859348228464924, guid: d0b82358d9bd8784bb2961a57b3e30b5,
+        type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7819859348228464924, guid: d0b82358d9bd8784bb2961a57b3e30b5,
         type: 3}
       propertyPath: m_fontColor32.rgba
@@ -1245,6 +1273,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1735715499641248477, guid: 1081b763e2a78b240bc5ce1e77661e3b,
+        type: 3}
+      propertyPath: m_StringReference.m_TableEntryReference.m_KeyId
+      value: 2431541258
+      objectReference: {fileID: 0}
     - target: {fileID: 2922673937235952588, guid: 1081b763e2a78b240bc5ce1e77661e3b,
         type: 3}
       propertyPath: m_fontAsset
@@ -1268,10 +1301,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2922673937235952588, guid: 1081b763e2a78b240bc5ce1e77661e3b,
         type: 3}
+      propertyPath: m_fontSizeMin
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2922673937235952588, guid: 1081b763e2a78b240bc5ce1e77661e3b,
+        type: 3}
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: 6134174294357665652, guid: 022907de2d357be459bb8964da1c8502,
         type: 2}
+    - target: {fileID: 2922673937235952588, guid: 1081b763e2a78b240bc5ce1e77661e3b,
+        type: 3}
+      propertyPath: m_TextWrappingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2922673937235952588, guid: 1081b763e2a78b240bc5ce1e77661e3b,
         type: 3}
       propertyPath: m_fontColor32.rgba
