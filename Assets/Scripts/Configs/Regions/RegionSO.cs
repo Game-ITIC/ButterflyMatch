@@ -13,12 +13,17 @@ namespace Configs
         [PreviewField(60, ObjectFieldAlignment.Left)]
         [SerializeField] private Sprite icon;
 
+        // Main menu background while an island of this region is active.
+        [PreviewField(60, ObjectFieldAlignment.Left)]
+        [SerializeField] private Sprite menuBackground;
+
         [ListDrawerSettings(ShowIndexLabels = true)]
         [SerializeField] private IslandSO[] islands;
 
         public string RegionId => string.IsNullOrEmpty(regionId) ? name : regionId;
         public string DisplayName => string.IsNullOrEmpty(displayName) ? name : displayName;
         public Sprite Icon => icon;
+        public Sprite MenuBackground => menuBackground;
         public IReadOnlyList<IslandSO> Islands => islands;
         public int IslandCount => islands != null ? islands.Length : 0;
 

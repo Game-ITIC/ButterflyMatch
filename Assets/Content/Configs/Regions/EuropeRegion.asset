@@ -15,6 +15,7 @@ MonoBehaviour:
   regionId: europe
   displayName: Europe
   icon: {fileID: 21300000, guid: bdabf1904a407b640941eeece9ab767d, type: 3}
+  menuBackground: {fileID: 21300000, guid: 491f451d43e02074aaaac87a9a1eb3ff, type: 3}
   islands:
   - {fileID: 11400000, guid: 754b1c6b44489b64aac74c088e56dcb8, type: 2}
   - {fileID: 11400000, guid: 56f7de46ea0783146ba3eaa9f9a6c9a6, type: 2}

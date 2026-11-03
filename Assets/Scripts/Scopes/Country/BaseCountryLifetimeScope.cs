@@ -32,6 +32,8 @@ namespace Scopes.Country
         [ListDrawerSettings(ShowIndexLabels = true)]
         [SerializeField] private RegionSO[] regions;
         [SerializeField] private Transform regionParent;
+        // Main menu background image; its sprite follows the active island region (RegionSO.MenuBackground).
+        [SerializeField] private UnityEngine.UI.Image menuBackground;
 
         [Title("Tasks")]
         [FormerlySerializedAs("dailyQuestSettings")]
@@ -165,6 +167,13 @@ namespace Scopes.Country
                     .WithParameter<System.Collections.Generic.IReadOnlyList<RegionSO>>(regions);
                 builder.Register<BuildingCatalogPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
                 builder.Register<IslandRewardPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+
+                if(menuBackground != null)
+                {
+                    builder.Register<RegionBackgroundPresenter>(Lifetime.Scoped)
+                        .AsImplementedInterfaces()
+                        .WithParameter(menuBackground);
+                }
 
                 if(menuNavPanel != null)
                 {
