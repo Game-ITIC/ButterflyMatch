@@ -708,6 +708,9 @@ public class Item : MonoBehaviour
         destroying = true;
         square.item = null;
 
+        if (LevelManager.THIS != null && LevelManager.THIS.gameStatus == GameState.Playing)
+            Models.LevelSessionStats.ItemsCollected++;
+
         if (this == null)
             return;
 

@@ -22,6 +22,7 @@ namespace Models
             if (HasBooster())
             {
                 Count.Value--;
+                LevelSessionStats.BoostersUsed++;
             }
         }
 
