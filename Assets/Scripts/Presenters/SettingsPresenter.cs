@@ -14,10 +14,61 @@ namespace Presenters
         private Button _settingsButton;
         private readonly List<(Button Button, UnityAction Action)> _closeActions = new();
 
-        public SettingsPresenter(SettingsPanel settingsPanel, Button settingsButton)
+        public SettingsPresenter(SettingsPanel settingsPanel, Button settingsButton, Services.InApp.InAppGrantService grantService)
         {
             _settingsPanel = settingsPanel;
             _settingsButton = settingsButton;
+            _grantService = grantService;
+        }
+
+        private readonly Services.InApp.InAppGrantService _grantService;
+        private bool _restoring;
+
+        /// <summary>"Restore purchases" (GDD 11.1): brings back No Ads after reinstall / on a new device.</summary>
+        private void OnRestoreClicked()
+        {
+            if (_restoring) return;
+            RestoreAsync().Forget();
+        }
+
+        private async Cysharp.Threading.Tasks.UniTaskVoid RestoreAsync()
+        {
+            _restoring = true;
+            var button = _settingsPanel.RestorePurchasesButton;
+            if (button != null) button.interactable = false;
+
+            try
+            {
+                var ok = await Services.InApp.InAppPurchasingService.RestoreAsync();
+
+                if (ok && IsRemoveAdsActive())
+                {
+                    _grantService?.SetRemoveAds();
+                }
+
+                UI.Toast.Show(ok
+                    ? GameLocalization.L10n.Get("restore_done", "Purchases restored")
+                    : GameLocalization.L10n.Get("purchase_store_unavailable", "Store is not available."));
+            }
+            finally
+            {
+                _restoring = false;
+                if (button != null) button.interactable = true;
+            }
+        }
+
+        // Gley throws when its product list is not loaded yet (e.g. store initialised without settings), so treat that as "not owned".
+        private static bool IsRemoveAdsActive()
+        {
+            try
+            {
+                return Gley.EasyIAP.API.IsInitialized() && Gley.EasyIAP.API.IsActive(Gley.EasyIAP.ShopProductNames.RemoveAds);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning("[Settings] Restore: product state unavailable: " + e.Message);
+                return false;
+            }
         }
 
         public void Initialize()
@@ -25,6 +76,13 @@ namespace Presenters
             if (_settingsPanel == null) return;
 
             _settingsPanel.HideImmediate();
+
+            var restore = _settingsPanel.RestorePurchasesButton;
+            if (restore != null)
+            {
+                restore.onClick.RemoveListener(OnRestoreClicked);
+                restore.onClick.AddListener(OnRestoreClicked);
+            }
 
             if (_settingsButton == null)
             {

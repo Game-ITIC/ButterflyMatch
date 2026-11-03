@@ -27,6 +27,7 @@ namespace Presenters
         private readonly Transform _parent;
         private readonly InternetState _internetState;
         private readonly Action<ShopProductNames, InAppProductView> _onBuy;
+        private readonly Func<bool> _hasNoLives;
         private readonly List<(Sprite icon, string text)> _rewards = new();
         private readonly List<InAppProduct> _visible = new();
         private bool _subscribedToLocale;
@@ -35,12 +36,14 @@ namespace Presenters
             InAppConfig config,
             Transform parent,
             InternetState internetState,
-            Action<ShopProductNames, InAppProductView> onBuy)
+            Action<ShopProductNames, InAppProductView> onBuy,
+            Func<bool> hasNoLives = null)
         {
             _config = config;
             _parent = parent;
             _internetState = internetState;
             _onBuy = onBuy;
+            _hasNoLives = hasNoLives;
         }
 
         public void Build()
@@ -66,6 +69,17 @@ namespace Presenters
         /// <summary>Remembers a daily deal purchase so the deal hides until tomorrow (UTC).</summary>
         public void MarkPurchased(ShopProductNames product)
         {
+            switch (product)
+            {
+                case ShopProductNames.OutOfLivesOffer:
+                case ShopProductNames.NeedMovesOffer:
+                    ContextOffers.MarkUsedToday(product);
+                    return;
+                case ShopProductNames.HardLevelOffer:
+                    ContextOffers.MarkHardLevelUsed();
+                    return;
+            }
+
             foreach (var config in _config.InAppProducts)
             {
                 if(config.product == product && config.section == ShopSection.Daily)
@@ -101,6 +115,12 @@ namespace Presenters
         private void CollectVisible()
         {
             _visible.Clear();
+
+            // Contextual offers (GDD 11.3) go first while their trigger is active.
+            AddContextOffer(ShopProductNames.HardLevelOffer, ContextOffers.IsHardLevelAvailable());
+            AddContextOffer(ShopProductNames.OutOfLivesOffer,
+                _hasNoLives != null && _hasNoLives() && ContextOffers.IsAvailableToday(ShopProductNames.OutOfLivesOffer));
+
             AddSection(ShopSection.Featured);
 
             if(_internetState == null || !_internetState.HasRemoveAds)
@@ -125,9 +145,32 @@ namespace Presenters
         {
             foreach (var product in _config.InAppProducts)
             {
-                if(product.section == section && !InAppGrantService.IsOneTimeProductBought(product))
+                if(product.section == section && !InAppGrantService.IsOneTimeProductBought(product) && IsTimedOfferOpen(product))
                 {
                     _visible.Add(product);
+                }
+            }
+        }
+
+        /// <summary>The starter bundle shows only after level 5 and for 48 hours (GDD 11.3).</summary>
+        private static bool IsTimedOfferOpen(InAppProduct product)
+        {
+            return product.product != ShopProductNames.StarterBundle || ContextOffers.IsStarterAvailable();
+        }
+
+        private void AddContextOffer(ShopProductNames productId, bool active)
+        {
+            if(!active)
+            {
+                return;
+            }
+
+            foreach (var product in _config.InAppProducts)
+            {
+                if(product.product == productId)
+                {
+                    _visible.Add(product);
+                    return;
                 }
             }
         }
@@ -293,6 +336,23 @@ namespace Presenters
                 case ShopBadge.Sale: return L10n.Get("shop_badge_sale", "Sale");
                 default: return null;
             }
+        }
+
+        /// <summary>Price label of a product for UI outside the shop (e.g. the lose-screen offer).</summary>
+        public static string PriceOf(InAppConfig config, ShopProductNames productId)
+        {
+            if(config != null && config.InAppProducts != null)
+            {
+                foreach (var product in config.InAppProducts)
+                {
+                    if(product.product == productId)
+                    {
+                        return ResolvePrice(product);
+                    }
+                }
+            }
+
+            return string.Empty;
         }
 
         private static string ResolvePrice(InAppProduct product)

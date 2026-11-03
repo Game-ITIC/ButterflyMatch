@@ -14,6 +14,7 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private SettingsToggleView _vibrationToggleView;
     [SerializeField] private SettingsToggleView _notificationToggleView;
     [SerializeField] private Transform _rowsParent;
+    [SerializeField] private Button _restorePurchasesButton;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -28,6 +29,7 @@ public class SettingsPanel : MonoBehaviour
     public SettingsToggleView MusicToggleView => _musicToggleView;
     public SettingsToggleView VibrationToggleView => _vibrationToggleView;
     public SettingsToggleView NotificationToggleView => _notificationToggleView;
+    public Button RestorePurchasesButton => _restorePurchasesButton;
 
     private Transform RowsParent => _rowsParent != null
         ? _rowsParent

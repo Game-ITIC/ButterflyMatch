@@ -9,8 +9,19 @@ namespace Services.InApp
     /// UI-facing purchase entry point. The reward itself is granted by <see cref="InAppGrantService"/>
     /// from ProcessPurchase; this only reports whether the tapped purchase succeeded.
     /// </summary>
+    public enum PurchaseFailure
+    {
+        None,
+        StoreUnavailable,
+        Cancelled,
+        Failed
+    }
+
     public static class InAppPurchasingService
     {
+        /// <summary>Why the last purchase failed, for the message shown to the player.</summary>
+        public static PurchaseFailure LastFailure { get; private set; }
+
         private static readonly TimeSpan InitTimeout = TimeSpan.FromSeconds(10);
         private static bool _inProgress;
 
@@ -25,12 +36,14 @@ namespace Services.InApp
             }
 
             _inProgress = true;
+            LastFailure = PurchaseFailure.None;
 
             try
             {
                 if(!API.IsInitialized() && !await TryInitializeAsync())
                 {
                     Debug.LogWarning($"[InAppPurchasingService] Store is not initialized, cannot buy {shopProduct}.");
+                    LastFailure = PurchaseFailure.StoreUnavailable;
                     return false;
                 }
 
@@ -48,6 +61,9 @@ namespace Services.InApp
                                                 if(status != IAPOperationStatus.Success)
                                                 {
                                                     Debug.LogWarning($"[InAppPurchasingService] {shopProduct} failed: {message}");
+                                                    LastFailure = message != null && message.IndexOf("cancel", StringComparison.OrdinalIgnoreCase) >= 0
+                                                        ? PurchaseFailure.Cancelled
+                                                        : PurchaseFailure.Failed;
                                                 }
 
                                                 task.TrySetResult(status == IAPOperationStatus.Success);
@@ -59,6 +75,24 @@ namespace Services.InApp
             {
                 _inProgress = false;
             }
+        }
+
+        /// <summary>
+        /// "Restore purchases" (settings). Google Play re-delivers owned items by itself; this also covers iOS.
+        /// Restored items go through ProcessPurchase -> InAppGrantService, so only non-consumables (No Ads) come back.
+        /// </summary>
+        public static async UniTask<bool> RestoreAsync()
+        {
+            if(!API.IsInitialized() && !await TryInitializeAsync())
+            {
+                LastFailure = PurchaseFailure.StoreUnavailable;
+                return false;
+            }
+
+            var task = new UniTaskCompletionSource<bool>();
+            API.RestorePurchases((status, message, product) => { }, () => task.TrySetResult(true));
+            var (isTimeout, _) = await task.Task.TimeoutWithoutException(InitTimeout);
+            return !isTimeout;
         }
 
         /// <summary>Retry store init (e.g. there was no internet at app start).</summary>

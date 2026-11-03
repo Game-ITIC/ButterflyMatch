@@ -292,7 +292,26 @@ namespace Initializers
                 productView.BuyButton.interactable = true;
             }
 
-            if(!isBought || _shopBuilder == null) return;
+            if(!isBought)
+            {
+                // Visible feedback (GDD 11.1); a cancel by the player needs no message.
+                switch (InAppPurchasingService.LastFailure)
+                {
+                    case PurchaseFailure.StoreUnavailable:
+                        UI.Toast.Show(GameLocalization.L10n.Get("purchase_store_unavailable", "Store is not available."));
+                        break;
+                    case PurchaseFailure.Failed:
+                        UI.Toast.Show(GameLocalization.L10n.Get("purchase_failed", "Purchase failed. Please try again."));
+                        break;
+                }
+
+                return;
+            }
+
+            UI.Toast.Show(GameLocalization.L10n.Get("purchase_success", "Thank you for your purchase!"));
+            GameAnalyticsEvents.IapPurchase(shopProduct.ToString(), API.IsInitialized() ? API.GetLocalizedPriceString(shopProduct) : string.Empty);
+
+            if(_shopBuilder == null) return;
 
             // Rebuild so one-time offers, today's deal and No Ads disappear after purchase.
             _shopBuilder.MarkPurchased(shopProduct);
@@ -311,7 +330,8 @@ namespace Initializers
                 _inAppConfig,
                 _inAppView.ButtonsParent,
                 _internetState,
-                (product, view) => HandlePurchaseInApp(product, view).Forget());
+                (product, view) => HandlePurchaseInApp(product, view).Forget(),
+                () => _healthSystem != null && !_healthSystem.CanPlay);
             _shopBuilder.Build();
         }
 
