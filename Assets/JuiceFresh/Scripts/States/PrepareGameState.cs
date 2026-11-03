@@ -122,11 +122,33 @@ namespace JuiceFresh.States
             var ingameBoosts = levelManager.InGameBoosts;
             var boosterProviders = levelManager.BoostersProvider;
 
+            var level = levelManager.currentLevel;
+            string unlockedNow = null;
+
+            foreach (var icon in ingameBoosts)
+            {
+                if(icon == null) continue;
+
+                // Locked boosters are hidden until their level (GDD 7); on unlock the player gets 2 for free.
+                if(Models.BoosterUnlocks.GrantIfJustUnlocked(icon.type, level, boosterProviders))
+                {
+                    unlockedNow = GameLocalization.L10n.Get("boost_" + icon.type.ToString().ToLowerInvariant(), icon.type.ToString());
+                }
+
+                icon.gameObject.SetActive(Models.BoosterUnlocks.IsUnlocked(icon.type, level));
+            }
+
             foreach (var booster in boosterProviders.BoostersModels)
             {
-                var value = ingameBoosts.AsValueEnumerable().First(v => v.type == booster.Type);
+                var value = ingameBoosts.AsValueEnumerable().FirstOrDefault(v => v.type == booster.Type);
+                if(value == null) continue;
 
                 value.BoosterModel = booster;
+            }
+
+            if(unlockedNow != null)
+            {
+                UI.Toast.Show(GameLocalization.L10n.Format("booster_unlocked_n", unlockedNow, Models.BoosterUnlocks.FreeOnUnlock));
             }
         }
     }
