@@ -11,7 +11,7 @@ apply plugin: 'com.android.library'
 apply from: '../shared/keepUnitySymbols.gradle'
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.multidex:multidex:2.0.1' // the manifest uses androidx.multidex.MultiDexApplication
   	implementation 'com.android.installreferrer:installreferrer:1.0'
 // Android Resolver Dependencies Start
     implementation 'androidx.legacy:legacy-support-v4:1.0.0' // Assets/LevelPlay/Editor/ISInMobiAdapterDependencies.xml:16
@@ -51,8 +51,8 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        minSdk 19
-        targetSdk 29
+        minSdk **MINSDK**
+        targetSdk **TARGETSDK**
         versionCode **VERSIONCODE**
         versionName '**VERSIONNAME**'
         
