@@ -302,20 +302,20 @@
 
 ### P1 — валюты и монетизация
 6. ✅ (2026-11-02) Удаление монет: победа даёт только звёзды (экран победы показывает ★), реклама на победе +20 💎 (`GameConfig.WinAdDiamondReward`), за проигрыш ничего; магазин бустеров в 💎 60/80/100/120; Continue за 💎; ежедневки по §9 (день 7 пока только 100 💎, без +5 ходов и жизней); задания 10–20 💎; миграция 10 монет -> 1 💎 один раз (`ServicesStartup`); иконки монет в UI заменены. Цена Continue 150/300/450 не сделана: в UI нет платной кнопки Continue, только реклама.
-7. No Ads (покупка, локальное сохранение, восстановление, соблюдение в рекламе).
-8. Interstitial-менеджер с лимитами (§8.2). ✅ Баннер только в меню (`IronSourceManager.SetBannerAllowed` из `SceneLoader`, без автопоказа, safe area).
-9. Локализованные цены, UI ошибок/загрузки покупок, правки пакетов (§11.2).
+7. ✅ (2026-11-03) No Ads: покупка и локальное сохранение (`InAppGrantService.SetRemoveAds`), соблюдение в баннере/interstitial, кнопка «Восстановить покупки» в настройках (`SettingsPresenter` → `InAppPurchasingService.RestoreAsync`).
+8. ✅ (2026-11-03) Interstitial: `Services/Ads/InterstitialService` (все условия §8.2 в `GameConfig`), показ только при выходе с экрана результата (Home/Next/Restart), сцена грузится после закрытия ролика. Лимиты rewarded §8.1: жизнь 5/день и только при < 5 жизней, бустер 3/день, Continue за рекламу 1 за попытку (`DailyCounter`, UTC). Тост «Реклама недоступна» (`UI/Toast`). ✅ Баннер только в меню (`IronSourceManager.SetBannerAllowed` из `SceneLoader`, без автопоказа, safe area).
+9. ✅ (2026-11-03) Локализованные цены (магазин), блок кнопки на время покупки, тосты ошибки/успеха (`InAppPurchasingService.LastFailure`), пакеты §11.2.
 
 ### P2 — геймдизайн
-10. Цены островов (§5.2), очередность открытия, награда за остров.
-11. Северные острова в `RegionSO/IslandSO`.
-12. Звёзды минимум 1, цены в 💎 (§4.3).
-13. Задания, ежедневки, контекстные офферы, разблокировка бустеров.
-14. Аналитика.
+10. ✅ (2026-11-03) Цены §5.2 (`Assets/Editor/IslandPricing.cs`, меню Tools/JigsawMatch2/Apply GDD Island Prices, применяется и сетапами регионов; Европа 42/44/46★), острова открываются по очереди (`IslandBuildService.IsUnlocked`, начатые раньше остаются открытыми), награда §5.3 (`IslandRewardPresenter`, один раз на остров) + «Скоро новые острова».
+11. ✅ Северные острова в `RegionSO/IslandSO`.
+12. ✅ (2026-11-03) Победа = минимум 1★. Continue за 💎 150/300/450 за попытку (`GameConfig.ContinueGemCosts`, кнопка `ButtonContinue` на экране проигрыша рядом с рекламной). Старт нового игрока 300 💎 (`ServicesStartup`).
+13. ✅ (2026-11-03) Задания подключены к геймплею (победа, 3★, собранные бабочки, бустеры; `LevelSessionStats` → `TaskService.TrackProgress`), обновление в 00:00 UTC, шаблоны по §10. Ежедневка день 7 = 100 💎 + «+5 ходов» + 30 мин жизней. Бустеры открываются на 6/10/14/18 + 2 шт. бесплатно с тостом (`BoosterUnlocks`). Офферы §11.3 (`ContextOffers`): стартовый после ур. 5 на 48 ч; «нужны ходы» — на кнопке Continue, если не хватает 💎 (1/день); «нет жизней» (1/день) и «сложный уровень» (2-й проигрыш подряд) — первыми в магазине. Жизни — UTC.
+14. ◐ (2026-11-03) Все события §13 отправляются через `Services/GameAnalyticsEvents` (в Editor/dev — в лог). **SDK GameAnalytics не установлен** (есть только `Resources/GameAnalytics/Settings.asset`): установить пакет, указать ключи и подключить `GameAnalyticsEvents.Sink`.
 
 ### P3 — платформа
 15. Согласие GDPR/CCPA.
-16. Android: `minSdk/targetSdk` в `mainTemplate.gradle`, `hardwareAccelerated`, AndroidX multidex.
+16. ✅ (2026-11-03) Android: `minSdk/targetSdk` из Player Settings (25/35), `hardwareAccelerated=true`, `androidx.multidex:multidex:2.0.1`.
 17. iOS (отдельный этап): ключ LevelPlay, App Store продукты, `GLEY_IAP_IOS`, ATT, bundle id, удаление хвостов AdMob в `Plugins/iOS`.
 18. Чистка: `Test.cs`, `OLD/LevelPlayAdsTest.unity`, `ProjectLifetimeScope.prefab`, `DisabledStandaloneAdMob/`.
 

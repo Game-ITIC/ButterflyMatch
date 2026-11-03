@@ -39,4 +39,4 @@
 - [x] Автоматическая генерация задач (`TaskGenerator`).
 - [x] Сервис управления и начисления наград (`TaskService`).
 - [x] Отображение и биндинг (`TaskPresenter`, `TaskPanel`, `TaskView`).
-- [ ] Подключение геймплейных триггеров из Match-3 движка.
+- [x] Подключение геймплейных триггеров из Match-3 движка (2026-11-03: `GameInitializer.OnLevelWon/OnLevelLost`, счётчики `Models/LevelSessionStats`).
