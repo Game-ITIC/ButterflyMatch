@@ -19,6 +19,11 @@ namespace JuiceFresh.States
 
             float defaultScale = levelManager.GetComponent<Camera>().orthographicSize;
             ScaleCamera(defaultScale);
+
+            // The screen size at level start can be stale (Simulator, window switch, rotation): refit when it changes.
+            if (!levelManager.TryGetComponent(out ScreenSizeRefit refit))
+                refit = levelManager.gameObject.AddComponent<ScreenSizeRefit>();
+            refit.Track(() => ScaleCamera(defaultScale));
         }
 
         public override void UpdateState()
@@ -192,8 +197,9 @@ namespace JuiceFresh.States
             // Side margin for swipes and the board frame (world units). It has to be added to the width:
             // adding it to the orthographic (vertical) size left wide boards almost touching the screen edges.
             float sideMargin = Mathf.Max(0.9f, cellWidth * 0.6f);
-            // The camera spans the full screen, so the visible width is 2 * ortho * screenWidth / screenHeight.
-            float screenAspect = Mathf.Max(1f, Screen.height) / Mathf.Max(1f, Screen.width);
+            // The camera spans the full screen, so the visible width is 2 * ortho * aspect (the camera's own aspect:
+            // Screen.width/height can still report another window while the level loads in the Editor).
+            float screenAspect = 1f / Mathf.Max(0.01f, levelManager.GetComponent<Camera>().aspect);
             float requiredOrtho = (gridWorldWidth + 2f * sideMargin) * screenAspect * 0.5f;
 
             // Tall boards must still fit between the top bar and the booster row (~60% of the safe height).

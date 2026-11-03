@@ -2726,6 +2726,21 @@ PrefabInstance:
       propertyPath: _regionSection
       value: 
       objectReference: {fileID: 177965887751050710}
+    - target: {fileID: 4462446226364042802, guid: 93f33d184ed9eb84485592fb2f9e5fde,
+        type: 3}
+      propertyPath: m_Spacing
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462446226364042802, guid: 93f33d184ed9eb84485592fb2f9e5fde,
+        type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 4462446226364042802, guid: 93f33d184ed9eb84485592fb2f9e5fde,
+        type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 5236768294264599173, guid: 93f33d184ed9eb84485592fb2f9e5fde,
         type: 3}
       propertyPath: m_AnchoredPosition.y

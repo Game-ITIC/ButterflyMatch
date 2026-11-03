@@ -96,6 +96,7 @@ namespace Configs
         public Sprite icon;
         public int gemPrice;
         public int count;
+        public int discountPercent;
     }
 
     [System.Serializable]

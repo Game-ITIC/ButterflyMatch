@@ -12,6 +12,10 @@ namespace JuiceFresh.States
 
         public override void EnterState()
         {
+            // The level camera fit no longer applies once the board is gone.
+            if (levelManager.TryGetComponent(out ScreenSizeRefit refit))
+                refit.Stop();
+
             if (PlayerPrefs.GetInt("OpenLevelTest") <= 0)
             {
                 PlayMapMusic();

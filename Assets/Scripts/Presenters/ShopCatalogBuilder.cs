@@ -22,7 +22,7 @@ namespace Presenters
     {
         private const string DailyBoughtKeyPrefix = "shop-daily-bought-";
         private const int RowUnits = 3;
-        private const int BoostersPerRow = 2;
+        private const int BoostersPerRow = 3;
 
         private readonly InAppConfig _config;
         private readonly Transform _parent;
@@ -238,7 +238,7 @@ namespace Presenters
             }
         }
 
-        /// <summary>Boosters bought for gems: small cards, two per row, after the store products.</summary>
+        /// <summary>Boosters bought for gems: small cards, three per row (one booster, x1/x3/x5 packs), after the store products.</summary>
         private void FillBoosterRows()
         {
             if(_onBuyBooster == null || _config.BoosterOffers == null || _config.ProductViewPrefab == null)
@@ -273,7 +273,7 @@ namespace Presenters
             card.SetTitle(L10n.Get("boost_" + offer.type.ToString().ToLowerInvariant(), offer.type.ToString()));
             card.SetIcon(offer.icon);
             card.SetBadge(null);
-            card.SetBonus(null);
+            card.SetBonus(offer.discountPercent > 0 ? "-" + offer.discountPercent + "%" : null);
             card.SetDescription(string.Empty);
 
             _rewards.Clear();
