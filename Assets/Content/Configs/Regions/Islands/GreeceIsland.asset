@@ -21,7 +21,7 @@ MonoBehaviour:
   slots:
   - slotId: greece-terrace
     building: {fileID: 11400000, guid: e6860ec2ccb6ec748b0b0506772578a9, type: 2}
-    starCost: 18
+    starCost: 3
     requiredBuildings: []
     animationStep: 0
     objectName: 
@@ -31,7 +31,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-chapel
     building: {fileID: 11400000, guid: 345f631a391d81a449c4809479828b29, type: 2}
-    starCost: 20
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: e6860ec2ccb6ec748b0b0506772578a9, type: 2}
     animationStep: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-dome
     building: {fileID: 11400000, guid: c294481eef0faca48bc99fc67bf0e338, type: 2}
-    starCost: 22
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 345f631a391d81a449c4809479828b29, type: 2}
     animationStep: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-belltower
     building: {fileID: 11400000, guid: a08c7342dcc76f84c9bbbcd21ab4bbcd, type: 2}
-    starCost: 24
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: c294481eef0faca48bc99fc67bf0e338, type: 2}
     animationStep: 3
@@ -64,7 +64,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-cliffstairs
     building: {fileID: 11400000, guid: e16d2b00e9028fe4aa388d7b9999abe3, type: 2}
-    starCost: 26
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: a08c7342dcc76f84c9bbbcd21ab4bbcd, type: 2}
     animationStep: 4
@@ -75,7 +75,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-pergola
     building: {fileID: 11400000, guid: 8e07cdbfbd4f678459c3074433f192fd, type: 2}
-    starCost: 28
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: e16d2b00e9028fe4aa388d7b9999abe3, type: 2}
     animationStep: 5
@@ -86,7 +86,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-diningtable
     building: {fileID: 11400000, guid: 10704fab32a1146448ee8ed20d0de331, type: 2}
-    starCost: 30
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 8e07cdbfbd4f678459c3074433f192fd, type: 2}
     animationStep: 6
@@ -97,7 +97,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-balcony
     building: {fileID: 11400000, guid: 1750edfe2cb67ce4f9c81c7755b84982, type: 2}
-    starCost: 32
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 10704fab32a1146448ee8ed20d0de331, type: 2}
     animationStep: 7
@@ -108,7 +108,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-bougainvillea
     building: {fileID: 11400000, guid: 14148bb32bd997549a9a59aec405ba5c, type: 2}
-    starCost: 34
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 1750edfe2cb67ce4f9c81c7755b84982, type: 2}
     animationStep: 8
@@ -119,7 +119,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: greece-olivetree
     building: {fileID: 11400000, guid: 4cecefe091de59e4b9f45384aa936be0, type: 2}
-    starCost: 36
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 14148bb32bd997549a9a59aec405ba5c, type: 2}
     animationStep: 9

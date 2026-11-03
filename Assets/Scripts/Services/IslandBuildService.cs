@@ -48,6 +48,90 @@ namespace Services
 
         public event Action Changed;
 
+        /// <summary>Fires once when the last slot of an island is built (reward + next island, GDD 5.3).</summary>
+        public event Action<IslandSO> IslandCompleted;
+
+        /// <summary>All islands in progression order (regions in order, islands in region order), no coming-soon ones.</summary>
+        public List<IslandSO> OrderedIslands()
+        {
+            var result = new List<IslandSO>();
+            for (var r = 0; r < _regions.Count; r++)
+            {
+                var islands = _regions[r] != null ? _regions[r].Islands : null;
+                if (islands == null)
+                {
+                    continue;
+                }
+
+                for (var i = 0; i < islands.Count; i++)
+                {
+                    var island = islands[i];
+                    if (island != null && !island.IsComingSoon && island.IslandPrefab != null)
+                    {
+                        result.Add(island);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        public bool IsCompleted(IslandSO island)
+        {
+            return island != null && island.SlotCount > 0 && CountBuilt(island) >= island.SlotCount;
+        }
+
+        /// <summary>
+        /// Islands open strictly one after another (GDD 5.1): the first one is always open, the next one after the
+        /// previous is fully built. An island the player already started stays open (saves from before this rule).
+        /// </summary>
+        public bool IsUnlocked(IslandSO island)
+        {
+            if (island == null || island.IsComingSoon)
+            {
+                return false;
+            }
+
+            var ordered = OrderedIslands();
+            var index = ordered.IndexOf(island);
+            if (index <= 0)
+            {
+                return index == 0;
+            }
+
+            return IsCompleted(ordered[index - 1]) || CountBuilt(island) > 0;
+        }
+
+        /// <summary>The island the player should build now: the first open island that is not finished.</summary>
+        public IslandSO CurrentProgressIsland()
+        {
+            var ordered = OrderedIslands();
+            for (var i = 0; i < ordered.Count; i++)
+            {
+                if (IsUnlocked(ordered[i]) && !IsCompleted(ordered[i]))
+                {
+                    return ordered[i];
+                }
+            }
+
+            return ordered.Count > 0 ? ordered[ordered.Count - 1] : null;
+        }
+
+        /// <summary>True when every island is fully built ("new islands coming soon").</summary>
+        public bool AllIslandsCompleted()
+        {
+            var ordered = OrderedIslands();
+            for (var i = 0; i < ordered.Count; i++)
+            {
+                if (!IsCompleted(ordered[i]))
+                {
+                    return false;
+                }
+            }
+
+            return ordered.Count > 0;
+        }
+
         // Regions in progression order (Asia, North, ...).
         public IReadOnlyList<RegionSO> Regions => _regions;
 
@@ -56,13 +140,32 @@ namespace Services
             get
             {
                 var selected = FindIsland(_store.ActiveIslandId);
-                if (selected != null && !selected.IsComingSoon)
+                if (selected != null && !selected.IsComingSoon && IsUnlocked(selected))
                 {
                     return selected;
                 }
 
-                return FirstPlayable();
+                return CurrentProgressIsland() ?? FirstPlayable();
             }
+        }
+
+        /// <summary>The region that contains the island (null when unknown).</summary>
+        public RegionSO RegionOf(IslandSO island)
+        {
+            if (island == null)
+            {
+                return null;
+            }
+
+            for (var i = 0; i < _regions.Count; i++)
+            {
+                if (_regions[i] != null && _regions[i].FindIsland(island.IslandId) == island)
+                {
+                    return _regions[i];
+                }
+            }
+
+            return null;
         }
 
         private IslandSO FindIsland(string islandId)
@@ -104,7 +207,7 @@ namespace Services
 
         public void SelectIsland(IslandSO island)
         {
-            if (island == null || island.IsComingSoon)
+            if (island == null || island.IsComingSoon || !IsUnlocked(island))
             {
                 return;
             }
@@ -178,7 +281,15 @@ namespace Services
 
             _store.MarkBuilt(island.IslandId, slot.SlotId);
             Enqueue(slot);
+            GameAnalyticsEvents.BuildingBuilt(island.IslandId, slot.SlotId);
             Changed?.Invoke();
+
+            if (IsCompleted(island))
+            {
+                GameAnalyticsEvents.IslandCompleted(island.IslandId);
+                IslandCompleted?.Invoke(island);
+            }
+
             return true;
         }
 

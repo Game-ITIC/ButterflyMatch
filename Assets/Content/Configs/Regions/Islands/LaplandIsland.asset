@@ -21,7 +21,7 @@ MonoBehaviour:
   slots:
   - slotId: lapland-hut
     building: {fileID: 11400000, guid: f8768decb25ea5544a504fae799fde26, type: 2}
-    starCost: 12
+    starCost: 3
     requiredBuildings: []
     animationStep: 0
     objectName: 
@@ -31,7 +31,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-hutroof
     building: {fileID: 11400000, guid: 0865294896887654fb5487b553191eee, type: 2}
-    starCost: 14
+    starCost: 3
     requiredBuildings:
     - {fileID: 11400000, guid: f8768decb25ea5544a504fae799fde26, type: 2}
     animationStep: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-antlers
     building: {fileID: 11400000, guid: 19ad1b01f32a02f4ba6f6b2cb881c474, type: 2}
-    starCost: 16
+    starCost: 3
     requiredBuildings:
     - {fileID: 11400000, guid: 0865294896887654fb5487b553191eee, type: 2}
     animationStep: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-cart
     building: {fileID: 11400000, guid: fb669f1d4a0a1a249a7c5c2da7d13509, type: 2}
-    starCost: 18
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 19ad1b01f32a02f4ba6f6b2cb881c474, type: 2}
     animationStep: 3
@@ -64,7 +64,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-barrels
     building: {fileID: 11400000, guid: f7d58008da7341d4f8f88c1e7f911bef, type: 2}
-    starCost: 20
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: fb669f1d4a0a1a249a7c5c2da7d13509, type: 2}
     animationStep: 4
@@ -75,7 +75,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-campfire
     building: {fileID: 11400000, guid: 242c1a14c25f71242940e14cabbbef2d, type: 2}
-    starCost: 22
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: f7d58008da7341d4f8f88c1e7f911bef, type: 2}
     animationStep: 5
@@ -86,7 +86,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-spit
     building: {fileID: 11400000, guid: 3d7ca52e043ce6640aa4c99b2c60c69f, type: 2}
-    starCost: 24
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 242c1a14c25f71242940e14cabbbef2d, type: 2}
     animationStep: 6
@@ -97,7 +97,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-benches
     building: {fileID: 11400000, guid: 9b16dab197d422b42a272a6078f68e68, type: 2}
-    starCost: 26
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 3d7ca52e043ce6640aa4c99b2c60c69f, type: 2}
     animationStep: 7
@@ -108,7 +108,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-clothesline
     building: {fileID: 11400000, guid: 90b7715761a5b6149916b557c59bb440, type: 2}
-    starCost: 28
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 9b16dab197d422b42a272a6078f68e68, type: 2}
     animationStep: 8
@@ -119,7 +119,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: lapland-pines
     building: {fileID: 11400000, guid: 169beb39bc22e1344a0a3db8a5d78dee, type: 2}
-    starCost: 30
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 90b7715761a5b6149916b557c59bb440, type: 2}
     animationStep: 9

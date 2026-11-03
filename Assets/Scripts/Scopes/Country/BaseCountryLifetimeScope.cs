@@ -164,6 +164,7 @@ namespace Scopes.Country
                 builder.Register<IslandBuildService>(Lifetime.Singleton)
                     .WithParameter<System.Collections.Generic.IReadOnlyList<RegionSO>>(regions);
                 builder.Register<BuildingCatalogPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
+                builder.Register<IslandRewardPresenter>(Lifetime.Scoped).AsImplementedInterfaces();
 
                 if(menuNavPanel != null)
                 {

@@ -21,7 +21,7 @@ MonoBehaviour:
   slots:
   - slotId: france-paths
     building: {fileID: 11400000, guid: 25c0daaa82a41f7408c88714d787b475, type: 2}
-    starCost: 16
+    starCost: 3
     requiredBuildings: []
     animationStep: 0
     objectName: 
@@ -31,7 +31,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-cafe
     building: {fileID: 11400000, guid: 644e2ac4c80002446a42df25dfcd31fa, type: 2}
-    starCost: 18
+    starCost: 3
     requiredBuildings:
     - {fileID: 11400000, guid: 25c0daaa82a41f7408c88714d787b475, type: 2}
     animationStep: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-upperfloors
     building: {fileID: 11400000, guid: 314e526269850dd479029ad0c9345012, type: 2}
-    starCost: 20
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 644e2ac4c80002446a42df25dfcd31fa, type: 2}
     animationStep: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-mansardroof
     building: {fileID: 11400000, guid: 3f4b72f8fa90f624a9a1a8688bcc889c, type: 2}
-    starCost: 22
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 314e526269850dd479029ad0c9345012, type: 2}
     animationStep: 3
@@ -64,7 +64,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-towerbase
     building: {fileID: 11400000, guid: 40606c2f276960b43a0b9ec1ff8afbc5, type: 2}
-    starCost: 24
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 3f4b72f8fa90f624a9a1a8688bcc889c, type: 2}
     animationStep: 4
@@ -75,7 +75,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-towertop
     building: {fileID: 11400000, guid: 99e1641324a9e7544b050b7b99901b27, type: 2}
-    starCost: 26
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 40606c2f276960b43a0b9ec1ff8afbc5, type: 2}
     animationStep: 5
@@ -86,7 +86,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-terrace
     building: {fileID: 11400000, guid: 8468b41665fec854490b207c9cb89be6, type: 2}
-    starCost: 28
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 99e1641324a9e7544b050b7b99901b27, type: 2}
     animationStep: 6
@@ -97,7 +97,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-streetlamps
     building: {fileID: 11400000, guid: 3e5a82594afc7ad4ba9ede5d2f9eae67, type: 2}
-    starCost: 30
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 8468b41665fec854490b207c9cb89be6, type: 2}
     animationStep: 7
@@ -108,7 +108,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-bicycle
     building: {fileID: 11400000, guid: 55e44bb0affd7654e86cb86787fbad30, type: 2}
-    starCost: 32
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 3e5a82594afc7ad4ba9ede5d2f9eae67, type: 2}
     animationStep: 8
@@ -119,7 +119,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: france-gardens
     building: {fileID: 11400000, guid: c6351ee11872bfa4ea10675916aa9955, type: 2}
-    starCost: 34
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 55e44bb0affd7654e86cb86787fbad30, type: 2}
     animationStep: 9

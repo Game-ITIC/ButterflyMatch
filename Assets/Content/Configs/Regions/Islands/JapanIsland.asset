@@ -21,137 +21,151 @@ MonoBehaviour:
   slots:
   - slotId: japan-base
     building: {fileID: 11400000, guid: a6f0aa3e1cc5f48448c4b2c901347074, type: 2}
-    starCost: 6
+    starCost: 1
     requiredBuildings: []
     animationStep: 0
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-foundation
     building: {fileID: 11400000, guid: 3a11096a11037e5488e606f8dbd644ca, type: 2}
-    starCost: 8
+    starCost: 1
     requiredBuildings:
     - {fileID: 11400000, guid: a6f0aa3e1cc5f48448c4b2c901347074, type: 2}
     animationStep: 1
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-walls
     building: {fileID: 11400000, guid: 6e31643737c52fe45bc3ce080b5ab2b5, type: 2}
-    starCost: 10
+    starCost: 2
     requiredBuildings:
     - {fileID: 11400000, guid: 3a11096a11037e5488e606f8dbd644ca, type: 2}
     animationStep: 2
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-columns
     building: {fileID: 11400000, guid: 4bc8cec18f039254e8c9fe6473fa5ce6, type: 2}
-    starCost: 12
+    starCost: 2
     requiredBuildings:
     - {fileID: 11400000, guid: 6e31643737c52fe45bc3ce080b5ab2b5, type: 2}
     animationStep: 3
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-goldwork
     building: {fileID: 11400000, guid: 6bedc6308043ebc41bca55e33960b99a, type: 2}
-    starCost: 14
+    starCost: 2
     requiredBuildings:
     - {fileID: 11400000, guid: 4bc8cec18f039254e8c9fe6473fa5ce6, type: 2}
     animationStep: 4
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-beam
     building: {fileID: 11400000, guid: e803d720c1738ff4ab33ad709ce0edf8, type: 2}
-    starCost: 16
+    starCost: 3
     requiredBuildings:
     - {fileID: 11400000, guid: 6bedc6308043ebc41bca55e33960b99a, type: 2}
     animationStep: 5
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-goldtrim
     building: {fileID: 11400000, guid: d975963c866c0bb46a0a8ff156ffc92c, type: 2}
-    starCost: 18
+    starCost: 3
     requiredBuildings:
     - {fileID: 11400000, guid: e803d720c1738ff4ab33ad709ce0edf8, type: 2}
     animationStep: 6
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-roofedge
     building: {fileID: 11400000, guid: e67acae90784c4a48a7290a3e2f91968, type: 2}
-    starCost: 20
+    starCost: 3
     requiredBuildings:
     - {fileID: 11400000, guid: d975963c866c0bb46a0a8ff156ffc92c, type: 2}
     animationStep: 7
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-ladder
     building: {fileID: 11400000, guid: 838ef6842bdadef42b68ed53a7fcfcf3, type: 2}
-    starCost: 22
+    starCost: 3
     requiredBuildings:
     - {fileID: 11400000, guid: e67acae90784c4a48a7290a3e2f91968, type: 2}
     animationStep: 8
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-roof
     building: {fileID: 11400000, guid: 8dc8f02d06ce34b43b0136b5744a29ce, type: 2}
-    starCost: 24
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 838ef6842bdadef42b68ed53a7fcfcf3, type: 2}
     animationStep: 9
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-lantern
     building: {fileID: 11400000, guid: cbe9c76999b35f048b5ca2e8c10e6eb4, type: 2}
-    starCost: 5
+    starCost: 2
     requiredBuildings:
     - {fileID: 11400000, guid: 3a11096a11037e5488e606f8dbd644ca, type: 2}
     animationStep: 1
     objectName: 
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-tree1
     building: {fileID: 11400000, guid: ef527856ec3f55046b07ab8b197242be, type: 2}
-    starCost: 8
+    starCost: 1
     requiredBuildings: []
     animationStep: -1
     objectName: Tree 01
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-tree2
     building: {fileID: 11400000, guid: 59c9c405509a5224aabb732c59ad0a95, type: 2}
-    starCost: 8
+    starCost: 1
     requiredBuildings: []
     animationStep: -1
     objectName: Tree 01 (1)
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: japan-tree3
     building: {fileID: 11400000, guid: 8c071312243147b43a30b038581bd9ab, type: 2}
-    starCost: 8
+    starCost: 2
     requiredBuildings: []
     animationStep: -1
     objectName: Tree 01 (2)
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}

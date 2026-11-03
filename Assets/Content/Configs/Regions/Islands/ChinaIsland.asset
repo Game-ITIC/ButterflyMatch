@@ -21,16 +21,17 @@ MonoBehaviour:
   slots:
   - slotId: china-foundation
     building: {fileID: 11400000, guid: d2bd43559c3eb8546a66f3ec246e296d, type: 2}
-    starCost: 8
+    starCost: 5
     requiredBuildings: []
     animationStep: 0
     objectName: Cube.004
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: china-building
     building: {fileID: 11400000, guid: 0dce98c0c21a26a4999bbedc79651915, type: 2}
-    starCost: 20
+    starCost: 6
     requiredBuildings:
     - {fileID: 11400000, guid: d2bd43559c3eb8546a66f3ec246e296d, type: 2}
     animationStep: 0
@@ -52,29 +53,32 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: china-roof
     building: {fileID: 11400000, guid: ea31d0faf5f55fc40b603b2b8a603ac9, type: 2}
-    starCost: 18
+    starCost: 7
     requiredBuildings:
     - {fileID: 11400000, guid: 0dce98c0c21a26a4999bbedc79651915, type: 2}
     animationStep: 0
     objectName: Cube.001
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: china-tree1
     building: {fileID: 11400000, guid: 2da2694ac41645f4f8b6f72c18d9c311, type: 2}
-    starCost: 15
+    starCost: 7
     requiredBuildings: []
     animationStep: -1
     objectName: Tree 01
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}
   - slotId: china-tree2
     building: {fileID: 11400000, guid: d7296bfc80fd54a43b627f40db29f085, type: 2}
-    starCost: 15
+    starCost: 7
     requiredBuildings: []
     animationStep: -1
     objectName: Tree 01 (1)
+    objectNames: []
     localPosition: {x: 0, y: 0, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
     localScale: {x: 1, y: 1, z: 1}

@@ -66,6 +66,7 @@ public static class RegionContentSetup
         var region = LoadOrCreate<RegionSO>($"{Root}/AsiaRegion.asset");
         region.Configure("asia", "Asia", Icon(0), new[] { japan, china, korea });
         EditorUtility.SetDirty(region);
+        foreach (var island in region.Islands) IslandPricing.Apply(island); // GDD 5.2 prices
         AssignRegion(region, 0);
         AssetDatabase.SaveAssets();
     }
@@ -92,6 +93,7 @@ public static class RegionContentSetup
         var region = LoadOrCreate<RegionSO>($"{Root}/NorthRegion.asset");
         region.Configure("north", "North", norway.Icon, new[] { norway, lapland, iceland });
         EditorUtility.SetDirty(region);
+        foreach (var island in region.Islands) IslandPricing.Apply(island); // GDD 5.2 prices
         AssignRegion(region, 1);
         AssetDatabase.SaveAssets();
     }
@@ -117,6 +119,7 @@ public static class RegionContentSetup
         var region = LoadOrCreate<RegionSO>($"{Root}/EuropeRegion.asset");
         region.Configure("europe", "Europe", france.Icon, new[] { france, greece, italy });
         EditorUtility.SetDirty(region);
+        foreach (var island in region.Islands) IslandPricing.Apply(island); // GDD 5.2 prices
         AssignRegion(region, 2);
         AssetDatabase.SaveAssets();
     }

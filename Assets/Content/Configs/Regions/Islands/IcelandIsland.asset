@@ -21,7 +21,7 @@ MonoBehaviour:
   slots:
   - slotId: iceland-stonehall
     building: {fileID: 11400000, guid: f63727b7f82fcfb4292f37bec3c4add2, type: 2}
-    starCost: 14
+    starCost: 3
     requiredBuildings: []
     animationStep: 0
     objectName: 
@@ -31,7 +31,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-timberhall
     building: {fileID: 11400000, guid: 68db0dd0048c8a14097821a73b6f9a71, type: 2}
-    starCost: 16
+    starCost: 3
     requiredBuildings:
     - {fileID: 11400000, guid: f63727b7f82fcfb4292f37bec3c4add2, type: 2}
     animationStep: 1
@@ -42,7 +42,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-hallroof
     building: {fileID: 11400000, guid: 402d689700a368f44bf872f5cf946fb9, type: 2}
-    starCost: 18
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 68db0dd0048c8a14097821a73b6f9a71, type: 2}
     animationStep: 2
@@ -53,7 +53,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-hallbanner
     building: {fileID: 11400000, guid: debec21acd0b56a42b6428e25ff0c4bb, type: 2}
-    starCost: 20
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 402d689700a368f44bf872f5cf946fb9, type: 2}
     animationStep: 3
@@ -64,7 +64,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-sidehouse
     building: {fileID: 11400000, guid: 0b19574e81a8ac241bad49aec1fe1d06, type: 2}
-    starCost: 22
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: debec21acd0b56a42b6428e25ff0c4bb, type: 2}
     animationStep: 4
@@ -75,7 +75,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-boardwalk
     building: {fileID: 11400000, guid: d825987caf66f234ebc69e8459aeedf3, type: 2}
-    starCost: 24
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 0b19574e81a8ac241bad49aec1fe1d06, type: 2}
     animationStep: 5
@@ -86,7 +86,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-railing
     building: {fileID: 11400000, guid: 349efd4bb6fd93747b11dd1d09468c43, type: 2}
-    starCost: 26
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: d825987caf66f234ebc69e8459aeedf3, type: 2}
     animationStep: 6
@@ -97,7 +97,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-rimbanners
     building: {fileID: 11400000, guid: 0ff2d07de8c31844fb1cff50fb7fc2b1, type: 2}
-    starCost: 28
+    starCost: 4
     requiredBuildings:
     - {fileID: 11400000, guid: 349efd4bb6fd93747b11dd1d09468c43, type: 2}
     animationStep: 7
@@ -108,7 +108,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-flagpoles
     building: {fileID: 11400000, guid: af2426654cb949a49926187064b3fb52, type: 2}
-    starCost: 30
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: 0ff2d07de8c31844fb1cff50fb7fc2b1, type: 2}
     animationStep: 8
@@ -119,7 +119,7 @@ MonoBehaviour:
     localScale: {x: 1, y: 1, z: 1}
   - slotId: iceland-boulders
     building: {fileID: 11400000, guid: cc5fa0906acbb754cbc5a59a5d4faa81, type: 2}
-    starCost: 32
+    starCost: 5
     requiredBuildings:
     - {fileID: 11400000, guid: af2426654cb949a49926187064b3fb52, type: 2}
     animationStep: 9

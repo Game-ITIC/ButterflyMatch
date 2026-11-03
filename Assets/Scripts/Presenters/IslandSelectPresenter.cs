@@ -121,14 +121,28 @@ namespace Presenters
                 }
 
                 var built = _buildService.CountBuilt(island);
-                var status = island.IsComingSoon ? GameLocalization.L10n.Get("soon", "Soon") : null;
+                // Islands open one after another (GDD 5.1); finished islands stay open for viewing.
+                var unlocked = _buildService.IsUnlocked(island);
+                string status = null;
+                if (island.IsComingSoon)
+                {
+                    status = GameLocalization.L10n.Get("soon", "Soon");
+                }
+                // Locked islands show a lock icon on the card (status text is the fallback if the prefab has no icon).
+                var locked = !island.IsComingSoon && !unlocked;
+                if (locked)
+                {
+                    status = GameLocalization.L10n.Get("island_locked", "Locked");
+                }
+
                 var captured = island;
                 card.Bind(
                     GameLocalization.L10n.Translate(island.DisplayName),
                     island.Icon,
                     built,
                     island.SlotCount,
-                    !island.IsComingSoon,
+                    !island.IsComingSoon && unlocked,
+                    locked,
                     status,
                     () => Select(captured));
             }
