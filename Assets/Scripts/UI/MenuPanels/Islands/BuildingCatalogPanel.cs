@@ -24,6 +24,7 @@ public class BuildingCatalogPanel : MonoBehaviour
     [SerializeField] private AnimationCurve panelFadeCurve = CurvedUIPanelAnimator.CreateDefaultFadeCurve();
 
     private readonly List<BuildingCardView> _cards = new();
+    private readonly List<BuildingSlot> _ordered = new();
 
     // A panel that is fading out no longer counts as open.
     public bool IsOpen => gameObject.activeSelf && (!TryGetComponent(out CanvasGroup group) || group.interactable);
@@ -60,20 +61,36 @@ public class BuildingCatalogPanel : MonoBehaviour
             return;
         }
 
-        for (var pass = 0; pass < 2; pass++)
+        // Order: buildable now (cheapest first, so the top card matches the cost on the menu Build button),
+        // then the ones still waiting for a requirement, then the built ones.
+        _ordered.Clear();
+        for (var i = 0; i < slots.Count; i++)
         {
-            var builtPass = pass == 1;
-            for (var i = 0; i < slots.Count; i++)
+            var slot = slots[i];
+            if (slot != null && slot.Building != null)
             {
-                var slot = slots[i];
-                if (slot == null || slot.Building == null || buildService.IsBuilt(slot) != builtPass)
-                {
-                    continue;
-                }
-
-                AddCard(island, buildService, slot, onBuild);
+                _ordered.Add(slot);
             }
         }
+
+        _ordered.Sort((a, b) =>
+        {
+            var groupCompare = SortGroup(island, buildService, a).CompareTo(SortGroup(island, buildService, b));
+            if (groupCompare != 0)
+            {
+                return groupCompare;
+            }
+
+            var costCompare = SortGroup(island, buildService, a) == 0 ? a.StarCost.CompareTo(b.StarCost) : 0;
+            return costCompare != 0 ? costCompare : IndexOf(slots, a).CompareTo(IndexOf(slots, b));
+        });
+
+        for (var i = 0; i < _ordered.Count; i++)
+        {
+            AddCard(island, buildService, _ordered[i], onBuild);
+        }
+
+        _ordered.Clear();
 
         if (_content is RectTransform contentRect)
         {
@@ -89,6 +106,29 @@ public class BuildingCatalogPanel : MonoBehaviour
         {
             UIFeel.Stagger(_cards);
         }
+    }
+
+    private static int SortGroup(IslandSO island, IslandBuildService buildService, BuildingSlot slot)
+    {
+        if (buildService.IsBuilt(slot))
+        {
+            return 2;
+        }
+
+        return buildService.CanSelect(island, slot) ? 0 : 1;
+    }
+
+    private static int IndexOf(IReadOnlyList<BuildingSlot> slots, BuildingSlot slot)
+    {
+        for (var i = 0; i < slots.Count; i++)
+        {
+            if (slots[i] == slot)
+            {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     private void AddCard(IslandSO island, IslandBuildService buildService, BuildingSlot slot, Action<BuildingSlot> onBuild)
