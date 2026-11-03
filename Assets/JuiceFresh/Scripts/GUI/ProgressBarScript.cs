@@ -121,6 +121,8 @@ public class ProgressBarScript : MonoBehaviour
             return;
         }
 
+        // The bar sits in a layout-driven HUD card: settle the layout so the track width is final.
+        Canvas.ForceUpdateCanvases();
         float width = _barTrack != null ? _barTrack.rect.width : 0f;
         int maxScore = LevelManager.Instance.star3;
         if (width <= 0f || maxScore <= 0)

@@ -19,11 +19,12 @@ namespace JuiceFresh.Scripts
             Transform topBarTransform = _levelManager.Level.transform.Find("Canvas/Panel/TopBarPanel");
             if (topBarTransform != null)
             {
-                AssignIfMissing(ref _levelManager.ingrObject, topBarTransform, "Mission/TargetIngr", "TargetIngr");
-                AssignIfMissing(ref _levelManager.blocksObject, topBarTransform, "Mission/TargetBlocks", "TargetBlocks");
-                AssignIfMissing(ref _levelManager.scoreTargetObject, topBarTransform, "Mission/TargetScore", "TargetScore");
-                AssignIfMissing(ref _levelManager.cageTargetObject, topBarTransform, "Mission/TargetCages", "TargetCages");
-                AssignIfMissing(ref _levelManager.bombTargetObject, topBarTransform, "Mission/TargetBombs", "TargetBombs");
+                // Goals live in their own HUD card (TopBarImage/GoalsCard/Mission); the old path stays as a fallback.
+                AssignIfMissing(ref _levelManager.ingrObject, topBarTransform, "TopBarImage/GoalsCard/Mission/TargetIngr", "Mission/TargetIngr", "TargetIngr");
+                AssignIfMissing(ref _levelManager.blocksObject, topBarTransform, "TopBarImage/GoalsCard/Mission/TargetBlocks", "Mission/TargetBlocks", "TargetBlocks");
+                AssignIfMissing(ref _levelManager.scoreTargetObject, topBarTransform, "TopBarImage/GoalsCard/Mission/TargetScore", "Mission/TargetScore", "TargetScore");
+                AssignIfMissing(ref _levelManager.cageTargetObject, topBarTransform, "TopBarImage/GoalsCard/Mission/TargetCages", "Mission/TargetCages", "TargetCages");
+                AssignIfMissing(ref _levelManager.bombTargetObject, topBarTransform, "TopBarImage/GoalsCard/Mission/TargetBombs", "Mission/TargetBombs", "TargetBombs");
             }
 
             Transform prePlayTransform = _levelManager.Level.transform.Find("Canvas/PrePlay");
