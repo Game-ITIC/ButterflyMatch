@@ -255,21 +255,30 @@ public class IronSourceManager : MonoBehaviour
     }
 
 
-    public void ShowInterstitial()
+    /// <summary>Fires when a shown interstitial was closed or failed to display.</summary>
+    public event System.Action InterstitialFinished;
+
+    public bool IsInterstitialReady()
+    {
+        return _interstitial != null && !HasRemoveAds && _interstitial.IsAdReady();
+    }
+
+    /// <summary>Prefer InterstitialService.TryShowAsync, it applies the GDD 8.2 caps.</summary>
+    public bool ShowInterstitial()
     {
         if (_interstitial == null || HasRemoveAds)
         {
-            return;
+            return false;
         }
 
         if (_interstitial.IsAdReady())
         {
             _interstitial.ShowAd();
+            return true;
         }
-        else
-        {
-            LoadInterstitial();
-        }
+
+        LoadInterstitial();
+        return false;
     }
 
     public void DestroyInterstitial()
@@ -299,6 +308,7 @@ public class IronSourceManager : MonoBehaviour
     private void InterstitialOnAdDisplayFailedEvent(LevelPlayAdDisplayInfoError obj)
     {
         AudioListener.pause = false;
+        InterstitialFinished?.Invoke();
         LoadInterstitial();
     }
 
@@ -309,6 +319,7 @@ public class IronSourceManager : MonoBehaviour
     private void InterstitialOnAdClosedEvent(LevelPlayAdInfo obj)
     {
         AudioListener.pause = false;
+        InterstitialFinished?.Invoke();
         LoadInterstitial();
     }
 

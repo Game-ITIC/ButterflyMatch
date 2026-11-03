@@ -63,8 +63,45 @@ namespace Services
                 .AddTo(_compositeDisposable);
 
             _adEventModel.OnRewardedClosed
-                .Subscribe(_ => ClearPendingRewardAfterGraceAsync(_showId).Forget())
+                .Subscribe(_ =>
+                           {
+                               LastRewardedClosedRealtime = Time.realtimeSinceStartup;
+                               ClearPendingRewardAfterGraceAsync(_showId).Forget();
+                           })
                 .AddTo(_compositeDisposable);
+        }
+
+        private const string LifeAdsKey = "ads-free-life";
+        private const string BoosterAdsKey = "ads-free-booster";
+
+        /// <summary>Realtime (seconds since startup) when the last rewarded ad was closed; used by interstitial caps.</summary>
+        public float LastRewardedClosedRealtime { get; private set; } = -1000f;
+
+        /// <summary>Daily caps from GDD 8.1 (free life 5/day and only below max lives, free booster 3/day).</summary>
+        public bool IsWithinLimit(AdRewardType type)
+        {
+            switch (type)
+            {
+                case AdRewardType.Life:
+                    return _healthSystem.CurrentLives.Value < _healthSystem.MaxLives
+                           && Utils.Save.DailyCounter.IsBelow(LifeAdsKey, _gameConfig.FreeLifeAdsPerDay);
+                case AdRewardType.Booster:
+                    return Utils.Save.DailyCounter.IsBelow(BoosterAdsKey, _gameConfig.FreeBoosterAdsPerDay);
+                default:
+                    return true;
+            }
+        }
+
+        private void CountTowardsLimit(AdRewardType type)
+        {
+            if(type == AdRewardType.Life)
+            {
+                Utils.Save.DailyCounter.Increment(LifeAdsKey);
+            }
+            else if(type == AdRewardType.Booster)
+            {
+                Utils.Save.DailyCounter.Increment(BoosterAdsKey);
+            }
         }
 
         /// <summary>
@@ -73,12 +110,19 @@ namespace Services
         /// </summary>
         public bool TryShowRewarded(AdRewardType adRewardType, BoostType? boostType = null)
         {
+            if(!IsWithinLimit(adRewardType))
+            {
+                UI.Toast.Show(GameLocalization.L10n.Get("ad_limit_reached", "No more free rewards today. Come back tomorrow!"));
+                return false;
+            }
+
             var ads = IronSourceManager.Instance;
             if(ads == null || !ads.IsRewardedReady())
             {
                 ClearPendingReward();
                 ads?.LoadRewardedAd();
                 Debug.LogWarning($"[AdRewardService] Rewarded ad not ready for {adRewardType}.");
+                UI.Toast.Show(GameLocalization.L10n.Get("ad_not_available", "Ad is not available right now. Try again later."));
                 return false;
             }
 
@@ -91,6 +135,8 @@ namespace Services
                 return false;
             }
 
+            GameAnalyticsEvents.AdRewardedShown(adRewardType.ToString());
+
             return true;
         }
 
@@ -100,6 +146,7 @@ namespace Services
 
             var grantedType = _adRewardType;
             _isTypeSet = false;
+            CountTowardsLimit(grantedType);
 
             switch (grantedType)
             {
@@ -126,6 +173,7 @@ namespace Services
                     throw new ArgumentOutOfRangeException();
             }
 
+            GameAnalyticsEvents.AdRewardedCompleted(grantedType.ToString());
             OnRewardGrantedTyped.OnNext(grantedType);
             _adEventModel.OnRewardGranted.OnNext(Unit.Default);
         }
