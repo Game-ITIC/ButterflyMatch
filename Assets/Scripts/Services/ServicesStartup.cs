@@ -14,6 +14,8 @@ namespace Itic.Services
     {
         private const string CoinsMigratedKey = "butterfly-match-coins-migrated";
         private const int CoinsPerDiamond = 10;
+        private const string StarterGrantedKey = "butterfly-match-starter-granted";
+        private const int StarterDiamonds = 300; // Docs/GDD.md 3: a new player starts with 300 gems
 
         private readonly SceneLoader _sceneLoader;
         private readonly AdsInitializer _adsInitializer;
@@ -35,6 +37,7 @@ namespace Itic.Services
             var sw = Stopwatch.StartNew();
             Debug.Log("[ServicesStartup] === STEP 2/3: Starting ServicesStartup ===");
 
+            GrantStarterBalance();
             MigrateCoinsToDiamonds();
 
             try
@@ -54,6 +57,25 @@ namespace Itic.Services
             Debug.Log($"[ServicesStartup] Requesting SceneLoader.LoadMenuAsync() (Total elapsed: {sw.ElapsedMilliseconds} ms)...");
             await _sceneLoader.LoadMenuAsync();
             Debug.Log($"[ServicesStartup] === STEP 2/3 Complete: ServicesStartup finished in {sw.ElapsedMilliseconds} ms ===");
+        }
+
+        /// <summary>A brand-new player (no gem balance saved yet) gets the starting gems once.</summary>
+        private void GrantStarterBalance()
+        {
+            if(_currencyService == null || PlayerPrefs.GetInt(StarterGrantedKey, 0) == 1)
+            {
+                return;
+            }
+
+            var isNewPlayer = !PlayerPrefs.HasKey(Systems.CurrencySystem.PlayerPrefsCurrencySaveService.KeyGem)
+                              && PlayerPrefs.GetInt("OpenLevel", 1) <= 1;
+            if(isNewPlayer)
+            {
+                _currencyService.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, StarterDiamonds);
+            }
+
+            PlayerPrefs.SetInt(StarterGrantedKey, 1);
+            PlayerPrefs.Save();
         }
 
         /// <summary>

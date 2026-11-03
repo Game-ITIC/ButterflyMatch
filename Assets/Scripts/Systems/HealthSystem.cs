@@ -33,7 +33,7 @@ namespace Systems
                     return TimeSpan.Zero;
                 }
 
-                var elapsedSeconds = Math.Max(0d, (DateTime.Now - _lastSaveTime).TotalSeconds);
+                var elapsedSeconds = Math.Max(0d, (DateTime.UtcNow - _lastSaveTime).TotalSeconds);
                 var regenSeconds = Math.Max(1d, _regenTimeMinutes * 60d);
                 var remainingSeconds = Math.Max(0d, regenSeconds - elapsedSeconds);
 
@@ -147,7 +147,7 @@ namespace Systems
         private void StartRegeneration()
         {
             _isRegenerating = true;
-            _lastSaveTime = DateTime.Now;
+            _lastSaveTime = DateTime.UtcNow;
             SaveData();
         }
 
@@ -160,11 +160,11 @@ namespace Systems
                 return;
             }
 
-            TimeSpan timePassed = DateTime.Now - _lastSaveTime;
+            TimeSpan timePassed = DateTime.UtcNow - _lastSaveTime;
 
             if (timePassed.TotalSeconds < 0)
             {
-                _lastSaveTime = DateTime.Now;
+                _lastSaveTime = DateTime.UtcNow;
                 SaveData();
                 return;
             }
@@ -229,7 +229,7 @@ namespace Systems
 
             if (string.IsNullOrEmpty(lastSaveTimeString))
             {
-                _lastSaveTime = DateTime.Now;
+                _lastSaveTime = DateTime.UtcNow;
                 _currentLives.Value = _maxLives;
             }
             else
@@ -237,11 +237,11 @@ namespace Systems
                 try
                 {
                     long lastSaveTimeBinary = Convert.ToInt64(lastSaveTimeString);
-                    _lastSaveTime = DateTime.FromBinary(lastSaveTimeBinary);
+                    _lastSaveTime = DateTime.FromBinary(lastSaveTimeBinary).ToUniversalTime(); // old saves were local time
 
                     if (_currentLives.Value < _maxLives)
                     {
-                        TimeSpan offlineTime = DateTime.Now - _lastSaveTime;
+                        TimeSpan offlineTime = DateTime.UtcNow - _lastSaveTime;
                         int livesToAdd = Mathf.FloorToInt((float)(offlineTime.TotalMinutes / _regenTimeMinutes));
 
                         if (livesToAdd > 0)
@@ -253,7 +253,7 @@ namespace Systems
                 }
                 catch
                 {
-                    _lastSaveTime = DateTime.Now;
+                    _lastSaveTime = DateTime.UtcNow;
                     _currentLives.Value = _maxLives;
                 }
             }
