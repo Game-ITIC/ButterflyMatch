@@ -14,6 +14,9 @@ public class WinState : GameStateBase
 
     public override void EnterState()
     {
+        // A win always pays at least 1 star (Docs/GDD.md 4.1).
+        levelManager.stars = Mathf.Clamp(levelManager.stars, 1, 3);
+
         // Increment the pass level counter
         levelManager.passLevelCounter++;
 

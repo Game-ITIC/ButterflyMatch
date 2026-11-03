@@ -24,6 +24,9 @@ namespace JuiceFresh.States
         private void OnRewardGranted(Unit unit)
         {
             // Rewarded "continue" ad: free extra moves.
+            _adContinuesUsed++;
+            Models.LevelSessionStats.ContinuesUsed++;
+            Services.GameAnalyticsEvents.ContinueUsed(levelManager.currentLevel, "ad");
             ApplyContinue();
         }
 
@@ -116,33 +119,76 @@ namespace JuiceFresh.States
             SetupContinueOption();
         }
 
+        // Per level attempt (the scene reloads on restart): GDD 4.3 / 8.1.
+        private int _adContinuesUsed;
+        private int _paidContinuesUsed;
+
         private void SetupContinueOption()
         {
-            // If the level allows continuing after failing
-            if(levelManager.FailedCost > 0)
+            var config = levelManager.GameConfig;
+            var adLimit = config != null ? config.ContinueAdsPerAttempt : 1;
+
+            // Rewarded continue: once per attempt, afterwards only gems.
+            var adsTransform = _menuFailedUI.transform.Find("AdsButton") as RectTransform;
+            var hasAdContinue = _adContinuesUsed < adLimit;
+            if(adsTransform != null)
             {
-                // Set up continue button
-                Button continueButton = _menuFailedUI.transform.Find("ButtonContinue")?.GetComponent<Button>();
+                adsTransform.gameObject.SetActive(hasAdContinue);
+            }
 
-                if(continueButton != null)
+            var continueTransform = _menuFailedUI.transform.Find("ButtonContinue") as RectTransform;
+            Button continueButton = continueTransform != null ? continueTransform.GetComponent<Button>() : null;
+
+            var costs = config != null ? config.ContinueGemCosts : null;
+            var hasPaidContinue = continueButton != null && costs != null && _paidContinuesUsed < costs.Length;
+            if(continueButton != null)
+            {
+                continueButton.gameObject.SetActive(hasPaidContinue);
+            }
+
+            // Two buttons side by side; a single one is centered.
+            const float sideOffset = 205f;
+            if(adsTransform != null)
+            {
+                adsTransform.anchoredPosition = new Vector2(hasPaidContinue ? -sideOffset : 0f, adsTransform.anchoredPosition.y);
+            }
+
+            if(continueTransform != null)
+            {
+                continueTransform.anchoredPosition = new Vector2(hasAdContinue && adsTransform != null ? sideOffset : 0f, continueTransform.anchoredPosition.y);
+            }
+
+            if(!hasPaidContinue)
+            {
+                return;
+            }
+
+            var cost = costs[_paidContinuesUsed];
+            continueButton.onClick.RemoveAllListeners();
+            continueButton.interactable = true;
+
+            TMP_Text costText = continueButton.transform.Find("Cost")?.GetComponent<TMP_Text>();
+            var icon = continueButton.transform.Find("Icon")?.gameObject;
+
+            // Not enough gems: the "need moves" offer (GDD 11.3, once a day) takes the button with its real price.
+            if(!HasGems(cost) && CanOfferNeedMoves())
+            {
+                continueButton.onClick.AddListener(() => OnNeedMovesOfferClicked(continueButton).Forget());
+                if(costText != null)
                 {
-                    continueButton.onClick.RemoveAllListeners();
-                    continueButton.onClick.AddListener(() => OnPaidContinueClicked());
-
-                    // Update the cost text
-                    TMP_Text costText = continueButton.transform.Find("Cost")?.GetComponent<TMP_Text>();
-
-                    if(costText != null)
-                    {
-                        costText.text = levelManager.FailedCost.ToString();
-                    }
-
-                    // Enable/disable based on whether player has enough gems/coins
-                    bool canAfford = levelManager.CurrencyService != null
-                                     && levelManager.CurrencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond) != null
-                                     && levelManager.CurrencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond).Value >= levelManager.FailedCost;
-                    continueButton.interactable = canAfford;
+                    costText.text = Presenters.ShopCatalogBuilder.PriceOf(levelManager.InAppConfig, Gley.EasyIAP.ShopProductNames.NeedMovesOffer);
                 }
+
+                if(icon != null) icon.SetActive(false);
+                return;
+            }
+
+            if(icon != null) icon.SetActive(true);
+            continueButton.onClick.AddListener(() => OnPaidContinueClicked(cost));
+
+            if(costText != null)
+            {
+                costText.text = cost.ToString();
             }
         }
 
@@ -165,15 +211,75 @@ namespace JuiceFresh.States
             levelManager.gameStatus = GameState.Map;
         }
 
-        private void OnPaidContinueClicked()
+        private bool HasGems(int cost)
         {
-            var currencyService = levelManager.CurrencyService;
-            if(currencyService == null
-               || !currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Diamond, levelManager.FailedCost))
+            var gems = levelManager.CurrencyService?.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond);
+            return gems != null && gems.Value >= cost;
+        }
+
+        private bool CanOfferNeedMoves()
+        {
+            return Gley.EasyIAP.API.IsInitialized()
+                   && Services.InApp.ContextOffers.IsAvailableToday(Gley.EasyIAP.ShopProductNames.NeedMovesOffer)
+                   && !string.IsNullOrEmpty(Presenters.ShopCatalogBuilder.PriceOf(levelManager.InAppConfig, Gley.EasyIAP.ShopProductNames.NeedMovesOffer));
+        }
+
+        private async UniTaskVoid OnNeedMovesOfferClicked(Button button)
+        {
+            if(Services.InApp.InAppPurchasingService.IsPurchaseInProgress)
             {
                 return;
             }
 
+            button.interactable = false;
+            var bought = await Services.InApp.InAppPurchasingService.TryBuyConsumableAsync(Gley.EasyIAP.ShopProductNames.NeedMovesOffer);
+            if(button != null) button.interactable = true;
+
+            if(!bought)
+            {
+                if(Services.InApp.InAppPurchasingService.LastFailure != Services.InApp.PurchaseFailure.Cancelled)
+                {
+                    UI.Toast.Show(GameLocalization.L10n.Get("purchase_failed", "Purchase failed. Please try again."));
+                }
+
+                return;
+            }
+
+            Services.InApp.ContextOffers.MarkUsedToday(Gley.EasyIAP.ShopProductNames.NeedMovesOffer);
+
+            // The offer granted extra-moves boosters and gems (InAppGrantService); one booster is used right now.
+            var moves = levelManager.BoostersProvider?.GetBoosterModel(BoostType.ExtraMoves);
+            if(moves != null && moves.HasBooster())
+            {
+                moves.Use();
+                levelManager.BoostersProvider.Save();
+            }
+
+            Models.LevelSessionStats.ContinuesUsed++;
+            Services.GameAnalyticsEvents.ContinueUsed(levelManager.currentLevel, "offer");
+            ApplyContinue();
+        }
+
+        private void OnPaidContinueClicked(int cost)
+        {
+            var currencyService = levelManager.CurrencyService;
+            if(currencyService == null)
+            {
+                return;
+            }
+
+            var gems = currencyService.GetCurrency(Systems.CurrencySystem.CurrencyType.Diamond);
+            if(gems == null || gems.Value < cost
+               || !currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Diamond, cost))
+            {
+                UI.Toast.Show(GameLocalization.L10n.Get("not_enough_gems", "Not enough gems"));
+                return;
+            }
+
+            _paidContinuesUsed++;
+            Models.LevelSessionStats.ContinuesUsed++;
+            Services.GameAnalyticsEvents.GemsSpent("continue", cost);
+            Services.GameAnalyticsEvents.ContinueUsed(levelManager.currentLevel, "gems", cost);
             ApplyContinue();
         }
 

@@ -154,7 +154,7 @@ public class PreWinAnimationsState : GameStateBase
     private void SaveLevelProgress()
     {
         int currentLevel = levelManager.currentLevel;
-        int stars = levelManager.stars;
+        int stars = Mathf.Clamp(levelManager.stars, 1, 3); // a win is at least 1 star (GDD 4.1)
 
         if (PlayerPrefs.GetInt(string.Format("Level.{0:000}.StarsCount", currentLevel), 0) < stars)
             PlayerPrefs.SetInt(string.Format("Level.{0:000}.StarsCount", currentLevel), stars);

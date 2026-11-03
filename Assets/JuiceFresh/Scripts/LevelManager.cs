@@ -498,6 +498,7 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
     [Inject] public GameProvider GameProvider;
     [Inject] public GameCompleteView GameCompleteView;
     [Inject] public GameConfig GameConfig;
+    [Inject] public Configs.InAppConfig InAppConfig;
 
     [Inject] public HealthSystem HealthSystem;
 
