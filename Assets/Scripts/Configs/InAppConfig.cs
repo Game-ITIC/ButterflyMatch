@@ -70,6 +70,9 @@ namespace Configs
         public Sprite LivesIcon;
         public Sprite UnlimitedLivesIcon;
 
+        [Header("Boosters for gems (Docs/GDD.md 7)")]
+        public List<BoosterOffer> BoosterOffers = new();
+
         public InAppProductView GetProductViewPrefab(ProductColumnWidth columnWidth)
         {
             switch (columnWidth)
@@ -83,6 +86,16 @@ namespace Configs
                     return ProductViewPrefab;
             }
         }
+    }
+
+    /// <summary>A booster sold in the menu shop for gems (not a store product).</summary>
+    [System.Serializable]
+    public struct BoosterOffer
+    {
+        public BoostType type;
+        public Sprite icon;
+        public int gemPrice;
+        public int count;
     }
 
     [System.Serializable]

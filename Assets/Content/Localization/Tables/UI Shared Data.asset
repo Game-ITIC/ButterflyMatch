@@ -879,6 +879,10 @@ MonoBehaviour:
     m_Key: daily_claimed
     m_Metadata:
       m_Items: []
+  - m_Id: 403155604672512
+    m_Key: build_new
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

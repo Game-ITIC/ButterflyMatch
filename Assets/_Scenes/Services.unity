@@ -298,12 +298,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enableKeyboardCheats: 1
-  addCoinsKey: 101
   addGemsKey: 114
   addStarsKey: 116
   addBoostersKey: 121
   restoreLivesKey: 117
-  keyboardCoinsAmount: 10000
   keyboardGemsAmount: 1000
   keyboardStarsAmount: 100
   keyboardBoostersAmount: 10
@@ -319,6 +317,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LoadingScreenPanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 2720811434991452438, guid: e0b98fd3d4886c04dbbafc062d325b7a,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4176527892362777904, guid: e0b98fd3d4886c04dbbafc062d325b7a,
         type: 3}

@@ -74,7 +74,10 @@ namespace Services.Tasks
             foreach (var task in _tasks)
             {
                 var template = _config.availableQuestTemplates.Find(t => t && t.questType == task.type);
-                if (template) task.sprite = template.icon;
+                if (!template) continue;
+                task.sprite = template.icon;
+                // Saved tasks keep the template's current reward type (quests pay stars, not gems).
+                if (task.reward != null) task.reward.type = template.rewardType;
             }
         }
 

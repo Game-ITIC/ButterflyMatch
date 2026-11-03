@@ -29,6 +29,9 @@ namespace Meta.Quests.Services
                 case RewardType.Gems:
                     _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Diamond, reward.amount);
                     break;
+                case RewardType.Stars:
+                    _currencyService?.AddCurrency(Systems.CurrencySystem.CurrencyType.Star, reward.amount);
+                    break;
                 case RewardType.Boosters:
                     // _boostersProvider.BoostersModels
                         // .AsValueEnumerable()

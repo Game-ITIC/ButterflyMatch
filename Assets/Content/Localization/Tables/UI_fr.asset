@@ -884,6 +884,10 @@ MonoBehaviour:
     m_Localized: "R\xE9cup\xE9r\xE9"
     m_Metadata:
       m_Items: []
+  - m_Id: 403155604672512
+    m_Localized: "Nouveau b\xE2timent"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

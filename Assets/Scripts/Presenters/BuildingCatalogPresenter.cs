@@ -40,6 +40,7 @@ namespace Presenters
                 _buildService.Changed += RefreshBuildCost;
             }
 
+            GameLocalization.L10n.Changed += RefreshBuildCost;
             RefreshBuildCost();
 
             if (_buildButton == null)
@@ -59,6 +60,8 @@ namespace Presenters
                 _buildService.Changed -= RefreshIfOpen;
                 _buildService.Changed -= RefreshBuildCost;
             }
+
+            GameLocalization.L10n.Changed -= RefreshBuildCost;
 
             if (_buildButton != null && _openAction != null)
             {
@@ -86,8 +89,8 @@ namespace Presenters
         }
 
         /// <summary>
-        /// The menu Build button shows the star cost of the next building that can be built now
-        /// (the cheapest unbuilt slot whose requirements are met). Empty when the island is finished.
+        /// The menu Build button shows a "New building" + star row while a building can be built now
+        /// (an unbuilt slot whose requirements are met). Hidden when the island is finished.
         /// </summary>
         private void RefreshBuildCost()
         {
@@ -109,7 +112,15 @@ namespace Presenters
                 }
             }
 
-            _buildActionButton.SetSubLabel(cost >= 0 ? cost.ToString() : string.Empty);
+            var canBuild = cost >= 0;
+            _buildActionButton.SetSubLabel(canBuild ? GameLocalization.L10n.Get("build_new", "New building") : string.Empty);
+
+            // Text and star icon share one row under the label.
+            var subLabel = _buildActionButton.SubLabel;
+            if (subLabel != null && subLabel.transform.parent != _buildActionButton.transform)
+            {
+                subLabel.transform.parent.gameObject.SetActive(canBuild);
+            }
         }
 
         private void Build(BuildingSlot slot)

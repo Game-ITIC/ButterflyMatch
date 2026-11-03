@@ -886,6 +886,10 @@ MonoBehaviour:
     m_Localized: "Al\u0131nd\u0131"
     m_Metadata:
       m_Items: []
+  - m_Id: 403155604672512
+    m_Localized: Yeni bina
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

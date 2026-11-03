@@ -6,12 +6,24 @@ namespace Gley.EasyIAP
 {
 	public enum ShopProductNames
 	{
-		Coins,
 		RemoveAds,
-		CoinsSmall,
-		CoinsMedium,
-		DiamondSmall,
-		DiamondMedium
+		CrystalsStarter,
+		CrystalsSmall,
+		CrystalsMedium,
+		CrystalsBig,
+		CrystalsHuge,
+		CrystalsRoyal,
+		StarterBundle,
+		BeginnerBundle,
+		BuilderBundle,
+		MasterBundle,
+		NeedMovesOffer,
+		OutOfLivesOffer,
+		HardLevelOffer,
+		DailyGemsDiscount,
+		DailyBoostersOffer,
+		DailyUnlimitedLivesOffer,
+		DailyMovesOffer,
 	}
 }
 #endif

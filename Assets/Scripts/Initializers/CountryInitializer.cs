@@ -331,8 +331,30 @@ namespace Initializers
                 _inAppView.ButtonsParent,
                 _internetState,
                 (product, view) => HandlePurchaseInApp(product, view).Forget(),
-                () => _healthSystem != null && !_healthSystem.CanPlay);
+                () => _healthSystem != null && !_healthSystem.CanPlay,
+                BuyBoosterForGems);
             _shopBuilder.Build();
+        }
+
+        /// <summary>Menu shop booster card: spends gems first, the booster is added only when the payment went through.</summary>
+        private void BuyBoosterForGems(BoosterOffer offer)
+        {
+            if(_currencyService == null || _boostersProvider == null)
+            {
+                return;
+            }
+
+            if(!_currencyService.SpendCurrency(Systems.CurrencySystem.CurrencyType.Diamond, offer.gemPrice))
+            {
+                UI.Toast.Show(GameLocalization.L10n.Get("not_enough_gems", "Not enough gems"));
+                return;
+            }
+
+            _boostersProvider.GetBoosterModel(offer.type).Add(Mathf.Max(1, offer.count));
+            _boostersProvider.Save();
+
+            var boosterName = GameLocalization.L10n.Get("boost_" + offer.type.ToString().ToLowerInvariant(), offer.type.ToString());
+            UI.Toast.Show(GameLocalization.L10n.Format("you_got_n", boosterName));
         }
 
         private static Button FindButtonInScene(params string[] names)

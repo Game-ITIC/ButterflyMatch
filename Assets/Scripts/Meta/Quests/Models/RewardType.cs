@@ -8,6 +8,7 @@ namespace Meta.Quests.Models
     {
         Coins,
         Gems,
-        Boosters
+        Boosters,
+        Stars
     }
 }

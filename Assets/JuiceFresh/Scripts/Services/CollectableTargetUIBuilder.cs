@@ -147,10 +147,11 @@ namespace JuiceFresh.Scripts
                     if (tar == Target.COLLECT)
                         ingr.GetComponent<TargetGUI>().SetSprite(_levelManager.ingrTarget[i].sprite);
 
-                    ingr.transform.SetParent(parentTransform.transform);
+                    ingr.transform.SetParent(parentTransform.transform, false);
                     ingr.transform.localScale = Vector3.one;
 
-                    ingr.transform.GetComponent<RectTransform>().anchoredPosition = new Vector3(
+                    // 3D: a leftover z from the world-space instantiate pushed the icons behind the camera.
+                    ingr.transform.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(
                         j * offset -
                         containerRect.rect.width / 2 +
                         ingr.transform.GetComponent<RectTransform>().rect.width / 2,

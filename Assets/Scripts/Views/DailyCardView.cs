@@ -34,6 +34,7 @@ namespace Views
         private int _rewardValue;
         private Sprite _rewardSprite;
         private Sprite _activeButtonSprite;
+        private float _activeButtonPixelsPerUnit = 1f;
         private Color _activeButtonTextColor;
         private bool _buttonStyleCached;
 
@@ -174,6 +175,7 @@ namespace Views
             if(!_buttonStyleCached)
             {
                 _activeButtonSprite = claimButtonImage != null ? claimButtonImage.sprite : null;
+                _activeButtonPixelsPerUnit = claimButtonImage != null ? claimButtonImage.pixelsPerUnitMultiplier : 1f;
                 _activeButtonTextColor = claimButtonText != null ? claimButtonText.color : Color.white;
                 _buttonStyleCached = true;
             }
@@ -181,12 +183,26 @@ namespace Views
             if(claimButtonImage != null && inactiveButtonSprite != null)
             {
                 claimButtonImage.sprite = active ? _activeButtonSprite : inactiveButtonSprite;
+                // The light pill has much bigger slice borders: scale it so both states share the same corner radius.
+                claimButtonImage.pixelsPerUnitMultiplier = active ? _activeButtonPixelsPerUnit : InactivePixelsPerUnit();
             }
 
             if(claimButtonText != null)
             {
                 claimButtonText.color = active || inactiveButtonSprite == null ? _activeButtonTextColor : inactiveButtonTextColor;
             }
+        }
+
+        private float InactivePixelsPerUnit()
+        {
+            var activeBorder = _activeButtonSprite != null ? _activeButtonSprite.border.x : 0f;
+            var inactiveBorder = inactiveButtonSprite.border.x;
+            if(activeBorder <= 0f || inactiveBorder <= 0f)
+            {
+                return _activeButtonPixelsPerUnit;
+            }
+
+            return _activeButtonPixelsPerUnit * inactiveBorder / activeBorder;
         }
 
         private void ResolveReferences()

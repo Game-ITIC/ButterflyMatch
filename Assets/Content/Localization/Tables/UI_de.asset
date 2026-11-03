@@ -883,6 +883,10 @@ MonoBehaviour:
     m_Localized: Erhalten
     m_Metadata:
       m_Items: []
+  - m_Id: 403155604672512
+    m_Localized: "Neues Geb\xE4ude"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

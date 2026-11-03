@@ -22,12 +22,14 @@ namespace Presenters
     {
         private const string DailyBoughtKeyPrefix = "shop-daily-bought-";
         private const int RowUnits = 3;
+        private const int BoostersPerRow = 2;
 
         private readonly InAppConfig _config;
         private readonly Transform _parent;
         private readonly InternetState _internetState;
         private readonly Action<ShopProductNames, InAppProductView> _onBuy;
         private readonly Func<bool> _hasNoLives;
+        private readonly Action<BoosterOffer> _onBuyBooster;
         private readonly List<(Sprite icon, string text)> _rewards = new();
         private readonly List<InAppProduct> _visible = new();
         private bool _subscribedToLocale;
@@ -37,13 +39,15 @@ namespace Presenters
             Transform parent,
             InternetState internetState,
             Action<ShopProductNames, InAppProductView> onBuy,
-            Func<bool> hasNoLives = null)
+            Func<bool> hasNoLives = null,
+            Action<BoosterOffer> onBuyBooster = null)
         {
             _config = config;
             _parent = parent;
             _internetState = internetState;
             _onBuy = onBuy;
             _hasNoLives = hasNoLives;
+            _onBuyBooster = onBuyBooster;
         }
 
         public void Build()
@@ -62,6 +66,7 @@ namespace Presenters
             Clear();
             CollectVisible();
             FillRows();
+            FillBoosterRows();
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(_parent as RectTransform);
         }
@@ -231,6 +236,92 @@ namespace Presenters
                     left--;
                 }
             }
+        }
+
+        /// <summary>Boosters bought for gems: small cards, two per row, after the store products.</summary>
+        private void FillBoosterRows()
+        {
+            if(_onBuyBooster == null || _config.BoosterOffers == null || _config.ProductViewPrefab == null)
+            {
+                return;
+            }
+
+            Transform row = null;
+            var inRow = 0;
+            foreach (var offer in _config.BoosterOffers)
+            {
+                if(offer.gemPrice <= 0)
+                {
+                    continue;
+                }
+
+                if(row == null || inRow >= BoostersPerRow)
+                {
+                    row = CreateRow();
+                    inRow = 0;
+                }
+
+                SpawnBoosterCard(row, offer);
+                inRow++;
+            }
+        }
+
+        private void SpawnBoosterCard(Transform row, BoosterOffer offer)
+        {
+            var card = Object.Instantiate(_config.ProductViewPrefab, row, false);
+            card.name = $"Card_Booster_{offer.type}";
+            card.SetTitle(L10n.Get("boost_" + offer.type.ToString().ToLowerInvariant(), offer.type.ToString()));
+            card.SetIcon(offer.icon);
+            card.SetBadge(null);
+            card.SetBonus(null);
+            card.SetDescription(string.Empty);
+
+            _rewards.Clear();
+            _rewards.Add((offer.icon, "x" + Mathf.Max(1, offer.count)));
+            card.SetRewards(_rewards);
+            card.SetAmount(string.Empty);
+            card.SetPrice(FormatNumber(offer.gemPrice));
+
+            if(card.BuyButton != null)
+            {
+                AddGemIcon(card.BuyButton.transform as RectTransform);
+                card.BuyButton.onClick.RemoveAllListeners();
+                card.BuyButton.onClick.AddListener(() => _onBuyBooster?.Invoke(offer));
+            }
+        }
+
+        /// <summary>Gem icon left of the price so the button reads "💎 60" instead of a store price.</summary>
+        private void AddGemIcon(RectTransform button)
+        {
+            if(button == null || _config.GemIcon == null)
+            {
+                return;
+            }
+
+            var icon = new GameObject("GemIcon", typeof(RectTransform), typeof(Image));
+            var rect = (RectTransform)icon.transform;
+            rect.SetParent(button, false);
+            rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
+            const float iconSize = 38f;
+            const float gap = 6f;
+            rect.sizeDelta = new Vector2(iconSize, iconSize);
+            var image = icon.GetComponent<Image>();
+            image.sprite = _config.GemIcon;
+            image.preserveAspect = true;
+            image.raycastTarget = false;
+
+            // Center "icon + price" as one group: the text moves right by half the icon, the icon sits left of it.
+            const float shift = (iconSize + gap) * 0.5f;
+            var label = button.GetComponentInChildren<TMPro.TMP_Text>();
+            var textWidth = 0f;
+            if(label != null)
+            {
+                var labelRect = label.rectTransform;
+                labelRect.offsetMin = new Vector2(labelRect.offsetMin.x + shift * 2f, labelRect.offsetMin.y);
+                textWidth = label.GetPreferredValues(label.text).x;
+            }
+
+            rect.anchoredPosition = new Vector2(shift - textWidth * 0.5f - gap - iconSize * 0.5f, 1f);
         }
 
         private Transform CreateRow()
