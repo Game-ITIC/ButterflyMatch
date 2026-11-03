@@ -35,6 +35,10 @@ namespace Scopes
             
             builder.RegisterComponent<IGameEvents>(gameEventDispatcher).AsSelf();
 
+            // Same PlayerPrefs storage as the menu's TaskService; without a config it never regenerates tasks,
+            // it only adds level progress (the menu refreshes them daily).
+            builder.Register<Services.Tasks.ITaskService>(_ => new Services.Tasks.TaskService(), Lifetime.Singleton);
+
             builder.RegisterEntryPoint<GameInitializer>()
                 .WithParameter("noAds", noAds);
         }

@@ -43,8 +43,10 @@ namespace Services.Tasks
         {
             if (!_config) return false;
 
-            var timeSinceLastRefresh = DateTime.Now - _lastRefreshTime;
-            if (_tasks.Count == 0 || timeSinceLastRefresh.TotalHours >= _config.hoursUntilRefresh)
+            // Daily tasks renew at 00:00 UTC (Docs/GDD.md 10); hoursUntilRefresh stays as an upper bound.
+            var lastUtc = _lastRefreshTime == DateTime.MinValue ? DateTime.MinValue : _lastRefreshTime.ToUniversalTime();
+            var nowUtc = DateTime.UtcNow;
+            if (_tasks.Count == 0 || lastUtc.Date != nowUtc.Date || (nowUtc - lastUtc).TotalHours >= _config.hoursUntilRefresh)
             {
                 RefreshTasks();
                 return true;
@@ -60,7 +62,7 @@ namespace Services.Tasks
             if (!_config) return;
 
             _tasks = TaskGenerator.GenerateTasks(_config);
-            _lastRefreshTime = DateTime.Now;
+            _lastRefreshTime = DateTime.UtcNow;
             _storage.Save(_tasks, _lastRefreshTime);
             OnTasksChanged?.Invoke(_tasks);
         }

@@ -40,7 +40,10 @@ namespace Initializers
         private readonly GameConfig _gameConfig;
         private readonly Systems.CurrencySystem.Interfaces.ICurrencyService _currencyService;
         private readonly Systems.HealthSystem _healthSystem;
+        private readonly Services.Ads.InterstitialService _interstitialService;
+        private readonly Services.Tasks.ITaskService _taskService;
         private Button _pauseButton;
+        private bool _leavingResultScreen;
 
         private CompositeDisposable _disposable = new();
 
@@ -60,7 +63,9 @@ namespace Initializers
             BoostShopView boostShopView,
             GameConfig gameConfig,
             Systems.CurrencySystem.Interfaces.ICurrencyService currencyService,
-            Systems.HealthSystem healthSystem
+            Systems.HealthSystem healthSystem,
+            Services.Ads.InterstitialService interstitialService,
+            Services.Tasks.ITaskService taskService
         )
         {
             // _ironSourceManager = ironSourceManager;
@@ -79,6 +84,8 @@ namespace Initializers
             _gameConfig = gameConfig;
             _currencyService = currencyService;
             _healthSystem = healthSystem;
+            _interstitialService = interstitialService;
+            _taskService = taskService;
         }
 
         public void Initialize()
@@ -93,10 +100,10 @@ namespace Initializers
 
             // Level progress (OpenLevel) and stars are saved in WinState at the moment of the win.
             _gameCompleteView.Home.onClick.RemoveAllListeners();
-            _gameCompleteView.Home.onClick.AddListener(() => _sceneLoader.LoadMenuAsync().Forget());
+            _gameCompleteView.Home.onClick.AddListener(() => LeaveResultScreen(() => _sceneLoader.LoadMenuAsync().Forget()));
 
             _gameCompleteView.Next.onClick.RemoveAllListeners();
-            _gameCompleteView.Next.onClick.AddListener(LoadGameOrMenuIfNoLives);
+            _gameCompleteView.Next.onClick.AddListener(() => LeaveResultScreen(LoadGameOrMenuIfNoLives));
 
             var adsPrice = _gameCompleteView.AdsButton.transform.Find("Price");
             if(adsPrice != null && adsPrice.TryGetComponent(out TMPro.TMP_Text adsPriceText))
@@ -124,10 +131,10 @@ namespace Initializers
             _gamePauseView.RestartButton.onClick.AddListener(RestartGame);
 
             _gameOverView.RestartButton.onClick.RemoveAllListeners();
-            _gameOverView.RestartButton.onClick.AddListener(RestartGame);
+            _gameOverView.RestartButton.onClick.AddListener(() => LeaveResultScreen(RestartGame));
 
             _gameOverView.Home.onClick.RemoveAllListeners();
-            _gameOverView.Home.onClick.AddListener(ReturnToMainMenuAfterLose);
+            _gameOverView.Home.onClick.AddListener(() => LeaveResultScreen(ReturnToMainMenuAfterLose));
 
 
             // One subscription for the whole game scene (disposed with it), keyed by the granted reward type.
@@ -138,7 +145,42 @@ namespace Initializers
                 Debug.LogWarning("[GameInitializer] Level started without lives.");
             }
 
+            Models.LevelSessionStats.Reset();
+
             _levelManager.InvokeStart();
+
+            // The level is loaded later (PrepareGameState), so take its number from the save.
+            Services.GameAnalyticsEvents.LevelStart(JuiceFresh.Scripts.LevelProgressionHelper.CalculateLevel(Mathf.Max(1, PlayerPrefs.GetInt("OpenLevel", 1))));
+        }
+
+        /// <summary>
+        /// Leaving the win / lose screen (Home, Next, Restart) is the only place for an interstitial (GDD 8.2).
+        /// The ad is awaited first so the next scene does not load under it.
+        /// </summary>
+        private void LeaveResultScreen(Action leave)
+        {
+            if(_leavingResultScreen)
+            {
+                return;
+            }
+
+            _leavingResultScreen = true;
+            LeaveResultScreenAsync(leave).Forget();
+        }
+
+        private async UniTaskVoid LeaveResultScreenAsync(Action leave)
+        {
+            try
+            {
+                await _interstitialService.TryShowAsync();
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
+
+            Time.timeScale = 1f;
+            leave?.Invoke();
         }
 
         public void RestartGame()
@@ -245,8 +287,8 @@ namespace Initializers
 
         public async UniTask StartAsync(CancellationToken cancellation = new CancellationToken())
         {
-            _gameEvents.OnGameLost += ShowInterstitial;
-            _gameEvents.OnGameWon += ShowInterstitial;
+            _gameEvents.OnGameLost += OnLevelLost;
+            _gameEvents.OnGameWon += OnLevelWon;
             _gameEvents.OnEnterGame += GameStart;
 
             await UniTask.Yield();
@@ -259,18 +301,76 @@ namespace Initializers
             //     // _ironSourceManager.LoadBannerAd();
         }
 
-        //
-        private void ShowInterstitial()
+        private bool _winCounted;
+        private bool _loseCounted;
+
+        private void OnLevelWon()
         {
-            //     if (_internetState.HasInternet && !_internetState.HasRemoveAds)
-            //         _ironSourceManager.ShowInterstitial();
+            if(_winCounted)
+            {
+                return;
+            }
+
+            _winCounted = true;
+            ContextOffers.RegisterWin();
+            if(!_loseCounted)
+            {
+                _interstitialService.OnLevelFinished();
+            }
+
+            var stars = _levelManager.stars;
+            Services.GameAnalyticsEvents.LevelWin(_levelManager.currentLevel, _levelManager.Limit, stars, Models.LevelSessionStats.BoostersUsed);
+
+            // Daily tasks (Docs/TaskSystem_TODO.md): level, 3-star level, collected pieces, used boosters.
+            _taskService.TrackProgress(Meta.Quests.Models.QuestType.CompleteLevels);
+            if(stars >= 3)
+            {
+                _taskService.TrackProgress(Meta.Quests.Models.QuestType.PerfectLevels);
+            }
+
+            TrackCollectedAndBoosters();
+        }
+
+        private void OnLevelLost()
+        {
+            // A lose screen can open again after a continue; count the attempt once.
+            if(!_loseCounted)
+            {
+                _loseCounted = true;
+                _interstitialService.OnLevelFinished();
+                ContextOffers.RegisterLoss(_levelManager.currentLevel);
+                Services.GameAnalyticsEvents.LevelFail(_levelManager.currentLevel, Models.LevelSessionStats.BoostersUsed);
+            }
+
+            TrackCollectedAndBoosters();
+        }
+
+        private int _trackedItems;
+        private int _trackedBoosters;
+
+        private void TrackCollectedAndBoosters()
+        {
+            var items = Models.LevelSessionStats.ItemsCollected - _trackedItems;
+            var boosters = Models.LevelSessionStats.BoostersUsed - _trackedBoosters;
+            _trackedItems = Models.LevelSessionStats.ItemsCollected;
+            _trackedBoosters = Models.LevelSessionStats.BoostersUsed;
+
+            if(items > 0)
+            {
+                _taskService.TrackProgress(Meta.Quests.Models.QuestType.CollectItems, "butterfly", items);
+            }
+
+            if(boosters > 0)
+            {
+                _taskService.TrackProgress(Meta.Quests.Models.QuestType.UseItems, null, boosters);
+            }
         }
 
         //
         public void Dispose()
         {
-            _gameEvents.OnGameLost -= ShowInterstitial;
-            _gameEvents.OnGameWon -= ShowInterstitial;
+            _gameEvents.OnGameLost -= OnLevelLost;
+            _gameEvents.OnGameWon -= OnLevelWon;
             _gameEvents.OnEnterGame -= GameStart;
 
             if(_pauseButton != null)

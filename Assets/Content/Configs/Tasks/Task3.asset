@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80642afff98645b5adbcb2223b5058a2, type: 3}
   m_Name: Task3
   m_EditorClassIdentifier: 
-  questType: 0
-  availableTargetIds:
-  - butterfly
-  amountRange: {x: 1, y: 10}
+  questType: 1
+  availableTargetIds: []
+  amountRange: {x: 2, y: 4}
   selectionWeight: 1
-  title: Collect Item
+  title: Complete Levels
   icon: {fileID: 1764671253, guid: b2f97baa93a4bc344850d1bd71b5050b, type: 3}
   rewardType: 1
-  rewardRange: {x: 10, y: 20}
+  rewardRange: {x: 20, y: 20}
   possibleBoosterIds: []
-  localizationKeyPrefix: quest_collect
+  localizationKeyPrefix: task_levels

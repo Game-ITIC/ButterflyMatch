@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: Task1
   m_EditorClassIdentifier: 
   questType: 3
-  availableTargetIds:
-  - butterfly
-  amountRange: {x: 1, y: 10}
+  availableTargetIds: []
+  amountRange: {x: 1, y: 3}
   selectionWeight: 1
-  title: Collect Item
+  title: Use Boosters
   icon: {fileID: -5708036874844557674, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
   rewardType: 1
-  rewardRange: {x: 10, y: 20}
+  rewardRange: {x: 20, y: 20}
   possibleBoosterIds: []
-  localizationKeyPrefix: quest_collect
+  localizationKeyPrefix: task_use

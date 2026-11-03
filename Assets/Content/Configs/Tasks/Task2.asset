@@ -15,11 +15,11 @@ MonoBehaviour:
   questType: 0
   availableTargetIds:
   - butterfly
-  amountRange: {x: 1, y: 10}
+  amountRange: {x: 40, y: 80}
   selectionWeight: 1
-  title: 'Collect Item '
+  title: Collect Item
   icon: {fileID: -555909508, guid: b2f97baa93a4bc344850d1bd71b5050b, type: 3}
   rewardType: 1
-  rewardRange: {x: 10, y: 20}
+  rewardRange: {x: 10, y: 15}
   possibleBoosterIds: []
-  localizationKeyPrefix: quest_collect
+  localizationKeyPrefix: task_collect
