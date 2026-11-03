@@ -16,13 +16,15 @@ namespace Presenters
     public class DailyCardsPresenter : IInitializable, IDisposable
     {
         private readonly DailyRewardService _rewardService;
+        private readonly Configs.InAppConfig _icons;
 
         private readonly List<DailyCardView> _cards = new();
         private Button _dailyButton;
 
-        public DailyCardsPresenter(DailyRewardService rewardService)
+        public DailyCardsPresenter(DailyRewardService rewardService, VContainer.IObjectResolver resolver)
         {
             _rewardService = rewardService;
+            _icons = VContainer.IObjectResolverExtensions.ResolveOrDefault<Configs.InAppConfig>(resolver);
         }
 
         public void Initialize()
@@ -59,7 +61,14 @@ namespace Presenters
                     icon = settings.allDays[i].dayTexture;
                 }
 
-                card.Bind(i + 1, icon, reward.Amount);
+                // Boosters read "x1", gems a plain number.
+                var amountLabel = reward.GrantType == DailyRewardGrantType.Diamond ? null : "x" + reward.Amount;
+                card.Bind(i + 1, icon, reward.Amount, amountLabel);
+                card.BindExtras(
+                    _icons != null ? _icons.ExtraMovesIcon : null,
+                    reward.ExtraMoves,
+                    _icons != null ? _icons.UnlimitedLivesIcon : null,
+                    reward.UnlimitedLivesMinutes);
                 WireClaimButton(card);
                 _cards.Add(card);
             }

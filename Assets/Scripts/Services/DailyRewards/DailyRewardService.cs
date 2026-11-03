@@ -17,14 +17,22 @@ namespace Services.DailyRewards
 
     public sealed class DailyRewardDefinition
     {
-        public DailyRewardDefinition(DailyRewardGrantType grantType, int amount)
+        public DailyRewardDefinition(DailyRewardGrantType grantType, int amount, int extraMoves = 0, int unlimitedLivesMinutes = 0)
         {
             GrantType = grantType;
             Amount = amount;
+            ExtraMoves = extraMoves;
+            UnlimitedLivesMinutes = unlimitedLivesMinutes;
         }
 
         public DailyRewardGrantType GrantType { get; }
         public int Amount { get; }
+
+        /// <summary>Bonus "+5 moves" boosters on top of the main reward (day 7).</summary>
+        public int ExtraMoves { get; }
+
+        /// <summary>Bonus unlimited lives on top of the main reward (day 7).</summary>
+        public int UnlimitedLivesMinutes { get; }
     }
 
     public class DailyRewardService
@@ -41,16 +49,18 @@ namespace Services.DailyRewards
             new(DailyRewardGrantType.Diamond, 30),
             new(DailyRewardGrantType.Shovel, 1),
             new(DailyRewardGrantType.Diamond, 40),
-            new(DailyRewardGrantType.Diamond, 100)
+            new(DailyRewardGrantType.Diamond, 100, extraMoves: 1, unlimitedLivesMinutes: 30)
         };
 
         private readonly ICurrencyService _currencyService;
         private readonly BoostersProvider _boostersProvider;
+        private readonly Systems.HealthSystem _healthSystem;
 
-        public DailyRewardService(ICurrencyService currencyService, BoostersProvider boostersProvider)
+        public DailyRewardService(ICurrencyService currencyService, BoostersProvider boostersProvider, Systems.HealthSystem healthSystem)
         {
             _currencyService = currencyService;
             _boostersProvider = boostersProvider;
+            _healthSystem = healthSystem;
         }
 
         public IReadOnlyList<DailyRewardDefinition> GetAllRewards() => Rewards;
@@ -109,6 +119,17 @@ namespace Services.DailyRewards
                     _boostersProvider?.GetBoosterModel(BoostType.Shovel).Add(reward.Amount);
                     _boostersProvider?.Save();
                     break;
+            }
+
+            if (reward.ExtraMoves > 0 && _boostersProvider != null)
+            {
+                _boostersProvider.GetBoosterModel(BoostType.ExtraMoves).Add(reward.ExtraMoves);
+                _boostersProvider.Save();
+            }
+
+            if (reward.UnlimitedLivesMinutes > 0)
+            {
+                _healthSystem?.AddUnlimitedLives(TimeSpan.FromMinutes(reward.UnlimitedLivesMinutes));
             }
         }
 
