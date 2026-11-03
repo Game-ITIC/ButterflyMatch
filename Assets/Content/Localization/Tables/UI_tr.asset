@@ -819,6 +819,73 @@ MonoBehaviour:
     m_Localized: "{0} seviyede 3 y\u0131ld\u0131z al"
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Localized: "Reklam \u015Fu anda yok. Daha sonra dene."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Localized: "Bug\xFCnl\xFCk \xFCcretsiz \xF6d\xFCl kalmad\u0131. Yar\u0131n
+      gel!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Localized: "Yeterli ta\u015F yok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Localized: +{0} hamle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Localized: "Sat\u0131n alma ba\u015Far\u0131s\u0131z. Tekrar dene."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Localized: "Ma\u011Faza kullan\u0131lam\u0131yor. \u0130nternet ba\u011Flant\u0131n\u0131
+      kontrol et."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Localized: "Sat\u0131n ald\u0131\u011F\u0131n i\xE7in te\u015Fekk\xFCrler!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Localized: "Sat\u0131n al\u0131mlar\u0131 geri y\xFCkle"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Localized: "Sat\u0131n al\u0131mlar geri y\xFCklendi"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Localized: Kilitli
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Localized: "{0} tamamland\u0131!\\nTa\u015F: +{1}, g\xFC\xE7lendirici: her
+      birinden +{2}, s\u0131n\u0131rs\u0131z can: {3} dk"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Localized: "Yeni adalar yak\u0131nda!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Localized: "Yeni g\xFC\xE7lendirici: {0}! {1} tane hediye."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Localized: "Bug\xFCn"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Localized: Al
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Localized: "Al\u0131nd\u0131"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

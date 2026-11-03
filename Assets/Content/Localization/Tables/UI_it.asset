@@ -818,6 +818,71 @@ MonoBehaviour:
     m_Localized: Ottieni 3 stelle in {0} livelli
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Localized: "Pubblicit\xE0 non disponibile. Riprova pi\xF9 tardi."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Localized: "Niente pi\xF9 premi gratis oggi. Torna domani!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Localized: Gemme insufficienti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Localized: +{0} mosse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Localized: Acquisto non riuscito. Riprova.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Localized: Store non disponibile. Controlla la connessione.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Localized: Grazie per l'acquisto!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Localized: Ripristina acquisti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Localized: Acquisti ripristinati
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Localized: Bloccata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Localized: '{0} completata!\nGemme: +{1}, potenziamenti: +{2} ciascuno, vite
+      illimitate: {3} min'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Localized: Nuove isole in arrivo!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Localized: 'Nuovo potenziamento: {0}! {1} in regalo.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Localized: Oggi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Localized: Riscuoti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Localized: Riscosso
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

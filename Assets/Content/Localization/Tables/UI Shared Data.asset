@@ -815,6 +815,70 @@ MonoBehaviour:
     m_Key: task_perfect_n
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Key: ad_not_available
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Key: ad_limit_reached
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Key: not_enough_gems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Key: continue_moves_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Key: purchase_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Key: purchase_store_unavailable
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Key: purchase_success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Key: restore_purchases
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Key: restore_done
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Key: island_locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Key: island_reward_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Key: islands_coming_soon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Key: booster_unlocked_n
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Key: daily_today
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Key: daily_claim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Key: daily_claimed
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

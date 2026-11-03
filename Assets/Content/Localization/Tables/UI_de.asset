@@ -818,6 +818,71 @@ MonoBehaviour:
     m_Localized: Hol 3 Sterne in {0} Leveln
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Localized: "Werbung ist gerade nicht verf\xFCgbar. Versuche es sp\xE4ter."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Localized: Heute keine Gratis-Belohnungen mehr. Komm morgen wieder!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Localized: Nicht genug Edelsteine
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Localized: "+{0} Z\xFCge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Localized: Kauf fehlgeschlagen. Bitte erneut versuchen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Localized: "Store nicht verf\xFCgbar. Pr\xFCfe deine Internetverbindung."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Localized: "Danke f\xFCr deinen Kauf!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Localized: "K\xE4ufe wiederherstellen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Localized: "K\xE4ufe wiederhergestellt"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Localized: Gesperrt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Localized: '{0} ist fertig!\nEdelsteine: +{1}, Booster: je +{2}, unendlich
+      Leben: {3} Min.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Localized: Neue Inseln kommen bald!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Localized: "Neuer Booster: {0}! {1} gratis f\xFCr dich."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Localized: Heute
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Localized: Abholen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Localized: Erhalten
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

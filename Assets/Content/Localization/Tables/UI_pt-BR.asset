@@ -818,6 +818,71 @@ MonoBehaviour:
     m_Localized: "Ganhe 3 estrelas em {0} n\xEDveis"
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Localized: "O an\xFAncio n\xE3o est\xE1 dispon\xEDvel agora. Tente mais tarde."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Localized: "Sem mais recompensas gr\xE1tis hoje. Volte amanh\xE3!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Localized: Gemas insuficientes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Localized: +{0} jogadas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Localized: A compra falhou. Tente novamente.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Localized: "Loja indispon\xEDvel. Verifique sua conex\xE3o."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Localized: Obrigado pela compra!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Localized: Restaurar compras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Localized: Compras restauradas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Localized: Bloqueada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Localized: "{0} conclu\xEDda!\\nGemas: +{1}, b\xF4nus: +{2} de cada, vidas
+      ilimitadas: {3} min"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Localized: Novas ilhas em breve!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Localized: "Novo b\xF4nus: {0}! Voc\xEA ganhou {1}."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Localized: Hoje
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Localized: Resgatar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Localized: Resgatado
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

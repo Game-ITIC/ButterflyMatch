@@ -818,6 +818,71 @@ MonoBehaviour:
     m_Localized: Consigue 3 estrellas en {0} niveles
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Localized: "El anuncio no est\xE1 disponible ahora. Int\xE9ntalo m\xE1s tarde."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Localized: "No hay m\xE1s recompensas gratis hoy. \xA1Vuelve ma\xF1ana!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Localized: No tienes suficientes gemas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Localized: +{0} movimientos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Localized: "La compra fall\xF3. Int\xE9ntalo de nuevo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Localized: "La tienda no est\xE1 disponible. Revisa tu conexi\xF3n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Localized: "\xA1Gracias por tu compra!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Localized: Restaurar compras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Localized: Compras restauradas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Localized: Bloqueada
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Localized: "\xA1{0} completada!\\nGemas: +{1}, potenciadores: +{2} de cada
+      uno, vidas ilimitadas: {3} min"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Localized: "\xA1Pronto llegar\xE1n nuevas islas!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Localized: "\xA1Nuevo potenciador: {0}! Te regalamos {1}."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Localized: Hoy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Localized: Reclamar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Localized: Reclamado
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

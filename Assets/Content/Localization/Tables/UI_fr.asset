@@ -819,6 +819,71 @@ MonoBehaviour:
     m_Localized: "Obtiens 3 \xE9toiles dans {0} niveaux"
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Localized: "La pub n'est pas disponible. R\xE9essaie plus tard."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Localized: "Plus de r\xE9compenses gratuites aujourd'hui. Reviens demain !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Localized: Pas assez de gemmes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Localized: +{0} coups
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Localized: "L'achat a \xE9chou\xE9. R\xE9essaie."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Localized: "Boutique indisponible. V\xE9rifie ta connexion."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Localized: Merci pour ton achat !
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Localized: Restaurer les achats
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Localized: "Achats restaur\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Localized: "Verrouill\xE9e"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Localized: "{0} est termin\xE9e !\\nGemmes : +{1}, bonus : +{2} chacun, vies
+      illimit\xE9es : {3} min"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Localized: "De nouvelles \xEEles arrivent bient\xF4t !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Localized: 'Nouveau bonus : {0} ! {1} offerts.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Localized: Aujourd'hui
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Localized: "R\xE9cup\xE9rer"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Localized: "R\xE9cup\xE9r\xE9"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

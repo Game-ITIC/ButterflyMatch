@@ -818,6 +818,71 @@ MonoBehaviour:
     m_Localized: Get 3 stars in {0} levels
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Localized: Ad is not available right now. Try again later.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Localized: No more free rewards today. Come back tomorrow!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Localized: Not enough gems
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Localized: +{0} moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Localized: Purchase failed. Please try again.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Localized: Store is not available. Check your internet connection.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Localized: Thank you for your purchase!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Localized: Restore purchases
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Localized: Purchases restored
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Localized: Locked
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Localized: '{0} is complete!\nGems: +{1}, boosters: +{2} each, unlimited lives:
+      {3} min'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Localized: New islands are coming soon!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Localized: 'New booster: {0}! You got {1} for free.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Localized: Today
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Localized: Claim
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Localized: Claimed
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

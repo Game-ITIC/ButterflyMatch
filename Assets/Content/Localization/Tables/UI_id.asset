@@ -818,6 +818,71 @@ MonoBehaviour:
     m_Localized: Dapatkan 3 bintang di {0} level
     m_Metadata:
       m_Items: []
+  - m_Id: 261951140552704
+    m_Localized: Iklan belum tersedia. Coba lagi nanti.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244480
+    m_Localized: Hadiah gratis hari ini habis. Kembali besok!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244481
+    m_Localized: Permata tidak cukup
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244482
+    m_Localized: +{0} langkah
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244483
+    m_Localized: Pembelian gagal. Coba lagi.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244484
+    m_Localized: Toko tidak tersedia. Periksa koneksi internet.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244485
+    m_Localized: Terima kasih atas pembelianmu!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244486
+    m_Localized: Pulihkan pembelian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244487
+    m_Localized: Pembelian dipulihkan
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244488
+    m_Localized: Terkunci
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244489
+    m_Localized: '{0} selesai!\nPermata: +{1}, booster: masing-masing +{2}, nyawa
+      tak terbatas: {3} mnt'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244490
+    m_Localized: Pulau baru segera hadir!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 261951220244491
+    m_Localized: 'Booster baru: {0}! Gratis {1}.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 278960435781632
+    m_Localized: Hari ini
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784561991680
+    m_Localized: Ambil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 279784599740416
+    m_Localized: Diambil
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
