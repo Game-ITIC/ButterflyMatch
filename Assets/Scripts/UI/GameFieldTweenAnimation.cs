@@ -26,11 +26,14 @@ public enum GameFieldIntroPreset
 
 namespace UI
 {
+    /// <summary>
+    /// Board intro: cells bloom in a wave and their pieces pop in after them. Holds the tuning (inspector or
+    /// preset) and plays the sequence; the cells come from BoardRevealGroups, preset values from
+    /// GameFieldIntroSettings (UI/GameField).
+    /// </summary>
     [DisallowMultipleComponent]
     public sealed class GameFieldTweenAnimation : MonoBehaviour
     {
-        private const float DefaultItemScale = 0.9f;
-
         [SerializeField] private bool useUnscaledTime;
 
         [Header("Grid Appearance (independent from Game Feel)")]
@@ -86,73 +89,26 @@ namespace UI
                 return;
 
             lastIntroPreset = introPreset;
-
-            switch(introPreset)
-            {
-                case GameFieldIntroPreset.CenterRipple:
-                    ApplyIntroSettings(
-                        0.08f, 1.08f, 0.34f, 0.18f,
-                        0.04f, 1.12f, 0.1f, 0.3f, 0.16f,
-                        0.075f, 0.004f, 1.15f,
-                        BoardRevealPattern.CenterOut, Ease.OutBack, Ease.InOutSine);
-                    break;
-                case GameFieldIntroPreset.FallingRows:
-                    ApplyIntroSettings(
-                        0.55f, 1.02f, 0.24f, 0.08f,
-                        0.42f, 1.04f, 0.025f, 0.2f, 0.07f,
-                        0.045f, 0.002f, 0.75f,
-                        BoardRevealPattern.TopToBottom, Ease.OutQuad, Ease.OutSine);
-                    break;
-                case GameFieldIntroPreset.PlayfulScatter:
-                    ApplyIntroSettings(
-                        0.04f, 1.1f, 0.4f, 0.24f,
-                        0.02f, 1.16f, 0.08f, 0.36f, 0.22f,
-                        0.065f, 0.025f, 0.8f,
-                        BoardRevealPattern.RandomPop, Ease.OutElastic, Ease.InOutSine);
-                    break;
-                case GameFieldIntroPreset.SoftBloom:
-                default:
-                    ApplyIntroSettings(
-                        0.32f, 1.045f, 0.48f, 0.14f,
-                        0.2f, 1.08f, 0.13f, 0.42f, 0.16f,
-                        0.08f, 0.006f, 1f,
-                        BoardRevealPattern.CenterOut, Ease.OutCubic, Ease.InOutSine);
-                    break;
-            }
+            ApplyIntroSettings(GameFieldIntroSettings.For(introPreset));
         }
 
-        private void ApplyIntroSettings(
-            float newCellStartScale,
-            float newCellPeakScale,
-            float newCellRiseDuration,
-            float newCellSettleDuration,
-            float newItemStartScale,
-            float newItemPeakScale,
-            float newItemDelay,
-            float newItemRiseDuration,
-            float newItemSettleDuration,
-            float newWaveStagger,
-            float newWaveJitter,
-            float newMaxRevealSpread,
-            BoardRevealPattern newRevealPattern,
-            Ease newRiseEase,
-            Ease newSettleEase)
+        private void ApplyIntroSettings(GameFieldIntroSettings settings)
         {
-            cellStartScale = newCellStartScale;
-            cellPeakScale = newCellPeakScale;
-            cellRiseDuration = newCellRiseDuration;
-            cellSettleDuration = newCellSettleDuration;
-            itemStartScale = newItemStartScale;
-            itemPeakScale = newItemPeakScale;
-            itemDelay = newItemDelay;
-            itemRiseDuration = newItemRiseDuration;
-            itemSettleDuration = newItemSettleDuration;
-            waveStagger = newWaveStagger;
-            waveJitter = newWaveJitter;
-            maxRevealSpread = newMaxRevealSpread;
-            revealPattern = newRevealPattern;
-            riseEase = newRiseEase;
-            settleEase = newSettleEase;
+            cellStartScale = settings.CellStartScale;
+            cellPeakScale = settings.CellPeakScale;
+            cellRiseDuration = settings.CellRiseDuration;
+            cellSettleDuration = settings.CellSettleDuration;
+            itemStartScale = settings.ItemStartScale;
+            itemPeakScale = settings.ItemPeakScale;
+            itemDelay = settings.ItemDelay;
+            itemRiseDuration = settings.ItemRiseDuration;
+            itemSettleDuration = settings.ItemSettleDuration;
+            waveStagger = settings.WaveStagger;
+            waveJitter = settings.WaveJitter;
+            maxRevealSpread = settings.MaxRevealSpread;
+            revealPattern = settings.RevealPattern;
+            riseEase = settings.RiseEase;
+            settleEase = settings.SettleEase;
         }
 
         public void Play(Vector3 targetLocalPosition, Action onComplete)
@@ -160,7 +116,7 @@ namespace UI
             KillTween();
 
             transform.localPosition = targetLocalPosition;
-            BuildRevealGroups();
+            BoardRevealGroups.Collect(revealGroups, revealPattern, waveStagger, maxRevealSpread);
 
             if(revealGroups.Count == 0)
             {
@@ -179,7 +135,7 @@ namespace UI
                 float itemStartTime = delay + itemDelay;
 
                 group.SquareTransform.localScale = group.SquareTargetScale * cellStartScale;
-                SetAlpha(group.SquareRenderer, 0f);
+                BoardRevealGroups.SetAlpha(group.SquareRenderer, 0f);
                 sequence.Insert(
                     delay,
                     group.SquareTransform
@@ -210,7 +166,7 @@ namespace UI
 
                 group.ItemTransform.localScale = group.ItemTargetScale * itemStartScale;
                 group.ItemTransform.gameObject.SetActive(true);
-                SetAlpha(group.ItemRenderer, 0f);
+                BoardRevealGroups.SetAlpha(group.ItemRenderer, 0f);
                 sequence.Insert(
                     itemStartTime,
                     group.ItemTransform
@@ -240,7 +196,7 @@ namespace UI
             sequence.OnComplete(() =>
             {
                 sequence = null;
-                RestoreRevealGroups();
+                BoardRevealGroups.Restore(revealGroups);
                 onComplete?.Invoke();
             });
         }
@@ -249,164 +205,8 @@ namespace UI
         {
             KillTween();
             transform.localPosition = targetLocalPosition;
-            RestoreRevealGroups();
+            BoardRevealGroups.Restore(revealGroups);
             onComplete?.Invoke();
-        }
-
-        private void BuildRevealGroups()
-        {
-            revealGroups.Clear();
-
-            LevelManager levelManager = LevelManager.THIS;
-            Square[] squares = levelManager?.squaresArray;
-            if(squares == null || levelManager == null)
-                return;
-
-            float centerCol = (levelManager.maxCols - 1) * 0.5f;
-            float centerRow = (levelManager.maxRows - 1) * 0.5f;
-            Vector2 gridCenter = new Vector2(centerCol, centerRow);
-            float maxDistance = 0f;
-
-            for(int i = 0; i < squares.Length; i++)
-            {
-                Square square = squares[i];
-                if(square == null || square.IsNone())
-                    continue;
-
-                float distance = Vector2.Distance(new Vector2(square.col, square.row), gridCenter);
-                if(distance > maxDistance)
-                {
-                    maxDistance = distance;
-                }
-            }
-
-            if(maxDistance < 0.001f)
-            {
-                maxDistance = 1f;
-            }
-
-            float spread = maxRevealSpread > 0f ? maxRevealSpread : 1f;
-
-            for(int i = 0; i < squares.Length; i++)
-            {
-                Square square = squares[i];
-                if(square == null || square.IsNone())
-                    continue;
-
-                Vector2 cell = new Vector2(square.col, square.row);
-                float distance = Vector2.Distance(cell, gridCenter);
-                float waveDelay = CalculateRevealDelay(
-                    revealPattern,
-                    cell,
-                    gridCenter,
-                    distance,
-                    maxDistance,
-                    square.row,
-                    square.col,
-                    levelManager.maxRows,
-                    levelManager.maxCols,
-                    waveStagger,
-                    spread);
-                SpriteRenderer squareRenderer = square.GetComponent<SpriteRenderer>();
-                float squareTargetAlpha = squareRenderer != null ? squareRenderer.color.a : 1f;
-
-                Transform itemTransform = null;
-                Vector3 itemTargetScale = Vector3.one * DefaultItemScale;
-                SpriteRenderer itemRenderer = null;
-                float itemTargetAlpha = 1f;
-
-                if(square.item != null)
-                {
-                    itemTransform = square.item.transform;
-                    itemTargetScale = GetItemTargetScale(itemTransform);
-                    itemRenderer = square.item.sprRenderer != null
-                        ? square.item.sprRenderer
-                        : itemTransform.GetComponentInChildren<SpriteRenderer>();
-                    itemTargetAlpha = itemRenderer != null ? itemRenderer.color.a : 1f;
-                }
-
-                revealGroups.Add(new CellRevealGroup(
-                    square.transform,
-                    square.transform.localScale,
-                    squareRenderer,
-                    squareTargetAlpha,
-                    itemTransform,
-                    itemTargetScale,
-                    itemRenderer,
-                    itemTargetAlpha,
-                    waveDelay));
-            }
-        }
-
-        private static float CalculateRevealDelay(
-            BoardRevealPattern pattern,
-            Vector2 cell,
-            Vector2 gridCenter,
-            float distanceFromCenter,
-            float maxDistance,
-            int row,
-            int col,
-            int maxRows,
-            int maxCols,
-            float stagger,
-            float spread)
-        {
-            switch(pattern)
-            {
-                case BoardRevealPattern.AllAtOnce:
-                    return 0f;
-                case BoardRevealPattern.EdgeIn:
-                    return (maxDistance - distanceFromCenter) * stagger * spread;
-                case BoardRevealPattern.TopToBottom:
-                    return row * stagger * spread;
-                case BoardRevealPattern.LeftToRight:
-                    return col * stagger * spread;
-                case BoardRevealPattern.Diagonal:
-                    return (col + row) * stagger * spread;
-                case BoardRevealPattern.RandomPop:
-                    return UnityEngine.Random.Range(0f, Mathf.Max(stagger, maxDistance * stagger) * spread);
-                case BoardRevealPattern.CenterOut:
-                default:
-                    return distanceFromCenter * stagger * spread;
-            }
-        }
-
-        private static Vector3 GetItemTargetScale(Transform itemTransform)
-        {
-            Vector3 scale = itemTransform.localScale;
-            if(scale.sqrMagnitude < 0.01f)
-                return Vector3.one * DefaultItemScale;
-
-            return scale;
-        }
-
-        private void RestoreRevealGroups()
-        {
-            for(int i = 0; i < revealGroups.Count; i++)
-            {
-                CellRevealGroup group = revealGroups[i];
-                if(group.SquareTransform != null)
-                    group.SquareTransform.localScale = group.SquareTargetScale;
-
-                SetAlpha(group.SquareRenderer, group.SquareTargetAlpha);
-
-                if(group.ItemTransform == null)
-                    continue;
-
-                group.ItemTransform.localScale = group.ItemTargetScale;
-                group.ItemTransform.gameObject.SetActive(true);
-                SetAlpha(group.ItemRenderer, group.ItemTargetAlpha);
-            }
-        }
-
-        private static void SetAlpha(SpriteRenderer renderer, float alpha)
-        {
-            if(renderer == null)
-                return;
-
-            Color color = renderer.color;
-            color.a = alpha;
-            renderer.color = color;
         }
 
         private void KillTween()
@@ -415,43 +215,8 @@ namespace UI
                 sequence.Kill();
 
             sequence = null;
-            RestoreRevealGroups();
+            BoardRevealGroups.Restore(revealGroups);
             revealGroups.Clear();
-        }
-
-        private readonly struct CellRevealGroup
-        {
-            public CellRevealGroup(
-                Transform squareTransform,
-                Vector3 squareTargetScale,
-                SpriteRenderer squareRenderer,
-                float squareTargetAlpha,
-                Transform itemTransform,
-                Vector3 itemTargetScale,
-                SpriteRenderer itemRenderer,
-                float itemTargetAlpha,
-                float waveDelay)
-            {
-                SquareTransform = squareTransform;
-                SquareTargetScale = squareTargetScale;
-                SquareRenderer = squareRenderer;
-                SquareTargetAlpha = squareTargetAlpha;
-                ItemTransform = itemTransform;
-                ItemTargetScale = itemTargetScale;
-                ItemRenderer = itemRenderer;
-                ItemTargetAlpha = itemTargetAlpha;
-                WaveDelay = waveDelay;
-            }
-
-            public Transform SquareTransform { get; }
-            public Vector3 SquareTargetScale { get; }
-            public SpriteRenderer SquareRenderer { get; }
-            public float SquareTargetAlpha { get; }
-            public Transform ItemTransform { get; }
-            public Vector3 ItemTargetScale { get; }
-            public SpriteRenderer ItemRenderer { get; }
-            public float ItemTargetAlpha { get; }
-            public float WaveDelay { get; }
         }
     }
 }
