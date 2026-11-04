@@ -31,10 +31,10 @@ namespace JuiceFresh.Board
 
         private static bool AllFinished()
         {
-            GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
-            foreach (GameObject go in items)
+            var items = Item.Active;
+            for (int i = 0; i < items.Count; i++)
             {
-                Item item = go.GetComponent<Item>();
+                Item item = items[i];
                 if (item == null || (item.destroying && !item.animationFinished))
                     return false;
             }
@@ -44,10 +44,11 @@ namespace JuiceFresh.Board
 
         private static void ForceFinishStuck()
         {
-            GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
-            foreach (GameObject go in items)
+            // SetAnimationDestroyingFinished only sets two flags, so the live list is safe here.
+            var items = Item.Active;
+            for (int i = 0; i < items.Count; i++)
             {
-                Item item = go.GetComponent<Item>();
+                Item item = items[i];
                 if (item != null && item.destroying && !item.animationFinished)
                     item.SetAnimationDestroyingFinished();
             }

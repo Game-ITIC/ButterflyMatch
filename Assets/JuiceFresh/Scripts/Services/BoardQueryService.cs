@@ -74,13 +74,13 @@ namespace JuiceFresh.Scripts
             if (count <= 0)
                 return list2;
 
-            GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
-            if (items.Length < count)
-                count = items.Length;
+            var items = Item.Active;
+            if (items.Count < count)
+                count = items.Count;
 
-            foreach (GameObject item in items)
+            for (int i = 0; i < items.Count; i++)
             {
-                Item itemComponent = item.GetComponent<Item>();
+                Item itemComponent = items[i];
                 if (!itemComponent.destroying &&
                     itemComponent.currentType == ItemsTypes.NONE &&
                     itemComponent.nextType == ItemsTypes.NONE &&
@@ -109,12 +109,13 @@ namespace JuiceFresh.Scripts
         public List<Item> GetAllExtraItems()
         {
             List<Item> list = new List<Item>();
-            GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+            var items = Item.Active;
 
-            foreach (GameObject item in items)
+            for (int i = 0; i < items.Count; i++)
             {
-                if (item.GetComponent<Item>().currentType != ItemsTypes.NONE)
-                    list.Add(item.GetComponent<Item>());
+                Item item = items[i];
+                if (item.currentType != ItemsTypes.NONE)
+                    list.Add(item);
             }
 
             return list;
@@ -208,11 +209,11 @@ namespace JuiceFresh.Scripts
         public List<Item> GetIngredients(int i = -1)
         {
             List<Item> list = new List<Item>();
-            GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+            var items = Item.Active;
 
-            foreach (GameObject item in items)
+            for (int n = 0; n < items.Count; n++)
             {
-                Item itemComponent = item.GetComponent<Item>();
+                Item itemComponent = items[n];
                 if (i > -1)
                 {
                     if (itemComponent.currentType == ItemsTypes.INGREDIENT &&

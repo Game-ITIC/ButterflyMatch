@@ -130,6 +130,31 @@ public class Item : MonoBehaviour
     {
         _animation?.Dispose();
     }
+
+    // Active pieces, in enable order. It replaces GameObject.FindGameObjectsWithTag("Item"): only the root of
+    // Item.prefab carries that tag, it is the only object with an Item component, and the component is never
+    // disabled. So "active and tagged" equals "Item is enabled".
+    private static readonly List<Item> ActiveItems = new List<Item>();
+
+    /// <summary>Pieces that are active in the scene. Callers that destroy or spawn pieces must iterate a copy.</summary>
+    public static IReadOnlyList<Item> Active => ActiveItems;
+
+    void OnEnable()
+    {
+        ActiveItems.Add(this);
+    }
+
+    void OnDisable()
+    {
+        ActiveItems.Remove(this);
+    }
+
+    // Domain reload is off (Enter Play Mode Options), so the static list is reset per play session.
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    private static void ResetActiveItems()
+    {
+        ActiveItems.Clear();
+    }
     #endregion
 
     #region Initialization

@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 namespace JuiceFresh.Scripts
 {
@@ -8,8 +10,6 @@ namespace JuiceFresh.Scripts
     /// </summary>
     public sealed class BoardItemsService
     {
-        private const string ItemTag = "Item";
-
         private readonly LevelManager _levelManager;
 
         public BoardItemsService(LevelManager levelManager)
@@ -39,39 +39,56 @@ namespace JuiceFresh.Scripts
         /// <summary>Removes every piece except collectable ingredients.</summary>
         public void DestroyItems(bool withoutEffects = false)
         {
-            foreach (GameObject itemObject in GameObject.FindGameObjectsWithTag(ItemTag))
+            // DestroyItem can spawn or re-enter before its first yield, so iterate a snapshot.
+            List<Item> items = ListPool<Item>.Get();
+            try
             {
-                if (itemObject == null)
-                    continue;
+                items.AddRange(Item.Active);
+                for (int i = 0; i < items.Count; i++)
+                {
+                    Item item = items[i];
+                    if (item == null || item.currentType == ItemsTypes.INGREDIENT)
+                        continue;
 
-                Item item = itemObject.GetComponent<Item>();
-                if (item == null || item.currentType == ItemsTypes.INGREDIENT)
-                    continue;
-
-                if (withoutEffects)
-                    item.SmoothDestroy();
-                else
-                    item.DestroyItem();
+                    if (withoutEffects)
+                        item.SmoothDestroy();
+                    else
+                        item.DestroyItem();
+                }
+            }
+            finally
+            {
+                ListPool<Item>.Release(items);
             }
         }
 
         /// <summary>Colour bomb combo: every piece of <paramref name="color"/> becomes <paramref name="nextType"/>.</summary>
         public void SetTypeByColor(int color, ItemsTypes nextType)
         {
-            foreach (GameObject itemObject in GameObject.FindGameObjectsWithTag(ItemTag))
+            // ChangeType calls into piece code, so iterate a snapshot like the old tag array.
+            List<Item> items = ListPool<Item>.Get();
+            try
             {
-                Item item = itemObject.GetComponent<Item>();
-                if (item.color != color)
-                    continue;
+                items.AddRange(Item.Active);
+                for (int i = 0; i < items.Count; i++)
+                {
+                    Item item = items[i];
+                    if (item.color != color)
+                        continue;
 
-                if (nextType == ItemsTypes.HORIZONTAL_STRIPPED || nextType == ItemsTypes.VERTICAL_STRIPPED)
-                    item.nextType = (ItemsTypes)Random.Range(1, 3);
-                else
-                    item.nextType = nextType;
+                    if (nextType == ItemsTypes.HORIZONTAL_STRIPPED || nextType == ItemsTypes.VERTICAL_STRIPPED)
+                        item.nextType = (ItemsTypes)Random.Range(1, 3);
+                    else
+                        item.nextType = nextType;
 
-                item.ChangeType();
-                if (nextType == ItemsTypes.NONE)
-                    _levelManager.destroyAnyway.Add(item);
+                    item.ChangeType();
+                    if (nextType == ItemsTypes.NONE)
+                        _levelManager.destroyAnyway.Add(item);
+                }
+            }
+            finally
+            {
+                ListPool<Item>.Release(items);
             }
         }
 

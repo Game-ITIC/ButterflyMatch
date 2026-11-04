@@ -137,10 +137,11 @@ namespace JuiceFresh.Board
 
         public bool AllItemsLanded()
         {
-            GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
-            foreach (GameObject go in items)
+            // Read-only loop: nothing here can add or remove pieces, so the live list is safe.
+            var items = Item.Active;
+            for (int i = 0; i < items.Count; i++)
             {
-                Item item = go.GetComponent<Item>();
+                Item item = items[i];
                 if (item == null || item.falling)
                     return false;
             }

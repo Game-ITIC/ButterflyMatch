@@ -89,12 +89,22 @@ namespace JuiceFresh.Board
         {
             SoundBase.Instance.PlaySound(SoundBase.Instance.colorBombExpl);
 
-            GameObject[] pieces = GameObject.FindGameObjectsWithTag("Item");
-            foreach (GameObject go in pieces)
+            // DestroyItem can spawn a piece (GenItem) or re-enter DestroyColor before its first yield,
+            // so iterate a snapshot, like the old FindGameObjectsWithTag array.
+            List<Item> pieces = UnityEngine.Pool.ListPool<Item>.Get();
+            try
             {
-                Item other = go.GetComponent<Item>();
-                if (other.color == color)
-                    other.DestroyItem(true, "", true);
+                pieces.AddRange(Item.Active);
+                for (int i = 0; i < pieces.Count; i++)
+                {
+                    Item other = pieces[i];
+                    if (other.color == color)
+                        other.DestroyItem(true, "", true);
+                }
+            }
+            finally
+            {
+                UnityEngine.Pool.ListPool<Item>.Release(pieces);
             }
         }
 

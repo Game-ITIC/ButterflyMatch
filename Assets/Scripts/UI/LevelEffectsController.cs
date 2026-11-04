@@ -132,7 +132,7 @@ public sealed class LevelEffectsController : MonoBehaviour
         }
 
         int color = Random.Range(0, levelManager.colorLimit);
-        List<Item> items = levelManager.GetRandomItems(GameObject.FindGameObjectsWithTag("Item").Length / 3);
+        List<Item> items = levelManager.GetRandomItems(Item.Active.Count / 3);
 
         foreach(Item item in items)
         {
