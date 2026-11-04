@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "generatedOn": "2026-11-04",
+  "purpose": "Concept candidates for the six new islands after Europe",
+  "styleReference": [
+    "Assets/Content/Models/Regions/North/*/*_Icon.png",
+    "Assets/Content/Models/Regions/Europe/*/*_Icon.png"
+  ],
+  "common": {
+    "sourceTool": "OpenAI built-in image generation",
+    "license": "Project-generated media; human release review required",
+    "sourceFormat": "PNG RGBA",
+    "unityCandidateSize": [512, 512],
+    "pivot": [0.5, 0.5],
+    "status": "planned"
+  },
+  "assets": [
+    {
+      "id": "africa-egypt-giza",
+      "region": "Africa",
+      "location": "Egypt / Giza",
+      "landmark": "Great Pyramid and Great Sphinx",
+      "sourcePath": "ArtSource/RegionConcepts/Africa/EgyptGiza_IslandConcept.png",
+      "unityPath": "Assets/Content/UI/RegionConcepts/Africa/EgyptGiza_IslandIcon.png"
+    },
+    {
+      "id": "africa-morocco-marrakech",
+      "region": "Africa",
+      "location": "Morocco / Marrakech",
+      "landmark": "Koutoubia-inspired minaret and red medina gate",
+      "sourcePath": "ArtSource/RegionConcepts/Africa/MarrakechMedina_IslandConcept.png",
+      "unityPath": "Assets/Content/UI/RegionConcepts/Africa/MarrakechMedina_IslandIcon.png"
+    },
+    {
+      "id": "africa-south-africa-cape-town",
+      "region": "Africa",
+      "location": "South Africa / Cape Town",
+      "landmark": "Table Mountain and Cape Dutch waterfront",
+      "sourcePath": "ArtSource/RegionConcepts/Africa/CapeTown_IslandConcept.png",
+      "unityPath": "Assets/Content/UI/RegionConcepts/Africa/CapeTown_IslandIcon.png"
+    },
+    {
+      "id": "latin-america-mexico-chichen-itza",
+      "region": "Latin America",
+      "location": "Mexico / Yucatan",
+      "landmark": "El Castillo at Chichen Itza",
+      "sourcePath": "ArtSource/RegionConcepts/LatinAmerica/ChichenItza_IslandConcept.png",
+      "unityPath": "Assets/Content/UI/RegionConcepts/LatinAmerica/ChichenItza_IslandIcon.png"
+    },
+    {
+      "id": "latin-america-peru-machu-picchu",
+      "region": "Latin America",
+      "location": "Peru / Machu Picchu",
+      "landmark": "Machu Picchu terraces and Sun Temple",
+      "sourcePath": "ArtSource/RegionConcepts/LatinAmerica/MachuPicchu_IslandConcept.png",
+      "unityPath": "Assets/Content/UI/RegionConcepts/LatinAmerica/MachuPicchu_IslandIcon.png"
+    },
+    {
+      "id": "latin-america-brazil-rio",
+      "region": "Latin America",
+      "location": "Brazil / Rio de Janeiro",
+      "landmark": "Christ the Redeemer and Sugarloaf Mountain",
+      "sourcePath": "ArtSource/RegionConcepts/LatinAmerica/RioDeJaneiro_IslandConcept.png",
+      "unityPath": "Assets/Content/UI/RegionConcepts/LatinAmerica/RioDeJaneiro_IslandIcon.png"
+    }
+  ]
+}

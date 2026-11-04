@@ -1011,7 +1011,9 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
     public async UniTask ProcessMatchesAndFalling(bool freezeAnimations = true)
     {
-        await _boardMechanicsService.ProcessBoardAfterMatches(CancellationToken.None, freezeAnimations);
+        // Tied to this LevelManager: a cascade still running when the game scene is reloaded used to keep
+        // going against destroyed objects (MissingReferenceException on GameField every move).
+        await _boardMechanicsService.ProcessBoardAfterMatches(this.GetCancellationTokenOnDestroy(), freezeAnimations);
     }
 
     public async UniTask SettleBoardBeforePreWin()
@@ -1208,6 +1210,10 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
                 gameStatus = GameState.PreWinAnimations;
                 break;
             case WinLoseEvaluation.Lose:
+                // A collected ingredient / defused bomb counts when its flight lands; one still in the air
+                // can finish the goal, and the landing runs CheckWinLose again.
+                if (ingredientFly)
+                    break;
                 Limit = 0;
                 gameStatus = GameState.GameOver;
                 break;
@@ -1238,7 +1244,7 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
         foreach (Item item in items)
         {
-            if(item.currentType == ItemsTypes.BOMB)
+            if(item.currentType == ItemsTypes.BOMB || item.nextType == ItemsTypes.BOMB)
                 bombsOnField++;
         }
 
@@ -1249,9 +1255,34 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         {
             item.nextType = ItemsTypes.BOMB;
 
-            if(bombTimers.Count > 0) // 1.3
+            if(i < bombTimers.Count) // 1.3
                 item.bombTimer = bombTimers[i];
             i++;
+            item.ChangeType();
+        }
+    }
+
+    /// <summary>
+    /// After a move: put back bombs that were lost (a piece marked to become a bomb was destroyed
+    /// before it turned), so a bomb level can always reach its target.
+    /// </summary>
+    public void TopUpBombs()
+    {
+        if (target != Target.BOMBS || gameStatus != GameState.Playing)
+            return;
+
+        int onField = 0;
+        foreach (Item item in GetItems())
+        {
+            if (item != null && !item.destroying &&
+                (item.currentType == ItemsTypes.BOMB || item.nextType == ItemsTypes.BOMB))
+                onField++;
+        }
+
+        int flying = _collectedTargetFlyController != null ? _collectedTargetFlyController.PendingBombs : 0;
+        foreach (Item item in GetRandomItems(bombsCollect - TargetBombs - flying - onField))
+        {
+            item.nextType = ItemsTypes.BOMB;
             item.ChangeType();
         }
     }

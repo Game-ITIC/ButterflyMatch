@@ -17,6 +17,7 @@ public sealed class CollectedTargetFlyController : MonoBehaviour
     CollectedTargetFlightAnimator _flightAnimator;
 
     public bool IsFlying => _flightAnimator != null && _flightAnimator.IsFlying;
+    public int PendingBombs => _progressTracker != null ? _progressTracker.PendingBombs : 0;
 
     public void Initialize(LevelManager levelManager)
     {
@@ -44,7 +45,7 @@ public sealed class CollectedTargetFlyController : MonoBehaviour
             return false;
         }
 
-        _progressTracker.Reserve(request.CounterIndex);
+        _progressTracker.Reserve(request);
         _flightAnimator.Play(request, OnFlightFinished);
         return true;
     }
@@ -74,7 +75,7 @@ public sealed class CollectedTargetFlyController : MonoBehaviour
     {
         _progressTracker?.Complete(request, arrived);
 
-        if (arrived && _levelManager != null && _levelManager.gameStatus == GameState.Playing)
+        if (_levelManager != null && _levelManager.gameStatus == GameState.Playing)
         {
             _levelManager.CheckWinLose();
         }

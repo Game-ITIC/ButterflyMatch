@@ -883,6 +883,14 @@ MonoBehaviour:
     m_Key: build_new
     m_Metadata:
       m_Items: []
+  - m_Id: 700714748633088
+    m_Key: shop_section_boosters
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700714798964736
+    m_Key: shop_section_store
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

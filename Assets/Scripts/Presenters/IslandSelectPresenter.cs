@@ -32,6 +32,12 @@ namespace Presenters
                 _buildService.Changed += RefreshIfOpen;
             }
 
+            // A paged island screen can be swiped into at any time, so its cards are always kept filled.
+            if (_panel != null && _panel.IsPaged)
+            {
+                Refresh();
+            }
+
             if (_islandButton == null)
             {
                 return;
@@ -61,6 +67,13 @@ namespace Presenters
                 return;
             }
 
+            if (_panel.IsPaged)
+            {
+                // Nav tab: always slides to the island screen (cards are already up to date).
+                _panel.Show();
+                return;
+            }
+
             if (_panel.IsOpen)
             {
                 _panel.Hide();
@@ -73,7 +86,7 @@ namespace Presenters
 
         private void RefreshIfOpen()
         {
-            if (_panel != null && _panel.IsOpen)
+            if (_panel != null && (_panel.IsOpen || _panel.IsPaged))
             {
                 Refresh();
             }

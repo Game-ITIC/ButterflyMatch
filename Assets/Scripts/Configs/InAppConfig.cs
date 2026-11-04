@@ -72,6 +72,10 @@ namespace Configs
 
         [Header("Boosters for gems (Docs/GDD.md 7)")]
         public List<BoosterOffer> BoosterOffers = new();
+        [Tooltip("One card per booster type with its packs side by side. Empty = old small cards, three per row.")]
+        public Views.BoosterOfferCardView BoosterCardPrefab;
+        [Tooltip("Section title row (\"Boosters\", \"Gems & Bundles\"). Empty = no titles.")]
+        public TMPro.TMP_Text SectionTitlePrefab;
 
         public InAppProductView GetProductViewPrefab(ProductColumnWidth columnWidth)
         {

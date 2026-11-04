@@ -145,6 +145,14 @@ public class Item : MonoBehaviour
 
     private void InitializeWithNextType()
     {
+        // A piece marked as a bomb before its Start() becomes the bomb right here, so it needs the bomb
+        // setup too: without it the bomb had no timer (0) and blew up on the next move.
+        if (nextType == ItemsTypes.BOMB)
+        {
+            sprRenderer.sprite = bombItems[color];
+            SetupBomb();
+        }
+
         debugType = nextType;
         currentType = nextType;
         nextType = ItemsTypes.NONE;
@@ -447,9 +455,13 @@ public class Item : MonoBehaviour
         appeared = false;
         EnsureValidBoardScale();
         ApplyVisualEffect();
-        
-        while (!appeared)
+
+        // The appear tween can be killed (piece selected, board shaken); don't wait for it forever,
+        // or the special piece (e.g. a level's bomb) never shows up.
+        float appearDeadline = Time.time + 1.5f;
+        while (!appeared && Time.time < appearDeadline)
             yield return new WaitForFixedUpdate();
+        appeared = true;
 
         EnsureValidBoardScale();
 
@@ -551,13 +563,19 @@ public class Item : MonoBehaviour
 
     public void BombTick()
     {
+        // Only live bombs count down (every piece used to, so a piece that turned into a bomb later
+        // started from a stale negative timer).
+        if (currentType != ItemsTypes.BOMB)
+            return;
+
         bombTimer--;
         if (bombTimer <= 0 && currentType == ItemsTypes.BOMB && LevelManager.Instance.gameStatus == GameState.Playing)
         {
             LevelManager.Instance.gameStatus = GameState.PreFailedBomb;
             AwakeItem();
             sprRenderer.sortingOrder = 4;
-            timerText.enabled = false;
+            if (timerText != null)
+                timerText.enabled = false;
             square = null;
             AnimatorHelper.Instance.BombFailed(gameObject, transform.position, Vector3.zero, 20, BombFailedAnimCallBack);
         }

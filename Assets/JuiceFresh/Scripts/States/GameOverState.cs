@@ -146,8 +146,9 @@ namespace JuiceFresh.States
                 continueButton.gameObject.SetActive(hasPaidContinue);
             }
 
-            // Two buttons side by side; a single one is centered.
-            const float sideOffset = 205f;
+            // Two buttons side by side; a single one is centered. 380 px wide buttons pulse up to 1.2x
+            // (456 px), so 240 keeps a gap between them and stays inside the 1006 px panel.
+            const float sideOffset = 240f;
             if(adsTransform != null)
             {
                 adsTransform.anchoredPosition = new Vector2(hasPaidContinue ? -sideOffset : 0f, adsTransform.anchoredPosition.y);

@@ -888,6 +888,14 @@ MonoBehaviour:
     m_Localized: "Nouveau b\xE2timent"
     m_Metadata:
       m_Items: []
+  - m_Id: 700714748633088
+    m_Localized: Bonus
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700714798964736
+    m_Localized: Gemmes et packs
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

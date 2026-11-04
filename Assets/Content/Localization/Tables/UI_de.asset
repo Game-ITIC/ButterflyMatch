@@ -887,6 +887,14 @@ MonoBehaviour:
     m_Localized: "Neues Geb\xE4ude"
     m_Metadata:
       m_Items: []
+  - m_Id: 700714748633088
+    m_Localized: Booster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700714798964736
+    m_Localized: Edelsteine & Pakete
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

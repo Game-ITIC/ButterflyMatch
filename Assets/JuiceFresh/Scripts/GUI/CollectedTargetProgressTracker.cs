@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-// Owns pending reservations and applies counters only after a successful arrival.
+// Owns pending reservations and applies counters when a flight finishes.
 public sealed class CollectedTargetProgressTracker
 {
     readonly LevelManager _levelManager;
@@ -22,6 +22,19 @@ public sealed class CollectedTargetProgressTracker
         return _levelManager.ingrTarget[counterIndex].count - pending > 0;
     }
 
+    // Defused bombs still flying to the counter (not yet in TargetBombs).
+    public int PendingBombs { get; private set; }
+
+    public void Reserve(CollectedTargetFlyRequest request)
+    {
+        if (request.IncrementBombCounterOnArrival)
+        {
+            PendingBombs++;
+        }
+
+        Reserve(request.CounterIndex);
+    }
+
     public void Reserve(int counterIndex)
     {
         _pendingByTarget.TryGetValue(counterIndex, out int pending);
@@ -31,8 +44,14 @@ public sealed class CollectedTargetProgressTracker
     public void Complete(CollectedTargetFlyRequest request, bool arrived)
     {
         Release(request.CounterIndex);
+        if (request.IncrementBombCounterOnArrival && PendingBombs > 0)
+        {
+            PendingBombs--;
+        }
 
-        if (!arrived || _levelManager == null)
+        // The piece is already gone from the board, so it counts even if its flight was cut short;
+        // dropping it lost goal progress for good (a defused bomb was neither counted nor respawned).
+        if (_levelManager == null)
         {
             return;
         }

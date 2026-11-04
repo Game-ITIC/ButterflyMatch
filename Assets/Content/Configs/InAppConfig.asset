@@ -305,62 +305,66 @@ MonoBehaviour:
     type: 3}
   BoosterOffers:
   - type: 0
-    icon: {fileID: 21300000, guid: c306718c475909f499eb6947c1e8c10b, type: 3}
+    icon: {fileID: -3500828791934055406, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 60
     count: 1
     discountPercent: 0
   - type: 0
-    icon: {fileID: 21300000, guid: c306718c475909f499eb6947c1e8c10b, type: 3}
+    icon: {fileID: -3500828791934055406, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 160
     count: 3
     discountPercent: 10
   - type: 0
-    icon: {fileID: 21300000, guid: c306718c475909f499eb6947c1e8c10b, type: 3}
+    icon: {fileID: -3500828791934055406, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 240
     count: 5
     discountPercent: 20
   - type: 1
-    icon: {fileID: 21300000, guid: 4e140ee325215d34a94948d545950840, type: 3}
+    icon: {fileID: 21300000, guid: a0b1459e1710e7440b699add42a3a44d, type: 3}
     gemPrice: 80
     count: 1
     discountPercent: 0
   - type: 1
-    icon: {fileID: 21300000, guid: 4e140ee325215d34a94948d545950840, type: 3}
+    icon: {fileID: 21300000, guid: a0b1459e1710e7440b699add42a3a44d, type: 3}
     gemPrice: 215
     count: 3
     discountPercent: 10
   - type: 1
-    icon: {fileID: 21300000, guid: 4e140ee325215d34a94948d545950840, type: 3}
+    icon: {fileID: 21300000, guid: a0b1459e1710e7440b699add42a3a44d, type: 3}
     gemPrice: 320
     count: 5
     discountPercent: 20
   - type: 2
-    icon: {fileID: 21300000, guid: 5a81773906caf7f4db5aa95f798750f0, type: 3}
+    icon: {fileID: -5708036874844557674, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 100
     count: 1
     discountPercent: 0
   - type: 2
-    icon: {fileID: 21300000, guid: 5a81773906caf7f4db5aa95f798750f0, type: 3}
+    icon: {fileID: -5708036874844557674, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 270
     count: 3
     discountPercent: 10
   - type: 2
-    icon: {fileID: 21300000, guid: 5a81773906caf7f4db5aa95f798750f0, type: 3}
+    icon: {fileID: -5708036874844557674, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 400
     count: 5
     discountPercent: 20
   - type: 3
-    icon: {fileID: 21300000, guid: 6001e70faa5447842987b513f1b3bcd2, type: 3}
+    icon: {fileID: -8256595960412094365, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 120
     count: 1
     discountPercent: 0
   - type: 3
-    icon: {fileID: 21300000, guid: 6001e70faa5447842987b513f1b3bcd2, type: 3}
+    icon: {fileID: -8256595960412094365, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 325
     count: 3
     discountPercent: 10
   - type: 3
-    icon: {fileID: 21300000, guid: 6001e70faa5447842987b513f1b3bcd2, type: 3}
+    icon: {fileID: -8256595960412094365, guid: b774383eb87286941ba6e4e0e2616afd, type: 3}
     gemPrice: 480
     count: 5
     discountPercent: 20
+  BoosterCardPrefab: {fileID: 4106744614728383166, guid: bcf4c32d61c986e48af7865d78f3c2ea,
+    type: 3}
+  SectionTitlePrefab: {fileID: 2440495647069159095, guid: c774f57e8fb2bd344a738457b5910186,
+    type: 3}

@@ -1,0 +1,2297 @@
+[
+{
+"n": 46,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "rune",
+"colours": 3,
+"limit": 15
+},
+{
+"n": 47,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "pine",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 48,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "gate",
+"colours": 3,
+"limit": 18
+},
+{
+"n": 49,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "longhouse",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 50,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 16
+},
+{
+"n": 51,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 52,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "hourglass",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 53,
+"mode": 2,
+"tier": "easy",
+"timed": false,
+"shape": "full78",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 54,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "full78",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 55,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "hourglass",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 56,
+"mode": 5,
+"tier": "easy",
+"timed": false,
+"shape": "fjord",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 57,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 17
+},
+{
+"n": 58,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "full78",
+"colours": 4,
+"limit": 13
+},
+{
+"n": 59,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "comb",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 60,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "full8",
+"colours": 3,
+"limit": 12
+},
+{
+"n": 61,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "bowl",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 62,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 63,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 64,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 65,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "full78",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 66,
+"mode": 2,
+"tier": "easy",
+"timed": true,
+"shape": "proc",
+"colours": 3,
+"limit": 30
+},
+{
+"n": 67,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 68,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 69,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 70,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 16
+},
+{
+"n": 71,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "arch",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 72,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "snowflake",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 73,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 74,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "fjord",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 75,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "iceberg",
+"colours": 4,
+"limit": 13
+},
+{
+"n": 76,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "iceberg",
+"colours": 3,
+"limit": 11
+},
+{
+"n": 77,
+"mode": 0,
+"tier": "normal",
+"timed": true,
+"shape": "kite",
+"colours": 3,
+"limit": 48
+},
+{
+"n": 78,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "bowl",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 79,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 80,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "iceberg",
+"colours": 3,
+"limit": 11
+},
+{
+"n": 81,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 82,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "xcross",
+"colours": 4,
+"limit": 40
+},
+{
+"n": 83,
+"mode": 2,
+"tier": "hard",
+"timed": true,
+"shape": "temple",
+"colours": 4,
+"limit": 30
+},
+{
+"n": 84,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 17
+},
+{
+"n": 85,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 21
+},
+{
+"n": 86,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "pine",
+"colours": 3,
+"limit": 11
+},
+{
+"n": 87,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "pine",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 88,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "wave",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 89,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "gate",
+"colours": 4,
+"limit": 16
+},
+{
+"n": 90,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 16
+},
+{
+"n": 91,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "bowl",
+"colours": 4,
+"limit": 26
+},
+{
+"n": 92,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 93,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "lantern",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 94,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "longhouse",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 95,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "gate",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 96,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "temple",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 97,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "lantern",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 98,
+"mode": 2,
+"tier": "normal",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 40
+},
+{
+"n": 99,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "cross",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 100,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "full78",
+"colours": 3,
+"limit": 18
+},
+{
+"n": 101,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 40
+},
+{
+"n": 102,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 103,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 104,
+"mode": 0,
+"tier": "normal",
+"timed": true,
+"shape": "snowflake",
+"colours": 4,
+"limit": 46
+},
+{
+"n": 105,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 106,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 107,
+"mode": 2,
+"tier": "normal",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 31
+},
+{
+"n": 108,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 29
+},
+{
+"n": 109,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "iceberg",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 110,
+"mode": 0,
+"tier": "breather",
+"timed": true,
+"shape": "butterfly",
+"colours": 3,
+"limit": 43
+},
+{
+"n": 111,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 112,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "fjord",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 113,
+"mode": 2,
+"tier": "hard",
+"timed": true,
+"shape": "wave",
+"colours": 4,
+"limit": 33
+},
+{
+"n": 114,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "tall6",
+"colours": 4,
+"limit": 25
+},
+{
+"n": 115,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "longhouse",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 116,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 11
+},
+{
+"n": 117,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 118,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 119,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 120,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "iceberg",
+"colours": 3,
+"limit": 14
+},
+{
+"n": 121,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 21
+},
+{
+"n": 122,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 123,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 124,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "bowl",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 125,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "tall6",
+"colours": 4,
+"limit": 22
+},
+{
+"n": 126,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "cross",
+"colours": 3,
+"limit": 11
+},
+{
+"n": 127,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 25
+},
+{
+"n": 128,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "bowl",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 129,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "tall6",
+"colours": 4,
+"limit": 25
+},
+{
+"n": 130,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "diamond",
+"colours": 3,
+"limit": 17
+},
+{
+"n": 131,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "shield",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 132,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 133,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "bowl",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 134,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 135,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 16
+},
+{
+"n": 136,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "diamond",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 137,
+"mode": 0,
+"tier": "normal",
+"timed": true,
+"shape": "butterfly",
+"colours": 4,
+"limit": 52
+},
+{
+"n": 138,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "hourglass",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 139,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 140,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "comb",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 141,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 142,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "lantern",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 143,
+"mode": 2,
+"tier": "hard",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 46
+},
+{
+"n": 144,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "full8",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 145,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 146,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "kite",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 147,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 148,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "xcross",
+"colours": 4,
+"limit": 22
+},
+{
+"n": 149,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "gate",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 150,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 17
+},
+{
+"n": 151,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "cross",
+"colours": 4,
+"limit": 13
+},
+{
+"n": 152,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "xcross",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 153,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 154,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 155,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 22
+},
+{
+"n": 156,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 15
+},
+{
+"n": 157,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "wave",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 158,
+"mode": 2,
+"tier": "normal",
+"timed": true,
+"shape": "kite",
+"colours": 4,
+"limit": 48
+},
+{
+"n": 159,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 160,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "longhouse",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 161,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "xcross",
+"colours": 4,
+"limit": 29
+},
+{
+"n": 162,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 33
+},
+{
+"n": 163,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 164,
+"mode": 0,
+"tier": "normal",
+"timed": true,
+"shape": "temple",
+"colours": 4,
+"limit": 63
+},
+{
+"n": 165,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 166,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 167,
+"mode": 2,
+"tier": "normal",
+"timed": true,
+"shape": "longhouse",
+"colours": 4,
+"limit": 44
+},
+{
+"n": 168,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 25
+},
+{
+"n": 169,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "longhouse",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 170,
+"mode": 0,
+"tier": "breather",
+"timed": true,
+"shape": "rune",
+"colours": 3,
+"limit": 43
+},
+{
+"n": 171,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 172,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "cross",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 173,
+"mode": 2,
+"tier": "hard",
+"timed": true,
+"shape": "gate",
+"colours": 4,
+"limit": 44
+},
+{
+"n": 174,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 33
+},
+{
+"n": 175,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "diamond",
+"colours": 4,
+"limit": 16
+},
+{
+"n": 176,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 177,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 178,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "full8",
+"colours": 4,
+"limit": 13
+},
+{
+"n": 179,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 180,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "tall6",
+"colours": 3,
+"limit": 13
+},
+{
+"n": 181,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "pine",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 182,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 183,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "fjord",
+"colours": 4,
+"limit": 16
+},
+{
+"n": 184,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "towers",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 185,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "gate",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 186,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "iceberg",
+"colours": 3,
+"limit": 11
+},
+{
+"n": 187,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "fjord",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 188,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "tall6",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 189,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 16
+},
+{
+"n": 190,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 17
+},
+{
+"n": 191,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "towers",
+"colours": 4,
+"limit": 36
+},
+{
+"n": 192,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 193,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "iceberg",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 194,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "gate",
+"colours": 4,
+"limit": 27
+},
+{
+"n": 195,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "lantern",
+"colours": 4,
+"limit": 24
+},
+{
+"n": 196,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 18
+},
+{
+"n": 197,
+"mode": 0,
+"tier": "normal",
+"timed": true,
+"shape": "arch",
+"colours": 4,
+"limit": 50
+},
+{
+"n": 198,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "fjord",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 199,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "lantern",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 200,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "full8",
+"colours": 3,
+"limit": 11
+},
+{
+"n": 201,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 202,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "temple",
+"colours": 4,
+"limit": 27
+},
+{
+"n": 203,
+"mode": 2,
+"tier": "hard",
+"timed": true,
+"shape": "full7",
+"colours": 4,
+"limit": 47
+},
+{
+"n": 204,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "full78",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 205,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 206,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "kite",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 207,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "rune",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 208,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "shield",
+"colours": 4,
+"limit": 13
+},
+{
+"n": 209,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "tall6",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 210,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 17
+},
+{
+"n": 211,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 212,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "gate",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 213,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "full78",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 214,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "tall6",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 215,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "iceberg",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 216,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 11
+},
+{
+"n": 217,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 218,
+"mode": 2,
+"tier": "normal",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 53
+},
+{
+"n": 219,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 220,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "gate",
+"colours": 3,
+"limit": 12
+},
+{
+"n": 221,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 222,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "arch",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 223,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 224,
+"mode": 0,
+"tier": "normal",
+"timed": true,
+"shape": "tall6",
+"colours": 4,
+"limit": 55
+},
+{
+"n": 225,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "comb",
+"colours": 4,
+"limit": 22
+},
+{
+"n": 226,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 16
+},
+{
+"n": 227,
+"mode": 2,
+"tier": "normal",
+"timed": true,
+"shape": "heart",
+"colours": 4,
+"limit": 40
+},
+{
+"n": 228,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "hourglass",
+"colours": 4,
+"limit": 32
+},
+{
+"n": 229,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 16
+},
+{
+"n": 230,
+"mode": 0,
+"tier": "breather",
+"timed": true,
+"shape": "proc",
+"colours": 3,
+"limit": 51
+},
+{
+"n": 231,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 26
+},
+{
+"n": 232,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "tall6",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 233,
+"mode": 2,
+"tier": "hard",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 46
+},
+{
+"n": 234,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 27
+},
+{
+"n": 235,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "snowflake",
+"colours": 4,
+"limit": 23
+},
+{
+"n": 236,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 3,
+"limit": 10
+},
+{
+"n": 237,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "hourglass",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 238,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 239,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 12
+},
+{
+"n": 240,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "gate",
+"colours": 4,
+"limit": 36
+},
+{
+"n": 241,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 25
+},
+{
+"n": 242,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 27
+},
+{
+"n": 243,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 13
+},
+{
+"n": 244,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "longhouse",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 245,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "longhouse",
+"colours": 4,
+"limit": 26
+},
+{
+"n": 246,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "rune",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 247,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "pine",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 248,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "kite",
+"colours": 4,
+"limit": 40
+},
+{
+"n": 249,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "comb",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 250,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 251,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 31
+},
+{
+"n": 252,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 253,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 254,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 25
+},
+{
+"n": 255,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "bowl",
+"colours": 4,
+"limit": 30
+},
+{
+"n": 256,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 31
+},
+{
+"n": 257,
+"mode": 0,
+"tier": "normal",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 67
+},
+{
+"n": 258,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "xcross",
+"colours": 4,
+"limit": 30
+},
+{
+"n": 259,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 260,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 22
+},
+{
+"n": 261,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 262,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 263,
+"mode": 2,
+"tier": "hard",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 59
+},
+{
+"n": 264,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "comb",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 265,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "full8",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 266,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 267,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 26
+},
+{
+"n": 268,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 269,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "longhouse",
+"colours": 4,
+"limit": 23
+},
+{
+"n": 270,
+"mode": 0,
+"tier": "breather",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 271,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 25
+},
+{
+"n": 272,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 273,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 14
+},
+{
+"n": 274,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "iceberg",
+"colours": 4,
+"limit": 21
+},
+{
+"n": 275,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "wave",
+"colours": 4,
+"limit": 38
+},
+{
+"n": 276,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 26
+},
+{
+"n": 277,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "stairs",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 278,
+"mode": 2,
+"tier": "normal",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 42
+},
+{
+"n": 279,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "shield",
+"colours": 4,
+"limit": 11
+},
+{
+"n": 280,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "full8",
+"colours": 4,
+"limit": 17
+},
+{
+"n": 281,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "butterfly",
+"colours": 4,
+"limit": 22
+},
+{
+"n": 282,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 35
+},
+{
+"n": 283,
+"mode": 2,
+"tier": "hard",
+"timed": false,
+"shape": "arch",
+"colours": 4,
+"limit": 21
+},
+{
+"n": 284,
+"mode": 0,
+"tier": "normal",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 56
+},
+{
+"n": 285,
+"mode": 1,
+"tier": "boss",
+"timed": false,
+"shape": "comb",
+"colours": 4,
+"limit": 23
+},
+{
+"n": 286,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "wave",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 287,
+"mode": 2,
+"tier": "normal",
+"timed": true,
+"shape": "proc",
+"colours": 4,
+"limit": 42
+},
+{
+"n": 288,
+"mode": 4,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 25
+},
+{
+"n": 289,
+"mode": 1,
+"tier": "hard",
+"timed": false,
+"shape": "full7",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 290,
+"mode": 0,
+"tier": "breather",
+"timed": true,
+"shape": "hourglass",
+"colours": 4,
+"limit": 45
+},
+{
+"n": 291,
+"mode": 3,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 292,
+"mode": 5,
+"tier": "normal",
+"timed": false,
+"shape": "arch",
+"colours": 4,
+"limit": 15
+},
+{
+"n": 293,
+"mode": 2,
+"tier": "hard",
+"timed": true,
+"shape": "hourglass",
+"colours": 4,
+"limit": 51
+},
+{
+"n": 294,
+"mode": 1,
+"tier": "normal",
+"timed": false,
+"shape": "full8",
+"colours": 4,
+"limit": 18
+},
+{
+"n": 295,
+"mode": 4,
+"tier": "boss",
+"timed": false,
+"shape": "towers",
+"colours": 4,
+"limit": 38
+},
+{
+"n": 296,
+"mode": 3,
+"tier": "easy",
+"timed": false,
+"shape": "rune",
+"colours": 4,
+"limit": 27
+},
+{
+"n": 297,
+"mode": 0,
+"tier": "normal",
+"timed": false,
+"shape": "proc",
+"colours": 4,
+"limit": 20
+},
+{
+"n": 298,
+"mode": 2,
+"tier": "normal",
+"timed": false,
+"shape": "shield",
+"colours": 4,
+"limit": 19
+},
+{
+"n": 299,
+"mode": 5,
+"tier": "hard",
+"timed": false,
+"shape": "full8",
+"colours": 4,
+"limit": 10
+},
+{
+"n": 300,
+"mode": 1,
+"tier": "breather",
+"timed": false,
+"shape": "tall6",
+"colours": 4,
+"limit": 21
+}
+]

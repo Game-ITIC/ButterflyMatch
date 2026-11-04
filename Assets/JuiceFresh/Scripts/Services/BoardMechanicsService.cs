@@ -12,6 +12,19 @@ namespace JuiceFresh.Scripts
         private LevelManager levelManager;
         private UniTask _activeBoardProcess = UniTask.CompletedTask;
 
+        // Bomb timers count player moves. One move can run several board passes (every 6th piece of a chain
+        // sends a flower that triggers another pass), which used to tick the bombs 2-3 times per move.
+        private int _lastBombTickMove; // moveID starts at 0: nothing ticks before the first move
+
+        private void TickBombsOncePerMove()
+        {
+            if (levelManager.GameField == null || _lastBombTickMove == levelManager.moveID)
+                return;
+
+            _lastBombTickMove = levelManager.moveID;
+            levelManager.GameField.BroadcastMessage("BombTick");
+        }
+
         public BoardMechanicsService(LevelManager levelManager)
         {
             this.levelManager = levelManager;
@@ -30,10 +43,23 @@ namespace JuiceFresh.Scripts
                 await ProcessBoardAfterMatchesAsync(cancellationToken, freezeAnimations);
                 completion.TrySetResult();
             }
+            catch (System.OperationCanceledException)
+            {
+                completion.TrySetResult();
+                throw;
+            }
             catch (System.Exception ex)
             {
-                completion.TrySetException(ex);
-                throw;
+                // Never leave the board locked: a failed pass used to keep DragBlocked = true and, stored in
+                // _activeBoardProcess, made every later move throw too (the level froze until restart).
+                Debug.LogException(ex);
+                completion.TrySetResult();
+                if (levelManager != null)
+                {
+                    levelManager.destroyAnyway.Clear();
+                    levelManager.gatheredTypes.Clear();
+                    levelManager.DragBlocked = false;
+                }
             }
         }
 
@@ -130,9 +156,20 @@ namespace JuiceFresh.Scripts
                 List<Item> itemsToDestroy = new List<Item>(levelManager.destroyAnyway);
                 int destroyArrayCount = itemsToDestroy.Count;
                 int iCounter = 0;
+                Item lastAlive = null;
                 foreach (Item item in itemsToDestroy)
                 {
                     iCounter++;
+                    // A striped piece earlier in this chain may already have blown this one up (the loop awaits
+                    // between pieces); touching it then threw and left the board DragBlocked for good.
+                    if (item == null || item.square == null)
+                    {
+                        if (iCounter == destroyArrayCount)
+                            DestroyGatheredExtraItems(lastAlive);
+                        continue;
+                    }
+
+                    lastAlive = item;
                     if (item.nextType == ItemsTypes.NONE)
                     {
                         if (item.square.IsCageGoingToBroke())
@@ -264,7 +301,8 @@ namespace JuiceFresh.Scripts
             await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken); // WaitForEndOfFrame equivalent
 
             // Update bombs
-            levelManager.GameField.BroadcastMessage("BombTick");
+            TickBombsOncePerMove();
+            levelManager.TopUpBombs();
 
             // Save bomb timers
             UpdateBombTimers();
@@ -332,9 +370,20 @@ namespace JuiceFresh.Scripts
                 List<Item> itemsToDestroy = new List<Item>(levelManager.destroyAnyway);
                 int destroyArrayCount = itemsToDestroy.Count;
                 int iCounter = 0;
+                Item lastAlive = null;
                 foreach (Item item in itemsToDestroy)
                 {
                     iCounter++;
+                    // A striped piece earlier in this chain may already have blown this one up (the loop awaits
+                    // between pieces); touching it then threw and left the board DragBlocked for good.
+                    if (item == null || item.square == null)
+                    {
+                        if (iCounter == destroyArrayCount)
+                            DestroyGatheredExtraItems(lastAlive);
+                        continue;
+                    }
+
+                    lastAlive = item;
                     if (item.nextType == ItemsTypes.NONE)
                     {
                         if (item.square.IsCageGoingToBroke())
@@ -474,7 +523,8 @@ namespace JuiceFresh.Scripts
             yield return new WaitForEndOfFrame();
 
             // Update bombs
-            levelManager.GameField.BroadcastMessage("BombTick");
+            TickBombsOncePerMove();
+            levelManager.TopUpBombs();
 
             // Save bomb timers
             UpdateBombTimers();
@@ -488,6 +538,9 @@ namespace JuiceFresh.Scripts
         // Helper methods from the original FallingDown implementation
         private void DestroyGatheredExtraItems(Item item)
         {
+            if (item == null)
+                return;
+
             if (levelManager.gatheredTypes.Count > 1)
             {
                 item.DestroyHorizontal();

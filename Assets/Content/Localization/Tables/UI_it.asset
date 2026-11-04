@@ -887,6 +887,14 @@ MonoBehaviour:
     m_Localized: Nuovo edificio
     m_Metadata:
       m_Items: []
+  - m_Id: 700714748633088
+    m_Localized: Potenziamenti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 700714798964736
+    m_Localized: Gemme e pacchetti
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

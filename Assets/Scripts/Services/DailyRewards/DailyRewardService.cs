@@ -38,7 +38,7 @@ namespace Services.DailyRewards
     public class DailyRewardService
     {
         private const string ClaimedDayIndexKey = "butterfly-match-daily-reward-day-index";
-        private const string LastClaimDateKey = "butterfly-match-daily-reward-last-claim-date";
+        public const string LastClaimDateKey ="butterfly-match-daily-reward-last-claim-date";
 
         private static readonly DailyRewardDefinition[] Rewards =
         {

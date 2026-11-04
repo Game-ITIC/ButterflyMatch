@@ -39,6 +39,14 @@ public class PlayingState : GameStateBase
         // Check for possible matches
         levelManager.StartCoroutine(TipsManager.THIS.CheckPossibleCombines());
 
+        // Every state change stops LevelManager's coroutines, so a bomb spawn started before entering
+        // Playing (level start, Continue, board regen) can be cancelled and the level becomes unwinnable.
+        // InitBombs only tops up what is missing, so it is safe to run on each entry.
+        if(levelManager.target == Target.BOMBS)
+        {
+            levelManager.StartCoroutine(levelManager.InitBombs());
+        }
+
         // If it's a timed level, make sure the timer is running
         if(levelManager.limitType == LIMIT.TIME)
         {
@@ -67,8 +75,18 @@ public class PlayingState : GameStateBase
 
     private void HandleInput()
     {
-        if(levelManager.gameStatus != GameState.Playing || levelManager.DragBlocked)
+        if(levelManager.gameStatus != GameState.Playing || levelManager.DragBlocked || IsMoveInProgress)
             return;
+
+        // Out of moves but still Playing: the last ingredient / defused bomb is flying to its counter and
+        // decides win or lose when it lands. Without this the player got free moves in that window.
+        if(levelManager.limitType == LIMIT.MOVES && levelManager.Limit <= 0)
+            return;
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        if(Utils.DebugTools.CheatPanel.BlocksGameInput)
+            return;
+#endif
 
         // Handle touch input
         if(Input.GetMouseButton(0))
@@ -449,21 +467,34 @@ public class PlayingState : GameStateBase
         levelManager.ActivatedBoost = null;
     }
 
+    /// <summary>True from the moment a move is released until its cascade has settled.</summary>
+    public bool IsMoveInProgress => _movesInProgress > 0;
+
+    private int _movesInProgress;
+
     private async UniTask ProcessMatchedItems()
     {
         levelManager.DragBlocked = true;
+        _movesInProgress++;
 
-        // Start the matching process
-        await levelManager.FindMatches();
-
-        // Decrement moves if this is a move-limited level
+        // The move is spent when it is released. It used to be taken only after the whole cascade, and
+        // DragBlocked drops a frame before that, so quick follow-up moves were queued and some were free.
         if(levelManager.limitType == LIMIT.MOVES)
         {
             levelManager.Limit--;
         }
 
-        // Increment the move counter
         levelManager.moveID++;
+
+        try
+        {
+            // Start the matching process
+            await levelManager.FindMatches();
+        }
+        finally
+        {
+            _movesInProgress--;
+        }
 
         if(!HasPossibleMoves())
         {

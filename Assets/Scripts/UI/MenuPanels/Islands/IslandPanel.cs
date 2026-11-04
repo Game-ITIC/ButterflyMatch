@@ -28,8 +28,31 @@ public class IslandPanel : MonoBehaviour
     private Transform _activeContainer;
     private int _regionCount;
 
+    private MenuPager _pager;
+    private bool _pagerResolved;
+
+    // Inside the main menu pager the panel is a swipeable screen instead of a popup.
+    private MenuPager Pager
+    {
+        get
+        {
+            if (!_pagerResolved)
+            {
+                _pagerResolved = true;
+                _pager = GetComponentInParent<MenuPager>(true);
+                if (_pager != null && !_pager.Contains(this)) _pager = null;
+            }
+
+            return _pager;
+        }
+    }
+
+    public bool IsPaged => Pager != null;
+
     // A panel that is fading out no longer counts as open.
-    public bool IsOpen => gameObject.activeSelf && (!TryGetComponent(out CanvasGroup group) || group.interactable);
+    public bool IsOpen => IsPaged
+        ? Pager.IsCurrent(this)
+        : gameObject.activeSelf && (!TryGetComponent(out CanvasGroup group) || group.interactable);
 
     private void Awake()
     {
@@ -44,12 +67,20 @@ public class IslandPanel : MonoBehaviour
             if (button != null)
             {
                 button.onClick.AddListener(Hide);
+                // A screen is left by swiping or the nav bar, not by a close button.
+                if (IsPaged) button.gameObject.SetActive(false);
             }
         }
     }
 
     public void Show()
     {
+        if (IsPaged)
+        {
+            Pager.Open(this);
+            return;
+        }
+
         CurvedUIPanelAnimator.Show(
             gameObject,
             animatePanelTransitions ? panelOpenDuration : 0f,
@@ -64,6 +95,12 @@ public class IslandPanel : MonoBehaviour
 
     public void Hide()
     {
+        if (IsPaged)
+        {
+            Pager.CloseIfCurrent(this);
+            return;
+        }
+
         CurvedUIPanelAnimator.Hide(
             gameObject,
             animatePanelTransitions ? panelCloseDuration : 0f,
@@ -73,6 +110,11 @@ public class IslandPanel : MonoBehaviour
 
     public void HideImmediate()
     {
+        if (IsPaged)
+        {
+            return;
+        }
+
         CurvedUIPanelAnimator.HideImmediate(gameObject);
     }
 

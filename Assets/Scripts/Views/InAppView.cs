@@ -21,8 +21,33 @@ namespace Views
 
         public event System.Action<bool> VisibilityChanged;
 
+        private MenuPager _pager;
+        private bool _pagerResolved;
+
+        // Inside the main menu pager the shop is a swipeable screen instead of a popup.
+        private MenuPager Pager
+        {
+            get
+            {
+                if(!_pagerResolved)
+                {
+                    _pagerResolved = true;
+                    _pager = GetComponentInParent<MenuPager>(true);
+                    if(_pager != null && !_pager.Contains(this)) _pager = null;
+                }
+
+                return _pager;
+            }
+        }
+
         public void Show()
         {
+            if(Pager != null)
+            {
+                Pager.Open(this);
+                return;
+            }
+
             var opening = !gameObject.activeSelf;
             VisibilityChanged?.Invoke(true);
             CurvedUIPanelAnimator.Show(
@@ -41,6 +66,12 @@ namespace Views
 
         public void Hide()
         {
+            if(Pager != null)
+            {
+                Pager.CloseIfCurrent(this);
+                return;
+            }
+
             VisibilityChanged?.Invoke(false);
             CurvedUIPanelAnimator.Hide(
                 gameObject,
@@ -55,6 +86,8 @@ namespace Views
             {
                 closeButton.onClick.RemoveListener(Hide);
                 closeButton.onClick.AddListener(Hide);
+                // A screen is left by swiping or the nav bar, not by a close button.
+                if(Pager != null) closeButton.gameObject.SetActive(false);
             }
 
             await UniTask.Yield();

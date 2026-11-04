@@ -32,6 +32,7 @@ namespace Presenters
         private readonly Action<BoosterOffer> _onBuyBooster;
         private readonly List<(Sprite icon, string text)> _rewards = new();
         private readonly List<InAppProduct> _visible = new();
+        private readonly List<BoostType> _boosterTypes = new();
         private bool _subscribedToLocale;
 
         public ShopCatalogBuilder(
@@ -65,8 +66,19 @@ namespace Presenters
 
             Clear();
             CollectVisible();
-            FillRows();
-            FillBoosterRows();
+
+            // Boosters (for gems) first, real-money products below.
+            if(HasBoosters())
+            {
+                AddSectionTitle(L10n.Get("shop_section_boosters", "Boosters"));
+                FillBoosterRows();
+            }
+
+            if(_visible.Count > 0)
+            {
+                AddSectionTitle(L10n.Get("shop_section_store", "Gems & Bundles"));
+                FillRows();
+            }
 
             LayoutRebuilder.ForceRebuildLayoutImmediate(_parent as RectTransform);
         }
@@ -238,10 +250,106 @@ namespace Presenters
             }
         }
 
-        /// <summary>Boosters bought for gems: small cards, three per row (one booster, x1/x3/x5 packs), after the store products.</summary>
+        private bool HasBoosters()
+        {
+            if(_onBuyBooster == null || _config.BoosterOffers == null
+               || (_config.BoosterCardPrefab == null && _config.ProductViewPrefab == null))
+            {
+                return false;
+            }
+
+            foreach (var offer in _config.BoosterOffers)
+            {
+                if(offer.gemPrice > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void AddSectionTitle(string text)
+        {
+            if(_config.SectionTitlePrefab == null)
+            {
+                return;
+            }
+
+            var title = Object.Instantiate(_config.SectionTitlePrefab, _parent, false);
+            title.text = text;
+        }
+
+        /// <summary>Boosters bought for gems: one card per booster type with its x1/x3/x5 packs side by side.</summary>
         private void FillBoosterRows()
         {
-            if(_onBuyBooster == null || _config.BoosterOffers == null || _config.ProductViewPrefab == null)
+            if(_config.BoosterCardPrefab == null)
+            {
+                FillBoosterRowsLegacy();
+                return;
+            }
+
+            _boosterTypes.Clear();
+            foreach (var offer in _config.BoosterOffers)
+            {
+                if(offer.gemPrice > 0 && !_boosterTypes.Contains(offer.type))
+                {
+                    _boosterTypes.Add(offer.type);
+                }
+            }
+
+            foreach (var type in _boosterTypes)
+            {
+                SpawnBoosterTypeCard(type);
+            }
+        }
+
+        private void SpawnBoosterTypeCard(BoostType type)
+        {
+            var card = Object.Instantiate(_config.BoosterCardPrefab, _parent, false);
+            var key = type.ToString().ToLowerInvariant();
+            card.name = $"Card_Booster_{type}";
+
+            var pack = 0;
+            Sprite icon = null;
+            foreach (var offer in _config.BoosterOffers)
+            {
+                if(offer.type != type || offer.gemPrice <= 0)
+                {
+                    continue;
+                }
+
+                if(icon == null)
+                {
+                    icon = offer.icon;
+                }
+
+                if(pack >= card.PackCount)
+                {
+                    continue;
+                }
+
+                var captured = offer;
+                card.SetPack(
+                    pack,
+                    "x" + Mathf.Max(1, offer.count),
+                    FormatNumber(offer.gemPrice),
+                    offer.discountPercent > 0 ? "-" + offer.discountPercent + "%" : null,
+                    () => _onBuyBooster?.Invoke(captured));
+                pack++;
+            }
+
+            card.HidePacksFrom(pack);
+            card.SetHeader(
+                L10n.Get("boost_" + key, type.ToString()),
+                L10n.Get("boost_desc_" + key, string.Empty),
+                icon);
+        }
+
+        /// <summary>Old look: small product cards, three per row (one booster, x1/x3/x5 packs).</summary>
+        private void FillBoosterRowsLegacy()
+        {
+            if(_config.ProductViewPrefab == null)
             {
                 return;
             }
