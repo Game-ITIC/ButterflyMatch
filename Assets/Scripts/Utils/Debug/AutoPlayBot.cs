@@ -36,15 +36,6 @@ namespace Utils.DebugTools
         private const float RunTimeout = 240f;     // real seconds per attempt
         private const float StuckTimeout = 25f;    // real seconds of DragBlocked/no move while Playing
 
-        private static readonly MethodInfo SelectItemMethod =
-            typeof(PlayingState).GetMethod("SelectItem", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static readonly MethodInfo ProcessMatchedMethod =
-            typeof(PlayingState).GetMethod("ProcessMatchedItems", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static readonly MethodInfo ClearSelectionMethod =
-            typeof(PlayingState).GetMethod("ClearSelection", BindingFlags.Instance | BindingFlags.NonPublic);
-        private static readonly FieldInfo StatesField =
-            typeof(LevelManager).GetField("_states", BindingFlags.Instance | BindingFlags.NonPublic);
-
         private readonly List<int> _levels = new();
         private readonly List<string> _runErrors = new();
         private readonly System.Random _rnd = new();
@@ -202,7 +193,7 @@ namespace Utils.DebugTools
             if (lm != null && lm.gameStatus == GameState.Playing && lm.currentLevel == level)
             {
                 result = "timeout";
-                var state = ((IDictionary)StatesField.GetValue(lm))[GameState.Playing] as PlayingState;
+                var state = lm.Playing;
 
                 while (Time.realtimeSinceStartup - start < RunTimeout)
                 {
@@ -458,12 +449,12 @@ namespace Utils.DebugTools
             lm.destroyAnyway.Clear();
             foreach (var item in chain)
             {
-                SelectItemMethod.Invoke(state, new object[] { item });
+                state.SelectItem(item);
             }
 
             if (lm.destroyAnyway.Count < 3 || lm.destroyAnyway.Count != chain.Count)
             {
-                ClearSelectionMethod.Invoke(state, null);
+                state.ClearSelection();
                 return false;
             }
 
@@ -474,7 +465,7 @@ namespace Utils.DebugTools
             }
 
             GameFeelManager.Instance?.OnMatchReleased(lm.destroyAnyway.Count, center / lm.destroyAnyway.Count);
-            ((UniTask)ProcessMatchedMethod.Invoke(state, null)).Forget();
+            state.ProcessMatchedItems().Forget();
             return true;
         }
 

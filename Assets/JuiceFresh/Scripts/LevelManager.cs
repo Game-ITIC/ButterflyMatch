@@ -1,8 +1,7 @@
 using UnityEngine;
-using System.Collections;
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Threading;
 using Configs;
 using Cysharp.Threading.Tasks;
 using JuiceFresh;
@@ -17,20 +16,21 @@ using UI;
 using UnityEngine.UI;
 using VContainer;
 using Views;
-using ZLinq;
 
+/// <summary>
+/// The level scene's hub: holds the level's serialized setup and runtime state, and hands every job
+/// to its own service (loading, board, bombs, timer, boosts, outline, states).
+/// Legacy code reaches it through <see cref="THIS"/>; new code should take the service it needs instead.
+/// </summary>
 [RequireComponent(typeof(GridOutlineGenerator), typeof(GridPerimeterRenderer))]
 public class LevelManager : MonoBehaviour, ILevelManagerActions
 {
     #region Static References
 
-    // Instance of LevelManager for direct references
     public static LevelManager THIS;
-
-    // Instance of LevelManager for direct references
     public static LevelManager Instance;
 
-    // Global Score amount on current level
+    // Score of the current level.
     public static int Score;
 
     #endregion
@@ -39,52 +39,37 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
     public List<CollectedIngredients> collectedIngredients = new List<CollectedIngredients>();
 
-    // Prefab of item
     public GameObject itemPrefab;
-
-    // Prefab of square
     public GameObject squarePrefab;
 
-    // Prefab of block, for more info check enum SquareTypes
+    // Obstacle prefabs, see SquareTypes.
     public GameObject blockPrefab;
-
-    // Prefab of wire, for more info check enum SquareTypes
     public GameObject wireBlockPrefab;
-
-    // Prefab of solid block, for more info check enum SquareTypes
     public GameObject solidBlockPrefab;
-
-    // Prefab of undestroyable block, for more info check enum SquareTypes
     public GameObject undesroyableBlockPrefab;
-
-    // Prefab of growing block, for more info check enum SquareTypes
     public GameObject thrivingBlockPrefab;
 
-    // Life shop scene object
     public LifeShop lifeShop;
 
-    // Gamefield scene object
     public Transform GameField;
 
     public Vector3 GameFieldTargetLocalPosition { get; private set; }
 
-    // Scene object
     public GameObject LevelsMap;
 
-    // UI object
+    // Level UI root.
     public GameObject Level;
 
-    // UI objects for targets
+    // UI objects for the targets.
     public GameObject ingrObject;
     public GameObject blocksObject;
     public GameObject scoreTargetObject;
     public GameObject cageTargetObject;
     public GameObject bombTargetObject;
 
-    // Camera
     public Camera gameCamera;
 
-    // Line renderer
+    // Line through the chain the player drags.
     public Line line;
 
     [SerializeField] private GridOutlineGenerator gridOutlineGenerator;
@@ -93,80 +78,52 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
     #region Sprites
 
-    // Sprite of square
     public Sprite squareSprite;
-
-    // Second sprite of square
     public Sprite squareSprite1;
-
-    // Sprites of collectable items
     public Sprite[] ingrediendSprites;
-
-    // Double block sprite
     public Sprite doubleBlock;
-
-    // Double solid block sprite
     public Sprite doubleSolidBlock;
 
     #endregion
 
     #region Level Configuration
 
-    // Enabling iapps flag
     public bool enableInApps;
 
-    // Type of game limit (moves or time)
+    // Moves or time.
     public LIMIT limitType;
 
-    // Value of rest limit (moves or time)
+    // Moves or seconds left.
     public int Limit = 30;
 
-    // Current level number
     public int currentLevel = 1;
 
-    // Cost of continue playing after fail
+    // Cost of continuing after a fail.
     public int FailedCost;
-
-    // Extra moves that you get to continue game after fail
     public int ExtraFailedMoves = 5;
-
-    // Extra seconds that you get to continue game after fail
     public int ExtraFailedSecs = 30;
 
-    // Max rows of gamefield
     public int maxRows = 8;
-
-    // Max cols of gamefield
     public int maxCols = 7;
 
-    // Right square size for level generation
     public float squareWidth = 1.2f;
-
-    // Right square size for level generation
     public float squareHeight = 1.2f;
 
-    // Position of the first square on the game field
     public Vector2 firstSquarePosition;
 
-    // Editor variable for limitation of colors
     public int colorLimit;
 
-    // Editor values of description tasks
     public string[] targetDiscriptions;
 
-    // Facebook enable
     public bool FacebookEnable;
-
-    // PlayFab
     public bool PlayFab;
 
-    // Extra item every
+    // Every N pieces of a chain give an extra item (flower).
     public float extraItemEvery = 6;
 
-    // Bomb timer
+    // Moves a bomb starts with.
     public int bombTimer;
 
-    // Number of ingredients
     public int NumIngredients = 4;
 
     #endregion
@@ -175,178 +132,173 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
     public Target target;
 
-    // Inner using
-    private GameState GameStatus;
+    // Before InvokeStart there is no state machine yet; the status lives here.
+    private GameState _statusBeforeStart;
 
-    // Amount of scores for item
     public int scoreForItem = 10;
-
-    // Amount of scores for block
     public int scoreForBlock = 100;
-
-    // Amount of scores for wire block
     public int scoreForWireBlock = 100;
-
-    // Amount of scores for solid block
     public int scoreForSolidBlock = 100;
-
-    // Amount of scores for growing block
     public int scoreForThrivingBlock = 100;
 
-    // Array of colors for popup scores
+    // Colours of the score popups.
     public Color[] scoresColors;
 
-    // Stars amount on current level
+    // Stars earned on the current level and the score needed for each.
     public int stars;
-
-    // Amount of scores is necessary for reaching first star
     public int star1;
-
-    // Amount of scores is necessary for reaching second star
     public int star2;
-
-    // Amount of scores is necessary for reaching third star
     public int star3;
 
-    // Get stars
     public CollectStars starsTargetCount;
 
     public int RequiredStars => Mathf.Clamp((int)starsTargetCount, 1, 3);
 
-    // Amount of blocks for collecting
     public int targetBlocks;
-
-    // Target cages
     public int TargetCages;
-
-    // Target bombs
     public int TargetBombs;
 
     #endregion
 
     #region Items and Squares
 
-    // Array for holding squares data of the game field
     public Square[] squaresArray;
 
-    // Array of combined items
     public List<List<Item>> combinedItems = new List<List<Item>>();
 
-    // Latest touched item
     public Item lastDraggedItem;
 
-    // Array for items prepeared to destory
+    // The chain the player selected; the cascade destroys it.
     public List<Item> destroyAnyway = new List<Item>();
 
-    // Level data from the file
     SquareBlocks[] levelSquaresFile = new SquareBlocks[81];
 
     internal SquareBlocks[] LevelSquaresFile => levelSquaresFile;
 
-    // Array of highlighted items
     public List<Item> highlightedItems;
 
-    // Necessary amount of collectable items
     public int[] ingrCountTarget = new int[4];
 
-    // Necessary collectable items
     public List<CollectedIngredients> ingrTarget = new List<CollectedIngredients>();
 
-    // Necessary collectable items
     public CollectItems[] collectItems = new CollectItems[6];
 
-    // List of GameObject for UI ingredients
     public List<GameObject> listIngredientsGUIObjects = new List<GameObject>();
 
-    // List of types
+    // Striped pieces in the current chain.
     public List<ItemsTypes> gatheredTypes = new List<ItemsTypes>();
 
-    // List of vector3 for flowers
     public List<Vector3> startPosFlowers = new List<Vector3>();
 
     #endregion
 
-    #region Boosts and Effects
+    #region Boosts
 
-    // Amount of boosts
     public int BoostColorfullBomb;
-
-    // Amount of boosts
     public int BoostPackage;
-
-    // Amount of boosts
     public int BoostStriped;
 
-    // Inner using variable
+    // Shown as the active boost when none is armed.
     public BoostIcon emptyBoostIcon;
 
-    // Currently active boost
     public BoostIcon activatedBoost;
 
-    // Array of in-game boosts
     public BoostIcon[] InGameBoosts;
 
-    // Waiting boost
+    // A boost whose effect animation is still playing.
     public BoostIcon waitingBoost;
 
     #endregion
 
     #region Game Data
 
-    // Array of iapps products
     public List<GemProduct> gemsProducts = new List<GemProduct>();
 
-    // List of bomb timers
+    // Bomb timers saved for a board regeneration.
     public List<int> bombTimers = new List<int>();
 
-    // Level pass counter
     public int passLevelCounter;
 
-    // Move ID
     public int moveID;
 
-    // Last random color
     public int lastRandColor;
 
-    // Selected color
     public int selectedColor;
 
-    // Inner using
     public int nextExtraItems;
 
-    // Cage HP
     private int cageHP;
 
     internal int CageHp => cageHP;
 
-    // Deprecated
-    private int linePoint;
-
-    // Items hidden flag
     public bool itemsHided;
 
-    // Only falling flag
     public bool onlyFalling;
 
-    // Level loaded flag
     public bool levelLoaded;
 
-    // Counted squares
     public Hashtable countedSquares;
 
-    CollectedTargetFlyController _collectedTargetFlyController;
-    ScorePopupTweenSpawner _scorePopupTweenSpawner;
-    LevelEffectsController _levelEffectsController;
-    GridPerimeterRenderer _gridPerimeterRenderer;
+    public bool testByPlay;
+
+    public int extraCageAddItem;
+
+    // Bombs to defuse on a bomb level.
+    public int bombsCollect;
+
+    public bool thrivingBlockDestroyed;
+
+    // Blocks input while the board is busy.
+    public bool dragBlocked;
+
+    #endregion
+
+    #region Components and Services
+
+    private CollectedTargetFlyController _collectedTargetFlyController;
+    private ScorePopupTweenSpawner _scorePopupTweenSpawner;
+    private LevelEffectsController _levelEffectsController;
+    private GridPerimeterRenderer _gridPerimeterRenderer;
+
+    private BoardMechanicsService _boardMechanicsService;
+    private ScoreTrackerService _scoreTrackerService;
+    private BoardQueryService _boardQueryService;
+    private BoardFactoryService _boardFactoryService;
+    private WinLoseEvaluator _winLoseEvaluator;
+    private CollectableTargetUIBuilder _collectableTargetUIBuilder;
+    private BoardOutlineService _outline;
+    private ChainLineDrawer _chainLine;
+    private GameStateMachine _stateMachine;
+
+    // Created on first use: some UI touches these before InvokeStart.
+    private LevelLoaderService _levelLoader;
+    private BoardItemsService _boardItems;
+    private BombService _bombs;
+    private LevelTimer _timer;
+    private InGameBoostController _boosts;
+
+    public BoardMechanicsService BoardMechanics => _boardMechanicsService;
+
+    public LevelLoaderService LevelLoader => _levelLoader ??= new LevelLoaderService();
+
+    public BoardItemsService BoardItems => _boardItems ??= new BoardItemsService(this);
+
+    public BombService Bombs => _bombs ??= new BombService(this, () =>
+        _collectedTargetFlyController != null ? _collectedTargetFlyController.PendingBombs : 0);
+
+    public LevelTimer Timer => _timer ??= new LevelTimer(this);
+
+    public InGameBoostController Boosts => _boosts ??= new InGameBoostController(this);
+
+    /// <summary>The Playing state (input, chains, moves); null before InvokeStart.</summary>
+    public PlayingState Playing => _stateMachine?.Get<PlayingState>();
 
     public ScorePopupTweenSpawner ScorePopupTweenSpawner
     {
         get
         {
-            if(_scorePopupTweenSpawner == null)
-            {
+            if (_scorePopupTweenSpawner == null)
                 _scorePopupTweenSpawner = GetComponent<ScorePopupTweenSpawner>();
-            }
 
             return _scorePopupTweenSpawner;
         }
@@ -356,136 +308,48 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
     {
         get
         {
-            if(_levelEffectsController == null)
-            {
+            if (_levelEffectsController == null)
                 _levelEffectsController = GetComponent<LevelEffectsController>();
-            }
 
             return _levelEffectsController;
         }
     }
 
-    // Kept as a property for the board state checks that wait for target flights to finish.
-    public bool ingredientFly => _collectedTargetFlyController != null &&
-                                 _collectedTargetFlyController.IsFlying;
-
-    // Test by play flag
-    public bool testByPlay;
-
-    // Extra cage add item
-    public int extraCageAddItem;
-
-    // Bombs collect
-    public int bombsCollect;
-
-    // Stop sliding flag
-    private bool stopSliding;
-
-    // Offset
-    private float offset;
-
-    #endregion
-
-    #region Board Mechanics
-
-    private BoardMechanicsService _boardMechanicsService;
-    private ScoreTrackerService _scoreTrackerService;
-    private BoardQueryService _boardQueryService;
-    private BoardFactoryService _boardFactoryService;
-    private WinLoseEvaluator _winLoseEvaluator;
-    private CollectableTargetUIBuilder _collectableTargetUIBuilder;
-
-    public BoardMechanicsService BoardMechanics
-    {
-        get { return _boardMechanicsService; }
-    }
-
-    private Dictionary<GameState, GameStateBase> _states;
-    private GameStateBase _currentState;
+    // A collected ingredient / defused bomb is still flying to its counter (it decides win or lose on landing).
+    public bool ingredientFly => _collectedTargetFlyController != null && _collectedTargetFlyController.IsFlying;
 
     #endregion
 
     #region Properties
 
-    // Is any growing blocks destroyed in that turn
-    public bool thrivingBlockDestroyed;
-
-    // Is touch blocks
-    public bool dragBlocked;
-
     public bool DragBlocked
     {
-        get { return dragBlocked; }
-        set
-        {
-            if(value)
-            {
-                List<Item> items = GetItems();
-
-                foreach (Item item in items)
-                {
-                    // Items own and stop their visual tweens explicitly.
-                }
-            }
-            else
-            {
-                // StartCoroutine(StartIdleCor());
-            }
-
-            dragBlocked = value;
-        }
+        get => dragBlocked;
+        set => dragBlocked = value;
     }
 
     public int TargetBlocks
     {
-        get { return targetBlocks; }
-        set
-        {
-            if(targetBlocks < 0)
-                targetBlocks = 0;
-            targetBlocks = value;
-        }
+        get => targetBlocks;
+        set => targetBlocks = value;
     }
 
     public GameState gameStatus
     {
-        get { return GameStatus; }
+        get => _stateMachine != null ? _stateMachine.Status : _statusBeforeStart;
         set
         {
-            Debug.Log("Changing game state from " + GameStatus + " to " + value);
+            _outline?.ApplyGameState(value);
 
-            if(GridPerimeterRenderer.ShouldHideForState(value))
-                _gridPerimeterRenderer?.Clear();
-            else if(value == GameState.Pause)
-                _gridPerimeterRenderer?.SetVisible(false);
-            else if(value == GameState.Playing)
-                _gridPerimeterRenderer?.SetVisible(true);
-
-            if(_currentState != null)
+            if (_stateMachine != null)
             {
-                Debug.Log("Exiting current state: " + _currentState.GetType().Name);
-                _currentState.ExitState();
+                _stateMachine.TransitionTo(value);
+                return;
             }
 
-            if(gameObject.activeInHierarchy)
-            {
-                StopAllCoroutines();
-            }
-
-            GameStatus = value;
-
-            if(_states != null && _states.ContainsKey(value))
-            {
-                _currentState = _states[value];
-
-                Debug.Log("Entering new state: " + _currentState.GetType().Name);
-                _currentState.EnterState();
-            }
-            else
-            {
-                Debug.Log("Handling legacy state: " + value);
-                HandleLegacyState(value);
-            }
+            StopLevelCoroutines();
+            _statusBeforeStart = value;
+            StatelessGameStates.Enter(value);
         }
     }
 
@@ -502,58 +366,11 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
     [Inject] public HealthSystem HealthSystem;
 
-    // Field of getting and setting currently activated boost
+    // The armed boost (the empty boost icon when none). Arming +5 moves applies it at once.
     public BoostIcon ActivatedBoost
     {
-        get
-        {
-            if(activatedBoost == null)
-            {
-                return emptyBoostIcon;
-            }
-            else
-                return activatedBoost;
-        }
-        set
-        {
-            if(value == null)
-            {
-                // if (activatedBoost != null && gameStatus == GameState.Playing)
-                //     InitScript.Instance.SpendBoost(activatedBoost.type);
-                UnLockBoosts();
-            }
-
-            activatedBoost = value;
-
-            if(value != null)
-            {
-                LockBoosts();
-            }
-
-            if(activatedBoost != null)
-            {
-                if(activatedBoost.type == BoostType.ExtraMoves)
-                {
-                    //here is checking what kind of limitation in level - Moves or Time
-                    if(LevelManager.Instance.limitType == LIMIT.MOVES)
-                    {
-                        var model = BoostersProvider.BoostersModels.AsValueEnumerable()
-                            .First(t => t.Type == BoostType.ExtraMoves);
-
-                        if(model.HasBooster())
-                        {
-                            LevelManager.THIS.Limit += 5;
-                            model.Use();
-                            BoostersProvider.Save();
-                        }
-                    }
-                    // else
-                    // LevelManager.THIS.Limit += 30;
-
-                    ActivatedBoost = null;
-                }
-            }
-        }
+        get => Boosts.Active;
+        set => Boosts.SetActive(value);
     }
 
     #endregion
@@ -571,51 +388,27 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
     public static event GameStateEvents OnWin;
     public static event GameStateEvents OnLose;
 
-    // Methods to trigger each event
-    public static void TriggerOnMapState()
-    {
-        OnMapState?.Invoke();
-    }
+    public static void TriggerOnMapState() => OnMapState?.Invoke();
 
-    public static void TriggerOnEnterGame()
-    {
-        OnEnterGame?.Invoke();
-    }
+    public static void TriggerOnEnterGame() => OnEnterGame?.Invoke();
 
-    public static void TriggerOnLevelLoaded()
-    {
-        OnLevelLoaded?.Invoke();
-    }
+    public static void TriggerOnLevelLoaded() => OnLevelLoaded?.Invoke();
 
-    public static void TriggerOnMenuPlay()
-    {
-        OnMenuPlay?.Invoke();
-    }
+    public static void TriggerOnMenuPlay() => OnMenuPlay?.Invoke();
 
-    public static void TriggerOnMenuComplete()
-    {
-        OnMenuComplete?.Invoke();
-    }
+    public static void TriggerOnMenuComplete() => OnMenuComplete?.Invoke();
 
-    public static void TriggerOnTouchDetected()
-    {
-        OnTouchDetected?.Invoke();
-    }
+    public static void TriggerOnTouchDetected() => OnTouchDetected?.Invoke();
 
-    public static void TriggerOnWin()
-    {
-        OnWin?.Invoke();
-    }
+    public static void TriggerOnWin() => OnWin?.Invoke();
 
-    public static void TriggerOnLose()
-    {
-        OnLose?.Invoke();
-    }
+    public static void TriggerOnLose() => OnLose?.Invoke();
 
     #endregion
 
-    #region Unity Lifecycle Methods
+    #region Lifecycle
 
+    /// <summary>Called by GameInitializer once the scene's dependencies are injected.</summary>
     public void InvokeStart()
     {
         new TargetUIResolverService(this).Resolve();
@@ -625,8 +418,10 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         _levelEffectsController?.Initialize(this);
         _gridPerimeterRenderer = GetComponent<GridPerimeterRenderer>();
         _gridPerimeterRenderer.Initialize(this);
+        _outline = new BoardOutlineService(GameField, ResolveGridOutlineGenerator(), _gridPerimeterRenderer);
+        _chainLine = new ChainLineDrawer(line);
 
-        if(GameFeelManager.Instance != null)
+        if (GameFeelManager.Instance != null)
         {
             GameFeelManager.Instance.BindCamera(gameCamera);
             GameFeelManager.Instance.BindBoard(GameField);
@@ -643,113 +438,81 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         _winLoseEvaluator = new WinLoseEvaluator(this);
         _collectableTargetUIBuilder = new CollectableTargetUIBuilder(this);
 
-        ingrCountTarget = new int[NumIngredients]; // Necessary amount of collectable items
+        ingrCountTarget = new int[NumIngredients];
 
-        if(Level.gameObject.activeSelf)
+        if (Level.gameObject.activeSelf)
             Level.gameObject.SetActive(false);
 
-        CoroutineManager.Instance.GetType();
+        // Create the DontDestroyOnLoad coroutine host now, not in the middle of a state change.
+        _ = CoroutineManager.Instance;
 
-        _states = new Dictionary<GameState, GameStateBase>
-        {
-            {
-                GameState.Map, new MapState(this)
-            },
-            {
-                GameState.PrepareGame, new PrepareGameState(this)
-            },
-            {
-                GameState.WaitForPopup, new WaitForPopupState(this)
-            },
-            {
-                GameState.PrepareBoosts, new PrepareBoostsState(this)
-            },
-            {
-                GameState.Playing, new PlayingState(this)
-            },
-            {
-                GameState.GameOver, new GameOverState(this, AdRewardService, SceneLoader)
-            },
-            {
-                GameState.PreWinAnimations, new PreWinAnimationsState(this)
-            },
-            {
-                GameState.Win, new WinState(this)
-            },
-            {
-                GameState.RegenLevel, new RegenLevelState(this)
-            }
-        };
+        _stateMachine = new GameStateMachine(CreateStates(), StopLevelCoroutines, StatelessGameStates.Enter,
+            _statusBeforeStart);
 
         THIS = this;
         Instance = this;
-        // gameStatus = GameState.Map;
 
         passLevelCounter = 0;
 
         gameStatus = GameState.PrepareGame;
     }
 
-    void InitializeCollectedTargetFlyController()
+    /// <summary>Called every frame by GameInitializer.</summary>
+    public void InvokeUpdate()
+    {
+        _stateMachine?.Update();
+        _chainLine?.Draw(destroyAnyway);
+    }
+
+    private Dictionary<GameState, GameStateBase> CreateStates()
+    {
+        return new Dictionary<GameState, GameStateBase>
+        {
+            { GameState.Map, new MapState(this) },
+            { GameState.PrepareGame, new PrepareGameState(this) },
+            { GameState.WaitForPopup, new WaitForPopupState(this) },
+            { GameState.PrepareBoosts, new PrepareBoostsState(this) },
+            { GameState.Playing, new PlayingState(this) },
+            { GameState.GameOver, new GameOverState(this, AdRewardService, SceneLoader) },
+            { GameState.PreWinAnimations, new PreWinAnimationsState(this) },
+            { GameState.Win, new WinState(this) },
+            { GameState.RegenLevel, new RegenLevelState(this) }
+        };
+    }
+
+    // Every state change stops what the previous state started on this object.
+    private void StopLevelCoroutines()
+    {
+        if (gameObject.activeInHierarchy)
+            StopAllCoroutines();
+    }
+
+    private void InitializeCollectedTargetFlyController()
     {
         if (_collectedTargetFlyController == null)
-        {
             _collectedTargetFlyController = GetComponent<CollectedTargetFlyController>();
-        }
 
         if (_collectedTargetFlyController == null)
-        {
             _collectedTargetFlyController = gameObject.AddComponent<CollectedTargetFlyController>();
-        }
 
         _collectedTargetFlyController.Initialize(this);
     }
 
-    public void InvokeUpdate()
+    private GridOutlineGenerator ResolveGridOutlineGenerator()
     {
-        if(_currentState != null)
-        {
-            _currentState.UpdateState();
-        }
+        if (gridOutlineGenerator == null)
+            gridOutlineGenerator = GetComponent<GridOutlineGenerator>();
 
-        // Now draw the lines based on the updated destroyAnyway list
-        if(destroyAnyway.Count > 0)
-        {
-            int i = 0;
-            line.SetVertexCount(destroyAnyway.Count);
-
-            foreach (Item item in destroyAnyway)
-            {
-                if(item != null)
-                {
-                    line.AddPoint(item.transform.position, i);
-                    i++;
-                }
-            }
-        }
-        else
-        {
-            line.SetVertexCount(0);
-        }
+        return gridOutlineGenerator;
     }
 
     private void OnDestroy()
     {
-        _gridPerimeterRenderer?.Clear();
+        _outline?.Clear();
 
-        CoroutineManager coroutineManager = CoroutineManager.ExistingInstance;
-        if(coroutineManager != null)
-        {
-            coroutineManager.StopAllManagedCoroutines();
-        }
+        CoroutineManager.ExistingInstance?.StopAllManagedCoroutines();
 
-        if(_states != null)
-        {
-            foreach (var state in _states.Values)
-            {
-                (state as IDisposable)?.Dispose();
-            }
-        }
+        _stateMachine?.Dispose();
 
         THIS = null;
         Instance = null;
@@ -774,86 +537,43 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         Time.timeScale = 1;
     }
 
-    private void HandleLegacyState(GameState state)
-    {
-        if(state == GameState.PreFailedBomb) { }
-        else if(state == GameState.PreFailed)
-        {
-            GameObject.Find("CanvasGlobal").transform.Find("PreFailed").gameObject.SetActive(true);
-        }
-        else if(state == GameState.Pause)
-        {
-            Time.timeScale = 0;
-        }
-        else if(state == GameState.ToMap)
-        {
-            MusicBase.Instance.GetComponent<AudioSource>().Stop();
-            SoundBase.Instance.PlaySound(SoundBase.Instance.gameOver[0]);
-            GameObject.Find("CanvasGlobal").transform.Find("MenuFailed").gameObject.SetActive(true);
-        }
-    }
-
     public void EnableMap(bool enable)
     {
-        MapState mapState = _states[GameState.Map] as MapState;
-        mapState.EnableMap(enable);
+        _stateMachine.Get<MapState>().EnableMap(enable);
     }
 
-    public void LockBoosts()
-    {
-        foreach (BoostIcon item in InGameBoosts)
-        {
-            if(item != ActivatedBoost)
-                item.LockBoost();
-        }
-    }
+    public void LockBoosts() => Boosts.LockOthers();
 
-    public void UnLockBoosts()
-    {
-        foreach (BoostIcon item in InGameBoosts)
-        {
-            item.UnLockBoost();
-        }
-    }
+    public void UnLockBoosts() => Boosts.UnlockAll();
 
     public void RestartTimer()
     {
-        if(_currentState is PlayingState playingState)
-        {
-            playingState.RestartTimer();
-        }
+        if (_stateMachine?.Current is PlayingState)
+            Timer.Restart();
     }
 
     #endregion
 
-    #region Level Management
+    #region Level Loading
 
     public void LoadLevel()
     {
-        currentLevel = PlayerPrefs.GetInt("OpenLevel"); // TargetHolder.level;
-        if(currentLevel == 0)
-            currentLevel = 1;
-
-        currentLevel = LevelProgressionHelper.CalculateLevel(currentLevel);
+        currentLevel = LevelLoader.ResolveOpenLevel();
         LoadDataFromLocal(currentLevel);
         NumIngredients = ingrTarget.Count;
         ProgressBarScript.Instance?.ConfigureForLevel();
     }
 
-    public void LoadDataFromLocal(int currentLevel)
+    public void LoadDataFromLocal(int level)
     {
         levelLoaded = false;
-        TextAsset mapText = Resources.Load("Levels/" + currentLevel) as TextAsset;
 
-        if(mapText == null)
-        {
-            mapText = Resources.Load("Levels/" + currentLevel) as TextAsset;
-        }
-
-        ApplyLevelData(LevelParserService.Parse(mapText.text, collectedIngredients));
+        LevelData data = LevelLoader.Load(level, collectedIngredients);
+        if (data != null)
+            ApplyLevelData(data);
     }
 
-    void ApplyLevelData(LevelData data)
+    private void ApplyLevelData(LevelData data)
     {
         target = data.Target;
         maxCols = data.MaxCols;
@@ -877,23 +597,6 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         levelLoaded = true;
     }
 
-    public void ReGenLevel()
-    {
-        itemsHided = false;
-        DragBlocked = true;
-        if(gameStatus != GameState.Playing && gameStatus != GameState.RegenLevel)
-            DestroyItems();
-        else if(gameStatus == GameState.RegenLevel)
-            DestroyItems(true);
-        GenerateNewItems(false);
-
-        StartCoroutine(InitBombs());
-
-        DragBlocked = false;
-        gameStatus = GameState.Playing;
-        OnLevelLoaded();
-    }
-
     public void GenerateLevel()
     {
         GameFieldTargetLocalPosition = _boardFactoryService.GenerateLevel();
@@ -904,109 +607,26 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         _boardFactoryService.CreateObstacles(col, row, square, type);
     }
 
-    public void GenerateOutline()
-    {
-        DisableAndClearSpriteOutlines();
-        _gridPerimeterRenderer?.Draw();
-    }
+    public void GenerateOutline() => _outline?.Draw();
 
-    public void ClearOutline()
-    {
-        _gridPerimeterRenderer?.Clear();
-    }
-
-    private GridOutlineGenerator ResolveGridOutlineGenerator()
-    {
-        if(gridOutlineGenerator == null)
-            gridOutlineGenerator = GetComponent<GridOutlineGenerator>();
-
-        return gridOutlineGenerator;
-    }
-
-    private void DisableAndClearSpriteOutlines()
-    {
-        GridOutlineGenerator generator = ResolveGridOutlineGenerator();
-        if(generator != null)
-            generator.enabled = false;
-
-        // GridOutlineGenerator creates child objects named "outline" under squares.
-        // Clear them so we don't keep the old visual border after switching to Line.prefab.
-        if(GameField == null)
-            return;
-
-        for(int i = 0; i < GameField.childCount; i++)
-        {
-            Transform square = GameField.GetChild(i);
-            if(square == null)
-                continue;
-
-            // Iterate backwards because we may destroy children.
-            for(int j = square.childCount - 1; j >= 0; j--)
-            {
-                Transform child = square.GetChild(j);
-                if(child != null && child.name == "outline")
-                    Destroy(child.gameObject);
-            }
-        }
-    }
+    public void ClearOutline() => _outline?.Clear();
 
     #endregion
 
-    #region Item Management
+    #region Board Items
 
-    public void GenerateNewItems(bool falling = true)
-    {
-        for (int col = 0; col < maxCols; col++)
-        {
-            for (int row = maxRows - 1; row >= 0; row--)
-            {
-                if(GetSquare(col, row) != null)
-                {
-                    if(!GetSquare(col, row).IsNone() &&
-                       GetSquare(col, row).CanGoInto() &&
-                       GetSquare(col, row).item == null)
-                    {
-                        if((GetSquare(col, row).item == null && !GetSquare(col, row).IsHaveSolidAbove()) || !falling)
-                        {
-                            GetSquare(col, row).GenItem(falling);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void DestroyItems(bool withoutEffects = false)
-    {
-        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
-
-        foreach (GameObject item in items)
-        {
-            if(item != null)
-            {
-                if(item.GetComponent<Item>().currentType != ItemsTypes.INGREDIENT)
-                {
-                    if(!withoutEffects)
-                        item.GetComponent<Item>().DestroyItem();
-                    else
-                        item.GetComponent<Item>().SmoothDestroy();
-                }
-            }
-        }
-    }
+    public void GenerateNewItems(bool falling = true) => BoardItems.GenerateNewItems(falling);
 
     public async UniTask FindMatches()
     {
-        if(_currentState is PlayingState playingState)
-        {
+        if (_stateMachine?.Current is PlayingState playingState)
             await playingState.FindMatches();
-        }
     }
 
     public IEnumerator FindMatchDelay()
     {
         yield return new WaitForSeconds(0.2f);
-        LevelManager.THIS.FindMatches();
+        FindMatches().Forget();
     }
 
     public async UniTask ProcessMatchesAndFalling(bool freezeAnimations = true)
@@ -1022,82 +642,23 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         ResumeBoardAmbientAnimations();
     }
 
-    public void ResumeBoardAmbientAnimations()
-    {
-        foreach (Item item in GetItems())
-        {
-            if (item != null && !item.destroying)
-                item.SleepItem();
-        }
-    }
-
-    void DestroyGatheredExtraItems(Item item)
-    {
-        if(gatheredTypes.Count > 1)
-        {
-            item.DestroyHorizontal();
-            item.DestroyVertical();
-        }
-
-        foreach (ItemsTypes itemType in gatheredTypes)
-        {
-            if(itemType == ItemsTypes.HORIZONTAL_STRIPPED)
-                item.DestroyHorizontal();
-            else
-                item.DestroyVertical();
-        }
-    }
+    public void ResumeBoardAmbientAnimations() => BoardItems.ResumeAmbientAnimations();
 
     public void ClearHighlight(bool boost = false)
     {
-        if(!boost)
-            return;
-        highlightedItems.Clear();
-
-        for (int col = 0; col < maxCols; col++)
-        {
-            for (int row = 0; row < maxRows; row++)
-            {
-                if(GetSquare(col, row) != null)
-                {
-                    GetSquare(col, row).SetActiveCage(false);
-                    GetSquare(col, row).HighLight(false);
-                }
-            }
-        }
+        if (boost)
+            BoardItems.ClearHighlight();
     }
 
-    public void SetTypeByColor(int p, ItemsTypes nextType)
-    {
-        GameObject[] items = GameObject.FindGameObjectsWithTag("Item");
+    public void SetTypeByColor(int color, ItemsTypes nextType) => BoardItems.SetTypeByColor(color, nextType);
 
-        foreach (GameObject item in items)
-        {
-            if(item.GetComponent<Item>().color == p)
-            {
-                if(nextType == ItemsTypes.HORIZONTAL_STRIPPED || nextType == ItemsTypes.VERTICAL_STRIPPED)
-                    item.GetComponent<Item>().nextType = (ItemsTypes)UnityEngine.Random.Range(1, 3);
-                else
-                    item.GetComponent<Item>().nextType = nextType;
-
-                item.GetComponent<Item>().ChangeType();
-                if(nextType == ItemsTypes.NONE)
-                    destroyAnyway.Add(item.GetComponent<Item>());
-            }
-        }
-    }
-
-    public void SetColorToRandomItems()
-    {
-        LevelEffectsController?.PlayRandomColorReveal();
-    }
+    public void SetColorToRandomItems() => LevelEffectsController?.PlayRandomColorReveal();
 
     #endregion
 
     #region Square and Item Queries
 
-    public Square GetSquare(int col, int row, bool safe = false) =>
-        _boardQueryService.GetSquare(col, row, safe);
+    public Square GetSquare(int col, int row, bool safe = false) => _boardQueryService.GetSquare(col, row, safe);
 
     public List<Item> GetRow(int row) => _boardQueryService.GetRow(row);
 
@@ -1127,80 +688,43 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
     #region Special Effects
 
-    public void DestroyDoubleBomb(int col)
-    {
-        LevelEffectsController?.PlayDoubleBombWave(col);
-    }
+    public void DestroyDoubleBomb(int col) => LevelEffectsController?.PlayDoubleBombWave(col);
 
-    public void StrippedShow(GameObject obj, bool horrizontal)
-    {
-        LevelEffectsController?.PlayStripedEffect(obj, horrizontal);
-    }
+    public void StrippedShow(GameObject obj, bool horrizontal) => LevelEffectsController?.PlayStripedEffect(obj, horrizontal);
 
-    public GameObject GetExplFromPool()
-    {
-        return LevelEffectsController != null ? LevelEffectsController.GetExplosion() : null;
-    }
+    public GameObject GetExplFromPool() =>
+        LevelEffectsController != null ? LevelEffectsController.GetExplosion() : null;
 
-    public GameObject GetFlowerFromPool()
-    {
-        return LevelEffectsController != null ? LevelEffectsController.GetFlower() : null;
-    }
+    public GameObject GetFlowerFromPool() =>
+        LevelEffectsController != null ? LevelEffectsController.GetFlower() : null;
 
-    public bool CheckFlowerStillFly()
-    {
-        return LevelEffectsController != null && LevelEffectsController.HasFlyingFlowers();
-    }
+    public bool CheckFlowerStillFly() =>
+        LevelEffectsController != null && LevelEffectsController.HasFlyingFlowers();
 
-    public void ForceCleanupFlowers()
-    {
-        LevelEffectsController?.ForceCleanupAllFlowers();
-    }
+    public void ForceCleanupFlowers() => LevelEffectsController?.ForceCleanupAllFlowers();
 
     #endregion
 
-    #region Target Management
-
-    public IEnumerator TimeTick()
-    {
-        while (true)
-        {
-            if(gameStatus == GameState.Playing)
-            {
-                if(LevelManager.Instance.limitType == LIMIT.TIME)
-                {
-                    LevelManager.THIS.Limit--;
-                    CheckWinLose();
-                }
-            }
-
-            if(gameStatus == GameState.Map || LevelManager.THIS.Limit <= 0 || gameStatus == GameState.GameOver)
-                yield break;
-
-            yield return new WaitForSeconds(1);
-        }
-    }
+    #region Targets
 
     public void CreateCollectableTarget(GameObject parentTransform, Target tar, bool ForDialog = true)
     {
         _collectableTargetUIBuilder.Build(parentTransform, tar, ForDialog);
     }
 
-    public void CheckCollectedTarget(GameObject _item)
+    public void CheckCollectedTarget(GameObject item)
     {
         if (_collectedTargetFlyController == null)
-        {
             InitializeCollectedTargetFlyController();
-        }
 
-        _collectedTargetFlyController.TryFly(_item);
+        _collectedTargetFlyController.TryFly(item);
     }
 
     public int GetRestIngredients() => _winLoseEvaluator.GetRestIngredients();
 
     public void CheckWinLose()
     {
-        if(gameStatus != GameState.Playing)
+        if (gameStatus != GameState.Playing)
             return;
 
         // A goal reached on the last move is still a win, so evaluate it before the limit.
@@ -1222,76 +746,17 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
     public int GetScoresOfTargetStars() => _winLoseEvaluator.GetScoresOfTargetStars();
 
-    #endregion
-
-    #region Score and Progression
-
-    public void PopupScore(int value, Vector3 pos, int color)
-    {
-        _scoreTrackerService.PopupScore(value, pos, color);
-    }
+    public void PopupScore(int value, Vector3 pos, int color) => _scoreTrackerService.PopupScore(value, pos, color);
 
     #endregion
 
-    #region Bomb Management
+    #region Bombs
 
-    public IEnumerator InitBombs()
-    {
-        yield return new WaitUntil(() => !TipsManager.THIS.gotTip); // 1.3
-        yield return new WaitForSeconds(1);
-        int bombsOnField = 0;
-        List<Item> items = GetItems();
+    public IEnumerator InitBombs() => Bombs.InitBombs();
 
-        foreach (Item item in items)
-        {
-            if(item.currentType == ItemsTypes.BOMB || item.nextType == ItemsTypes.BOMB)
-                bombsOnField++;
-        }
+    public void TopUpBombs() => Bombs.TopUp();
 
-        List<Item> itemsRand = GetRandomItems(bombsCollect - bombsOnField - LevelManager.THIS.TargetBombs); // 1.3
-        int i = 0;
-
-        foreach (Item item in itemsRand)
-        {
-            item.nextType = ItemsTypes.BOMB;
-
-            if(i < bombTimers.Count) // 1.3
-                item.bombTimer = bombTimers[i];
-            i++;
-            item.ChangeType();
-        }
-    }
-
-    /// <summary>
-    /// After a move: put back bombs that were lost (a piece marked to become a bomb was destroyed
-    /// before it turned), so a bomb level can always reach its target.
-    /// </summary>
-    public void TopUpBombs()
-    {
-        if (target != Target.BOMBS || gameStatus != GameState.Playing)
-            return;
-
-        int onField = 0;
-        foreach (Item item in GetItems())
-        {
-            if (item != null && !item.destroying &&
-                (item.currentType == ItemsTypes.BOMB || item.nextType == ItemsTypes.BOMB))
-                onField++;
-        }
-
-        int flying = _collectedTargetFlyController != null ? _collectedTargetFlyController.PendingBombs : 0;
-        foreach (Item item in GetRandomItems(bombsCollect - TargetBombs - flying - onField))
-        {
-            item.nextType = ItemsTypes.BOMB;
-            item.ChangeType();
-        }
-    }
-
-    public void RechargeBombs()
-    {
-        // 1.3
-        StartCoroutine(InitBombs());
-    }
+    public void RechargeBombs() => StartCoroutine(Bombs.InitBombs());
 
     #endregion
 }

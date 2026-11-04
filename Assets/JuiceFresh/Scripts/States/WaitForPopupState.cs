@@ -43,8 +43,6 @@ namespace JuiceFresh.States
             levelManager.nextExtraItems = 0;
             levelManager.bombTimers.Clear();
 
-            RestartTimer();
-
             InitTargets();
 
             levelManager.GameField.gameObject.SetActive(true);
@@ -70,15 +68,6 @@ namespace JuiceFresh.States
                     _levelManagerActions.GenerateOutline();
                     levelManager.gameStatus = GameState.PrepareBoosts;
                 });
-        }
-
-        private void RestartTimer()
-        {
-            if (levelManager.limitType == LIMIT.TIME)
-            {
-                levelManager.StopCoroutine("TimeTick");
-                levelManager.StartCoroutine("TimeTick");
-            }
         }
 
         private void InitTargets()
