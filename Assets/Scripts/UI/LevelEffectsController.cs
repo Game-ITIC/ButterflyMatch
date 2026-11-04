@@ -2,9 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Board-wide visual effects of a level: the pooled item explosions and flying flowers,
+/// striped-booster rays, the random-color booster reveal and the double-bomb column waves.
+/// </summary>
 [DisallowMultipleComponent]
 public sealed class LevelEffectsController : MonoBehaviour
 {
+    private const string ExplosionPrefabPath = "Prefabs/Effects/ItemExpl";
+
     [SerializeField] private GameObject stripesEffectPrefab;
     [SerializeField] private GameObject flowerPrefab;
     [SerializeField, Min(1)] private int poolSize = 20;
@@ -12,8 +18,8 @@ public sealed class LevelEffectsController : MonoBehaviour
     [SerializeField, Min(0f)] private float doubleBombStepDelay = 0.3f;
 
     private LevelManager levelManager;
-    private GameObject[] explosionPool;
-    private GameObject[] flowerPool;
+    private SpriteEffectPool explosionPool;
+    private SpriteEffectPool flowerPool;
 
     public void Initialize(LevelManager owner)
     {
@@ -23,7 +29,8 @@ public sealed class LevelEffectsController : MonoBehaviour
         }
 
         levelManager = owner;
-        CreatePools();
+        explosionPool = new SpriteEffectPool(Resources.Load<GameObject>(ExplosionPrefabPath), poolSize, transform.position);
+        flowerPool = new SpriteEffectPool(flowerPrefab, poolSize, transform.position);
     }
 
     public void PlayRandomColorReveal()
@@ -53,6 +60,7 @@ public sealed class LevelEffectsController : MonoBehaviour
         Destroy(effect, 1f);
     }
 
+    /// <summary>Shows a free pooled explosion and hides it after <see cref="explosionLifetime"/>.</summary>
     public GameObject GetExplosion()
     {
         if(explosionPool == null)
@@ -60,59 +68,21 @@ public sealed class LevelEffectsController : MonoBehaviour
             return null;
         }
 
-        foreach(GameObject effect in explosionPool)
-        {
-            SpriteRenderer renderer = effect != null ? effect.GetComponent<SpriteRenderer>() : null;
-            if(renderer == null || renderer.enabled)
-            {
-                continue;
-            }
-
-            renderer.enabled = true;
-            StartCoroutine(HideExplosion(effect, renderer));
-            return effect;
-        }
-
-        return null;
-    }
-
-    public GameObject GetFlower()
-    {
-        if(flowerPool == null)
+        GameObject effect = explosionPool.FindFree(out SpriteRenderer renderer);
+        if(effect == null)
         {
             return null;
         }
 
-        foreach(GameObject flower in flowerPool)
-        {
-            SpriteRenderer renderer = flower != null ? flower.GetComponent<SpriteRenderer>() : null;
-            if(renderer != null && !renderer.enabled)
-            {
-                return flower;
-            }
-        }
-
-        return null;
+        renderer.enabled = true;
+        StartCoroutine(HideExplosion(effect, renderer));
+        return effect;
     }
 
-    public bool HasFlyingFlowers()
-    {
-        if(flowerPool == null)
-        {
-            return false;
-        }
+    /// <summary>A free pooled flower; the Flower itself shows it while it flies.</summary>
+    public GameObject GetFlower() => flowerPool?.FindFree(out _);
 
-        foreach(GameObject flower in flowerPool)
-        {
-            SpriteRenderer renderer = flower != null ? flower.GetComponent<SpriteRenderer>() : null;
-            if(renderer != null && renderer.enabled)
-            {
-                return true;
-            }
-        }
-
-        return false;
-    }
+    public bool HasFlyingFlowers() => flowerPool != null && flowerPool.AnyInUse();
 
     public void ForceCleanupAllFlowers()
     {
@@ -121,8 +91,9 @@ public sealed class LevelEffectsController : MonoBehaviour
             return;
         }
 
-        foreach(GameObject flower in flowerPool)
+        for(int i = 0; i < flowerPool.Count; i++)
         {
+            GameObject flower = flowerPool[i];
             if(flower == null)
             {
                 continue;
@@ -151,36 +122,6 @@ public sealed class LevelEffectsController : MonoBehaviour
     private void OnDisable()
     {
         StopAllCoroutines();
-    }
-
-    private void CreatePools()
-    {
-        GameObject explosionPrefab = Resources.Load<GameObject>("Prefabs/Effects/ItemExpl");
-        explosionPool = new GameObject[poolSize];
-        flowerPool = new GameObject[poolSize];
-
-        for(int i = 0; i < poolSize; i++)
-        {
-            explosionPool[i] = CreatePooledEffect(explosionPrefab);
-            flowerPool[i] = CreatePooledEffect(flowerPrefab);
-        }
-    }
-
-    private GameObject CreatePooledEffect(GameObject prefab)
-    {
-        if(prefab == null)
-        {
-            return null;
-        }
-
-        GameObject instance = Instantiate(prefab, transform.position, Quaternion.identity);
-        SpriteRenderer renderer = instance.GetComponent<SpriteRenderer>();
-        if(renderer != null)
-        {
-            renderer.enabled = false;
-        }
-
-        return instance;
     }
 
     private IEnumerator RandomColorRevealCoroutine()

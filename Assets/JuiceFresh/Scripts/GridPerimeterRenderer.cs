@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using JuiceFresh;
 using UnityEngine;
 
+/// <summary>
+/// The line around the board: one animated LineRenderer loop per contour of the level's cells.
+/// The contours come from <see cref="GridContourTracer"/>, the line look from <see cref="GridOutlineLineStyle"/>.
+/// </summary>
 [DisallowMultipleComponent]
 public sealed class GridPerimeterRenderer : MonoBehaviour
 {
@@ -22,18 +26,6 @@ public sealed class GridPerimeterRenderer : MonoBehaviour
     private readonly List<Material> _lineMaterials = new List<Material>();
 
     private LevelManager _levelManager;
-
-    readonly struct GridBoundaryEdge
-    {
-        public readonly Vector2Int Start;
-        public readonly Vector2Int End;
-
-        public GridBoundaryEdge(Vector2Int start, Vector2Int end)
-        {
-            Start = start;
-            End = end;
-        }
-    }
 
     public void Initialize(LevelManager levelManager)
     {
@@ -63,8 +55,8 @@ public sealed class GridPerimeterRenderer : MonoBehaviour
 
         Clear();
 
-        List<GridBoundaryEdge> edges = BuildGridBoundaryEdges();
-        List<List<Vector2Int>> contours = TraceGridContours(edges);
+        List<List<Vector2Int>> contours =
+            GridContourTracer.Trace(_levelManager.maxCols, _levelManager.maxRows, IsGridCellActive);
 
         for(int i = 0; i < contours.Count; i++)
             CreateGridContourLine(contours[i], i);
@@ -106,139 +98,13 @@ public sealed class GridPerimeterRenderer : MonoBehaviour
         Clear();
     }
 
-    List<GridBoundaryEdge> BuildGridBoundaryEdges()
+    private bool IsGridCellActive(int col, int row)
     {
-        List<GridBoundaryEdge> edges = new List<GridBoundaryEdge>();
-
-        for(int row = 0; row < _levelManager.maxRows; row++)
-        {
-            for(int col = 0; col < _levelManager.maxCols; col++)
-            {
-                if(!IsGridCellActive(col, row))
-                    continue;
-
-                Vector2Int topLeft = new Vector2Int(col, row);
-                Vector2Int topRight = new Vector2Int(col + 1, row);
-                Vector2Int bottomRight = new Vector2Int(col + 1, row + 1);
-                Vector2Int bottomLeft = new Vector2Int(col, row + 1);
-
-                if(!IsGridCellActive(col, row - 1))
-                    edges.Add(new GridBoundaryEdge(topLeft, topRight));
-                if(!IsGridCellActive(col + 1, row))
-                    edges.Add(new GridBoundaryEdge(topRight, bottomRight));
-                if(!IsGridCellActive(col, row + 1))
-                    edges.Add(new GridBoundaryEdge(bottomRight, bottomLeft));
-                if(!IsGridCellActive(col - 1, row))
-                    edges.Add(new GridBoundaryEdge(bottomLeft, topLeft));
-            }
-        }
-
-        return edges;
-    }
-
-    bool IsGridCellActive(int col, int row)
-    {
-        if(col < 0 || col >= _levelManager.maxCols || row < 0 || row >= _levelManager.maxRows)
-            return false;
-
         Square square = _levelManager.GetSquare(col, row, true);
         return square != null && square.type != SquareTypes.NONE;
     }
 
-    static List<List<Vector2Int>> TraceGridContours(List<GridBoundaryEdge> edges)
-    {
-        List<List<Vector2Int>> contours = new List<List<Vector2Int>>();
-
-        while(edges.Count > 0)
-        {
-            GridBoundaryEdge edge = edges[0];
-            edges.RemoveAt(0);
-
-            Vector2Int start = edge.Start;
-            Vector2Int current = edge.End;
-            Vector2Int direction = edge.End - edge.Start;
-            List<Vector2Int> contour = new List<Vector2Int> { start };
-            int safety = 0;
-
-            while(current != start && safety++ < 10000)
-            {
-                contour.Add(current);
-                int nextIndex = FindNextBoundaryEdge(edges, current, direction);
-                if(nextIndex < 0)
-                    break;
-
-                GridBoundaryEdge next = edges[nextIndex];
-                edges.RemoveAt(nextIndex);
-                direction = next.End - next.Start;
-                current = next.End;
-            }
-
-            if(current == start && contour.Count >= 4)
-                contours.Add(SimplifyGridContour(contour));
-        }
-
-        return contours;
-    }
-
-    static int FindNextBoundaryEdge(
-        List<GridBoundaryEdge> edges,
-        Vector2Int start,
-        Vector2Int previousDirection)
-    {
-        int previousDirectionIndex = GetGridDirectionIndex(previousDirection);
-        int bestIndex = -1;
-        int bestRank = int.MaxValue;
-
-        for(int i = 0; i < edges.Count; i++)
-        {
-            if(edges[i].Start != start)
-                continue;
-
-            int directionIndex = GetGridDirectionIndex(edges[i].End - edges[i].Start);
-            int turn = (directionIndex - previousDirectionIndex + 4) % 4;
-            int rank = turn == 1 ? 0 : turn == 0 ? 1 : turn == 3 ? 2 : 3;
-            if(rank >= bestRank)
-                continue;
-
-            bestRank = rank;
-            bestIndex = i;
-        }
-
-        return bestIndex;
-    }
-
-    static int GetGridDirectionIndex(Vector2Int direction)
-    {
-        if(direction.x > 0)
-            return 0;
-        if(direction.y > 0)
-            return 1;
-        if(direction.x < 0)
-            return 2;
-        return 3;
-    }
-
-    static List<Vector2Int> SimplifyGridContour(List<Vector2Int> contour)
-    {
-        List<Vector2Int> simplified = new List<Vector2Int>();
-        int count = contour.Count;
-
-        for(int i = 0; i < count; i++)
-        {
-            Vector2Int previous = contour[(i - 1 + count) % count];
-            Vector2Int current = contour[i];
-            Vector2Int next = contour[(i + 1) % count];
-
-            if(current - previous == next - current)
-                continue;
-
-            simplified.Add(current);
-        }
-
-        return simplified;
-    }
-
-    void CreateGridContourLine(List<Vector2Int> contour, int contourIndex)
+    private void CreateGridContourLine(List<Vector2Int> contour, int contourIndex)
     {
         if(contour.Count < 4)
             return;
@@ -257,44 +123,9 @@ public sealed class GridPerimeterRenderer : MonoBehaviour
             return;
         }
 
-        lineRenderer.useWorldSpace = false;
-        lineRenderer.loop = true;
-        lineRenderer.positionCount = contour.Count;
-        lineRenderer.numCornerVertices = Mathf.Max(lineRenderer.numCornerVertices, 6);
-        lineRenderer.numCapVertices = Mathf.Max(lineRenderer.numCapVertices, 4);
-        lineRenderer.alignment = LineAlignment.View;
-        lineRenderer.textureMode = LineTextureMode.Stretch;
-        lineRenderer.sortingLayerName = "Default";
-        lineRenderer.sortingOrder = 50;
-        lineRenderer.widthMultiplier = Mathf.Max(lineRenderer.widthMultiplier, 0.24f);
-
-        Material sharedMaterial = lineRenderer.sharedMaterial;
-        if(sharedMaterial != null)
-        {
-            Material runtimeMaterial = new Material(sharedMaterial)
-            {
-                name = sharedMaterial.name + " (Grid Outline Instance)",
-                renderQueue = 3000
-            };
-
-            runtimeMaterial.SetOverrideTag("RenderType", "Transparent");
-            runtimeMaterial.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
-            runtimeMaterial.DisableKeyword("_ALPHAPREMULTIPLY_ON");
-
-            if(runtimeMaterial.HasProperty("_Surface"))
-                runtimeMaterial.SetFloat("_Surface", 1f);
-            if(runtimeMaterial.HasProperty("_Blend"))
-                runtimeMaterial.SetFloat("_Blend", 0f);
-            if(runtimeMaterial.HasProperty("_SrcBlend"))
-                runtimeMaterial.SetFloat("_SrcBlend", 5f);
-            if(runtimeMaterial.HasProperty("_DstBlend"))
-                runtimeMaterial.SetFloat("_DstBlend", 10f);
-            if(runtimeMaterial.HasProperty("_ZWrite"))
-                runtimeMaterial.SetFloat("_ZWrite", 0f);
-
-            lineRenderer.sharedMaterial = runtimeMaterial;
+        Material runtimeMaterial = GridOutlineLineStyle.Apply(lineRenderer, contour.Count);
+        if(runtimeMaterial != null)
             _lineMaterials.Add(runtimeMaterial);
-        }
 
         List<Vector3> positions = new List<Vector3>(contour.Count);
         for(int i = 0; i < contour.Count; i++)
@@ -312,7 +143,7 @@ public sealed class GridPerimeterRenderer : MonoBehaviour
         _lineInstances.Add(instance);
     }
 
-    Vector3 GridCornerToLocalPosition(Vector2Int corner)
+    private Vector3 GridCornerToLocalPosition(Vector2Int corner)
     {
         float x = _levelManager.firstSquarePosition.x + (corner.x - 0.5f) * _levelManager.squareWidth;
         float y = _levelManager.firstSquarePosition.y - (corner.y - 0.5f) * _levelManager.squareHeight;
