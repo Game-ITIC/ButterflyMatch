@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Configs;
 using Services;
+using Services.Islands;
 using TMPro;
 using UI;
 using UnityEngine;
@@ -24,7 +25,6 @@ public class BuildingCatalogPanel : MonoBehaviour
     [SerializeField] private AnimationCurve panelFadeCurve = CurvedUIPanelAnimator.CreateDefaultFadeCurve();
 
     private readonly List<BuildingCardView> _cards = new();
-    private readonly List<BuildingSlot> _ordered = new();
 
     // A panel that is fading out no longer counts as open.
     public bool IsOpen => gameObject.activeSelf && (!TryGetComponent(out CanvasGroup group) || group.interactable);
@@ -61,36 +61,12 @@ public class BuildingCatalogPanel : MonoBehaviour
             return;
         }
 
-        // Order: buildable now (cheapest first, so the top card matches the cost on the menu Build button),
-        // then the ones still waiting for a requirement, then the built ones.
-        _ordered.Clear();
-        for (var i = 0; i < slots.Count; i++)
+        // Order and card state come from BuildingCatalogEntries (buildable cheapest first, waiting, built).
+        var entries = BuildingCatalogEntries.Build(island, buildService);
+        for (var i = 0; i < entries.Count; i++)
         {
-            var slot = slots[i];
-            if (slot != null && slot.Building != null)
-            {
-                _ordered.Add(slot);
-            }
+            AddCard(entries[i], onBuild);
         }
-
-        _ordered.Sort((a, b) =>
-        {
-            var groupCompare = SortGroup(island, buildService, a).CompareTo(SortGroup(island, buildService, b));
-            if (groupCompare != 0)
-            {
-                return groupCompare;
-            }
-
-            var costCompare = SortGroup(island, buildService, a) == 0 ? a.StarCost.CompareTo(b.StarCost) : 0;
-            return costCompare != 0 ? costCompare : IndexOf(slots, a).CompareTo(IndexOf(slots, b));
-        });
-
-        for (var i = 0; i < _ordered.Count; i++)
-        {
-            AddCard(island, buildService, _ordered[i], onBuild);
-        }
-
-        _ordered.Clear();
 
         if (_content is RectTransform contentRect)
         {
@@ -108,49 +84,23 @@ public class BuildingCatalogPanel : MonoBehaviour
         }
     }
 
-    private static int SortGroup(IslandSO island, IslandBuildService buildService, BuildingSlot slot)
+    private void AddCard(BuildingCatalogEntry entry, Action<BuildingSlot> onBuild)
     {
-        if (buildService.IsBuilt(slot))
-        {
-            return 2;
-        }
-
-        return buildService.CanSelect(island, slot) ? 0 : 1;
-    }
-
-    private static int IndexOf(IReadOnlyList<BuildingSlot> slots, BuildingSlot slot)
-    {
-        for (var i = 0; i < slots.Count; i++)
-        {
-            if (slots[i] == slot)
-            {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-
-    private void AddCard(IslandSO island, IslandBuildService buildService, BuildingSlot slot, Action<BuildingSlot> onBuild)
-    {
-        var built = buildService.IsBuilt(slot);
-        var requirementsMet = buildService.CanSelect(island, slot);
-        var canAfford = buildService.CanAfford(slot);
-        var subtitle = built
+        var slot = entry.Slot;
+        var subtitle = entry.Built
             ? GameLocalization.L10n.Get("built", "Built")
-            : !requirementsMet
+            : !entry.RequirementsMet
                 ? slot.RequirementLabel()
-                : canAfford ? GameLocalization.L10n.Format("stars_n", slot.StarCost) : GameLocalization.L10n.Format("need_stars_n", slot.StarCost);
+                : entry.CanAfford ? GameLocalization.L10n.Format("stars_n", slot.StarCost) : GameLocalization.L10n.Format("need_stars_n", slot.StarCost);
         var card = Instantiate(_cardPrefab, _content);
         card.gameObject.SetActive(true);
-        var captured = slot;
         card.Bind(
             GameLocalization.L10n.Translate(slot.Building.DisplayName),
             subtitle,
             slot.Building.Icon,
-            built ? GameLocalization.L10n.Get("built", "Built") : GameLocalization.L10n.Get("build", "Build"),
-            !built && requirementsMet && canAfford,
-            () => onBuild?.Invoke(captured));
+            entry.Built ? GameLocalization.L10n.Get("built", "Built") : GameLocalization.L10n.Get("build", "Build"),
+            entry.CanBuild,
+            () => onBuild?.Invoke(slot));
         _cards.Add(card);
     }
 
