@@ -164,16 +164,24 @@ public class BoostIcon : MonoBehaviour
     public void OpenBoostShop(BoostType boosType)
     {
         SoundBase.Instance.PlaySound(SoundBase.Instance.click);
-        GameObject.Find("CanvasGlobal")
-            .transform.Find("BoostShop")
-            .gameObject.GetComponent<BoostShop>()
+        GameSceneUi.FindInGlobalCanvas(GameSceneUi.BoostShop)
+            .GetComponent<BoostShop>()
             .SetBoost(boosType);
     }
 
+    // ShowPlus runs every frame from Update, so the two indicator children are looked up once.
+    private GameObject _plusIndicator;
+    private GameObject _countIndicator;
+
     void ShowPlus(bool show)
     {
-        transform.Find("Indicator/Plus").gameObject.SetActive(show);
-        transform.Find("Indicator/Count").gameObject.SetActive(!show);
+        if(_plusIndicator == null)
+            _plusIndicator = transform.Find("Indicator/Plus").gameObject;
+        if(_countIndicator == null)
+            _countIndicator = transform.Find("Indicator/Count").gameObject;
+
+        _plusIndicator.SetActive(show);
+        _countIndicator.SetActive(!show);
     }
 
     void Update()

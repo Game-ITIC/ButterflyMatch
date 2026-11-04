@@ -7,14 +7,12 @@ namespace JuiceFresh.States
     /// </summary>
     public static class StatelessGameStates
     {
-        private const string GlobalCanvasName = "CanvasGlobal";
-
         public static void Enter(GameState state)
         {
             switch (state)
             {
                 case GameState.PreFailed:
-                    ShowGlobalMenu("PreFailed");
+                    ShowGlobalMenu(GameSceneUi.PreFailed);
                     break;
 
                 case GameState.Pause:
@@ -24,19 +22,18 @@ namespace JuiceFresh.States
                 case GameState.ToMap:
                     MusicBase.Instance.GetComponent<AudioSource>().Stop();
                     SoundBase.Instance.PlaySound(SoundBase.Instance.gameOver[0]);
-                    ShowGlobalMenu("MenuFailed");
+                    ShowGlobalMenu(GameSceneUi.MenuFailed);
                     break;
             }
         }
 
         private static void ShowGlobalMenu(string menuName)
         {
-            GameObject canvas = GameObject.Find(GlobalCanvasName);
-            Transform menu = canvas != null ? canvas.transform.Find(menuName) : null;
+            Transform menu = GameSceneUi.FindInGlobalCanvas(menuName);
 
             if (menu == null)
             {
-                Debug.LogWarning($"[GameState] {GlobalCanvasName}/{menuName} not found.");
+                Debug.LogWarning($"[GameState] {GameSceneUi.GlobalCanvasPath}/{menuName} not found.");
                 return;
             }
 

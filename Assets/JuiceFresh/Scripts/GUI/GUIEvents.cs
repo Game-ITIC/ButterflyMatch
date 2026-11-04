@@ -41,7 +41,7 @@ public class GUIEvents : MonoBehaviour {
 		SoundBase.Instance.PlaySound (SoundBase.Instance.click);
 
 		if (LevelManager.THIS.gameStatus == GameState.Playing)
-			GameObject.Find ("CanvasGlobal").transform.Find ("MenuPause").gameObject.SetActive (true);
+			GameSceneUi.FindInGlobalCanvas (GameSceneUi.MenuPause).gameObject.SetActive (true);
 
 	}
 

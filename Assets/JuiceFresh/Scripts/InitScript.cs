@@ -126,7 +126,7 @@ public class InitScript : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject(-1))
             return;
 
-        Transform canvas = GameObject.Find("CanvasGlobal").transform;
+        Transform canvas = GameSceneUi.GlobalCanvas;
         if (canvas.Find("MenuPlay").gameObject.activeSelf
             || canvas.Find("GemsShop").gameObject.activeSelf
             || canvas.Find("LiveShop").gameObject.activeSelf)

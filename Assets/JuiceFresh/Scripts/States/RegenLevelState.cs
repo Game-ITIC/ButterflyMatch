@@ -24,9 +24,9 @@ public class RegenLevelState : GameStateBase
 
     public override void ExitState()
     {
-        GameObject noMoreMatchesMessage = GameObject.Find("Level/Canvas")?.transform.Find("NoMoreMatches")?.gameObject;
-        if (noMoreMatchesMessage != null && noMoreMatchesMessage.activeSelf)
-            noMoreMatchesMessage.SetActive(false);
+        Transform noMoreMatchesMessage = GameSceneUi.FindInLevelCanvas(GameSceneUi.NoMoreMatches);
+        if (noMoreMatchesMessage != null && noMoreMatchesMessage.gameObject.activeSelf)
+            noMoreMatchesMessage.gameObject.SetActive(false);
     }
 
     private IEnumerator RegenLevelProcess()

@@ -53,7 +53,7 @@ namespace JuiceFresh.Popups
         {
             var congratulations =
                 Object.Instantiate(Resources.Load("Prefabs/Congratulations"), Vector2.zero, Quaternion.identity) as GameObject;
-            congratulations.transform.SetParent(GameObject.Find("CanvasGlobal").transform);
+            congratulations.transform.SetParent(GameSceneUi.GlobalCanvas);
             congratulations.transform.localScale = Vector3.one;
             congratulations.transform.localPosition = Vector3.zero;
         }

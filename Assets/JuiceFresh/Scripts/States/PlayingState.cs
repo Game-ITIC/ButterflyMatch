@@ -193,7 +193,7 @@ public class PlayingState : GameStateBase
             return;
 
         SoundBase.Instance.PlaySound(SoundBase.Instance.noMatch);
-        GameObject.Find("Level/Canvas").transform.Find("NoMoreMatches").gameObject.SetActive(true);
+        GameSceneUi.FindInLevelCanvas(GameSceneUi.NoMoreMatches).gameObject.SetActive(true);
         levelManager.gameStatus = GameState.RegenLevel;
     }
 }

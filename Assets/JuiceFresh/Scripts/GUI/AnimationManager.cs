@@ -98,13 +98,13 @@ public class AnimationManager : MonoBehaviour
 
     public void ShowInfo()
     {
-        GameObject.Find("CanvasGlobal").transform.Find("BoostInfo").gameObject.SetActive(true);
+        GameSceneUi.FindInGlobalCanvas(GameSceneUi.BoostInfo).gameObject.SetActive(true);
     }
 
     public void BuyGems()
     {
         SoundBase.Instance.PlaySound(SoundBase.Instance.click);
-        GameObject.Find("CanvasGlobal").transform.Find("GemsShop").gameObject.SetActive(true);
+        GameSceneUi.FindInGlobalCanvas(GameSceneUi.GemsShop).gameObject.SetActive(true);
     }
 
     #endregion

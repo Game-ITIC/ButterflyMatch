@@ -60,7 +60,7 @@ namespace JuiceFresh.States
 
         private void ShowFailedUI()
         {
-            _menuFailedUI = GameObject.Find("CanvasGlobal").transform.Find("MenuFailed").gameObject;
+            _menuFailedUI = GameSceneUi.FindInGlobalCanvas(GameSceneUi.MenuFailed).gameObject;
             _menuFailedUI.SetActive(true);
 
             Transform menu = _menuFailedUI.transform;

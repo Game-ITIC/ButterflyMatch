@@ -54,7 +54,7 @@ public class WinState : GameStateBase
     private void ShowCompleteUI()
     {
         // Find and show the complete menu UI
-        menuCompleteUI = GameObject.Find("CanvasGlobal").transform.Find("MenuComplete").gameObject;
+        menuCompleteUI = GameSceneUi.FindInGlobalCanvas(GameSceneUi.MenuComplete).gameObject;
         menuCompleteUI.SetActive(true);
         // A win pays only stars (Docs/GDD.md 4.1); the reward line shows them with a star icon.
         LevelManager.THIS.GameCompleteView.CoinsCollectedText.text = levelManager.stars.ToString();

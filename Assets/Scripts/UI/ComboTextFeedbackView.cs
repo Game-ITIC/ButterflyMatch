@@ -113,10 +113,10 @@ namespace UI
                 return searchRoot;
             }
 
-            GameObject canvas = GameObject.Find("Level/Canvas");
+            Transform canvas = GameSceneUi.LevelCanvas;
             if(canvas != null)
             {
-                return canvas.transform;
+                return canvas;
             }
 
             return transform;

@@ -119,8 +119,9 @@ namespace JuiceFresh.States
             else if (Mathf.Abs(aspect - 2.16f) < 0.03f)
                 gameCamera.orthographicSize = 12.26f; //iphone x
 
-            GameObject.Find("CanvasGlobal").GetComponent<GraphicRaycaster>().enabled = false;
-            GameObject.Find("CanvasGlobal").GetComponent<GraphicRaycaster>().enabled = true;
+            GraphicRaycaster globalRaycaster = GameSceneUi.GlobalCanvas.GetComponent<GraphicRaycaster>();
+            globalRaycaster.enabled = false;
+            globalRaycaster.enabled = true;
 
             var canvas = levelManager.Level.transform.Find("Canvas");
             canvas.GetComponent<GraphicRaycaster>().enabled = false;

@@ -43,7 +43,7 @@ public class PreWinAnimationsState : GameStateBase
         GameFeelManager.Instance?.OnPreWin();
 
         if (preCompleteBannerTransform == null)
-            preCompleteBannerTransform = GameObject.Find("Level/Canvas")?.transform.Find("PreCompleteBanner");
+            preCompleteBannerTransform = GameSceneUi.FindInLevelCanvas(GameSceneUi.PreCompleteBanner);
 
         if (preCompleteBannerTransform != null)
         {
