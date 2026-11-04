@@ -2,7 +2,7 @@ using System;
 
 namespace JuiceFresh.Counters
 {
-    /// <summary>A text label refreshed every frame (localized texts follow a language switch).</summary>
+    /// <summary>A text label refreshed every frame (localized texts follow a language switch); null keeps the current text.</summary>
     public sealed class LabelCounterDisplay : CounterDisplay
     {
         private readonly Func<string> _text;
@@ -14,7 +14,9 @@ namespace JuiceFresh.Counters
 
         public override void Tick(Counter_ counter)
         {
-            counter.SetText(_text());
+            string text = _text();
+            if (text != null)
+                counter.SetText(text);
         }
     }
 

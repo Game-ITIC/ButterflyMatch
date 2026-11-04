@@ -22,7 +22,7 @@ namespace JuiceFresh.Popups
 
         /// <summary>
         /// A pack button was pressed: remembers its gem count for the purchase callback
-        /// (<see cref="InitScript.PurchaseSucceded"/>). Only Pack1..Pack4 are packs.
+        /// (<see cref="InitScript.waitedPurchaseGems"/>). Only Pack1..Pack4 are packs.
         /// </summary>
         public static void RememberPackGems(GameObject pack)
         {

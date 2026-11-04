@@ -51,9 +51,16 @@ namespace JuiceFresh.Popups
         // The last level of the map was completed.
         private static void ShowCongratulations()
         {
+            Transform canvas = GameSceneUi.GlobalCanvas;
+            if (canvas == null)
+            {
+                UnityEngine.Debug.LogWarning("[MenuComplete] " + GameSceneUi.GlobalCanvasPath + " not found; congratulations not shown.");
+                return;
+            }
+
             var congratulations =
                 Object.Instantiate(Resources.Load("Prefabs/Congratulations"), Vector2.zero, Quaternion.identity) as GameObject;
-            congratulations.transform.SetParent(GameSceneUi.GlobalCanvas);
+            congratulations.transform.SetParent(canvas);
             congratulations.transform.localScale = Vector3.one;
             congratulations.transform.localPosition = Vector3.zero;
         }
