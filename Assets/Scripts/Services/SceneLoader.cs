@@ -18,15 +18,14 @@ namespace Itic.Scopes
         private const float LoadProgressEnd = 0.98f;
 
         private readonly ScreenService _screenService;
-        private readonly SceneModel _sceneModel;
 
+        // sceneModel is kept in the signature for the DI registration; only the removed LoadLastSceneAsync read it.
         public SceneLoader(
             ScreenService screenService,
             SceneModel sceneModel
         )
         {
             _screenService = screenService;
-            _sceneModel = sceneModel;
         }
 
         public async UniTask LoadMenuAsync()
@@ -39,41 +38,16 @@ namespace Itic.Scopes
             await LoadSceneAsync(3);
         }
 
-        public async UniTask LoadMapAsync()
-        {
-            await LoadSceneAsync(5);
-        }
-
-        public async UniTask LoadAsiaRegionAsync()
-        {
-            await LoadSceneAsync(6);
-        }
-
-        public async UniTask LoadEgyptRegionAsync()
-        {
-            await LoadSceneAsync(7);
-        }
-
+        // LEGACY: only the OLD/Islands IslandInitializer calls this. The build indices are stale: with AsiaRegion
+        // disabled in the build, 6 is OLD/AfricaRegion and 7 is MainMenu.
         public async UniTask LoadRegionScene(CountryEnum country)
         {
             switch (country)
             {
-                case CountryEnum.Asia: await LoadAsiaRegionAsync(); break;
-                case CountryEnum.Egypt: await LoadEgyptRegionAsync(); break;
+                case CountryEnum.Asia: await LoadSceneAsync(6); break;
+                case CountryEnum.Egypt: await LoadSceneAsync(7); break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(country), country, null);
-            }
-        }
-
-        public async UniTask LoadLastSceneAsync()
-        {
-            if (_sceneModel.LastCountryConfig == null)
-            {
-                await LoadAsiaRegionAsync();
-            }
-            else
-            {
-                await LoadRegionScene(_sceneModel.LastCountryConfig.countryId);
             }
         }
 

@@ -54,6 +54,18 @@ namespace JuiceFresh
         public List<GameObject> block = new List<GameObject>();
         
         private bool hightlighted;
+        private SpriteRenderer _spriteRenderer;
+
+        // Highlight is cleared on every square at each chain step, so the renderer lookup is cached.
+        private SpriteRenderer CellRenderer
+        {
+            get
+            {
+                if (_spriteRenderer == null)
+                    _spriteRenderer = GetComponent<SpriteRenderer>();
+                return _spriteRenderer;
+            }
+        }
 
         // Lazy: squares are also used as plain data holders on block prefabs, and some are set up inactive.
         private SquareCage _cage;
@@ -87,21 +99,22 @@ namespace JuiceFresh
                 
             GameObject itemObj = Instantiate(LevelManager.THIS.itemPrefab) as GameObject;
             itemObj.transform.localScale = Vector2.one * 0.9f;
-            itemObj.GetComponent<Item>().square = this;
-            
+            Item newItem = itemObj.GetComponent<Item>();
+            newItem.square = this;
+
             itemObj.transform.SetParent(transform.parent);
-            
+
             if (falling)
             {
                 itemObj.transform.position = transform.position + Vector3.back * 0.2f + Vector3.up * 3f;
-                itemObj.GetComponent<Item>().justCreatedItem = true;
+                newItem.justCreatedItem = true;
             }
             else
             {
                 itemObj.transform.position = transform.position + Vector3.back * 0.2f;
             }
 
-            this.item = itemObj.GetComponent<Item>();
+            this.item = newItem;
             return this.item;
         }
         #endregion
@@ -159,134 +172,19 @@ namespace JuiceFresh
         }
         #endregion
 
-        #region Match Finding
-        Hashtable FindMoreMatches(int colorToMatch, Hashtable countedSquares, FindSeparating separating,
-            Hashtable countedSquaresGlobal = null)
-        {
-            bool globalCounter = countedSquaresGlobal != null;
-            
-            if (!globalCounter)
-            {
-                countedSquaresGlobal = new Hashtable();
-            }
-
-            if (this.item == null || this.item.destroying)
-                return countedSquares;
-                
-            if (this.item.color == colorToMatch && 
-                !countedSquares.ContainsValue(this.item) &&
-                this.item.currentType != ItemsTypes.INGREDIENT)
-            {
-                if (LevelManager.THIS.onlyFalling && this.item.justCreatedItem)
-                    countedSquares.Add(countedSquares.Count - 1, this.item);
-                else if (!LevelManager.THIS.onlyFalling)
-                    countedSquares.Add(countedSquares.Count - 1, this.item);
-                else
-                    return countedSquares;
-
-                CheckDirectionalMatches(colorToMatch, countedSquares, separating);
-            }
-
-            return countedSquares;
-        }
-
-        private void CheckDirectionalMatches(int colorToMatch, Hashtable countedSquares, FindSeparating separating)
-        {
-            if (separating == FindSeparating.HORIZONTAL)
-            {
-                Square leftNeighbor = GetNeighborLeft();
-                if (leftNeighbor != null)
-                    countedSquares = leftNeighbor.FindMoreMatches(colorToMatch, countedSquares, FindSeparating.HORIZONTAL);
-                    
-                Square rightNeighbor = GetNeighborRight();
-                if (rightNeighbor != null)
-                    countedSquares = rightNeighbor.FindMoreMatches(colorToMatch, countedSquares, FindSeparating.HORIZONTAL);
-            }
-            else if (separating == FindSeparating.VERTICAL)
-            {
-                Square topNeighbor = GetNeighborTop();
-                if (topNeighbor != null)
-                    countedSquares = topNeighbor.FindMoreMatches(colorToMatch, countedSquares, FindSeparating.VERTICAL);
-                    
-                Square bottomNeighbor = GetNeighborBottom();
-                if (bottomNeighbor != null)
-                    countedSquares = bottomNeighbor.FindMoreMatches(colorToMatch, countedSquares, FindSeparating.VERTICAL);
-            }
-        }
-
-        /// <summary>
-        /// Finds all matching items around this square
-        /// </summary>
-        public List<Item> FindMatchesAround(FindSeparating separating = FindSeparating.NONE, int minimumMatches = 3,
-            Hashtable countedSquaresGlobal = null)
-        {
-            bool globalCounter = countedSquaresGlobal != null;
-            List<Item> newList = new List<Item>();
-            
-            if (!globalCounter)
-            {
-                countedSquaresGlobal = new Hashtable();
-            }
-
-            Hashtable countedSquares = new Hashtable();
-            countedSquares.Clear();
-            
-            if (this.item == null)
-                return newList;
-                
-            // Check horizontal matches
-            if (separating != FindSeparating.VERTICAL)
-            {
-                countedSquares = this.FindMoreMatches(this.item.color, countedSquares, FindSeparating.HORIZONTAL,
-                    countedSquaresGlobal);
-            }
-
-            foreach (DictionaryEntry de in countedSquares)
-            {
-                LevelManager.THIS.countedSquares.Add(LevelManager.THIS.countedSquares.Count - 1, de.Value);
-            }
-
-            if (countedSquares.Count < minimumMatches)
-                countedSquares.Clear();
-
-            // Check vertical matches
-            if (separating != FindSeparating.HORIZONTAL)
-            {
-                countedSquares = this.FindMoreMatches(this.item.color, countedSquares, FindSeparating.VERTICAL,
-                    countedSquaresGlobal);
-            }
-
-            foreach (DictionaryEntry de in countedSquares)
-            {
-                LevelManager.THIS.countedSquares.Add(LevelManager.THIS.countedSquares.Count - 1, de.Value);
-            }
-
-            if (countedSquares.Count < minimumMatches)
-                countedSquares.Clear();
-                
-            // Convert to list
-            foreach (DictionaryEntry de in countedSquares)
-            {
-                newList.Add((Item)de.Value);
-            }
-
-            return newList;
-        }
-        #endregion
-
         #region Visual Effects
         public void HighLight(bool on, float col = 0.5f)
         {
             if (on)
             {
-                GetComponent<SpriteRenderer>().color = new Color(col, 0.65f, 0);
+                CellRenderer.color = new Color(col, 0.65f, 0);
                 if (!hightlighted)
                     StartCoroutine(AnimateHighlight(col));
             }
             else
             {
-                StopCoroutine(AnimateHighlight(col));
-                GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
+                // The old StopCoroutine(AnimateHighlight(col)) stopped nothing (a new enumerator) and only allocated.
+                CellRenderer.color = new Color(1, 1, 1);
             }
 
             hightlighted = on;
@@ -295,23 +193,18 @@ namespace JuiceFresh
 
         IEnumerator AnimateHighlight(float col = 0.8f)
         {
-            GetComponent<SpriteRenderer>().color = new Color(col, 0.65f, 0);
+            CellRenderer.color = new Color(col, 0.65f, 0);
             while (hightlighted)
             {
                 yield return new WaitForSeconds(0.3f);
-                GetComponent<SpriteRenderer>().color = new Color(col, 0.65f, 0);
+                CellRenderer.color = new Color(col, 0.65f, 0);
                 yield return new WaitForSeconds(0.3f);
-                GetComponent<SpriteRenderer>().color = new Color(col - 0.1f, col - 0.1f, col - 0.1f);
+                CellRenderer.color = new Color(col - 0.1f, col - 0.1f, col - 0.1f);
             }
         }
         #endregion
 
         #region Item Movement
-        public void FallInto()
-        {
-            // Reserved for future functionality
-        }
-
         /// <summary>
         /// Checks if this square's item can fall to a square below
         /// </summary>
@@ -454,18 +347,6 @@ namespace JuiceFresh
         public bool CheckDamage(int damage)
         {
             return Cage.CheckDamage(damage);
-        }
-
-        public void AddDagame(int damage)
-        {
-            Cage.AddDamage(damage);
-        }
-        #endregion
-
-        #region Special Blocks
-        public void GenThriveBlock(Square newSquare)
-        {
-            // Reserved for future functionality
         }
         #endregion
     }
