@@ -129,20 +129,19 @@ namespace JuiceFresh.Scripts
                     _levelManager.listIngredientsGUIObjects.Add(ingr);
                     if (tar != Target.COLLECT)
                         ingr.transform.Find("Image").GetComponent<Image>().sprite = spr[j];
-                    ingr.transform.Find("CountIngr").GetComponent<Counter_>().ingrTrackNumber = i;
-                    ingr.transform.Find("CountIngr").GetComponent<Counter_>().totalCount =
-                        _levelManager.ingrTarget[i].count;
-                    ingr.transform.Find("CountIngrForMenu").GetComponent<Counter_>().totalCount =
-                        _levelManager.ingrTarget[i].count;
+                    Counter_ goalCounter = ingr.transform.Find("CountIngr").GetComponent<Counter_>();
+                    Counter_ menuCounter = ingr.transform.Find("CountIngrForMenu").GetComponent<Counter_>();
+                    goalCounter.ingrTrackNumber = i;
+                    goalCounter.totalCount = _levelManager.ingrTarget[i].count;
+                    menuCounter.totalCount = _levelManager.ingrTarget[i].count;
                     if (tar == Target.SCORE)
-                        ingr.transform.Find("CountIngrForMenu").GetComponent<Counter_>().totalCount =
-                            (int)_levelManager.starsTargetCount;
+                        menuCounter.totalCount = (int)_levelManager.starsTargetCount;
                     else if (tar == Target.BLOCKS)
-                        ingr.transform.Find("CountIngr").name = "TargetBlocks";
+                        goalCounter.ShowAs("TargetBlocks");
                     else if (tar == Target.CAGES)
-                        ingr.transform.Find("CountIngr").name = "TargetCages";
+                        goalCounter.ShowAs("TargetCages");
                     else if (tar == Target.BOMBS)
-                        ingr.transform.Find("CountIngr").name = "TargetBombs";
+                        goalCounter.ShowAs("TargetBombs");
 
                     if (tar == Target.COLLECT)
                         ingr.GetComponent<TargetGUI>().SetSprite(_levelManager.ingrTarget[i].sprite);
