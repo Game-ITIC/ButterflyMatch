@@ -34,8 +34,6 @@ public class PlayingState : GameStateBase
         Time.timeScale = 1;
         _chain.ResetGesture();
 
-        levelManager.StartCoroutine(TipsManager.THIS.CheckPossibleCombines());
-
         // Every state change stops LevelManager's coroutines, so a bomb spawn started before entering
         // Playing (level start, Continue, board regen) can be cancelled and the level becomes unwinnable.
         // InitBombs only tops up what is missing, so it is safe to run on each entry.
