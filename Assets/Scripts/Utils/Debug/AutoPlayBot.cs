@@ -290,11 +290,23 @@ namespace Utils.DebugTools
                 if (result == "win" && !_measure)
                 {
                     // Stars are final once WinState ran.
+                    if (_debug)
+                    {
+                        File.AppendAllText(Path.Combine(_outDir, "debug.log"),
+                            $"L{level} R{run} WIN-START bombs={BombTimers(lm)} need={lm.bombsCollect} fly={lm.ingredientFly}\n");
+                    }
+
                     var t = Time.realtimeSinceStartup;
                     while (lm != null && lm.gameStatus != GameState.Win && Time.realtimeSinceStartup - t < 30f)
                     {
                         Time.timeScale = _timeScale;
                         yield return null;
+                    }
+
+                    if (_debug && lm != null)
+                    {
+                        File.AppendAllText(Path.Combine(_outDir, "debug.log"),
+                            $"L{level} R{run} WIN-END bombs={BombTimers(lm)} need={lm.bombsCollect}\n");
                     }
 
                     if (lm != null && lm.gameStatus != GameState.Win)

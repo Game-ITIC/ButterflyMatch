@@ -64,6 +64,8 @@ namespace JuiceFresh.States
             animation.Play(levelManager.GameFieldTargetLocalPosition,
                 () =>
                 {
+                    // A board shake still running from the previous level may have moved the board during the intro.
+                    levelManager.GameField.localPosition = levelManager.GameFieldTargetLocalPosition;
                     GameFeelManager.Instance?.RefreshBoardCanonicalTransform();
                     _levelManagerActions.GenerateOutline();
                     levelManager.gameStatus = GameState.PrepareBoosts;

@@ -18,19 +18,7 @@ namespace JuiceFresh.Scripts
         private readonly DestroyCompletionWaiter _destroyWaiter = new DestroyCompletionWaiter();
         private readonly ThrivingBlockSpreader _thriving;
         private UniTask _activeBoardProcess = UniTask.CompletedTask;
-
-        // Bomb timers count player moves. One move can run several board passes (every 6th piece of a chain
-        // sends a flower that triggers another pass), which used to tick the bombs 2-3 times per move.
-        private int _lastBombTickMove; // moveID starts at 0: nothing ticks before the first move
-
-        private void TickBombsOncePerMove()
-        {
-            if (levelManager.GameField == null || _lastBombTickMove == levelManager.moveID)
-                return;
-
-            _lastBombTickMove = levelManager.moveID;
-            levelManager.GameField.BroadcastMessage("BombTick");
-        }
+        private const int MaxExtraPasses = 5;
 
         public BoardMechanicsService(LevelManager levelManager)
         {
@@ -95,12 +83,16 @@ namespace JuiceFresh.Scripts
                 safetyIterations--;
             }
             while (slid && safetyIterations > 0);
+
+            if (_gravity.FillStarvedHoles())
+                await _gravity.WaitAllLanded(50, cancellationToken);
         }
 
         async UniTask ProcessBoardAfterMatchesAsync(CancellationToken cancellationToken, bool freezeAnimations)
         {
             levelManager.extraCageAddItem = 0;
             bool repeatPass = false;
+            int extraPasses = 0;
             int combo = 0;
 
             List<Item> items = levelManager.GetItems();
@@ -118,7 +110,8 @@ namespace JuiceFresh.Scripts
                 await UniTask.Delay(100, cancellationToken: cancellationToken);
 
                 levelManager.combinedItems.Clear();
-                combo = levelManager.destroyAnyway.Count;
+                // Repeat passes (slides, late blasts) have an empty chain and must not reset the move's combo.
+                combo = Mathf.Max(combo, levelManager.destroyAnyway.Count);
 
                 // Every extraItemEvery pieces of the chain give one extra item (flower).
                 if (levelManager.destroyAnyway.Count >= levelManager.extraItemEvery)
@@ -164,9 +157,19 @@ namespace JuiceFresh.Scripts
                 if (levelManager.destroyAnyway.Count > 0)
                     repeatPass = true;
 
+                // Late destructions (a striped blast, a package, a boost) after this pass refilled.
+                if (!repeatPass && extraPasses < MaxExtraPasses && _gravity.HasUnsettledSquares())
+                {
+                    extraPasses++;
+                    repeatPass = true;
+                }
+
                 if (!repeatPass)
                     break;
             }
+
+            if (_gravity.FillStarvedHoles())
+                await _gravity.WaitAllLanded(100, cancellationToken);
 
             CleanupInvalidItems(items);
 
@@ -189,9 +192,10 @@ namespace JuiceFresh.Scripts
 
             await UniTask.Yield(PlayerLoopTiming.LastPostLateUpdate, cancellationToken); // WaitForEndOfFrame equivalent
 
-            TickBombsOncePerMove();
-            levelManager.TopUpBombs();
-            UpdateBombTimers();
+            // Once per move even when one move runs several passes.
+            levelManager.Bombs.TickOncePerMove();
+            levelManager.Bombs.TopUp();
+            levelManager.Bombs.SnapshotTimers();
         }
 
         private async UniTask DestroyChain(CancellationToken cancellationToken)
@@ -305,17 +309,6 @@ namespace JuiceFresh.Scripts
 
             ComboTextFeedbackView.ShowForCombo(combo);
             GameFeelManager.Instance?.OnCombo(combo);
-        }
-
-        private void UpdateBombTimers()
-        {
-            List<Item> items = levelManager.GetItems();
-            levelManager.bombTimers.Clear();
-            foreach (Item item in items)
-            {
-                if (item.currentType == ItemsTypes.BOMB)
-                    levelManager.bombTimers.Add(item.bombTimer);
-            }
         }
     }
 }

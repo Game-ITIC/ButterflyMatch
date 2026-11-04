@@ -32,18 +32,8 @@ namespace JuiceFresh.Scripts
             yield return new WaitUntil(() => !TipsManager.THIS.gotTip);
             yield return new WaitForSeconds(1);
 
-            int bombsOnField = 0;
-            foreach (Item item in _levelManager.GetItems())
-            {
-                if (IsBombOrBecomingBomb(item))
-                    bombsOnField++;
-            }
-
-            List<Item> itemsRand = _levelManager.GetRandomItems(
-                _levelManager.bombsCollect - bombsOnField - _levelManager.TargetBombs);
-
             int i = 0;
-            foreach (Item item in itemsRand)
+            foreach (Item item in _levelManager.GetRandomItems(MissingBombs()))
             {
                 item.nextType = ItemsTypes.BOMB;
 
@@ -64,6 +54,20 @@ namespace JuiceFresh.Scripts
             if (_levelManager.target != Target.BOMBS || _levelManager.gameStatus != GameState.Playing)
                 return;
 
+            foreach (Item item in _levelManager.GetRandomItems(MissingBombs()))
+            {
+                item.nextType = ItemsTypes.BOMB;
+                item.ChangeType();
+            }
+        }
+
+        /// <summary>
+        /// Bombs the level still needs: the goal minus defused, still flying to the counter and on the board.
+        /// Leaving out the flying ones spawned a spare bomb for every bomb defused just before a top-up
+        /// (it then counted on landing, so a level could end with more bombs than its goal).
+        /// </summary>
+        private int MissingBombs()
+        {
             int onField = 0;
             foreach (Item item in _levelManager.GetItems())
             {
@@ -71,12 +75,7 @@ namespace JuiceFresh.Scripts
                     onField++;
             }
 
-            int missing = _levelManager.bombsCollect - _levelManager.TargetBombs - _bombsInFlight() - onField;
-            foreach (Item item in _levelManager.GetRandomItems(missing))
-            {
-                item.nextType = ItemsTypes.BOMB;
-                item.ChangeType();
-            }
+            return _levelManager.bombsCollect - _levelManager.TargetBombs - _bombsInFlight() - onField;
         }
 
         /// <summary>

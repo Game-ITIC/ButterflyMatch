@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 
+using JuiceFresh.Board;
 namespace JuiceFresh
 {
     public enum FindSeparating
@@ -52,22 +53,19 @@ namespace JuiceFresh
         [Header("Blocks")]
         public List<GameObject> block = new List<GameObject>();
         
-        private bool cageActive;
-        private int OldcageHP;
         private bool hightlighted;
-        private bool justHighlighted;
-        private bool canDamage;
+
+        // Lazy: squares are also used as plain data holders on block prefabs, and some are set up inactive.
+        private SquareCage _cage;
+        private SquareBlockDestroyer _blockDestroyer;
+        private SquareCage Cage => _cage ??= new SquareCage(this);
+        private SquareBlockDestroyer BlockDestroyer => _blockDestroyer ??= new SquareBlockDestroyer(this);
         #endregion
 
         #region Unity Lifecycle
         void Start()
         {
             square = this;
-        }
-
-        void Update()
-        {
-            canDamage = cageActive;
         }
 
         void LateUpdate()
@@ -424,127 +422,14 @@ namespace JuiceFresh
         /// </summary>
         public void DestroyBlock()
         {
-            if (type == SquareTypes.UNDESTROYABLE)
-                return;
-                
-            // Handle adjacent solid blocks
-            if (type != SquareTypes.SOLIDBLOCK && type != SquareTypes.THRIVING)
-            {
-                DestroyAdjacentSolidBlocks();
-            }
-
-            if (block.Count <= 0)
-                return;
-
-            // Handle specific block types
-            HandleBlockDestruction();
-        }
-
-        private void DestroyAdjacentSolidBlocks()
-        {
-            List<Square> sqList = GetAllNeghbors();
-            foreach (Square sq in sqList)
-            {
-                if (sq.type == SquareTypes.SOLIDBLOCK || sq.type == SquareTypes.THRIVING)
-                    sq.DestroyBlock();
-            }
-        }
-
-        private void HandleBlockDestruction()
-        {
-            if (type == SquareTypes.BLOCK)
-            {
-                DestroyNormalBlock();
-            }
-            else if (type == SquareTypes.WIREBLOCK)
-            {
-                DestroyWireBlock();
-            }
-            else if (type == SquareTypes.SOLIDBLOCK)
-            {
-                DestroySolidBlock();
-            }
-            else if (type == SquareTypes.THRIVING)
-            {
-                DestroyThrivingBlock();
-            }
-            else
-            {
-                DestroyGenericBlock();
-            }
-            
-            UpdateBlockState();
-        }
-
-        private void DestroyNormalBlock()
-        {
-            LevelManager.THIS.CheckCollectedTarget(block[block.Count - 1].gameObject);
-            LevelManager.THIS.PopupScore(LevelManager.THIS.scoreForBlock, transform.position, 0);
-            LevelManager.THIS.TargetBlocks--;
-            block[block.Count - 1].GetComponent<SpriteRenderer>().enabled = false;
-        }
-
-        private void DestroyWireBlock()
-        {
-            if (cageHP > 0)
-                return;
-                
-            LevelManager.THIS.TargetCages--;
-            LevelManager.THIS.PopupScore(LevelManager.THIS.scoreForWireBlock, transform.position, 0);
-        }
-
-        private void DestroySolidBlock()
-        {
-            LevelManager.THIS.PopupScore(LevelManager.THIS.scoreForSolidBlock, transform.position, 0);
-            PlayBlockDestructionAnimation();
-        }
-
-        private void DestroyThrivingBlock()
-        {
-            LevelManager.THIS.PopupScore(LevelManager.THIS.scoreForThrivingBlock, transform.position, 0);
-            
-            block[block.Count - 1].SetActive(false);
-            GameObject boom = Instantiate(boomPrefab, transform.position, Quaternion.identity) as GameObject;
-            Destroy(boom, 1);
-        }
-
-        private void DestroyGenericBlock()
-        {
-            PlayBlockDestructionAnimation();
-        }
-
-        private void PlayBlockDestructionAnimation()
-        {
-            SoundBase.Instance.PlaySound(SoundBase.Instance.block_destroy);
-            
-            if (type != SquareTypes.THRIVING)
-            {
-                block[block.Count - 1].GetComponent<Animation>().Play("BrickRotate");
-                block[block.Count - 1].GetComponent<SpriteRenderer>().sortingOrder = 4;
-                block[block.Count - 1].AddComponent<Rigidbody2D>();
-                block[block.Count - 1].GetComponent<Rigidbody2D>().AddRelativeForce(
-                    new Vector2(UnityEngine.Random.insideUnitCircle.x * UnityEngine.Random.Range(30, 200),
-                        UnityEngine.Random.Range(100, 150)), ForceMode2D.Force);
-            }
-        }
-
-        private void UpdateBlockState()
-        {
-            GameObject.Destroy(block[block.Count - 1], 1.5f);
-            block.Remove(block[block.Count - 1]);
-            
-            if (block.Count > 0)
-                type = block[block.Count - 1].GetComponent<Square>().type;
-            else
-                type = SquareTypes.EMPTY;
+            BlockDestroyer.DestroyBlock();
         }
         #endregion
 
         #region Cage Management
         public void SetCage(int cageHP_)
         {
-            cageHP = cageHP_;
-            OldcageHP = cageHP;
+            Cage.Set(cageHP_);
         }
 
         /// <summary>
@@ -552,16 +437,7 @@ namespace JuiceFresh
         /// </summary>
         public void SetActiveCage(bool active, bool _justHighlighted = false)
         {
-            if (type == SquareTypes.WIREBLOCK)
-            {
-                justHighlighted = _justHighlighted;
-                cageActive = active;
-                
-                if (active)
-                {
-                    OldcageHP = cageHP;
-                }
-            }
+            Cage.SetActive(active);
         }
 
         /// <summary>
@@ -569,18 +445,7 @@ namespace JuiceFresh
         /// </summary>
         public bool IsCageGoingToBroke(int extraDamage = 0)
         {
-            if (type == SquareTypes.WIREBLOCK && cageHP >= 0)
-            {
-                int damage = LevelManager.THIS.destroyAnyway.Count + extraDamage;
-                int estimateCageHP = Mathf.Clamp(cageHP - damage, 0, cageHP);
-                OldcageHP = cageHP;
-                AddDagame(damage);
-                cageActive = false;
-
-                return estimateCageHP == 0;
-            }
-
-            return true;
+            return Cage.IsGoingToBreak(extraDamage);
         }
 
         /// <summary>
@@ -588,36 +453,12 @@ namespace JuiceFresh
         /// </summary>
         public bool CheckDamage(int damage)
         {
-            if (type == SquareTypes.WIREBLOCK && cageHP >= 0)
-            {
-                int estimateCageHP = Mathf.Clamp(cageHP - damage, 0, cageHP);
-                canDamage = true;
-                OldcageHP = cageHP;
-                AddDagame(damage);
-                
-                return estimateCageHP == 0;
-            }
-
-            return true;
+            return Cage.CheckDamage(damage);
         }
 
         public void AddDagame(int damage)
         {
-            BurstIceParticles();
-            canDamage = false;
-            cageHP = OldcageHP - damage;
-            
-            if (cageHP < 0)
-                cageHP = 0;
-        }
-
-        private void BurstIceParticles()
-        {
-            iTween.ShakePosition(block[block.Count - 1].gameObject, Vector3.one * 0.3f, 0.2f);
-            GameObject ice = Instantiate(icePrefab, transform.position, Quaternion.identity) as GameObject;
-            SoundBase.Instance.PlaySound(SoundBase.Instance.iceCrack);
-
-            Destroy(ice, 1);
+            Cage.AddDamage(damage);
         }
         #endregion
 
