@@ -16,6 +16,7 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private Transform _rowsParent;
     [SerializeField] private Button _restorePurchasesButton;
     [SerializeField] private GameObject _animatedContent;
+    [SerializeField] private TaskPanel _taskPanel;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -41,6 +42,9 @@ public class SettingsPanel : MonoBehaviour
     public void Show()
     {
         var opening = !gameObject.activeSelf;
+        if (_taskPanel != null && _taskPanel.gameObject.activeSelf)
+            _taskPanel.HideImmediate();
+
         gameObject.SetActive(true);
         CurvedUIPanelAnimator.Show(
             AnimationTarget,
