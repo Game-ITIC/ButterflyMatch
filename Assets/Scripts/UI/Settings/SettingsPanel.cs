@@ -15,6 +15,7 @@ public class SettingsPanel : MonoBehaviour
     [SerializeField] private SettingsToggleView _notificationToggleView;
     [SerializeField] private Transform _rowsParent;
     [SerializeField] private Button _restorePurchasesButton;
+    [SerializeField] private GameObject _animatedContent;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -31,6 +32,8 @@ public class SettingsPanel : MonoBehaviour
     public SettingsToggleView NotificationToggleView => _notificationToggleView;
     public Button RestorePurchasesButton => _restorePurchasesButton;
 
+    private GameObject AnimationTarget => _animatedContent != null ? _animatedContent : gameObject;
+
     private Transform RowsParent => _rowsParent != null
         ? _rowsParent
         : _soundToggleView != null ? _soundToggleView.transform.parent : null;
@@ -38,8 +41,9 @@ public class SettingsPanel : MonoBehaviour
     public void Show()
     {
         var opening = !gameObject.activeSelf;
+        gameObject.SetActive(true);
         CurvedUIPanelAnimator.Show(
-            gameObject,
+            AnimationTarget,
             animatePanelTransitions ? panelOpenDuration : 0f,
             panelOpenCurve,
             panelFadeCurve);
@@ -53,14 +57,22 @@ public class SettingsPanel : MonoBehaviour
     public void Hide()
     {
         CurvedUIPanelAnimator.Hide(
-            gameObject,
+            AnimationTarget,
             animatePanelTransitions ? panelCloseDuration : 0f,
             panelCloseCurve,
-            panelFadeCurve);
+            panelFadeCurve,
+            DeactivateRoot);
     }
 
     public void HideImmediate()
     {
-        CurvedUIPanelAnimator.HideImmediate(gameObject);
+        CurvedUIPanelAnimator.HideImmediate(AnimationTarget);
+        DeactivateRoot();
+    }
+
+    private void DeactivateRoot()
+    {
+        if (this != null)
+            gameObject.SetActive(false);
     }
 }
