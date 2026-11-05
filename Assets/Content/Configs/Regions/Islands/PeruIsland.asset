@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: PeruIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: peru
+  displayName: Peru
+  icon: {fileID: 21300000, guid: 1df8a26d7343e6d4183881f1df276744, type: 3}
+  islandPrefab: {fileID: 5729289780921039494, guid: 96a49d4c4c3ec414d8701d8f7fdaa878,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: peru-lowerterraces
+    building: {fileID: 11400000, guid: 2f83521b4f1acc347908b9eaa72f0682, type: 2}
+    starCost: 5
+    requiredBuildings: []
+    animationStep: 0
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-upperterraces
+    building: {fileID: 11400000, guid: 222380874cb196248a43166b9ad8557e, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 2f83521b4f1acc347908b9eaa72f0682, type: 2}
+    animationStep: 1
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-huaynapicchu
+    building: {fileID: 11400000, guid: 32dd6e52d0f0c054bb66536d7872c0f1, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 222380874cb196248a43166b9ad8557e, type: 2}
+    animationStep: 2
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-stonehouses
+    building: {fileID: 11400000, guid: 525d65c72ed38054fbf7e7c7470cb51b, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 32dd6e52d0f0c054bb66536d7872c0f1, type: 2}
+    animationStep: 3
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-thatchedroofs
+    building: {fileID: 11400000, guid: 1f19b1b1c2f945742920714c19a0f6f9, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 525d65c72ed38054fbf7e7c7470cb51b, type: 2}
+    animationStep: 4
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-suntemple
+    building: {fileID: 11400000, guid: 9d97c1f312505e049aa79f8f071eaf2a, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 1f19b1b1c2f945742920714c19a0f6f9, type: 2}
+    animationStep: 5
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-stonestairs
+    building: {fileID: 11400000, guid: 49136680c2c60074d8a362c55a561a55, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 9d97c1f312505e049aa79f8f071eaf2a, type: 2}
+    animationStep: 6
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-waterchannel
+    building: {fileID: 11400000, guid: 29ab19f1ea565a1468ddfcc345884e20, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 49136680c2c60074d8a362c55a561a55, type: 2}
+    animationStep: 7
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-textilestall
+    building: {fileID: 11400000, guid: ce393917d53ac7f42b1d1ccb53d2002c, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 29ab19f1ea565a1468ddfcc345884e20, type: 2}
+    animationStep: 8
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: peru-llamas
+    building: {fileID: 11400000, guid: 5a44138b1776dbc4c993926773b14f01, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: ce393917d53ac7f42b1d1ccb53d2002c, type: 2}
+    animationStep: 9
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}

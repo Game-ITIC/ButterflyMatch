@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d5f2b0c3e9a4f7b0d1c2e3f4a5b6c7d, type: 3}
+  m_Name: LatinAmericaRegion
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.RegionSO
+  regionId: latin_america
+  displayName: Latin America
+  icon: {fileID: 21300000, guid: 323d14fbd7f810349aea8d4c42761990, type: 3}
+  menuBackground: {fileID: 21300000, guid: 0724c6c48ee581f4d969b1a9e00b2449, type: 3}
+  islands:
+  - {fileID: 11400000, guid: 7cdfe3d7d6e9a6e40afd5e43edce7530, type: 2}
+  - {fileID: 11400000, guid: 3f8f1edef63f3a04ab33b6e922693be4, type: 2}
+  - {fileID: 11400000, guid: b1eae68586dcea6418ad04f8b5d6da31, type: 2}

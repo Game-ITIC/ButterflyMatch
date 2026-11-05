@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: BrazilIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: brazil
+  displayName: Brazil
+  icon: {fileID: 21300000, guid: d9b29adee22d6074f947576f8fe2d221, type: 3}
+  islandPrefab: {fileID: 8564925548446560703, guid: 2ef270890acc3e34094d8a57c734613e,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: brazil-beach
+    building: {fileID: 11400000, guid: 060ee8e641e0b944789b4207495ec3d3, type: 2}
+    starCost: 5
+    requiredBuildings: []
+    animationStep: 0
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-hillside
+    building: {fileID: 11400000, guid: 8a423c995212ebc4fba1bf9163b17de5, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 060ee8e641e0b944789b4207495ec3d3, type: 2}
+    animationStep: 1
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-statuepedestal
+    building: {fileID: 11400000, guid: 6d8db01b221d52142aaaa49d00f06264, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 8a423c995212ebc4fba1bf9163b17de5, type: 2}
+    animationStep: 2
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-redeemerstatue
+    building: {fileID: 11400000, guid: 45ea4b2850811184099d8294d405e305, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 6d8db01b221d52142aaaa49d00f06264, type: 2}
+    animationStep: 3
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-sugarloaf
+    building: {fileID: 11400000, guid: 63360bdeb8df1884d8b758321be6d349, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 45ea4b2850811184099d8294d405e305, type: 2}
+    animationStep: 4
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-cablecar
+    building: {fileID: 11400000, guid: 2e7ffd68c96028a4093db6f004a398c8, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 63360bdeb8df1884d8b758321be6d349, type: 2}
+    animationStep: 5
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-colorfulhouses
+    building: {fileID: 11400000, guid: d2a82c9707e4eb142b75f3f3184542a1, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 2e7ffd68c96028a4093db6f004a398c8, type: 2}
+    animationStep: 6
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-boardwalk
+    building: {fileID: 11400000, guid: 926f689301439dc4b9e8f5ca6737bb81, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: d2a82c9707e4eb142b75f3f3184542a1, type: 2}
+    animationStep: 7
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-palmtrees
+    building: {fileID: 11400000, guid: 836d6f12823933d4ba3c32ead5a4dfa0, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 926f689301439dc4b9e8f5ca6737bb81, type: 2}
+    animationStep: 8
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: brazil-jungletrees
+    building: {fileID: 11400000, guid: 76b8628b04da5fa4e88a876a28eb38a3, type: 2}
+    starCost: 7
+    requiredBuildings:
+    - {fileID: 11400000, guid: 836d6f12823933d4ba3c32ead5a4dfa0, type: 2}
+    animationStep: 9
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
