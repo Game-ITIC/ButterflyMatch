@@ -29,7 +29,6 @@ namespace JuiceFresh.Scripts
         /// </summary>
         public IEnumerator InitBombs()
         {
-            yield return new WaitUntil(() => !TipsManager.THIS.gotTip);
             yield return new WaitForSeconds(1);
 
             int i = 0;

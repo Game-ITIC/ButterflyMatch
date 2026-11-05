@@ -38,19 +38,6 @@ namespace Itic.Scopes
             await LoadSceneAsync(3);
         }
 
-        // LEGACY: only the OLD/Islands IslandInitializer calls this. The build indices are stale: with AsiaRegion
-        // disabled in the build, 6 is OLD/AfricaRegion and 7 is MainMenu.
-        public async UniTask LoadRegionScene(CountryEnum country)
-        {
-            switch (country)
-            {
-                case CountryEnum.Asia: await LoadSceneAsync(6); break;
-                case CountryEnum.Egypt: await LoadSceneAsync(7); break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(country), country, null);
-            }
-        }
-
         private bool _isLoading;
 
         /// <summary>True while a scene transition is running; further load requests are ignored.</summary>

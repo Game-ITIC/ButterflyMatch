@@ -279,7 +279,7 @@ namespace Utils.DebugTools
                         File.AppendAllText(Path.Combine(_outDir, "debug.log"),
                             $"L{level} R{run} t={Time.realtimeSinceStartup - start:0.00} played={played} chain={chain.Count} limitBefore={limitBefore} " +
                             $"limitNow={lm.Limit} drag={lm.DragBlocked} status={lm.gameStatus} score={LevelManager.Score} bombs={BombTimers(lm)} " +
-                            $"need={lm.bombsCollect} tip={TipsManager.THIS.gotTip} timers={lm.bombTimers.Count}\n");
+                            $"need={lm.bombsCollect} timers={lm.bombTimers.Count}\n");
                     }
 
                     // Let the move start (DragBlocked goes up) before polling again.

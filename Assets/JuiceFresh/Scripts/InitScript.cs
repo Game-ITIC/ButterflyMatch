@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// Legacy JuiceFresh bootstrap. It is no longer placed in the live scenes (only game_test / OLD scenes), but its
+/// Legacy JuiceFresh bootstrap. It is no longer placed in any scene, but its
 /// static fields are still shared state for the legacy code: the life timer (RestLifeTimer / DateOfExit),
 /// the sound / music flags and the pending gem purchase. The serialized fields are edited by LevelMakerEditor.
 /// The old ads, lives, gems and boosters code that was commented out here was removed.

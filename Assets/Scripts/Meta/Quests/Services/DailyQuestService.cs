@@ -5,7 +5,6 @@ using Configs.Tasks;
 using Meta.Quests.Events;
 using Meta.Quests.Interfaces;
 using Meta.Quests.Models;
-using Meta.Quests.Views;
 using UnityEngine;
 
 namespace Meta.Quests.Services

@@ -16,13 +16,11 @@ GameObject:
   - component: {fileID: 8349343057218373818}
   - component: {fileID: 86081862826246477}
   - component: {fileID: 188436515139980082}
-  - component: {fileID: 1443408711946074614}
   - component: {fileID: 2088461024340755594}
   - component: {fileID: 6876123512815634357}
   - component: {fileID: 6278313701975494898}
   - component: {fileID: 775001234567890123}
   - component: {fileID: 775001234567890124}
-  - component: {fileID: 775001234567890125}
   - component: {fileID: 775001234567890126}
   m_Layer: 0
   m_Name: Main Camera
@@ -242,8 +240,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 639bbcaee2a8592429bb372ded78e875, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
+  m_Name: 
+  m_EditorClassIdentifier: 
   collectedIngredients:
   - name: ingredient_01
     sprite: {fileID: 21300000, guid: 63938c0f13ed90f44a5a7ad659f6262a, type: 3}
@@ -272,7 +270,6 @@ MonoBehaviour:
   bombTargetObject: {fileID: 0}
   gameCamera: {fileID: 856183521863649967}
   line: {fileID: 0}
-  gridOutlineGenerator: {fileID: 775001234567890125}
   squareSprite: {fileID: 21300000, guid: 8d6dfee8217441946b4f9a8a0617806f, type: 3}
   squareSprite1: {fileID: 21300000, guid: f8037e2d044c3af4b82ee2cc57325685, type: 3}
   ingrediendSprites:
@@ -405,48 +402,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   waitingBoost: {fileID: 0}
-  itemExplPool:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  flowersPool:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   gemsProducts:
   - count: 300
     price: 0.99
@@ -465,7 +420,6 @@ MonoBehaviour:
   itemsHided: 0
   onlyFalling: 0
   levelLoaded: 0
-  ingredientFly: 0
   testByPlay: 0
   extraCageAddItem: 0
   bombsCollect: 0
@@ -476,54 +430,7 @@ MonoBehaviour:
   GameProvider: {fileID: 0}
   GameCompleteView: {fileID: 0}
   GameConfig: {fileID: 0}
---- !u!114 &775001234567890123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7491772303093536022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b52acdfcab43c480aac96eecc21002, type: 3}
-  m_Name: ''
-  m_EditorClassIdentifier: ''
-  popupPrefab: {fileID: 100000, guid: 045b1a17bc5268b419f9a7fa7af3c2ba, type: 3}
-  popupParent: {fileID: 0}
-  showPopups: 1
-  outlineColors:
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  - {r: 1, g: 1, b: 1, a: 1}
-  useUnscaledTime: 1
-  visibleScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
-  startScale: {x: 0.2, y: 0.2, z: 0.2}
-  peakScale: {x: 0.78, y: 0.78, z: 0.78}
-  riseDistance: 0.8
-  popDuration: 0.24
-  settleDuration: 0.1
-  holdDuration: 0.55
-  fadeDuration: 0.32
---- !u!114 &775001234567890124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7491772303093536022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5c63bd0fcab43c480aac96eecc21003, type: 3}
-  m_Name: ''
-  m_EditorClassIdentifier: ''
-  stripesEffectPrefab: {fileID: 100804, guid: c1d86e442930a7b40835a0fbad225fbd, type: 3}
-  flowerPrefab: {fileID: 107552, guid: 0a071ea80298917468648bade3061b0a, type: 3}
-  poolSize: 20
-  explosionLifetime: 1
-  doubleBombStepDelay: 0.3
+  InAppConfig: {fileID: 0}
 --- !u!114 &86081862826246477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,8 +441,8 @@ MonoBehaviour:
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 323fba191c1f74042a50981a5a4c2f67, type: 3}
-  m_Name: ''
-  m_EditorClassIdentifier: ''
+  m_Name: 
+  m_EditorClassIdentifier: 
   boostCount: {fileID: 0}
   type: 10
   price: {fileID: 0}
@@ -552,19 +459,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6235d9df7682a4a98368ad38708d23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1443408711946074614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7491772303093536022}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64da746e8cb96b349b07a45ea926e2dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tutIcona: {fileID: 0}
 --- !u!114 &2088461024340755594
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +529,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32d917b0ffdc43a6881ba0b803340f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   searchRoot: {fileID: 0}
   feedbacks:
   - minimumCombo: 6
@@ -646,7 +542,7 @@ MonoBehaviour:
   - minimumCombo: 12
     fallbackName: gratzWord3
     target: {fileID: 0}
---- !u!114 &775001234567890125
+--- !u!114 &775001234567890123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -655,14 +551,45 @@ MonoBehaviour:
   m_GameObject: {fileID: 7491772303093536022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f2c8e91a7b34d6e9f0a1b2c3d4e5f60, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  outline1: {fileID: 21300000, guid: aedfd74761eff26479a0969f4b6d5591, type: 3}
-  outline2: {fileID: 21300000, guid: 440b23c6d2829de4fb99fd4ce4e0217f, type: 3}
-  outline3: {fileID: 21300000, guid: d93fc221c44f6ca4a84c51271a3ae82b, type: 3}
-  outline4: {fileID: 21300000, guid: 6169ba38906e574478b0f6ba689dbc0a, type: 3}
-  outline5: {fileID: 21300000, guid: 0514fb4acf57bff4caeae307547697bd, type: 3}
+  m_Script: {fileID: 11500000, guid: d4b52acdfcab43c480aac96eecc21002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupPrefab: {fileID: 100000, guid: 045b1a17bc5268b419f9a7fa7af3c2ba, type: 3}
+  popupParent: {fileID: 0}
+  showPopups: 1
+  outlineColors:
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  - {r: 1, g: 1, b: 1, a: 1}
+  useUnscaledTime: 1
+  visibleScale: {x: 0.6666667, y: 0.6666667, z: 0.6666667}
+  startScale: {x: 0.2, y: 0.2, z: 0.2}
+  peakScale: {x: 0.78, y: 0.78, z: 0.78}
+  riseDistance: 0.8
+  popDuration: 0.24
+  settleDuration: 0.1
+  holdDuration: 0.55
+  fadeDuration: 0.32
+--- !u!114 &775001234567890124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491772303093536022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5c63bd0fcab43c480aac96eecc21003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stripesEffectPrefab: {fileID: 100804, guid: c1d86e442930a7b40835a0fbad225fbd, type: 3}
+  flowerPrefab: {fileID: 107552, guid: 0a071ea80298917468648bade3061b0a, type: 3}
+  poolSize: 20
+  explosionLifetime: 1
+  doubleBombStepDelay: 0.3
 --- !u!114 &775001234567890126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,9 +600,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71385d079e939f046a7c59993a607346, type: 3}
-  m_Name:
-  m_EditorClassIdentifier:
-  gridPerimeterLinePrefab: {fileID: 8540580235284219234, guid: 28b48aaeeb7e6674591ec1e38c6e1ade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridPerimeterLinePrefab: {fileID: 8540580235284219234, guid: 28b48aaeeb7e6674591ec1e38c6e1ade,
+    type: 3}
   gridPerimeterLineZOffset: -0.2
   gridOutlineDrawDuration: 0.72
   gridOutlineLoopDelay: 0.08

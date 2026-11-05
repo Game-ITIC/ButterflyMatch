@@ -22,7 +22,7 @@ using Views;
 /// to its own service (loading, board, bombs, timer, boosts, outline, states).
 /// Legacy code reaches it through <see cref="THIS"/>; new code should take the service it needs instead.
 /// </summary>
-[RequireComponent(typeof(GridOutlineGenerator), typeof(GridPerimeterRenderer))]
+[RequireComponent(typeof(GridPerimeterRenderer))]
 public class LevelManager : MonoBehaviour, ILevelManagerActions
 {
     #region Static References
@@ -71,8 +71,6 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
 
     // Line through the chain the player drags.
     public Line line;
-
-    [SerializeField] private GridOutlineGenerator gridOutlineGenerator;
 
     #endregion
 
@@ -236,8 +234,6 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
     public bool onlyFalling;
 
     public bool levelLoaded;
-
-    public Hashtable countedSquares;
 
     public bool testByPlay;
 
@@ -418,7 +414,7 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
         _levelEffectsController?.Initialize(this);
         _gridPerimeterRenderer = GetComponent<GridPerimeterRenderer>();
         _gridPerimeterRenderer.Initialize(this);
-        _outline = new BoardOutlineService(GameField, ResolveGridOutlineGenerator(), _gridPerimeterRenderer);
+        _outline = new BoardOutlineService(_gridPerimeterRenderer);
         _chainLine = new ChainLineDrawer(line);
 
         if (GameFeelManager.Instance != null)
@@ -496,14 +492,6 @@ public class LevelManager : MonoBehaviour, ILevelManagerActions
             _collectedTargetFlyController = gameObject.AddComponent<CollectedTargetFlyController>();
 
         _collectedTargetFlyController.Initialize(this);
-    }
-
-    private GridOutlineGenerator ResolveGridOutlineGenerator()
-    {
-        if (gridOutlineGenerator == null)
-            gridOutlineGenerator = GetComponent<GridOutlineGenerator>();
-
-        return gridOutlineGenerator;
     }
 
     private void OnDestroy()

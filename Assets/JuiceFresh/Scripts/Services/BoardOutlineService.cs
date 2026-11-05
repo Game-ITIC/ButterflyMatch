@@ -1,29 +1,17 @@
-using UnityEngine;
-
 namespace JuiceFresh.Scripts
 {
-    /// <summary>
-    /// The border around the board. The line perimeter (GridPerimeterRenderer) replaced the old per-cell
-    /// sprite outline (GridOutlineGenerator), so drawing it also removes the old one.
-    /// </summary>
+    /// <summary>The border around the board: draws the line perimeter (GridPerimeterRenderer) and follows the game state.</summary>
     public sealed class BoardOutlineService
     {
-        private const string SpriteOutlineName = "outline";
-
-        private readonly Transform _gameField;
-        private readonly GridOutlineGenerator _spriteOutline;
         private readonly GridPerimeterRenderer _perimeter;
 
-        public BoardOutlineService(Transform gameField, GridOutlineGenerator spriteOutline, GridPerimeterRenderer perimeter)
+        public BoardOutlineService(GridPerimeterRenderer perimeter)
         {
-            _gameField = gameField;
-            _spriteOutline = spriteOutline;
             _perimeter = perimeter;
         }
 
         public void Draw()
         {
-            RemoveSpriteOutline();
             _perimeter?.Draw();
         }
 
@@ -44,27 +32,6 @@ namespace JuiceFresh.Scripts
                 _perimeter.SetVisible(false);
             else if (state == GameState.Playing)
                 _perimeter.SetVisible(true);
-        }
-
-        private void RemoveSpriteOutline()
-        {
-            if (_spriteOutline != null)
-                _spriteOutline.enabled = false;
-
-            if (_gameField == null)
-                return;
-
-            // GridOutlineGenerator creates "outline" children under the squares.
-            for (int i = 0; i < _gameField.childCount; i++)
-            {
-                Transform square = _gameField.GetChild(i);
-                for (int j = square.childCount - 1; j >= 0; j--)
-                {
-                    Transform child = square.GetChild(j);
-                    if (child.name == SpriteOutlineName)
-                        Object.Destroy(child.gameObject);
-                }
-            }
         }
     }
 }

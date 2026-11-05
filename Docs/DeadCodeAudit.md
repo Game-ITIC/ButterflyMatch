@@ -1,4 +1,4 @@
-# Dead-code audit (2026-11-05, branch refactor/solid; section 1 is already deleted in cee8e5b9)
+# Dead-code audit (2026-11-05, branch refactor/solid) — DONE: section 1 deleted in cee8e5b9, sections 2-4 deleted with the OLD scenes (see "Outcome" at the end)
 
 Scope: 397 `.cs` files under `Assets/Scripts` and `Assets/JuiceFresh/Scripts` (Editor folders excluded).
 71 look dead. The other 326 are alive.
@@ -147,3 +147,16 @@ These three are referenced only by dead code:
 2. Sections 3 and 4 together with their demo/test scenes.
 3. Section 2 only after deciding about the `ParkSceneLoader` button in game.unity and taking OLD scenes out of the build.
 4. Then run `graphify update .` and refresh Unity.
+
+## Outcome (2026-11-05, user approved "убери все это")
+
+Deleted, with their `.meta` files:
+- every script of sections 2-4, plus TipsManager (hint search was already gone), TutorialManager + HandTutorial (the level-1 hand tutorial could never start) and GridOutlineGenerator (GridPerimeterRenderer draws the outline; LevelManager now `RequireComponent`s it);
+- the prefabs/assets that only held those scripts: TutorialManager.prefab, ProjectLifetimeScope.prefab, CurrencyIconsSO.asset, UI/Old/DailyQuest.prefab, UI/Shops/ShopItemView.prefab;
+- scenes: the whole `Assets/_Scenes/OLD` folder (taken out of build settings), `JuiceFresh/Scenes/game_test` and `main_test`, the vendor demo `Uber Stylized Water.unity` (it hosted our island animation scripts) with its LightingData;
+- in game.unity: the ParkBtn (GUIEvents.ParkSceneLoader) and its animated pointer `tut` (tutIcon.cs, on the Main Camera prefab), the AI object (TipsManager) and the TutorialManager instance; `SceneLoader.LoadRegionScene`, `AnimationManager.BackToMapWithoutDie`.
+
+Kept on purpose: `GUI/Tutorial/Tutorial.cs` + Tutorial.prefab (live image-slideshow popup), `AsiaRegion.unity` (disabled in build), `SceneLoadingConfig`, SmartLevelsMap `demo.unity` (vendor).
+Build indices after the change: Bootstrap 0, Services 1, main 2, game 3 (SceneLoader loads it by index), MainMenu 4 (loaded by name).
+
+Pre-existing missing scripts not caused by this cleanup (left alone): UI/Old/RegionUI, GUI/GemsShop, Effects/Snow, Effects/Splash, Effects/Splash 1.

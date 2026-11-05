@@ -45,13 +45,6 @@ public class GUIEvents : MonoBehaviour {
 
 	}
 
-	public void ParkSceneLoader()
-	{
-        PlayerPrefs.SetInt("isParkVisited", 1);
-        PlayerPrefs.Save();
-        SceneManager.LoadScene("Park");
-    }
-
     public void GameSceneLoader()
     {
         SceneManager.LoadScene("game");
