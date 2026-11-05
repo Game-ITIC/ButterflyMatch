@@ -2459,6 +2459,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f5c69273af6150427e839f0123456789, type: 2}
   - {fileID: 11400000, guid: f6021a6879ff249418ae7d5370ae2b84, type: 2}
   - {fileID: 11400000, guid: 9205e25da95bef14c88bf6198c54db33, type: 2}
+  - {fileID: 11400000, guid: d10aa539bd3ea2a4c9d13348ba6aa864, type: 2}
+  - {fileID: 11400000, guid: 29b63998587909d4692adbba38dc929a, type: 2}
   regionParent: {fileID: 282300645}
   menuBackground: {fileID: 1708875711}
   tasksListSO: {fileID: 11400000, guid: 8556116d70f511747b89ac05e3374a4d, type: 2}
