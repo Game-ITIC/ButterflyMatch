@@ -25,6 +25,7 @@ public class IslandPanel : MonoBehaviour
 
     private readonly List<RegionCardView> _cards = new();
     private readonly List<GameObject> _sections = new();
+    private readonly List<TMP_Text> _cardNames = new();
     private Transform _activeContainer;
     private int _regionCount;
 
@@ -169,6 +170,21 @@ public class IslandPanel : MonoBehaviour
         card.gameObject.SetActive(true);
         _cards.Add(card);
         return card;
+    }
+
+    // All island names on the screen share one font size, whatever the longest name in this locale is.
+    public void MatchCardNameSizes()
+    {
+        _cardNames.Clear();
+        for (var i = 0; i < _cards.Count; i++)
+        {
+            if (_cards[i] != null)
+            {
+                _cardNames.Add(_cards[i].NameLabel);
+            }
+        }
+
+        UITextFit.MatchSmallest(_cardNames);
     }
 
     public void ClearCards()

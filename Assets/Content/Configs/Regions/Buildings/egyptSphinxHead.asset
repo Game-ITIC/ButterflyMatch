@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: egypt-sphinxhead
   displayName: Sphinx Head
-  icon: {fileID: 21300000, guid: 1c3de8ba3f15d6c4686ae01f4b246912, type: 3}
+  icon: {fileID: 21300000, guid: 472c603ed52e6b74786bfbde6047b9c4, type: 3}
   prefab: {fileID: 2824797154095881235, guid: 3e26e83d540bdac4ba95dae5dfb6e7c0, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 47a19cd4a6e0a1d4a9f8420f0ce7c15d, type: 2}

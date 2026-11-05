@@ -1139,6 +1139,26 @@ MonoBehaviour:
     m_Localized: Rumah warna-warni
     m_Metadata:
       m_Items: []
+  - m_Id: 989667355680768
+    m_Localized: Sakura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623808
+    m_Localized: Sakura muda
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623809
+    m_Localized: Sakura mekar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623810
+    m_Localized: Sakura tua
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623811
+    m_Localized: Dinding rumah
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

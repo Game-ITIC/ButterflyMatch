@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: iceland-stonehall
   displayName: Stone Hall
-  icon: {fileID: 21300000, guid: 4bbe410d02bb36e40a5c6a5c96155a05, type: 3}
+  icon: {fileID: 21300000, guid: 7e5683a35f12f5a48b845c1472e4fa53, type: 3}
   prefab: {fileID: 3181164859895087748, guid: a4fb8ab84ca552945945396512e81fdb, type: 3}
   requiredBuildings: []

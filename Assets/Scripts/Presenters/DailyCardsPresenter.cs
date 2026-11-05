@@ -149,6 +149,7 @@ namespace Presenters
             if(_dailyButton != null)
             {
                 UIFeel.SetBreathing(_dailyButton, canClaim, 0.05f, 1.1f);
+                NotificationBadge.Set(_dailyButton, canClaim);
             }
         }
 

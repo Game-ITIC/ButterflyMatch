@@ -1140,6 +1140,26 @@ MonoBehaviour:
     m_Localized: "Maisons color\xE9es"
     m_Metadata:
       m_Items: []
+  - m_Id: 989667355680768
+    m_Localized: Cerisier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623808
+    m_Localized: Jeune cerisier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623809
+    m_Localized: Cerisier en fleurs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623810
+    m_Localized: Vieux cerisier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623811
+    m_Localized: Murs
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

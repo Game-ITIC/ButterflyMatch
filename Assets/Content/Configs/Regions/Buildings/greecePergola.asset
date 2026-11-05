@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: greece-pergola
   displayName: Pergola
-  icon: {fileID: 21300000, guid: fb34e80088f14ce4d957fc0915a0852a, type: 3}
+  icon: {fileID: 21300000, guid: 56c2314eb5604e74c85e7cb6a2bd5f51, type: 3}
   prefab: {fileID: 9070022975583013952, guid: 8992d40c2ece89c4080172d105be6269, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: e16d2b00e9028fe4aa388d7b9999abe3, type: 2}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: peru-suntemple
   displayName: Sun Temple
-  icon: {fileID: 21300000, guid: 1df8a26d7343e6d4183881f1df276744, type: 3}
+  icon: {fileID: 21300000, guid: 031a6be840b1a1d4f8802a3c079ed802, type: 3}
   prefab: {fileID: 5729289780921039494, guid: 96a49d4c4c3ec414d8701d8f7fdaa878, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 1f19b1b1c2f945742920714c19a0f6f9, type: 2}

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace GameLocalization
 {
     /// <summary>
-    /// Global TMP fallback fonts per locale. Fredoka (the main UI font) covers Latin-1 and Cyrillic;
+    /// Global TMP fallback fonts per locale. GameFont SDF (the main UI font) covers Latin-1 and Cyrillic;
     /// the fallbacks supply Turkish letters and CJK glyphs. The preferred font of a locale goes first
     /// so shared Han characters render in the right regional style.
     /// </summary>

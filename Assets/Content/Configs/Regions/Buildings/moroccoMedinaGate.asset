@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: morocco-medinagate
   displayName: Medina Gate
-  icon: {fileID: 21300000, guid: d47a718a73838524c827f137e3eb7439, type: 3}
+  icon: {fileID: 21300000, guid: 42ad990e58400a64b9be8203b5c3a173, type: 3}
   prefab: {fileID: 6187385037960465172, guid: 1b09780e6ec665b4787074eb3f3e1733, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 19d65c2e2d543aa40a1aa8e26ae29850, type: 2}

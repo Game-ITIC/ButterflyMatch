@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: greece-chapel
   displayName: Chapel
-  icon: {fileID: 21300000, guid: fb34e80088f14ce4d957fc0915a0852a, type: 3}
+  icon: {fileID: 21300000, guid: 071cdbfeb38dd7542a2b26a3a831a3d4, type: 3}
   prefab: {fileID: 9070022975583013952, guid: 8992d40c2ece89c4080172d105be6269, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: e6860ec2ccb6ec748b0b0506772578a9, type: 2}

@@ -12,8 +12,8 @@ namespace GameLocalization.EditorTools
     /// </summary>
     public static class StickerBuilder
     {
-        public const string MaterialPath = "Assets/Content/Fonts/FredokaSDF Thick Sticker.mat";
-        public const string FontPath = "Assets/Content/Fonts/FredokaSDF Thick.asset";
+        public const string MaterialPath = "Assets/Content/Fonts/GameFont Sticker.mat";
+        public const string FontPath = "Assets/Content/Fonts/GameFont SDF.asset";
         public const string ChildName = "Sticker Text";
 
         public enum Style { Pink, Red, Orange }
@@ -25,7 +25,7 @@ namespace GameLocalization.EditorTools
                 return material;
 
             var font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>(FontPath);
-            material = new Material(font.material) { name = "FredokaSDF Thick Sticker" };
+            material = new Material(font.material) { name = "GameFont Sticker" };
             material.EnableKeyword("OUTLINE_ON");
             material.EnableKeyword("UNDERLAY_ON");
             material.SetColor("_OutlineColor", Color.white);
@@ -33,7 +33,8 @@ namespace GameLocalization.EditorTools
             material.SetFloat("_FaceDilate", 0.18f);
             material.SetColor("_UnderlayColor", new Color(0.30f, 0.12f, 0.56f, 1f));
             material.SetFloat("_UnderlayOffsetX", 0.35f);
-            material.SetFloat("_UnderlayOffsetY", -0.55f);
+            // Further down, the underlay reads the neighbouring glyph in the atlas and draws a thin line above the letters.
+            material.SetFloat("_UnderlayOffsetY", -0.40f);
             material.SetFloat("_UnderlayDilate", 0.45f);
             material.SetFloat("_UnderlaySoftness", 0.05f);
             AssetDatabase.CreateAsset(material, MaterialPath);
@@ -102,7 +103,7 @@ namespace GameLocalization.EditorTools
             text.color = Color.white;
             text.enableVertexGradient = true;
             text.colorGradient = Gradient(style);
-            text.characterSpacing = 2f;
+            text.characterSpacing = 4f;
             text.raycastTarget = false;
             text.margin = new Vector4(rt.sizeDelta.x * 0.04f, rt.sizeDelta.y * 0.06f, rt.sizeDelta.x * 0.04f, rt.sizeDelta.y * 0.06f);
 

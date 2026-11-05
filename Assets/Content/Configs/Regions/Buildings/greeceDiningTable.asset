@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: greece-diningtable
   displayName: Dining Table
-  icon: {fileID: 21300000, guid: fb34e80088f14ce4d957fc0915a0852a, type: 3}
+  icon: {fileID: 21300000, guid: f5b9a7e97e4a799438d5f5900f123aec, type: 3}
   prefab: {fileID: 9070022975583013952, guid: 8992d40c2ece89c4080172d105be6269, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 8e07cdbfbd4f678459c3074433f192fd, type: 2}

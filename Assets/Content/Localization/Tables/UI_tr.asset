@@ -1142,6 +1142,26 @@ MonoBehaviour:
     m_Localized: Renkli evler
     m_Metadata:
       m_Items: []
+  - m_Id: 989667355680768
+    m_Localized: Sakura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623808
+    m_Localized: "Gen\xE7 sakura"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623809
+    m_Localized: "\xC7i\xE7ekli sakura"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623810
+    m_Localized: "Ya\u015Fl\u0131 sakura"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623811
+    m_Localized: "Ev duvarlar\u0131"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

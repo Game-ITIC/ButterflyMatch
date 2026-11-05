@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: japan-columns
   displayName: Columns
-  icon: {fileID: -869753982007151114, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
+  icon: {fileID: 21300000, guid: d3464aa25bc46c648a3a9e1770426bc9, type: 3}
   prefab: {fileID: 6769029262384653217, guid: bafd4582aef715444a41365ddbe7a090, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 6e31643737c52fe45bc3ce080b5ab2b5, type: 2}

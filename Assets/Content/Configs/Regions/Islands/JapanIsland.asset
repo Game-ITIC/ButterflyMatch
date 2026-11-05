@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
   islandId: japan
   displayName: Japan
-  icon: {fileID: 4204830022199959180, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
+  icon: {fileID: 6070576942371131909, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
   islandPrefab: {fileID: 6427668103141198496, guid: 82cb8a9ad40040a4f9d5d8cb1fbb2a57,
     type: 3}
   isComingSoon: 0

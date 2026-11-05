@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: norway-trainingyard
   displayName: Training Yard
-  icon: {fileID: 21300000, guid: cebebdae21b1bf049b4a1ec52e364244, type: 3}
+  icon: {fileID: 21300000, guid: 38670eff0aedc1840b6a1e3965f4f855, type: 3}
   prefab: {fileID: 8080905529158418877, guid: 6e721b69468a445429ff2766ddd0d03d, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 0723c8996f196844cb4b0f78611d2c2c, type: 2}

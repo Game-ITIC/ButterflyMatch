@@ -46,7 +46,7 @@ namespace JuiceFresh.Popups
             }
         }
 
-        private GameObject Star(int index) => Root.Find("Image/Star" + index + "/Star").gameObject;
+        private GameObject Star(int index) => Root.Find("Window/Star" + index + "/Star").gameObject;
 
         // The last level of the map was completed.
         private static void ShowCongratulations()

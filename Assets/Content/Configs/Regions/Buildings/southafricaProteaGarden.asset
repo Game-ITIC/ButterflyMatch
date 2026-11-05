@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: southafrica-proteagarden
   displayName: Protea Garden
-  icon: {fileID: 21300000, guid: 9a55e54733774274da7a14c228b1fbb8, type: 3}
+  icon: {fileID: 21300000, guid: db70240768f4b40459e9146a6ad733df, type: 3}
   prefab: {fileID: 9178380082373546643, guid: 123a3f2d6a2dc4543b8f9d62784e4246, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: d712828be246b1441b0a7c410024439a, type: 2}

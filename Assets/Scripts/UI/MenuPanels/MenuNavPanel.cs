@@ -1,46 +1,27 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Bottom nav bar of the main menu: three equal tabs and one raised bubble behind the open tab.
+// MenuPager owns which page is open and drives both the highlight and the bubble.
 public class MenuNavPanel : MonoBehaviour
 {
+    private const int TabCount = 3;
+
     [SerializeField] private Button _islandButton;
     [SerializeField] private Button _menuButton;
     [SerializeField] private Button _shopButton;
 
-    public Button IslandButton
-    {
-        get
-        {
-            if (_islandButton != null) return _islandButton;
-            _islandButton = FindChildButton("IslandButton", "Island Button", "Island", "RegionButton", "Region Button");
-            return _islandButton;
-        }
-    }
+    [Tooltip("Raised shape behind the open tab. Its x anchor follows the pager position, so it tracks the finger while swiping.")]
+    [SerializeField] private RectTransform _selectionBubble;
+    [SerializeField, Range(0f, 1f)] private float _inactiveAlpha = 0.6f;
 
-    public Button MenuButton
-    {
-        get
-        {
-            if (_menuButton != null) return _menuButton;
-            _menuButton = FindChildButton("MainMenuButton", "Main Button", "MainMenu Button", "MenuButton", "Menu", "Main");
-            return _menuButton;
-        }
-    }
+    public Button IslandButton => _islandButton;
 
-    public Button ShopButton
-    {
-        get
-        {
-            if (_shopButton != null) return _shopButton;
-            _shopButton = FindChildButton("ShopButton", "Shop Button", "Shop", "InAppButton");
-            return _shopButton;
-        }
-    }
+    public Button MenuButton => _menuButton;
+
+    public Button ShopButton => _shopButton;
 
     public Button[] NavigationButtons => new[] { IslandButton, MenuButton, ShopButton };
-
-    [SerializeField, Range(0f, 1f)] private float _inactiveAlpha = 0.6f;
 
     // Highlights the tab whose screen is open; the others fade back.
     public void SetSelected(Button selected)
@@ -50,28 +31,25 @@ public class MenuNavPanel : MonoBehaviour
         SetTabAlpha(ShopButton, selected);
     }
 
+    // pagePosition is the pager's fractional page: 0 = Island tab, 1 = Menu tab, 2 = Shop tab.
+    public void SetSelectionPosition(float pagePosition)
+    {
+        if (_selectionBubble == null) return;
+
+        var x = (Mathf.Clamp(pagePosition, 0f, TabCount - 1) + 0.5f) / TabCount;
+        var anchorMin = _selectionBubble.anchorMin;
+        var anchorMax = _selectionBubble.anchorMax;
+        anchorMin.x = x;
+        anchorMax.x = x;
+        _selectionBubble.anchorMin = anchorMin;
+        _selectionBubble.anchorMax = anchorMax;
+    }
+
     private void SetTabAlpha(Button tab, Button selected)
     {
         if (tab == null) return;
         var group = tab.GetComponent<CanvasGroup>();
         if (group == null) group = tab.gameObject.AddComponent<CanvasGroup>();
         group.alpha = tab == selected ? 1f : _inactiveAlpha;
-    }
-
-    private Button FindChildButton(params string[] names)
-    {
-        var buttons = GetComponentsInChildren<Button>(true);
-        foreach (var button in buttons)
-        {
-            foreach (var name in names)
-            {
-                if (string.Equals(button.gameObject.name.Trim(), name.Trim(), StringComparison.OrdinalIgnoreCase))
-                {
-                    return button;
-                }
-            }
-        }
-
-        return null;
     }
 }

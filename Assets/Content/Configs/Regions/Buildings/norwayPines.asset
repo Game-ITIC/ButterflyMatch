@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: norway-pines
   displayName: Pines
-  icon: {fileID: 21300000, guid: cebebdae21b1bf049b4a1ec52e364244, type: 3}
+  icon: {fileID: 21300000, guid: 5ab09b5a9235b4a4f82dc4266a7ef018, type: 3}
   prefab: {fileID: 8080905529158418877, guid: 6e721b69468a445429ff2766ddd0d03d, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: c496a9a5b89a37745b855bee6289c2af, type: 2}

@@ -10,17 +10,17 @@ using Views;
 namespace Utils.Editor
 {
     /// <summary>
-    /// Keeps the original shop card design (Assets/Content/Prefabs/UI/Old: Small / Medium / Large cards in rows)
+    /// Keeps the original shop card design (Assets/Content/Prefabs/UI/Shop: Small / Medium / Large cards in rows)
     /// and wires it to real data: picture, title, contents (rewards row), price on the button, badge and bonus.
     /// Also fills InAppConfig (sections, card sizes, badges, bonuses, icons, GDD 11.2 contents). Idempotent.
     /// </summary>
     public static class ShopPrefabBuilder
     {
-        private const string OldFolder = "Assets/Content/Prefabs/UI/Old/";
-        private const string SmallPath = OldFolder + "InAppProductCardSmall1.prefab";
-        private const string MediumPath = OldFolder + "InAppProductCardMedium2.prefab";
-        private const string LargePath = OldFolder + "InAppProductAppLarge3.prefab";
-        private const string RowPath = OldFolder + "InAppHLG .prefab";
+        private const string ShopFolder = "Assets/Content/Prefabs/UI/Shop/";
+        private const string SmallPath = ShopFolder + "Product Card Small.prefab";
+        private const string MediumPath = ShopFolder + "Product Card Medium.prefab";
+        private const string LargePath = ShopFolder + "Product Card Large.prefab";
+        private const string RowPath = ShopFolder + "Product Row.prefab";
         private const string AtlasPath = "Assets/Content/UI/Shop/shopatlas.png";
         private const string ElementsPath = "Assets/Content/UI/Shop/Elements/";
         private const string ConfigPath = "Assets/Content/Configs/InAppConfig.asset";
@@ -66,15 +66,15 @@ namespace Utils.Editor
         private static void WireSmall(GameObject root)
         {
             var t = root.transform;
-            var title = Text(t, "Hearts Pack Title");
+            var title = Text(t, "Title");
             Place(title.rectTransform, new Vector2(0.5f, 1), new Vector2(0, -38), new Vector2(236, 58));
             title.textWrappingMode = TextWrappingModes.Normal;
             title.lineSpacing = -22;
             AutoSize(title, 30, 22);
 
-            var icon = Find(t, "Hearts Pack Icon").GetComponent<Image>();
+            var icon = Find(t, "Icon").GetComponent<Image>();
             Place(icon.rectTransform, new Vector2(0.5f, 1), new Vector2(0, -115), new Vector2(96, 88));
-            Hide(t, "Hearts Pack Amount");
+            Hide(t, "Amount");
 
             var rewards = Row(t, "Rewards", new Vector2(0.5f, 0), new Vector2(0, 94), new Vector2(240, 44), 8, TextAnchor.MiddleCenter);
             var item = RewardItem(rewards, 40, 32, Ink);
@@ -96,17 +96,17 @@ namespace Utils.Editor
         private static void WireMedium(GameObject root)
         {
             var t = root.transform;
-            var icon = Find(t, "Hearts Pack Icon").GetComponent<Image>();
+            var icon = Find(t, "Icon").GetComponent<Image>();
             Place(icon.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(-120, 6), new Vector2(220, 190));
 
-            var title = Text(t, "Hearts Pack Title");
+            var title = Text(t, "Title");
             Place(title.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(124, 88), new Vector2(240, 56));
             title.alignment = TextAlignmentOptions.Center;
             AutoSize(title, 40, 26);
 
-            var desc = Text(t, "Hearts Pack Amount");
+            var desc = Text(t, "Amount");
             desc.gameObject.SetActive(true);
-            Place(desc.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(124, 18), new Vector2(244, 84));
+            Place(desc.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(116, 18), new Vector2(240, 84));
             desc.alignment = TextAlignmentOptions.Center;
             desc.color = InkSoft;
             desc.textWrappingMode = TextWrappingModes.Normal;
@@ -130,8 +130,8 @@ namespace Utils.Editor
         private static void WireLarge(GameObject root)
         {
             var t = root.transform;
-            var icon = Find(t, "Bundle Chest Icon").GetComponent<Image>();
-            var title = Text(t, "Starter Bundle Label");
+            var icon = Find(t, "Icon").GetComponent<Image>();
+            var title = Text(t, "Title");
             Place(title.rectTransform, new Vector2(0.5f, 0.5f), new Vector2(196, 100), new Vector2(316, 58));
             AutoSize(title, 44, 28);
 
@@ -178,7 +178,7 @@ namespace Utils.Editor
             var buttonTr = Find(card, "Button");
             var button = buttonTr.GetComponent<Button>();
             Hide(buttonTr, "Count");
-            var price = Text(buttonTr, "Text (TMP)");
+            var price = Text(buttonTr, "Label");
             price.rectTransform.anchorMin = Vector2.zero;
             price.rectTransform.anchorMax = Vector2.one;
             price.rectTransform.pivot = new Vector2(0.5f, 0.5f);
@@ -342,7 +342,7 @@ namespace Utils.Editor
                 }
             }
 
-            _font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Content/Fonts/FredokaSDF Thick.asset");
+            _font = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Content/Fonts/GameFont SDF.asset");
 
             // Pill was trimmed to its visible bounds; its rounded ends need wide horizontal borders.
             var pillPath = ElementsPath + "ShopBadgePill.png";

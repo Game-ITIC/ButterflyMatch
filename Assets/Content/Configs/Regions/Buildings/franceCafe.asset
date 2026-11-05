@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: france-cafe
   displayName: Cafe
-  icon: {fileID: 21300000, guid: bdabf1904a407b640941eeece9ab767d, type: 3}
+  icon: {fileID: 21300000, guid: 0e8e8665028fcd64bb0def2263f43ccd, type: 3}
   prefab: {fileID: 6334652782783485228, guid: d9b49362c7e87c44faeab94af4261576, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 25c0daaa82a41f7408c88714d787b475, type: 2}

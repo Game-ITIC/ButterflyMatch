@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: italy-awning
   displayName: Awning
-  icon: {fileID: 21300000, guid: e2d85415392f37f4dadd4e682b951a14, type: 3}
+  icon: {fileID: 21300000, guid: 6cbb10aa8ab31b144a7e003ee142e5a2, type: 3}
   prefab: {fileID: 816258648015248683, guid: c4d2c38627ffed84bb4d9a00419bf96a, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 17fad00c6ddb73349b0d9dab2c890926, type: 2}

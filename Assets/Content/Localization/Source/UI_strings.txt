@@ -92,6 +92,11 @@ bld_house|House|Дом|Casa|Casa|Haus|Maison|Casa|Ev|Rumah|家|집|房屋
 bld_building|Building|Здание|Edificio|Edifício|Gebäude|Bâtiment|Edificio|Bina|Gedung|建物|건물|建筑
 bld_roof|Roof|Крыша|Tejado|Telhado|Dach|Toit|Tetto|Çatı|Atap|屋根|지붕|屋顶
 bld_tree|Tree|Дерево|Árbol|Árvore|Baum|Arbre|Albero|Ağaç|Pohon|木|나무|树
+bld_sakura|Sakura|Сакура|Cerezo|Cerejeira|Kirschbaum|Cerisier|Ciliegio|Sakura|Sakura|桜|벚나무|樱花树
+bld_young_sakura|Young Sakura|Молодая сакура|Cerezo joven|Cerejeira jovem|Junger Kirschbaum|Jeune cerisier|Ciliegio giovane|Genç sakura|Sakura muda|若い桜|어린 벚나무|小樱花树
+bld_blossoming_sakura|Blossoming Sakura|Цветущая сакура|Cerezo en flor|Cerejeira em flor|Blühender Kirschbaum|Cerisier en fleurs|Ciliegio in fiore|Çiçekli sakura|Sakura mekar|満開の桜|활짝 핀 벚나무|盛开的樱花树
+bld_old_sakura|Old Sakura|Старая сакура|Cerezo antiguo|Cerejeira antiga|Alter Kirschbaum|Vieux cerisier|Ciliegio antico|Yaşlı sakura|Sakura tua|古い桜|오래된 벚나무|古樱花树
+bld_house_walls|House Walls|Стены дома|Paredes|Paredes|Hauswände|Murs|Pareti|Ev duvarları|Dinding rumah|家の壁|집 벽|房屋墙壁
 bld_wall|Wall|Стена|Muro|Muro|Mauer|Mur|Muro|Duvar|Tembok|壁|벽|墙
 bld_walls|Walls|Стены|Murallas|Muralhas|Mauern|Remparts|Mura|Surlar|Benteng|城壁|성벽|城墙
 bld_boardwalk|Boardwalk|Настил|Pasarela|Passarela|Steg|Ponton|Passerella|Tahta yol|Titian|板張りの道|나무 길|木栈道

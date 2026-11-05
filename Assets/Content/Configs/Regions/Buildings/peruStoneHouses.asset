@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: peru-stonehouses
   displayName: Stone Houses
-  icon: {fileID: 21300000, guid: 1df8a26d7343e6d4183881f1df276744, type: 3}
+  icon: {fileID: 21300000, guid: abdfbbf43e90ef446a93f675fb259f5d, type: 3}
   prefab: {fileID: 5729289780921039494, guid: 96a49d4c4c3ec414d8701d8f7fdaa878, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 32dd6e52d0f0c054bb66536d7872c0f1, type: 2}

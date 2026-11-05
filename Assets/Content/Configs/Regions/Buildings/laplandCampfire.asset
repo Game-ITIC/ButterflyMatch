@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: lapland-campfire
   displayName: Campfire
-  icon: {fileID: 21300000, guid: a2296a6b9492bf747a5e05a7aed46166, type: 3}
+  icon: {fileID: 21300000, guid: e630a385e6f718f4dac1035481761549, type: 3}
   prefab: {fileID: 3116972218856453386, guid: c09f1c94cffb100409e784d6de25364a, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: f7d58008da7341d4f8f88c1e7f911bef, type: 2}

@@ -8,6 +8,7 @@ namespace JuiceFresh.Board
     public class ItemEffects
     {
         private readonly Item _item;
+        private bool _stripeShown;
 
         public ItemEffects(Item item)
         {
@@ -55,6 +56,11 @@ namespace JuiceFresh.Board
 
         public void PlayStripeAppear(ItemsTypes type)
         {
+            // A new piece can get here twice: from ChangeType and from its own Start.
+            if (_stripeShown)
+                return;
+            _stripeShown = true;
+
             Transform spriteTransform = _item.transform.Find("Sprite");
             GameObject obj = Object.Instantiate(Resources.Load("Prefabs/StripeEffect")) as GameObject;
             obj.transform.SetParent(spriteTransform);

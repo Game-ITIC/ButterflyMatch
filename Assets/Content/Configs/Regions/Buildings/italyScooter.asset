@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: italy-scooter
   displayName: Scooter
-  icon: {fileID: 21300000, guid: e2d85415392f37f4dadd4e682b951a14, type: 3}
+  icon: {fileID: 21300000, guid: 3ce0571fea0e142429be19c397b26722, type: 3}
   prefab: {fileID: 816258648015248683, guid: c4d2c38627ffed84bb4d9a00419bf96a, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: e071d44852fe2944192193a84721ec5f, type: 2}

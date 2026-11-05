@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: mexico-flowerbushes
   displayName: Flower Bushes
-  icon: {fileID: 21300000, guid: 323d14fbd7f810349aea8d4c42761990, type: 3}
+  icon: {fileID: 21300000, guid: 33ae8547afdfab9469408b894c344a33, type: 3}
   prefab: {fileID: 7470165039710195780, guid: 7178bf20d75a45842b4c372e9d840339, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 34749cfff85423147b3f08dc108f6cf4, type: 2}

@@ -51,7 +51,8 @@ namespace JuiceFresh.Feel
             aura.sprite = source.sprite;
             aura.sharedMaterial = source.sharedMaterial;
             aura.sortingLayerID = source.sortingLayerID;
-            aura.sortingOrder = source.sortingOrder + 2;
+            // Behind the piece: drawn over it, the copy washes the colours out.
+            aura.sortingOrder = source.sortingOrder - 1;
             aura.flipX = source.flipX;
             aura.flipY = source.flipY;
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: norway-banner
   displayName: Banner
-  icon: {fileID: 21300000, guid: cebebdae21b1bf049b4a1ec52e364244, type: 3}
+  icon: {fileID: 21300000, guid: 363775792d9799742b1d6e0dee81b1c9, type: 3}
   prefab: {fileID: 8080905529158418877, guid: 6e721b69468a445429ff2766ddd0d03d, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 5449401100ab1294d9aff8f244b66602, type: 2}

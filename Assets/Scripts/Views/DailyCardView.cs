@@ -220,7 +220,7 @@ namespace Views
 
             if(rewardText == null)
             {
-                var textTransform = transform.Find("Text (TMP)");
+                var textTransform = transform.Find("Amount");
                 rewardText = textTransform != null ? textTransform.GetComponent<TMP_Text>() : null;
             }
 

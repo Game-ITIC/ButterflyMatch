@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: italy-stringlights
   displayName: String Lights
-  icon: {fileID: 21300000, guid: e2d85415392f37f4dadd4e682b951a14, type: 3}
+  icon: {fileID: 21300000, guid: c88ac2605f21a6b46a1f249be72a4c7d, type: 3}
   prefab: {fileID: 816258648015248683, guid: c4d2c38627ffed84bb4d9a00419bf96a, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 800b8e6e1041a0e4abf28dbbf709184e, type: 2}

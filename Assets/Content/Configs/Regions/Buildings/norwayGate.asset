@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: norway-gate
   displayName: Gate
-  icon: {fileID: 21300000, guid: cebebdae21b1bf049b4a1ec52e364244, type: 3}
+  icon: {fileID: 21300000, guid: 1819abd08615a134b95b1b9ff135270a, type: 3}
   prefab: {fileID: 8080905529158418877, guid: 6e721b69468a445429ff2766ddd0d03d, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 31c5a02551c3e464bbaa8598c66ba3d9, type: 2}

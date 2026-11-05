@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: morocco-minarettop
   displayName: Minaret Top
-  icon: {fileID: 21300000, guid: d47a718a73838524c827f137e3eb7439, type: 3}
+  icon: {fileID: 21300000, guid: 30d929fc9ccdfb64dbd7a4592e5ee43c, type: 3}
   prefab: {fileID: 6187385037960465172, guid: 1b09780e6ec665b4787074eb3f3e1733, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 85378a19c4dcb0b478f03a033b93d973, type: 2}

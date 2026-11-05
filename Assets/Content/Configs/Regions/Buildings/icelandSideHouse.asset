@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: iceland-sidehouse
   displayName: Side House
-  icon: {fileID: 21300000, guid: 4bbe410d02bb36e40a5c6a5c96155a05, type: 3}
+  icon: {fileID: 21300000, guid: 65e62f4b615b6f34397c872a8e47a527, type: 3}
   prefab: {fileID: 3181164859895087748, guid: a4fb8ab84ca552945945396512e81fdb, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: debec21acd0b56a42b6428e25ff0c4bb, type: 2}

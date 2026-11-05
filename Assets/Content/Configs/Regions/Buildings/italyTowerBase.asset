@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: italy-towerbase
   displayName: Tower Base
-  icon: {fileID: 21300000, guid: e2d85415392f37f4dadd4e682b951a14, type: 3}
+  icon: {fileID: 21300000, guid: 863cbcd16e455034da7ab608f1d6a334, type: 3}
   prefab: {fileID: 816258648015248683, guid: c4d2c38627ffed84bb4d9a00419bf96a, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: be94485c8a089ee449f49c06463c8444, type: 2}

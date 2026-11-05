@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: morocco-medinawalls
   displayName: Medina Walls
-  icon: {fileID: 21300000, guid: d47a718a73838524c827f137e3eb7439, type: 3}
+  icon: {fileID: 21300000, guid: a12ab00bab62410408b24d277b52fa2c, type: 3}
   prefab: {fileID: 6187385037960465172, guid: 1b09780e6ec665b4787074eb3f3e1733, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: ba7a6477511d210419a472eb036c7759, type: 2}

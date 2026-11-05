@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: greece-olivetree
   displayName: Olive Tree
-  icon: {fileID: 21300000, guid: fb34e80088f14ce4d957fc0915a0852a, type: 3}
+  icon: {fileID: 21300000, guid: a2be18d2cbabeff42840769e7446dc24, type: 3}
   prefab: {fileID: 9070022975583013952, guid: 8992d40c2ece89c4080172d105be6269, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 14148bb32bd997549a9a59aec405ba5c, type: 2}

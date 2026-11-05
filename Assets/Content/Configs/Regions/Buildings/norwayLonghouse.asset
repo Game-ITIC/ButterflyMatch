@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: norway-longhouse
   displayName: Longhouse
-  icon: {fileID: 21300000, guid: cebebdae21b1bf049b4a1ec52e364244, type: 3}
+  icon: {fileID: 21300000, guid: 4e3ed2f1b0699af4b99d724a4b272e8c, type: 3}
   prefab: {fileID: 8080905529158418877, guid: 6e721b69468a445429ff2766ddd0d03d, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 48600e56a7892f34b8b68158f48301a6, type: 2}

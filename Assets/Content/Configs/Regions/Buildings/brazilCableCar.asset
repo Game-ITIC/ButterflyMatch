@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: brazil-cablecar
   displayName: Cable Car
-  icon: {fileID: 21300000, guid: d9b29adee22d6074f947576f8fe2d221, type: 3}
+  icon: {fileID: 21300000, guid: bf5ee5b391331f348809d35e290d72bb, type: 3}
   prefab: {fileID: 8564925548446560703, guid: 2ef270890acc3e34094d8a57c734613e, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 63360bdeb8df1884d8b758321be6d349, type: 2}

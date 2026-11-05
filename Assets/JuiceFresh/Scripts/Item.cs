@@ -186,6 +186,10 @@ public class Item : MonoBehaviour
             sprRenderer.sprite = bombItems[color];
             _bomb.Setup();
         }
+        else if (nextType == ItemsTypes.HORIZONTAL_STRIPPED || nextType == ItemsTypes.VERTICAL_STRIPPED)
+        {
+            _effects.PlayStripeAppear(nextType);
+        }
 
         debugType = nextType;
         currentType = nextType;
@@ -198,8 +202,9 @@ public class Item : MonoBehaviour
     {
         GameObject obj = Instantiate(Resources.Load("Prefabs/arrow_ingredients")) as GameObject;
         obj.transform.SetParent(transform);
-        obj.transform.localPosition = new Vector3(0.66f, -0.53f, 0);
-        obj.transform.localScale = Vector3.one * 0.6f;
+        // Bottom centre, inside the cell: it points at the way out.
+        obj.transform.localPosition = new Vector3(0f, -0.48f, 0);
+        obj.transform.localScale = Vector3.one * 0.72f;
     }
     #endregion
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: lapland-antlers
   displayName: Antlers
-  icon: {fileID: 21300000, guid: a2296a6b9492bf747a5e05a7aed46166, type: 3}
+  icon: {fileID: 21300000, guid: caca5730e88a6f74ba753a790c841225, type: 3}
   prefab: {fileID: 3116972218856453386, guid: c09f1c94cffb100409e784d6de25364a, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 0865294896887654fb5487b553191eee, type: 2}

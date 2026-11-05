@@ -49,6 +49,7 @@ namespace JuiceFresh.Board
             switch (_square.type)
             {
                 case SquareTypes.BLOCK:
+                    top.GetComponent<Square>().SetFrontLayer(false);
                     lm.CheckCollectedTarget(top.gameObject);
                     lm.PopupScore(lm.scoreForBlock, position, 0);
                     lm.TargetBlocks--;
@@ -105,6 +106,10 @@ namespace JuiceFresh.Board
             _square.type = _square.block.Count > 0
                 ? _square.block[_square.block.Count - 1].GetComponent<Square>().type
                 : SquareTypes.EMPTY;
+
+            // The double layer is gone: the jar under it comes to the front.
+            if (_square.type == SquareTypes.BLOCK)
+                _square.block[_square.block.Count - 1].GetComponent<Square>().SetFrontLayer(true);
         }
     }
 }

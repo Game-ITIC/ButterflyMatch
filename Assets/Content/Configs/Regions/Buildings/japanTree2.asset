@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: japanTree2
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: japan-tree2
-  displayName: Tree 2
-  icon: {fileID: 4204830022199959180, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
+  displayName: Blossoming Sakura
+  icon: {fileID: 21300000, guid: f117f4007d511a847a1359fbc24e153c, type: 3}
   prefab: {fileID: 8375468204838668153, guid: 480df02edba165945a0073d539f7f07b, type: 3}
   requiredBuildings: []

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: brazil-hillside
   displayName: Hillside
-  icon: {fileID: 21300000, guid: d9b29adee22d6074f947576f8fe2d221, type: 3}
+  icon: {fileID: 21300000, guid: 944ef7ce1c73d7e4691aaf3c3267ef5e, type: 3}
   prefab: {fileID: 8564925548446560703, guid: 2ef270890acc3e34094d8a57c734613e, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 060ee8e641e0b944789b4207495ec3d3, type: 2}

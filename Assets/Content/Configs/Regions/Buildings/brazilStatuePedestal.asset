@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: brazil-statuepedestal
   displayName: Statue Pedestal
-  icon: {fileID: 21300000, guid: d9b29adee22d6074f947576f8fe2d221, type: 3}
+  icon: {fileID: 21300000, guid: 5ef2f6097813a044abc4b9129acb00c4, type: 3}
   prefab: {fileID: 8564925548446560703, guid: 2ef270890acc3e34094d8a57c734613e, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 8a423c995212ebc4fba1bf9163b17de5, type: 2}

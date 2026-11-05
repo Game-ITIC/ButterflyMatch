@@ -52,6 +52,12 @@ namespace JuiceFresh
         
         [Header("Blocks")]
         public List<GameObject> block = new List<GameObject>();
+
+        [Header("Layers")]
+        [Tooltip("Cell mark of the chain and the move hint (under the piece).")]
+        public GameObject chainMark;
+        [Tooltip("Block only: the part of the jar drawn in front of the piece.")]
+        public GameObject frontLayer;
         
         private bool hightlighted;
         private SpriteRenderer _spriteRenderer;
@@ -201,6 +207,20 @@ namespace JuiceFresh
                 yield return new WaitForSeconds(0.3f);
                 CellRenderer.color = new Color(col - 0.1f, col - 0.1f, col - 0.1f);
             }
+        }
+        #endregion
+
+        #region Layers
+        public void SetChainMark(bool on)
+        {
+            if (chainMark != null && chainMark.activeSelf != on)
+                chainMark.SetActive(on);
+        }
+
+        public void SetFrontLayer(bool on)
+        {
+            if (frontLayer != null)
+                frontLayer.SetActive(on);
         }
         #endregion
 

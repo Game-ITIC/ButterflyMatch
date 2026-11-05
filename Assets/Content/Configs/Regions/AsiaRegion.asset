@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.RegionSO
   regionId: asia
   displayName: Asia
-  icon: {fileID: 4204830022199959180, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
+  icon: {fileID: 6070576942371131909, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
   menuBackground: {fileID: 21300000, guid: f6d0df68ecf38fc42b62708535f38b2b, type: 3}
   islands:
   - {fileID: 11400000, guid: 345a0416812c29b4db609f280a751637, type: 2}

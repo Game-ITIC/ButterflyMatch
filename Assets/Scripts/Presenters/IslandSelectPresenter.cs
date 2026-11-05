@@ -32,6 +32,8 @@ namespace Presenters
                 _buildService.Changed += RefreshIfOpen;
             }
 
+            GameLocalization.L10n.Changed += RefreshIfOpen;
+
             // A paged island screen can be swiped into at any time, so its cards are always kept filled.
             if (_panel != null && _panel.IsPaged)
             {
@@ -53,6 +55,8 @@ namespace Presenters
             {
                 _buildService.Changed -= RefreshIfOpen;
             }
+
+            GameLocalization.L10n.Changed -= RefreshIfOpen;
 
             if (_islandButton != null && _openAction != null)
             {
@@ -115,6 +119,8 @@ namespace Presenters
                     return;
                 }
             }
+
+            _panel.MatchCardNameSizes();
         }
 
         private bool AddCards(System.Collections.Generic.IReadOnlyList<Configs.IslandSO> islands)

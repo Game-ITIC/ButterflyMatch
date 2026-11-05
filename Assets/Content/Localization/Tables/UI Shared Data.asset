@@ -1135,6 +1135,26 @@ MonoBehaviour:
     m_Key: bld_colorful_houses
     m_Metadata:
       m_Items: []
+  - m_Id: 989667355680768
+    m_Key: bld_sakura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623808
+    m_Key: bld_young_sakura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623809
+    m_Key: bld_blossoming_sakura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623810
+    m_Key: bld_old_sakura
+    m_Metadata:
+      m_Items: []
+  - m_Id: 989667397623811
+    m_Key: bld_house_walls
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

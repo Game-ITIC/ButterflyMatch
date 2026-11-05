@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: peru-textilestall
   displayName: Textile Stall
-  icon: {fileID: 21300000, guid: 1df8a26d7343e6d4183881f1df276744, type: 3}
+  icon: {fileID: 21300000, guid: 59221832688a24642be9780e332a9312, type: 3}
   prefab: {fileID: 5729289780921039494, guid: 96a49d4c4c3ec414d8701d8f7fdaa878, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 29ab19f1ea565a1468ddfcc345884e20, type: 2}

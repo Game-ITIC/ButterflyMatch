@@ -9,9 +9,13 @@ public class RegionCardView : MonoBehaviour
     [SerializeField] private TMP_Text _regionNameText;
     [SerializeField] private TMP_Text _progresPercentageText;
     [SerializeField] private Image _progressImage;
+    [Tooltip("Bar and percentage together; hidden while the island is locked.")]
+    [SerializeField] private GameObject _progressBar;
     [SerializeField] private Image _regionImage;
     [SerializeField] private Button _button;
     [SerializeField] private GameObject _lockIcon;
+
+    public TMP_Text NameLabel => _regionNameText;
 
     public void Bind(string islandName, Sprite icon, int builtCount, int totalCount, bool interactable, string status, Action onClick)
     {
@@ -37,6 +41,11 @@ public class RegionCardView : MonoBehaviour
             _regionImage.enabled = icon != null;
             // Locked / coming-soon islands look faded.
             _regionImage.color = interactable ? Color.white : new Color(0.6f, 0.6f, 0.68f, 0.75f);
+        }
+
+        if (_progressBar != null)
+        {
+            _progressBar.SetActive(!locked);
         }
 
         var progress = totalCount > 0 ? (float)builtCount / totalCount : 0f;

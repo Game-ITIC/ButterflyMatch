@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
   islandId: china
   displayName: China
-  icon: {fileID: 6070576942371131909, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
+  icon: {fileID: 4204830022199959180, guid: cdc5b5685b33f614b8c6b15b182d5677, type: 3}
   islandPrefab: {fileID: 4196150323201231134, guid: 1d0ef5f9712463b458871d91a2a8ba06,
     type: 3}
   isComingSoon: 0

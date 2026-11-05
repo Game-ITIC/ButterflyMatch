@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: peru-thatchedroofs
   displayName: Thatched Roofs
-  icon: {fileID: 21300000, guid: 1df8a26d7343e6d4183881f1df276744, type: 3}
+  icon: {fileID: 21300000, guid: 6d87e147a8a792b4cbaeaff4a74c75bc, type: 3}
   prefab: {fileID: 5729289780921039494, guid: 96a49d4c4c3ec414d8701d8f7fdaa878, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 525d65c72ed38054fbf7e7c7470cb51b, type: 2}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: brazil-sugarloaf
   displayName: Sugarloaf
-  icon: {fileID: 21300000, guid: d9b29adee22d6074f947576f8fe2d221, type: 3}
+  icon: {fileID: 21300000, guid: 4b5b26ed58674bb4a967c93683129f86, type: 3}
   prefab: {fileID: 8564925548446560703, guid: 2ef270890acc3e34094d8a57c734613e, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 45ea4b2850811184099d8294d405e305, type: 2}

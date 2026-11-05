@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using JuiceFresh;
 using JuiceFresh.Scripts;
@@ -11,12 +12,24 @@ using UnityEngine;
 /// </summary>
 public class PlayingState : GameStateBase
 {
+    // New pieces take their colour in Start, so the board is checked a moment after entering the state.
+    private const float StartCheckDelay = 1f;
+
+    // A board whose shape allows no chain at all must not rebuild forever.
+    private const int MaxDeadStartRebuilds = 5;
+
     private readonly BoardPointer _pointer;
     private readonly ChainSelection _chain;
     private readonly BoosterTargetApplier _boosters;
     private readonly PossibleMovesDetector _possibleMoves;
+    private readonly MoveHint _hint;
+
+    private readonly List<Item> _foundChain = new List<Item>();
 
     private int _movesInProgress;
+    private bool _startCheckPending;
+    private float _startCheckAt;
+    private int _deadStartRebuilds;
 
     public PlayingState(LevelManager levelManager) : base(levelManager)
     {
@@ -24,6 +37,7 @@ public class PlayingState : GameStateBase
         _chain = new ChainSelection(levelManager);
         _boosters = new BoosterTargetApplier(levelManager);
         _possibleMoves = new PossibleMovesDetector(levelManager);
+        _hint = new MoveHint(_possibleMoves);
     }
 
     /// <summary>True from the moment a move is released until its cascade has settled.</summary>
@@ -42,15 +56,24 @@ public class PlayingState : GameStateBase
 
         if (levelManager.limitType == LIMIT.TIME)
             RestartTimer();
+
+        _startCheckPending = true;
+        _startCheckAt = Time.time + StartCheckDelay;
     }
 
     public override void UpdateState()
     {
+        if (RebuildIfStartedDead())
+            return;
+
+        // Before the input: the hint must not take the mark off a cell the player has just selected.
+        _hint.Tick(IsWaitingForPlayer());
         HandleInput();
     }
 
     public override void ExitState()
     {
+        _hint.Tick(false);
         levelManager.ClearHighlight(true);
         _chain.Clear();
         levelManager.Timer.Stop();
@@ -76,6 +99,7 @@ public class PlayingState : GameStateBase
     {
         levelManager.DragBlocked = true;
         _movesInProgress++;
+        _chain.ClearMarks();
 
         // The move is spent when it is released. It used to be taken only after the whole cascade, and
         // DragBlocked drops a frame before that, so quick follow-up moves were queued and some were free.
@@ -105,6 +129,16 @@ public class PlayingState : GameStateBase
     #endregion
 
     #region Input
+
+    // The board is at rest and the player is not touching it.
+    private bool IsWaitingForPlayer() =>
+        levelManager.gameStatus == GameState.Playing
+        && !levelManager.DragBlocked
+        && !IsMoveInProgress
+        && !_pointer.IsPressed
+        && _chain.Count == 0
+        && !_boosters.IsBoardBoosterArmed
+        && (levelManager.limitType != LIMIT.MOVES || levelManager.Limit > 0);
 
     private void HandleInput()
     {
@@ -185,6 +219,29 @@ public class PlayingState : GameStateBase
     }
 
     #endregion
+
+    // The check after a move never runs if the board has no chain from the start (walls split level 36 into
+    // single rows), and the player could not make that first move.
+    private bool RebuildIfStartedDead()
+    {
+        if (!_startCheckPending || Time.time < _startCheckAt || !IsWaitingForPlayer())
+            return false;
+
+        _startCheckPending = false;
+
+        if (_possibleMoves.TryFindChain(_foundChain))
+        {
+            _deadStartRebuilds = 0;
+            return false;
+        }
+
+        if (_deadStartRebuilds >= MaxDeadStartRebuilds)
+            return false;
+
+        _deadStartRebuilds++;
+        HandleNoMatches();
+        return true;
+    }
 
     // No chain of 3 is left: say so and rebuild the board.
     private void HandleNoMatches()

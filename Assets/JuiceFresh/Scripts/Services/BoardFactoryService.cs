@@ -1,10 +1,14 @@
 using JuiceFresh;
+using Models;
 using UnityEngine;
 
 namespace JuiceFresh.Scripts
 {
     public class BoardFactoryService
     {
+        // World units the board moves down while the booster row is hidden: half of the row's height.
+        private const float NoBoostersShift = 1.6f;
+
         private readonly LevelManager _levelManager;
 
         public BoardFactoryService(LevelManager levelManager)
@@ -35,6 +39,10 @@ namespace JuiceFresh.Scripts
             float yOffset = 0;
             if (_levelManager.target == Target.COLLECT)
                 yOffset = 0.3f;
+
+            // Before the first booster opens, the row under the board is empty.
+            if (!BoosterUnlocks.IsUnlocked(BoostType.Shovel, _levelManager.currentLevel))
+                yOffset -= NoBoostersShift;
 
             return new Vector3(fieldPos.x, fieldPos.y + yOffset, _levelManager.GameField.localPosition.z);
         }
@@ -74,6 +82,7 @@ namespace JuiceFresh.Scripts
                 square.GetComponent<Square>().block.Add(block);
                 square.GetComponent<Square>().type = SquareTypes.BLOCK;
                 block.GetComponent<Square>().type = SquareTypes.BLOCK;
+                block.GetComponent<Square>().SetFrontLayer(true);
 
                 CreateObstacles(col, row, square, SquareTypes.NONE);
             }
@@ -95,6 +104,8 @@ namespace JuiceFresh.Scripts
 
                 block.GetComponent<SpriteRenderer>().sprite = _levelManager.doubleBlock;
                 block.GetComponent<SpriteRenderer>().sortingOrder = 1;
+                // The double layer is a plain tile, it has no jar in front.
+                block.GetComponent<Square>().frontLayer = null;
 
                 CreateObstacles(col, row, square, SquareTypes.NONE);
             }

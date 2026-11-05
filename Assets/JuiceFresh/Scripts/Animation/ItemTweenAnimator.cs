@@ -51,7 +51,8 @@ public sealed class ItemTweenAnimator : IDisposable
         ResetVisual();
 
         var sequence = DOTween.Sequence().SetTarget(_owner);
-        sequence.Append(_visual.DOScale(Scaled(1.24f, 1.16f), 0.4f).SetEase(Ease.OutCubic));
+        // The peak has to stay inside the cell.
+        sequence.Append(_visual.DOScale(Scaled(1.18f, 1.12f), 0.4f).SetEase(Ease.OutCubic));
         sequence.Append(_visual.DOScale(Scaled(0.96f, 1.02f), 0.55f).SetEase(Ease.InOutSine));
         sequence.Append(_visual.DOScale(_restScale, 0.38f).SetEase(Ease.OutCubic));
         sequence.SetLoops(-1, LoopType.Restart);

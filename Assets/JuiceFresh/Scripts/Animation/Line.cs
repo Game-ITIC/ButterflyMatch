@@ -176,7 +176,8 @@ public class Line : MonoBehaviour
     private void SetSortingLayer(LineRenderer lineRenderer)
     {
         lineRenderer.sortingLayerID = 0;
-        lineRenderer.sortingOrder = 1;
+        // Above the pieces: the chain has to be readable.
+        lineRenderer.sortingOrder = 6;
     }
     #endregion
 }

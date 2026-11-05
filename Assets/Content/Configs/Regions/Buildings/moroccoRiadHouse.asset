@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: morocco-riadhouse
   displayName: Riad House
-  icon: {fileID: 21300000, guid: d47a718a73838524c827f137e3eb7439, type: 3}
+  icon: {fileID: 21300000, guid: 08ef95b709592aa4aa1b1cc1ae86c341, type: 3}
   prefab: {fileID: 6187385037960465172, guid: 1b09780e6ec665b4787074eb3f3e1733, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 117e375fdc2da49428a74ca7043911f9, type: 2}

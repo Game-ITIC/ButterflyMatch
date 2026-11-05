@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: brazil-beach
   displayName: Beach
-  icon: {fileID: 21300000, guid: d9b29adee22d6074f947576f8fe2d221, type: 3}
+  icon: {fileID: 21300000, guid: 43edf38e949a553478c754f15d99b2be, type: 3}
   prefab: {fileID: 8564925548446560703, guid: 2ef270890acc3e34094d8a57c734613e, type: 3}
   requiredBuildings: []

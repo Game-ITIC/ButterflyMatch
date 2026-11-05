@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: peru-waterchannel
   displayName: Water Channel
-  icon: {fileID: 21300000, guid: 1df8a26d7343e6d4183881f1df276744, type: 3}
+  icon: {fileID: 21300000, guid: e0f3de5c2fa761844b300c7c466dba4b, type: 3}
   prefab: {fileID: 5729289780921039494, guid: 96a49d4c4c3ec414d8701d8f7fdaa878, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 49136680c2c60074d8a362c55a561a55, type: 2}

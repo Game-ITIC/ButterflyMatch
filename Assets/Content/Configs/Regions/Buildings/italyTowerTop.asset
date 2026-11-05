@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: italy-towertop
   displayName: Tower Top
-  icon: {fileID: 21300000, guid: e2d85415392f37f4dadd4e682b951a14, type: 3}
+  icon: {fileID: 21300000, guid: 9c086e491c03b9c41ad212c611db3201, type: 3}
   prefab: {fileID: 816258648015248683, guid: c4d2c38627ffed84bb4d9a00419bf96a, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 459a5abf9058a6d43985513c5cb31026, type: 2}

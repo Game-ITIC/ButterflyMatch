@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: france-streetlamps
   displayName: Street Lamps
-  icon: {fileID: 21300000, guid: bdabf1904a407b640941eeece9ab767d, type: 3}
+  icon: {fileID: 21300000, guid: b72fde3a6f9550640819bd8a19260620, type: 3}
   prefab: {fileID: 6334652782783485228, guid: d9b49362c7e87c44faeab94af4261576, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 8468b41665fec854490b207c9cb89be6, type: 2}

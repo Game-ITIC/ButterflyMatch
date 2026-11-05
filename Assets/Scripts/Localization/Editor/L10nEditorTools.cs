@@ -37,14 +37,14 @@ namespace GameLocalization.EditorTools
         // Labels whose text is written by code at runtime: a LocalizeStringEvent would fight it.
         private static readonly HashSet<string> ExcludedNames = new(StringComparer.OrdinalIgnoreCase)
         {
-            "Play Button Label", "Play Level Label", "TimeLives", "CountHelth", "LifesTimer", "NameRegions"
+            "Play Button Label", "Play Level Label", "Timer", "Count", "LifesTimer", "Region Title"
         };
 
-        // Shop cards (Pack Card, Starter Bundle, ShopItemView, Shop Content Panel) belong to the shop redesign.
+        // Shop cards get their texts from ShopPrefabBuilder and the shop views.
         private static readonly string[] ExcludedPathParts =
         {
-            "RewardPopup/Panel/Description", "BuildingCardView", "BuildingCatalogPanel/Window/Title",
-            "Pack Card", "Starter Bundle Featured Card", "ShopItemView", "Shop Content Panel"
+            "RewardPopup/Panel/Description", "Building Card", "BuildingCatalogPanel/Window/Title",
+            "Product Card", "Product Row", "Booster Offer Card"
         };
 
         private static readonly string[] ExcludedComponentTypes =
@@ -388,7 +388,7 @@ namespace GameLocalization.EditorTools
         /// <summary>Every character of every translation must exist in the main font or a global fallback.</summary>
         public static string CheckGlyphs()
         {
-            var main = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Content/Fonts/FredokaSDF Thick.asset");
+            var main = AssetDatabase.LoadAssetAtPath<TMP_FontAsset>("Assets/Content/Fonts/GameFont SDF.asset");
             var fallbacks = TMP_Settings.fallbackFontAssets ?? new List<TMP_FontAsset>();
             var collection = GetCollection();
             if (main == null || collection == null)

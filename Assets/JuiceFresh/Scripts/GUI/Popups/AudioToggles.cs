@@ -5,14 +5,19 @@ namespace JuiceFresh.Popups
     /// <summary>Sound / music on-off toggles of the settings and pause popups (saved as PlayerPrefs "Sound" / "Music").</summary>
     public static class AudioToggles
     {
-        private const string SoundOffPath = "Image/Sound/SoundOff";
-        private const string MusicOffPath = "Image/Music/MusicOff";
+        private const string SoundOffPath = "Sound/SoundOff";
+        private const string MusicOffPath = "Music/MusicOff";
 
         /// <summary>Shows the "off" marks for the saved settings.</summary>
         public static void ShowSaved(Transform popup)
         {
-            popup.Find(SoundOffPath).gameObject.SetActive(PlayerPrefs.GetInt("Sound") == 0);
-            popup.Find(MusicOffPath).gameObject.SetActive(PlayerPrefs.GetInt("Music") == 0);
+            // The pause menu keeps its content in "Window", the level's Settings popup in "Image".
+            Transform content = popup.Find("Window");
+            if (content == null)
+                content = popup.Find("Image");
+
+            content.Find(SoundOffPath).gameObject.SetActive(PlayerPrefs.GetInt("Sound") == 0);
+            content.Find(MusicOffPath).gameObject.SetActive(PlayerPrefs.GetInt("Music") == 0);
         }
 
         /// <summary>Flips the sound; <paramref name="offMark"/> is the button's "off" mark.</summary>

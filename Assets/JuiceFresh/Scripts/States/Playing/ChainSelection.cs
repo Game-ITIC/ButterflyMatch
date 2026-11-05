@@ -16,6 +16,7 @@ namespace JuiceFresh.States.Playing
         private const int ExtraItemEvery = 6;
 
         private readonly LevelManager _levelManager;
+        private readonly ChainCounterView _counter;
 
         private int _selectedColor = -1;
         private float _offset;
@@ -23,6 +24,7 @@ namespace JuiceFresh.States.Playing
         public ChainSelection(LevelManager levelManager)
         {
             _levelManager = levelManager;
+            _counter = new ChainCounterView(levelManager);
         }
 
         public int Count => _levelManager.destroyAnyway.Count;
@@ -59,9 +61,23 @@ namespace JuiceFresh.States.Playing
                 StepBack(item);
         }
 
+        /// <summary>Takes the chain's marks off the board (cells and counter); the pieces stay selected.</summary>
+        public void ClearMarks()
+        {
+            foreach (Item item in _levelManager.destroyAnyway)
+            {
+                if (item != null && item.square != null)
+                    item.square.SetChainMark(false);
+            }
+
+            _counter.Hide();
+        }
+
         /// <summary>Puts every piece of the chain back to rest and empties it.</summary>
         public void Clear()
         {
+            ClearMarks();
+
             foreach (Item item in _levelManager.destroyAnyway)
             {
                 if (item != null)
@@ -117,6 +133,8 @@ namespace JuiceFresh.States.Playing
 
             HighlightManager.SelectItem(item);
             item.square.SetActiveCage(true);
+            item.square.SetChainMark(true);
+            _counter.Show(item, chain.Count);
             item.AwakeItem();
         }
 
@@ -138,9 +156,11 @@ namespace JuiceFresh.States.Playing
 
             lastItem.SleepItem();
             lastItem.square.SetActiveCage(false);
+            lastItem.square.SetChainMark(false);
             HighlightManager.DeselectItem(lastItem, item);
 
             chain.Remove(lastItem);
+            _counter.Show(item, chain.Count);
             GameFeelManager.Instance?.OnItemDeselected(lastItem.transform, item.transform, chain.Count);
         }
 

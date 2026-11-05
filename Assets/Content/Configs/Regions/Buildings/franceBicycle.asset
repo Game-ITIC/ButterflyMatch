@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: france-bicycle
   displayName: Bicycle
-  icon: {fileID: 21300000, guid: bdabf1904a407b640941eeece9ab767d, type: 3}
+  icon: {fileID: 21300000, guid: 53aecb1bcc8cd4c4e81e45690d42d974, type: 3}
   prefab: {fileID: 6334652782783485228, guid: d9b49362c7e87c44faeab94af4261576, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 3e5a82594afc7ad4ba9ede5d2f9eae67, type: 2}

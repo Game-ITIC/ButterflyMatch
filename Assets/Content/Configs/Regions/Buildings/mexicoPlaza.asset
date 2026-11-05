@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: mexico-plaza
   displayName: Plaza
-  icon: {fileID: 21300000, guid: 323d14fbd7f810349aea8d4c42761990, type: 3}
+  icon: {fileID: 21300000, guid: 92fd0c8d9e089bd40bd6c08ed3bee623, type: 3}
   prefab: {fileID: 7470165039710195780, guid: 7178bf20d75a45842b4c372e9d840339, type: 3}
   requiredBuildings: []

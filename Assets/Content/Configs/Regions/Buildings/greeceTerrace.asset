@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: greece-terrace
   displayName: Terrace
-  icon: {fileID: 21300000, guid: fb34e80088f14ce4d957fc0915a0852a, type: 3}
+  icon: {fileID: 21300000, guid: 3fc1dec2c67bb4e4f84cb991ca3e06c8, type: 3}
   prefab: {fileID: 9070022975583013952, guid: 8992d40c2ece89c4080172d105be6269, type: 3}
   requiredBuildings: []

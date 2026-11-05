@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: mexico-stelae
   displayName: Stelae
-  icon: {fileID: 21300000, guid: 323d14fbd7f810349aea8d4c42761990, type: 3}
+  icon: {fileID: 21300000, guid: 52b8080df48e56540af5931a436857a8, type: 3}
   prefab: {fileID: 7470165039710195780, guid: 7178bf20d75a45842b4c372e9d840339, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: c6492f6aa0e128648b388e6e917f92a5, type: 2}

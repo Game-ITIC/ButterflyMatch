@@ -24,27 +24,24 @@ namespace JuiceFresh.Board
         /// <summary>Sprite of a special type the piece is about to become (<see cref="Item.nextType"/>).</summary>
         public void ApplyPendingTypeSprite()
         {
+            // Striped pieces keep the butterfly of their colour: the stripe effect shows the type. The old
+            // striped sprites are empty in the prefab, and an empty sprite also lost the colour (GenColor).
             ItemsTypes next = _item.nextType;
-            int color = _item.color;
-            if (next == ItemsTypes.HORIZONTAL_STRIPPED)
-                Renderer.sprite = _item.stripedItems[color].horizontal;
-            else if (next == ItemsTypes.VERTICAL_STRIPPED)
-                Renderer.sprite = _item.stripedItems[color].vertical;
-            else if (next == ItemsTypes.PACKAGE)
-                Renderer.sprite = _item.packageItems[color];
+            if (next == ItemsTypes.PACKAGE)
+                SetSpriteIfAvailable(_item.packageItems, _item.color);
             else if (next == ItemsTypes.CHOCOBOMB)
-                Renderer.sprite = _item.ChocoBombItems[0];
+                SetSpriteIfAvailable(_item.ChocoBombItems, 0);
         }
 
         /// <summary>Sprite set when a type change completes; striped pieces keep the stripe effect instead.</summary>
         public void ApplyChangedTypeSprite(ItemsTypes type)
         {
             if (type == ItemsTypes.PACKAGE)
-                Renderer.sprite = _item.packageItems[_item.color];
+                SetSpriteIfAvailable(_item.packageItems, _item.color);
             else if (type == ItemsTypes.CHOCOBOMB)
-                Renderer.sprite = _item.ChocoBombItems[0];
+                SetSpriteIfAvailable(_item.ChocoBombItems, 0);
             else if (type == ItemsTypes.BOMB)
-                Renderer.sprite = _item.bombItems[_item.color];
+                SetSpriteIfAvailable(_item.bombItems, _item.color);
         }
 
         public void SetIngredientSprite(int ingredientIndex)
@@ -95,7 +92,8 @@ namespace JuiceFresh.Board
             if (Renderer == null || sprites == null || spriteIndex < 0 || spriteIndex >= sprites.Length)
                 return;
 
-            Renderer.sprite = sprites[spriteIndex];
+            if (sprites[spriteIndex] != null)
+                Renderer.sprite = sprites[spriteIndex];
         }
     }
 }

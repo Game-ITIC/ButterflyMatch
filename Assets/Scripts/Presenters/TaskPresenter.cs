@@ -101,6 +101,7 @@ namespace Presenters
 
             _taskPanel.SetEmptyStateVisible(!hasAvailableTasks);
             if (_taskButton) UIFeel.SetBreathing(_taskButton, hasClaimableTasks, 0.05f, 1.1f);
+            NotificationBadge.Set(_taskButton, hasClaimableTasks);
             if (!hasAvailableTasks || !_taskPanel.TaskViewPrefab)
             {
                 return;

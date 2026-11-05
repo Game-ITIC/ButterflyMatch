@@ -396,6 +396,11 @@ public class MenuPager : MonoBehaviour
             _strip.anchoredPosition = new Vector2(-(position - (int)Page.Main) * Width, _strip.anchoredPosition.y);
         }
 
+        if (_navPanel != null)
+        {
+            _navPanel.SetSelectionPosition(position);
+        }
+
         // Pages fully off screen stop rendering.
         for (var i = 0; i < _pageCanvases.Length; i++)
         {

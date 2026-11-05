@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace JuiceFresh.Board
 {
@@ -8,8 +9,15 @@ namespace JuiceFresh.Board
     /// </summary>
     public class ItemBomb
     {
+        private const int UrgentMoves = 3;
+        private static readonly Color CalmBadge = new Color(0.17f, 0.13f, 0.3f);
+        private static readonly Color UrgentBadge = new Color(0.85f, 0.12f, 0.15f);
+
         private readonly Item _item;
+        private GameObject _timerRoot;
         private TMP_Text _timerText;
+        private Image _timerBadge;
+        private int _shownTimer = int.MinValue;
         private GameObject _light;
 
         public ItemBomb(Item item)
@@ -23,23 +31,30 @@ namespace JuiceFresh.Board
 
             GameObject t = Object.Instantiate(_item.timerTextPrefab);
             t.transform.SetParent(_item.transform);
-            t.transform.localPosition = new Vector3(1.5f, -0.8f, 0);
+            t.transform.localPosition = new Vector3(0.52f, -0.52f, 0);
             t.transform.localScale = Vector3.one;
-            _timerText = t.transform.GetChild(0).GetComponent<TMP_Text>();
+            _timerRoot = t;
+            _timerText = t.GetComponentInChildren<TMP_Text>();
+            _timerBadge = t.GetComponentInChildren<Image>();
 
             if (_item.bombTimer <= 0)
                 _item.bombTimer = LevelManager.Instance.bombTimer;
 
             GameObject wickBurning = Object.Instantiate(_item.wickBurningPrefab);
             wickBurning.transform.SetParent(_item.transform);
-            wickBurning.transform.localPosition = new Vector3(0.69f, 0.85f, 0);
+            wickBurning.transform.localPosition = new Vector3(0.29f, 0.74f, 0);
             wickBurning.transform.localScale = Vector3.one * 0.2f;
         }
 
         public void RefreshTimerText()
         {
-            if (_item.currentType == ItemsTypes.BOMB && _timerText != null)
-                _timerText.text = "" + _item.bombTimer;
+            if (_item.currentType != ItemsTypes.BOMB || _timerText == null || _shownTimer == _item.bombTimer)
+                return;
+
+            _shownTimer = _item.bombTimer;
+            _timerText.text = _shownTimer.ToString();
+            if (_timerBadge != null)
+                _timerBadge.color = _shownTimer <= UrgentMoves ? UrgentBadge : CalmBadge;
         }
 
         public void Tick()
@@ -59,8 +74,8 @@ namespace JuiceFresh.Board
             LevelManager.Instance.gameStatus = GameState.PreFailedBomb;
             _item.AwakeItem();
             _item.sprRenderer.sortingOrder = 4;
-            if (_timerText != null)
-                _timerText.enabled = false;
+            if (_timerRoot != null)
+                _timerRoot.SetActive(false);
             _item.square = null;
             AnimatorHelper.Instance.BombFailed(_item.gameObject, _item.transform.position, Vector3.zero, 20, _item.BombFailedAnimCallBack);
         }

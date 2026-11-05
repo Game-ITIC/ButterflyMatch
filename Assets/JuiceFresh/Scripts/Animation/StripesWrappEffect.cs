@@ -7,7 +7,8 @@ public class StripesWrappEffect : MonoBehaviour
     public GameObject bottomArrow;
     public GameObject bombSelection1;
     public SpriteRenderer itemSprite;
-    float offset = 0.2f;
+    // The arrows breathe inside the cell.
+    float offset = 0.06f;
     // Use this for initialization
     void Start()
     {
@@ -17,9 +18,10 @@ public class StripesWrappEffect : MonoBehaviour
         light.transform.SetParent(transform);
         light.name = "BombSelection";
         light.transform.localPosition = Vector3.zero;
-        light.transform.localScale = Vector3.one * 2f;
-        topArrow.GetComponent<SpriteRenderer>().sortingOrder = itemSprite.sortingOrder - 1;
-        bottomArrow.GetComponent<SpriteRenderer>().sortingOrder = itemSprite.sortingOrder - 1;
+        light.transform.localScale = Vector3.one * 1.7f;
+        // Above the piece: under it the wings hide them.
+        topArrow.GetComponent<SpriteRenderer>().sortingOrder = itemSprite.sortingOrder + 1;
+        bottomArrow.GetComponent<SpriteRenderer>().sortingOrder = itemSprite.sortingOrder + 1;
     }
 
     // Update is called once per frame

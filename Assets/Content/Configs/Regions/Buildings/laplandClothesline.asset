@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
   buildingId: lapland-clothesline
   displayName: Clothesline
-  icon: {fileID: 21300000, guid: a2296a6b9492bf747a5e05a7aed46166, type: 3}
+  icon: {fileID: 21300000, guid: 7ecf74b2a46b01341808e568f4c46034, type: 3}
   prefab: {fileID: 3116972218856453386, guid: c09f1c94cffb100409e784d6de25364a, type: 3}
   requiredBuildings:
   - {fileID: 11400000, guid: 9b16dab197d422b42a272a6078f68e68, type: 2}
