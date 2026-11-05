@@ -896,6 +896,250 @@ MonoBehaviour:
     m_Localized: Gemmes et packs
     m_Metadata:
       m_Items: []
+  - m_Id: 841779082321920
+    m_Localized: Afrique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876352
+    m_Localized: "Am\xE9rique latine"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876353
+    m_Localized: "\xC9gypte"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876354
+    m_Localized: Maroc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876355
+    m_Localized: Afrique du Sud
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876356
+    m_Localized: Mexique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876357
+    m_Localized: "P\xE9rou"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876358
+    m_Localized: "Br\xE9sil"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876359
+    m_Localized: Chemin de pierre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876360
+    m_Localized: Base de la pyramide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876361
+    m_Localized: Sommet de la pyramide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876362
+    m_Localized: Porte du temple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876363
+    m_Localized: Corps du sphinx
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876364
+    m_Localized: "T\xEAte du sphinx"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876365
+    m_Localized: "Ob\xE9lisques"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876366
+    m_Localized: Oasis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876367
+    m_Localized: Palmiers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876368
+    m_Localized: "Tente du march\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876369
+    m_Localized: Cour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876370
+    m_Localized: "Remparts de la m\xE9dina"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876371
+    m_Localized: "Porte de la m\xE9dina"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876372
+    m_Localized: Minaret
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876373
+    m_Localized: Sommet du minaret
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070656
+    m_Localized: Fontaine en zellige
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070657
+    m_Localized: Riad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070658
+    m_Localized: "\xC9tals du march\xE9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070659
+    m_Localized: Pots de fleurs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070660
+    m_Localized: "Jet\xE9e du port"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070661
+    m_Localized: Montagne de la Table
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070662
+    m_Localized: "T\xEAte de Lion"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070663
+    m_Localized: Maison du Cap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070664
+    m_Localized: Toit de chaume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070665
+    m_Localized: Phare
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070666
+    m_Localized: Voilier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070667
+    m_Localized: Arbres parasols
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070668
+    m_Localized: "Jardin de prot\xE9as"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070669
+    m_Localized: Lampadaires du port
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070670
+    m_Localized: Grand escalier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070671
+    m_Localized: Temple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070672
+    m_Localized: "St\xE8les"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070673
+    m_Localized: "C\xE9note"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070674
+    m_Localized: Jardin d'agaves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070675
+    m_Localized: Arbres de la jungle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070676
+    m_Localized: Buissons fleuris
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070677
+    m_Localized: "Terrasses inf\xE9rieures"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070678
+    m_Localized: "Terrasses sup\xE9rieures"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070679
+    m_Localized: Huayna Picchu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070680
+    m_Localized: Maisons de pierre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070681
+    m_Localized: Toits de chaume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070682
+    m_Localized: Temple du Soleil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070683
+    m_Localized: Escalier de pierre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070684
+    m_Localized: Canal d'eau
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070685
+    m_Localized: "\xC9tal de tissus"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070686
+    m_Localized: Lamas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070687
+    m_Localized: Plage
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070688
+    m_Localized: Colline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070689
+    m_Localized: "Pi\xE9destal de la statue"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070690
+    m_Localized: "Christ R\xE9dempteur"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070691
+    m_Localized: Pain de Sucre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070692
+    m_Localized: "T\xE9l\xE9ph\xE9rique"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070693
+    m_Localized: "Maisons color\xE9es"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

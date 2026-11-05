@@ -895,6 +895,250 @@ MonoBehaviour:
     m_Localized: Gems & Bundles
     m_Metadata:
       m_Items: []
+  - m_Id: 841779082321920
+    m_Localized: Africa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876352
+    m_Localized: Latin America
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876353
+    m_Localized: Egypt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876354
+    m_Localized: Morocco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876355
+    m_Localized: South Africa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876356
+    m_Localized: Mexico
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876357
+    m_Localized: Peru
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876358
+    m_Localized: Brazil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876359
+    m_Localized: Stone Path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876360
+    m_Localized: Pyramid Base
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876361
+    m_Localized: Pyramid Top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876362
+    m_Localized: Temple Gate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876363
+    m_Localized: Sphinx Body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876364
+    m_Localized: Sphinx Head
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876365
+    m_Localized: Obelisks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876366
+    m_Localized: Oasis Pool
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876367
+    m_Localized: Palm Trees
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876368
+    m_Localized: Market Tent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876369
+    m_Localized: Courtyard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876370
+    m_Localized: Medina Walls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876371
+    m_Localized: Medina Gate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876372
+    m_Localized: Minaret
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876373
+    m_Localized: Minaret Top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070656
+    m_Localized: Tiled Fountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070657
+    m_Localized: Riad House
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070658
+    m_Localized: Market Stalls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070659
+    m_Localized: Flower Pots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070660
+    m_Localized: Harbor Pier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070661
+    m_Localized: Table Mountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070662
+    m_Localized: Lion's Head
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070663
+    m_Localized: Cape Dutch House
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070664
+    m_Localized: Thatched Roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070665
+    m_Localized: Lighthouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070666
+    m_Localized: Sailboat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070667
+    m_Localized: Umbrella Trees
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070668
+    m_Localized: Protea Garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070669
+    m_Localized: Harbor Lamps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070670
+    m_Localized: Grand Stairway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070671
+    m_Localized: Temple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070672
+    m_Localized: Stelae
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070673
+    m_Localized: Cenote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070674
+    m_Localized: Agave Garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070675
+    m_Localized: Jungle Trees
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070676
+    m_Localized: Flower Bushes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070677
+    m_Localized: Lower Terraces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070678
+    m_Localized: Upper Terraces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070679
+    m_Localized: Huayna Picchu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070680
+    m_Localized: Stone Houses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070681
+    m_Localized: Thatched Roofs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070682
+    m_Localized: Sun Temple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070683
+    m_Localized: Stone Stairs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070684
+    m_Localized: Water Channel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070685
+    m_Localized: Textile Stall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070686
+    m_Localized: Llamas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070687
+    m_Localized: Beach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070688
+    m_Localized: Hillside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070689
+    m_Localized: Statue Pedestal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070690
+    m_Localized: Redeemer Statue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070691
+    m_Localized: Sugarloaf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070692
+    m_Localized: Cable Car
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070693
+    m_Localized: Colorful Houses
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

@@ -895,6 +895,250 @@ MonoBehaviour:
     m_Localized: Gemas y packs
     m_Metadata:
       m_Items: []
+  - m_Id: 841779082321920
+    m_Localized: "\xC1frica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876352
+    m_Localized: "Latinoam\xE9rica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876353
+    m_Localized: Egipto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876354
+    m_Localized: Marruecos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876355
+    m_Localized: "Sud\xE1frica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876356
+    m_Localized: "M\xE9xico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876357
+    m_Localized: "Per\xFA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876358
+    m_Localized: Brasil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876359
+    m_Localized: Camino de piedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876360
+    m_Localized: "Base de la pir\xE1mide"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876361
+    m_Localized: "Cima de la pir\xE1mide"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876362
+    m_Localized: Puerta del templo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876363
+    m_Localized: Cuerpo de la esfinge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876364
+    m_Localized: Cabeza de la esfinge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876365
+    m_Localized: Obeliscos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876366
+    m_Localized: Oasis
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876367
+    m_Localized: Palmeras
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876368
+    m_Localized: Carpa del mercado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876369
+    m_Localized: Patio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876370
+    m_Localized: Murallas de la medina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876371
+    m_Localized: Puerta de la medina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876372
+    m_Localized: Minarete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876373
+    m_Localized: Cima del minarete
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070656
+    m_Localized: Fuente de azulejos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070657
+    m_Localized: Riad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070658
+    m_Localized: Puestos del mercado
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070659
+    m_Localized: Macetas de flores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070660
+    m_Localized: Muelle del puerto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070661
+    m_Localized: "Monta\xF1a de la Mesa"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070662
+    m_Localized: "Cabeza de Le\xF3n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070663
+    m_Localized: Casa colonial holandesa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070664
+    m_Localized: Techo de paja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070665
+    m_Localized: Faro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070666
+    m_Localized: Velero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070667
+    m_Localized: "\xC1rboles paraguas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070668
+    m_Localized: "Jard\xEDn de proteas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070669
+    m_Localized: Farolas del puerto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070670
+    m_Localized: Gran escalinata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070671
+    m_Localized: Templo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070672
+    m_Localized: Estelas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070673
+    m_Localized: Cenote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070674
+    m_Localized: "Jard\xEDn de agaves"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070675
+    m_Localized: "\xC1rboles de la selva"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070676
+    m_Localized: Arbustos de flores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070677
+    m_Localized: Terrazas inferiores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070678
+    m_Localized: Terrazas superiores
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070679
+    m_Localized: Huayna Picchu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070680
+    m_Localized: Casas de piedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070681
+    m_Localized: Techos de paja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070682
+    m_Localized: Templo del Sol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070683
+    m_Localized: Escaleras de piedra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070684
+    m_Localized: Canal de agua
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070685
+    m_Localized: Puesto de tejidos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070686
+    m_Localized: Llamas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070687
+    m_Localized: Playa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070688
+    m_Localized: Ladera
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070689
+    m_Localized: Pedestal de la estatua
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070690
+    m_Localized: Cristo Redentor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070691
+    m_Localized: "Pan de Az\xFAcar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070692
+    m_Localized: "Telef\xE9rico"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070693
+    m_Localized: Casas de colores
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

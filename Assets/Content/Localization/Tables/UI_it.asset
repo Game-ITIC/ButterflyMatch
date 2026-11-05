@@ -895,6 +895,250 @@ MonoBehaviour:
     m_Localized: Gemme e pacchetti
     m_Metadata:
       m_Items: []
+  - m_Id: 841779082321920
+    m_Localized: Africa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876352
+    m_Localized: America Latina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876353
+    m_Localized: Egitto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876354
+    m_Localized: Marocco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876355
+    m_Localized: Sudafrica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876356
+    m_Localized: Messico
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876357
+    m_Localized: "Per\xF9"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876358
+    m_Localized: Brasile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876359
+    m_Localized: Sentiero di pietra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876360
+    m_Localized: Base della piramide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876361
+    m_Localized: Cima della piramide
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876362
+    m_Localized: Porta del tempio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876363
+    m_Localized: Corpo della sfinge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876364
+    m_Localized: Testa della sfinge
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876365
+    m_Localized: Obelischi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876366
+    m_Localized: Oasi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876367
+    m_Localized: Palme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876368
+    m_Localized: Tenda del mercato
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876369
+    m_Localized: Cortile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876370
+    m_Localized: Mura della medina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876371
+    m_Localized: Porta della medina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876372
+    m_Localized: Minareto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876373
+    m_Localized: Cima del minareto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070656
+    m_Localized: Fontana di maioliche
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070657
+    m_Localized: Riad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070658
+    m_Localized: Bancarelle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070659
+    m_Localized: Vasi di fiori
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070660
+    m_Localized: Molo del porto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070661
+    m_Localized: Table Mountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070662
+    m_Localized: Testa di Leone
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070663
+    m_Localized: Casa olandese del Capo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070664
+    m_Localized: Tetto di paglia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070665
+    m_Localized: Faro
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070666
+    m_Localized: Barca a vela
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070667
+    m_Localized: Alberi a ombrello
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070668
+    m_Localized: Giardino di protee
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070669
+    m_Localized: Lampioni del porto
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070670
+    m_Localized: Grande scalinata
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070671
+    m_Localized: Tempio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070672
+    m_Localized: Stele
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070673
+    m_Localized: Cenote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070674
+    m_Localized: Giardino di agavi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070675
+    m_Localized: Alberi della giungla
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070676
+    m_Localized: Cespugli fioriti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070677
+    m_Localized: Terrazze inferiori
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070678
+    m_Localized: Terrazze superiori
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070679
+    m_Localized: Huayna Picchu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070680
+    m_Localized: Case di pietra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070681
+    m_Localized: Tetti di paglia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070682
+    m_Localized: Tempio del Sole
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070683
+    m_Localized: Scale di pietra
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070684
+    m_Localized: Canale d'acqua
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070685
+    m_Localized: Bancarella di tessuti
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070686
+    m_Localized: Lama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070687
+    m_Localized: Spiaggia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070688
+    m_Localized: Collina
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070689
+    m_Localized: Piedistallo della statua
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070690
+    m_Localized: Cristo Redentore
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070691
+    m_Localized: Pan di Zucchero
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070692
+    m_Localized: Funivia
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070693
+    m_Localized: Case colorate
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

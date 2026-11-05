@@ -168,6 +168,14 @@ region_europe|Europe|Европа|Europa|Europa|Europa|Europe|Europa|Avrupa|Erop
 island_france|France|Франция|Francia|França|Frankreich|France|Francia|Fransa|Prancis|フランス|프랑스|法国
 island_greece|Greece|Греция|Grecia|Grécia|Griechenland|Grèce|Grecia|Yunanistan|Yunani|ギリシャ|그리스|希腊
 island_italy|Italy|Италия|Italia|Itália|Italien|Italie|Italia|İtalya|Italia|イタリア|이탈리아|意大利
+region_africa|Africa|Африка|África|África|Afrika|Afrique|Africa|Afrika|Afrika|アフリカ|아프리카|非洲
+region_latin_america|Latin America|Латинская Америка|Latinoamérica|América Latina|Lateinamerika|Amérique latine|America Latina|Latin Amerika|Amerika Latin|ラテンアメリカ|라틴 아메리카|拉丁美洲
+island_egypt|Egypt|Египет|Egipto|Egito|Ägypten|Égypte|Egitto|Mısır|Mesir|エジプト|이집트|埃及
+island_morocco|Morocco|Марокко|Marruecos|Marrocos|Marokko|Maroc|Marocco|Fas|Maroko|モロッコ|모로코|摩洛哥
+island_southafrica|South Africa|Южная Африка|Sudáfrica|África do Sul|Südafrika|Afrique du Sud|Sudafrica|Güney Afrika|Afrika Selatan|南アフリカ|남아프리카 공화국|南非
+island_mexico|Mexico|Мексика|México|México|Mexiko|Mexique|Messico|Meksika|Meksiko|メキシコ|멕시코|墨西哥
+island_peru|Peru|Перу|Perú|Peru|Peru|Pérou|Perù|Peru|Peru|ペルー|페루|秘鲁
+island_brazil|Brazil|Бразилия|Brasil|Brasil|Brasilien|Brésil|Brasile|Brezilya|Brasil|ブラジル|브라질|巴西
 bld_paths|Paths|Дорожки|Senderos|Caminhos|Wege|Allées|Sentieri|Patikalar|Jalan setapak|小道|오솔길|小路
 bld_cafe|Cafe|Кафе|Café|Café|Café|Café|Caffè|Kafe|Kafe|カフェ|카페|咖啡馆
 bld_upper_floors|Upper Floors|Верхние этажи|Pisos superiores|Andares superiores|Obergeschosse|Étages|Piani superiori|Üst katlar|Lantai atas|上の階|위층|楼上
@@ -195,6 +203,59 @@ bld_string_lights|String Lights|Гирлянда|Guirnalda de luces|Varal de luz
 bld_scooter|Scooter|Мопед|Motoneta|Lambreta|Motorroller|Scooter|Scooter|Skuter|Skuter|スクーター|스쿠터|小摩托
 bld_cypress|Cypress|Кипарис|Ciprés|Cipreste|Zypresse|Cyprès|Cipresso|Selvi|Pohon sipres|糸杉|사이프러스|柏树
 bld_planters|Planters|Кашпо|Macetas|Floreiras|Pflanzkübel|Jardinières|Fioriere|Saksılar|Pot tanaman|プランター|화분|花盆
+bld_stone_path|Stone Path|Каменная тропа|Camino de piedra|Caminho de pedra|Steinweg|Chemin de pierre|Sentiero di pietra|Taş yol|Jalan batu|石の小道|돌길|石板路
+bld_pyramid_base|Pyramid Base|Основание пирамиды|Base de la pirámide|Base da pirâmide|Pyramidensockel|Base de la pyramide|Base della piramide|Piramit tabanı|Dasar piramida|ピラミッドの土台|피라미드 기단|金字塔底座
+bld_pyramid_top|Pyramid Top|Вершина пирамиды|Cima de la pirámide|Topo da pirâmide|Pyramidenspitze|Sommet de la pyramide|Cima della piramide|Piramit tepesi|Puncak piramida|ピラミッドの頂上|피라미드 꼭대기|金字塔顶部
+bld_temple_gate|Temple Gate|Ворота храма|Puerta del templo|Portão do templo|Tempeltor|Porte du temple|Porta del tempio|Tapınak kapısı|Gerbang kuil|神殿の門|신전 문|神庙大门
+bld_sphinx_body|Sphinx Body|Тело сфинкса|Cuerpo de la esfinge|Corpo da esfinge|Sphinxkörper|Corps du sphinx|Corpo della sfinge|Sfenks gövdesi|Badan sphinx|スフィンクスの胴体|스핑크스 몸통|狮身人面像身体
+bld_sphinx_head|Sphinx Head|Голова сфинкса|Cabeza de la esfinge|Cabeça da esfinge|Sphinxkopf|Tête du sphinx|Testa della sfinge|Sfenks başı|Kepala sphinx|スフィンクスの頭|스핑크스 머리|狮身人面像头部
+bld_obelisks|Obelisks|Обелиски|Obeliscos|Obeliscos|Obelisken|Obélisques|Obelischi|Dikilitaşlar|Obelisk|オベリスク|오벨리스크|方尖碑
+bld_oasis_pool|Oasis Pool|Оазис|Oasis|Oásis|Oase|Oasis|Oasi|Vaha havuzu|Kolam oasis|オアシスの池|오아시스 연못|绿洲水池
+bld_palm_trees|Palm Trees|Пальмы|Palmeras|Palmeiras|Palmen|Palmiers|Palme|Palmiye ağaçları|Pohon palem|ヤシの木|야자수|棕榈树
+bld_market_tent|Market Tent|Рыночный шатёр|Carpa del mercado|Tenda do mercado|Marktzelt|Tente du marché|Tenda del mercato|Pazar çadırı|Tenda pasar|市場のテント|시장 천막|集市帐篷
+bld_courtyard|Courtyard|Внутренний двор|Patio|Pátio|Innenhof|Cour|Cortile|Avlu|Halaman|中庭|안뜰|庭院
+bld_medina_walls|Medina Walls|Стены медины|Murallas de la medina|Muralhas da medina|Medinamauern|Remparts de la médina|Mura della medina|Medine surları|Tembok medina|メディナの城壁|메디나 성벽|麦地那城墙
+bld_medina_gate|Medina Gate|Ворота медины|Puerta de la medina|Portão da medina|Medinator|Porte de la médina|Porta della medina|Medine kapısı|Gerbang medina|メディナの門|메디나 성문|麦地那城门
+bld_minaret|Minaret|Минарет|Minarete|Minarete|Minarett|Minaret|Minareto|Minare|Menara|ミナレット|미너렛|宣礼塔
+bld_minaret_top|Minaret Top|Верх минарета|Cima del minarete|Topo do minarete|Minarettspitze|Sommet du minaret|Cima del minareto|Minare külahı|Puncak menara|ミナレットの頂上|미너렛 꼭대기|宣礼塔顶
+bld_tiled_fountain|Tiled Fountain|Мозаичный фонтан|Fuente de azulejos|Fonte de azulejos|Kachelbrunnen|Fontaine en zellige|Fontana di maioliche|Çini çeşme|Air mancur ubin|タイルの噴水|타일 분수|瓷砖喷泉
+bld_riad_house|Riad House|Риад|Riad|Riad|Riad|Riad|Riad|Riad evi|Rumah riad|リヤド|리아드 하우스|庭院住宅
+bld_market_stalls|Market Stalls|Торговые лавки|Puestos del mercado|Barracas do mercado|Marktstände|Étals du marché|Bancarelle|Pazar tezgâhları|Kios pasar|市場の屋台|시장 노점|集市摊位
+bld_flower_pots|Flower Pots|Цветочные горшки|Macetas de flores|Vasos de flores|Blumentöpfe|Pots de fleurs|Vasi di fiori|Saksılar|Pot bunga|植木鉢|화분|花盆
+bld_harbor_pier|Harbor Pier|Причал|Muelle del puerto|Píer do porto|Hafenpier|Jetée du port|Molo del porto|Liman iskelesi|Dermaga pelabuhan|港の桟橋|항구 부두|港口码头
+bld_table_mountain|Table Mountain|Столовая гора|Montaña de la Mesa|Montanha da Mesa|Tafelberg|Montagne de la Table|Table Mountain|Masa Dağı|Gunung Meja|テーブルマウンテン|테이블 마운틴|桌山
+bld_lions_head|Lion's Head|Львиная Голова|Cabeza de León|Cabeça de Leão|Lion's Head|Tête de Lion|Testa di Leone|Aslan Başı|Kepala Singa|ライオンズヘッド|라이언스 헤드|狮子头山
+bld_cape_dutch_house|Cape Dutch House|Капско-голландский дом|Casa colonial holandesa|Casa holandesa do Cabo|Kapholländisches Haus|Maison du Cap|Casa olandese del Capo|Kap Hollanda evi|Rumah Belanda Kap|ケープダッチの家|케이프 더치 하우스|开普荷兰式房屋
+bld_thatched_roof|Thatched Roof|Соломенная крыша|Techo de paja|Telhado de palha|Reetdach|Toit de chaume|Tetto di paglia|Saz çatı|Atap jerami|茅葺き屋根|초가 지붕|茅草屋顶
+bld_lighthouse|Lighthouse|Маяк|Faro|Farol|Leuchtturm|Phare|Faro|Deniz feneri|Mercusuar|灯台|등대|灯塔
+bld_sailboat|Sailboat|Парусник|Velero|Veleiro|Segelboot|Voilier|Barca a vela|Yelkenli|Perahu layar|ヨット|돛단배|帆船
+bld_umbrella_trees|Umbrella Trees|Зонтичные деревья|Árboles paraguas|Árvores-guarda-chuva|Schirmbäume|Arbres parasols|Alberi a ombrello|Şemsiye ağaçları|Pohon payung|傘のような木|우산 나무|伞形树
+bld_protea_garden|Protea Garden|Сад протей|Jardín de proteas|Jardim de próteas|Proteengarten|Jardin de protéas|Giardino di protee|Protea bahçesi|Taman protea|プロテアの庭|프로테아 정원|帝王花园
+bld_harbor_lamps|Harbor Lamps|Портовые фонари|Farolas del puerto|Lampiões do porto|Hafenlaternen|Lampadaires du port|Lampioni del porto|Liman lambaları|Lampu pelabuhan|港の街灯|항구 가로등|港口路灯
+bld_grand_stairway|Grand Stairway|Парадная лестница|Gran escalinata|Grande escadaria|Große Treppe|Grand escalier|Grande scalinata|Büyük merdiven|Tangga megah|大階段|대계단|大阶梯
+bld_temple|Temple|Храм|Templo|Templo|Tempel|Temple|Tempio|Tapınak|Kuil|神殿|신전|神庙
+bld_stelae|Stelae|Стелы|Estelas|Estelas|Stelen|Stèles|Stele|Steller|Prasasti|石碑|석비|石碑
+bld_cenote|Cenote|Сенот|Cenote|Cenote|Cenote|Cénote|Cenote|Cenote|Cenote|セノーテ|세노테|天然井
+bld_agave_garden|Agave Garden|Сад агав|Jardín de agaves|Jardim de agaves|Agavengarten|Jardin d'agaves|Giardino di agavi|Agav bahçesi|Taman agave|アガベの庭|아가베 정원|龙舌兰园
+bld_jungle_trees|Jungle Trees|Тропические деревья|Árboles de la selva|Árvores da selva|Dschungelbäume|Arbres de la jungle|Alberi della giungla|Orman ağaçları|Pohon hutan|ジャングルの木|정글 나무|丛林树木
+bld_flower_bushes|Flower Bushes|Цветущие кусты|Arbustos de flores|Arbustos floridos|Blütensträucher|Buissons fleuris|Cespugli fioriti|Çiçekli çalılar|Semak bunga|花の茂み|꽃덤불|花丛
+bld_lower_terraces|Lower Terraces|Нижние террасы|Terrazas inferiores|Terraços inferiores|Untere Terrassen|Terrasses inférieures|Terrazze inferiori|Alt teraslar|Teras bawah|下段の段々畑|아래 계단식 밭|下层梯田
+bld_upper_terraces|Upper Terraces|Верхние террасы|Terrazas superiores|Terraços superiores|Obere Terrassen|Terrasses supérieures|Terrazze superiori|Üst teraslar|Teras atas|上段の段々畑|위 계단식 밭|上层梯田
+bld_huayna_picchu|Huayna Picchu|Уайна-Пикчу|Huayna Picchu|Huayna Picchu|Huayna Picchu|Huayna Picchu|Huayna Picchu|Huayna Picchu|Huayna Picchu|ワイナピチュ|와이나픽추|华纳比丘
+bld_stone_houses|Stone Houses|Каменные дома|Casas de piedra|Casas de pedra|Steinhäuser|Maisons de pierre|Case di pietra|Taş evler|Rumah batu|石の家|돌집|石屋
+bld_thatched_roofs|Thatched Roofs|Соломенные крыши|Techos de paja|Telhados de palha|Reetdächer|Toits de chaume|Tetti di paglia|Saz çatılar|Atap-atap jerami|茅葺きの屋根|초가 지붕들|茅草屋顶群
+bld_sun_temple|Sun Temple|Храм Солнца|Templo del Sol|Templo do Sol|Sonnentempel|Temple du Soleil|Tempio del Sole|Güneş Tapınağı|Kuil Matahari|太陽の神殿|태양의 신전|太阳神庙
+bld_stone_stairs|Stone Stairs|Каменная лестница|Escaleras de piedra|Escadas de pedra|Steintreppe|Escalier de pierre|Scale di pietra|Taş merdiven|Tangga batu|石段|돌계단|石阶
+bld_water_channel|Water Channel|Водный канал|Canal de agua|Canal de água|Wasserkanal|Canal d'eau|Canale d'acqua|Su kanalı|Saluran air|水路|수로|水渠
+bld_textile_stall|Textile Stall|Лавка тканей|Puesto de tejidos|Barraca de tecidos|Textilstand|Étal de tissus|Bancarella di tessuti|Kumaş tezgâhı|Kios tenun|織物の屋台|직물 노점|织物摊
+bld_llamas|Llamas|Ламы|Llamas|Lhamas|Lamas|Lamas|Lama|Lamalar|Llama|リャマ|라마|羊驼
+bld_beach|Beach|Пляж|Playa|Praia|Strand|Plage|Spiaggia|Plaj|Pantai|ビーチ|해변|海滩
+bld_hillside|Hillside|Склон холма|Ladera|Encosta|Hang|Colline|Collina|Yamaç|Lereng bukit|丘の斜面|언덕|山坡
+bld_statue_pedestal|Statue Pedestal|Постамент статуи|Pedestal de la estatua|Pedestal da estátua|Statuensockel|Piédestal de la statue|Piedistallo della statua|Heykel kaidesi|Alas patung|像の台座|동상 받침대|雕像基座
+bld_redeemer_statue|Redeemer Statue|Статуя Христа-Искупителя|Cristo Redentor|Cristo Redentor|Christusstatue|Christ Rédempteur|Cristo Redentore|Kurtarıcı İsa heykeli|Patung Kristus Penebus|コルコバードのキリスト像|구세주 그리스도상|救世基督像
+bld_sugarloaf|Sugarloaf|Сахарная Голова|Pan de Azúcar|Pão de Açúcar|Zuckerhut|Pain de Sucre|Pan di Zucchero|Şeker Somunu Dağı|Gunung Sugarloaf|ポン・ジ・アスーカル|슈가로프 산|面包山
+bld_cable_car|Cable Car|Канатная дорога|Teleférico|Bondinho|Seilbahn|Téléphérique|Funivia|Teleferik|Kereta gantung|ロープウェイ|케이블카|缆车
+bld_colorful_houses|Colorful Houses|Цветные домики|Casas de colores|Casas coloridas|Bunte Häuser|Maisons colorées|Case colorate|Renkli evler|Rumah warna-warni|カラフルな家|알록달록한 집|彩色房屋
 reward_gems_n|Gems: +{0}!|Кристаллы: +{0}!|¡Gemas: +{0}!|Gemas: +{0}!|Edelsteine: +{0}!|Gemmes : +{0} !|Gemme: +{0}!|Taşlar: +{0}!|Permata: +{0}!|ジェム +{0}！|보석 +{0}!|宝石 +{0}！
 daily_day|Day {0}|День {0}|Día {0}|Dia {0}|Tag {0}|Jour {0}|Giorno {0}|{0}. Gün|Hari {0}|{0}日目|{0}일차|第{0}天
 daily_today|Today|Сегодня|Hoy|Hoje|Heute|Aujourd'hui|Oggi|Bugün|Hari ini|今日|오늘|今天

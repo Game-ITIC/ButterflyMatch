@@ -895,6 +895,250 @@ MonoBehaviour:
     m_Localized: Edelsteine & Pakete
     m_Metadata:
       m_Items: []
+  - m_Id: 841779082321920
+    m_Localized: Afrika
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876352
+    m_Localized: Lateinamerika
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876353
+    m_Localized: "\xC4gypten"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876354
+    m_Localized: Marokko
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876355
+    m_Localized: "S\xFCdafrika"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876356
+    m_Localized: Mexiko
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876357
+    m_Localized: Peru
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876358
+    m_Localized: Brasilien
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876359
+    m_Localized: Steinweg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876360
+    m_Localized: Pyramidensockel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876361
+    m_Localized: Pyramidenspitze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876362
+    m_Localized: Tempeltor
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876363
+    m_Localized: "Sphinxk\xF6rper"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876364
+    m_Localized: Sphinxkopf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876365
+    m_Localized: Obelisken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876366
+    m_Localized: Oase
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876367
+    m_Localized: Palmen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876368
+    m_Localized: Marktzelt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876369
+    m_Localized: Innenhof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876370
+    m_Localized: Medinamauern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876371
+    m_Localized: Medinator
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876372
+    m_Localized: Minarett
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876373
+    m_Localized: Minarettspitze
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070656
+    m_Localized: Kachelbrunnen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070657
+    m_Localized: Riad
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070658
+    m_Localized: "Marktst\xE4nde"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070659
+    m_Localized: "Blument\xF6pfe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070660
+    m_Localized: Hafenpier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070661
+    m_Localized: Tafelberg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070662
+    m_Localized: Lion's Head
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070663
+    m_Localized: "Kapholl\xE4ndisches Haus"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070664
+    m_Localized: Reetdach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070665
+    m_Localized: Leuchtturm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070666
+    m_Localized: Segelboot
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070667
+    m_Localized: "Schirmb\xE4ume"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070668
+    m_Localized: Proteengarten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070669
+    m_Localized: Hafenlaternen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070670
+    m_Localized: "Gro\xDFe Treppe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070671
+    m_Localized: Tempel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070672
+    m_Localized: Stelen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070673
+    m_Localized: Cenote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070674
+    m_Localized: Agavengarten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070675
+    m_Localized: "Dschungelb\xE4ume"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070676
+    m_Localized: "Bl\xFCtenstr\xE4ucher"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070677
+    m_Localized: Untere Terrassen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070678
+    m_Localized: Obere Terrassen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070679
+    m_Localized: Huayna Picchu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070680
+    m_Localized: "Steinh\xE4user"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070681
+    m_Localized: "Reetd\xE4cher"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070682
+    m_Localized: Sonnentempel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070683
+    m_Localized: Steintreppe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070684
+    m_Localized: Wasserkanal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070685
+    m_Localized: Textilstand
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070686
+    m_Localized: Lamas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070687
+    m_Localized: Strand
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070688
+    m_Localized: Hang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070689
+    m_Localized: Statuensockel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070690
+    m_Localized: Christusstatue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070691
+    m_Localized: Zuckerhut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070692
+    m_Localized: Seilbahn
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070693
+    m_Localized: "Bunte H\xE4user"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

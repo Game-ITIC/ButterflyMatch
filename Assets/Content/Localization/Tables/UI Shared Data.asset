@@ -891,6 +891,250 @@ MonoBehaviour:
     m_Key: shop_section_store
     m_Metadata:
       m_Items: []
+  - m_Id: 841779082321920
+    m_Key: region_africa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876352
+    m_Key: region_latin_america
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876353
+    m_Key: island_egypt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876354
+    m_Key: island_morocco
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876355
+    m_Key: island_southafrica
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876356
+    m_Key: island_mexico
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876357
+    m_Key: island_peru
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876358
+    m_Key: island_brazil
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876359
+    m_Key: bld_stone_path
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876360
+    m_Key: bld_pyramid_base
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876361
+    m_Key: bld_pyramid_top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876362
+    m_Key: bld_temple_gate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876363
+    m_Key: bld_sphinx_body
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876364
+    m_Key: bld_sphinx_head
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876365
+    m_Key: bld_obelisks
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876366
+    m_Key: bld_oasis_pool
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876367
+    m_Key: bld_palm_trees
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876368
+    m_Key: bld_market_tent
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876369
+    m_Key: bld_courtyard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876370
+    m_Key: bld_medina_walls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876371
+    m_Key: bld_medina_gate
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876372
+    m_Key: bld_minaret
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779115876373
+    m_Key: bld_minaret_top
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070656
+    m_Key: bld_tiled_fountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070657
+    m_Key: bld_riad_house
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070658
+    m_Key: bld_market_stalls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070659
+    m_Key: bld_flower_pots
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070660
+    m_Key: bld_harbor_pier
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070661
+    m_Key: bld_table_mountain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070662
+    m_Key: bld_lions_head
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070663
+    m_Key: bld_cape_dutch_house
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070664
+    m_Key: bld_thatched_roof
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070665
+    m_Key: bld_lighthouse
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070666
+    m_Key: bld_sailboat
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070667
+    m_Key: bld_umbrella_trees
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070668
+    m_Key: bld_protea_garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070669
+    m_Key: bld_harbor_lamps
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070670
+    m_Key: bld_grand_stairway
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070671
+    m_Key: bld_temple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070672
+    m_Key: bld_stelae
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070673
+    m_Key: bld_cenote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070674
+    m_Key: bld_agave_garden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070675
+    m_Key: bld_jungle_trees
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070676
+    m_Key: bld_flower_bushes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070677
+    m_Key: bld_lower_terraces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070678
+    m_Key: bld_upper_terraces
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070679
+    m_Key: bld_huayna_picchu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070680
+    m_Key: bld_stone_houses
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070681
+    m_Key: bld_thatched_roofs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070682
+    m_Key: bld_sun_temple
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070683
+    m_Key: bld_stone_stairs
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070684
+    m_Key: bld_water_channel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070685
+    m_Key: bld_textile_stall
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070686
+    m_Key: bld_llamas
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070687
+    m_Key: bld_beach
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070688
+    m_Key: bld_hillside
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070689
+    m_Key: bld_statue_pedestal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070690
+    m_Key: bld_redeemer_statue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070691
+    m_Key: bld_sugarloaf
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070692
+    m_Key: bld_cable_car
+    m_Metadata:
+      m_Items: []
+  - m_Id: 841779120070693
+    m_Key: bld_colorful_houses
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
