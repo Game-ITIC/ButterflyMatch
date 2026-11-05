@@ -124,6 +124,98 @@ public static class RegionContentSetup
         AssetDatabase.SaveAssets();
     }
 
+    private const string AfricaModels = "Assets/Content/Models/Regions/Africa";
+    private const string LatinAmericaModels = "Assets/Content/Models/Regions/LatinAmerica";
+    private const string MenuBackgrounds = "Assets/Content/UI/Background";
+
+    // Africa islands come from AfricaRegionBuilder (Tools/Regions/Build Africa Region Islands), same ten-step layout as Europe.
+    [MenuItem("Tools/JigsawMatch2/Setup Africa Region Islands")]
+    public static void SetupAfrica()
+    {
+        EnsureFolders();
+
+        var egypt = BuiltIsland(AfricaModels, "EgyptIsland", "egypt", "Egypt", "GizaPyramids",
+            "Stone Path", "Pyramid Base", "Pyramid Top", "Temple Gate", "Sphinx Body",
+            "Sphinx Head", "Obelisks", "Oasis Pool", "Palm Trees", "Market Tent");
+        var morocco = BuiltIsland(AfricaModels, "MoroccoIsland", "morocco", "Morocco", "MarrakechMedina",
+            "Courtyard", "Medina Walls", "Medina Gate", "Minaret", "Minaret Top",
+            "Tiled Fountain", "Riad House", "Market Stalls", "Palm Trees", "Flower Pots");
+        var southAfrica = BuiltIsland(AfricaModels, "SouthAfricaIsland", "southafrica", "South Africa", "CapeTownHarbor",
+            "Harbor Pier", "Table Mountain", "Lion's Head", "Cape Dutch House", "Thatched Roof",
+            "Lighthouse", "Sailboat", "Umbrella Trees", "Protea Garden", "Harbor Lamps");
+
+        SetupRegion("AfricaRegion", "africa", "Africa", $"{MenuBackgrounds}/AfricaMenuBackground.png", 3, egypt, morocco, southAfrica);
+    }
+
+    // Latin America islands come from LatinAmericaRegionBuilder (Tools/Regions/Build Latin America Region Islands).
+    [MenuItem("Tools/JigsawMatch2/Setup Latin America Region Islands")]
+    public static void SetupLatinAmerica()
+    {
+        EnsureFolders();
+
+        var mexico = BuiltIsland(LatinAmericaModels, "MexicoIsland", "mexico", "Mexico", "ChichenItza",
+            "Plaza", "Pyramid Base", "Pyramid Top", "Grand Stairway", "Temple",
+            "Stelae", "Cenote", "Agave Garden", "Jungle Trees", "Flower Bushes");
+        var peru = BuiltIsland(LatinAmericaModels, "PeruIsland", "peru", "Peru", "MachuPicchu",
+            "Lower Terraces", "Upper Terraces", "Huayna Picchu", "Stone Houses", "Thatched Roofs",
+            "Sun Temple", "Stone Stairs", "Water Channel", "Textile Stall", "Llamas");
+        var brazil = BuiltIsland(LatinAmericaModels, "BrazilIsland", "brazil", "Brazil", "RioDeJaneiro",
+            "Beach", "Hillside", "Statue Pedestal", "Redeemer Statue", "Sugarloaf",
+            "Cable Car", "Colorful Houses", "Boardwalk", "Palm Trees", "Jungle Trees");
+
+        SetupRegion("LatinAmericaRegion", "latin_america", "Latin America", $"{MenuBackgrounds}/LatinAmericaMenuBackground.png", 4, mexico, peru, brazil);
+    }
+
+    // Writes the region asset from the islands whose Blender prefab exists, prices them (GDD 5.2) and puts the region
+    // at its progression slot in the MainMenu scope.
+    private static void SetupRegion(string fileName, string id, string displayName, string backgroundPath, int order, params IslandSO[] islands)
+    {
+        var built = new List<IslandSO>();
+        foreach (var island in islands)
+        {
+            if (island != null) built.Add(island);
+        }
+
+        if (built.Count == 0)
+        {
+            Debug.LogWarning($"[RegionContentSetup] {displayName}: no island prefabs built yet, region not written.");
+            return;
+        }
+
+        var region = LoadOrCreate<RegionSO>($"{Root}/{fileName}.asset");
+        region.Configure(id, displayName, built[0].Icon, built.ToArray());
+        var background = AssetDatabase.LoadAssetAtPath<Sprite>(backgroundPath);
+        if (background != null)
+        {
+            var so = new SerializedObject(region);
+            so.FindProperty("menuBackground").objectReferenceValue = background;
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+        else
+        {
+            Debug.LogWarning($"[RegionContentSetup] {displayName}: menu background {backgroundPath} not found.");
+        }
+
+        EditorUtility.SetDirty(region);
+        foreach (var island in region.Islands) IslandPricing.Apply(island); // GDD 5.2 prices
+        AssignRegion(region, order);
+        AssetDatabase.SaveAssets();
+    }
+
+    // Like BlenderIsland, but returns null (and writes nothing) while the island prefab has not been built yet.
+    private static IslandSO BuiltIsland(string modelsRoot, string fileName, string id, string displayName, string modelId, params string[] stepNames)
+    {
+        var prefabPath = $"{modelsRoot}/{modelId}/{modelId}_Island_Pref.prefab";
+        if (AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath) == null)
+        {
+            Debug.LogWarning($"[RegionContentSetup] {displayName}: {prefabPath} not built yet, skipped.");
+            return null;
+        }
+
+        // Placeholder costs; IslandPricing writes the GDD prices afterwards.
+        return BlenderIsland(modelsRoot, fileName, id, displayName, modelId, 4, stepNames);
+    }
+
     private static IslandSO NorthIsland(string fileName, string id, string displayName, string modelId, int firstCost, params string[] stepNames)
     {
         return BlenderIsland(NorthModels, fileName, id, displayName, modelId, firstCost, stepNames);
@@ -187,7 +279,7 @@ public static class RegionContentSetup
         for (var i = 0; i < stages.Length; i++)
         {
             var stage = stages[i];
-            var key = stage.Name.Replace(" ", string.Empty);
+            var key = stage.Name.Replace(" ", string.Empty).Replace("'", string.Empty); // "Lion's Head" -> LionsHead
             var building = Building(
                 islandId + key,
                 islandId + "-" + key.ToLowerInvariant(),

@@ -24,6 +24,13 @@ public static class IslandPricing
         { "france", new[] { 3, 3, 4, 4, 4, 4, 5, 5, 5, 5 } },   // 42
         { "greece", new[] { 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 } },   // 44
         { "italy", new[] { 4, 4, 4, 4, 5, 5, 5, 5, 5, 5 } },    // 46
+        // Islands 10-15 (levels 156-300, ~24 levels each): 10 slots of 4-7 stars, sums 48..58.
+        { "egypt", new[] { 4, 4, 4, 5, 5, 5, 5, 5, 5, 6 } },        // 48
+        { "morocco", new[] { 4, 4, 5, 5, 5, 5, 5, 5, 6, 6 } },      // 50
+        { "southafrica", new[] { 4, 5, 5, 5, 5, 5, 5, 6, 6, 6 } },  // 52
+        { "mexico", new[] { 4, 5, 5, 5, 5, 6, 6, 6, 6, 6 } },       // 54
+        { "peru", new[] { 5, 5, 5, 5, 6, 6, 6, 6, 6, 6 } },         // 56
+        { "brazil", new[] { 5, 5, 5, 6, 6, 6, 6, 6, 6, 7 } },       // 58
     };
 
     [MenuItem("Tools/JigsawMatch2/Apply GDD Island Prices")]
