@@ -1,7 +1,7 @@
 # Main menu region backgrounds (North / Europe) for JigsawMatch2.
 # Flat "layered illustration" render: every shape is an emissive 2D silhouette at its own depth,
 # misted towards the sky colour, framed by an orthographic portrait camera (864x1872, like the Asia art).
-# Runs inside the live Blender over MCP: prepend a file that sets JOB = 'north' | 'europe'.
+# Runs inside the live Blender over MCP: prepend a file that sets JOB = 'north' | 'europe' | 'africa' | 'latam'.
 # Everything is built in a temporary scene that is removed afterwards, so the open file is left as it was.
 import bpy, bmesh, math, random, os
 
@@ -378,6 +378,192 @@ def build_europe():
     return sc
 
 
+# ---------------------------------------------------------------- shared warm-region shapes
+def palm2d(sc, name, x, z, h, lean, depth, c_trunk, c_leaf, s=1.0, seed=0):
+    """Palm silhouette: tapered curved trunk and drooping fronds."""
+    rr = random.Random(seed)
+    left, right = [], []
+    for i in range(13):
+        t = i / 12
+        cx, cz = x + lean * h * t * t, z + h * t
+        w = 0.055 * s * (1 - 0.45 * t)
+        left.append((cx - w, cz))
+        right.append((cx + w, cz))
+    poly(f"{name}_tr", left + right[::-1], depth, material(f"{name}_trm", c_trunk, mix(c_trunk, hexc('#ffffff'), 0.15), z, z + h), sc)
+    tx, tz = x + lean * h, z + h
+    lm = material(f"{name}_lf", c_leaf, mix(c_leaf, hexc('#ffffff'), 0.2), tz - 0.6 * s, tz + 0.4 * s)
+    for k, deg in enumerate((-25, 10, 45, 80, 115, 150, 185, 205)):
+        a = math.radians(deg + rr.uniform(-8, 8))
+        L = 0.78 * s * rr.uniform(0.85, 1.12)
+        droop = 0.55 * L
+        side_l, side_r = [], []
+        for i in range(11):
+            t = i / 10
+            px = tx + math.cos(a) * L * t
+            pz = tz + math.sin(a) * L * t - droop * t * t
+            dx, dz = math.cos(a), math.sin(a) - 2 * droop * t / L
+            nl = math.hypot(dx, dz)
+            nx, nz = -dz / nl, dx / nl
+            w = 0.1 * s * math.sin(math.pi * min(t * 1.05, 1.0)) ** 0.7
+            side_l.append((px + nx * w, pz + nz * w))
+            side_r.append((px - nx * w, pz - nz * w))
+        poly(f"{name}_f{k}", side_l + side_r[::-1], depth - 0.01 - k * 0.001, lm, sc)
+
+
+def birds(sc, name, spots, depth, col):
+    m = material(name, col, col, 0, 1, 0.85, 0.85)
+    for i, (x, z, s) in enumerate(spots):
+        for sgn in (-1, 1):
+            poly(f"{name}{i}_{sgn}", [(x, z), (x + sgn * 0.11 * s, z + 0.05 * s), (x + sgn * 0.13 * s, z + 0.035 * s), (x + sgn * 0.02 * s, z - 0.012 * s)],
+                 depth, m, sc)
+
+
+def sun_disc(sc, x, z, r, depth, col='#fff2d6', glow='#fff0d0'):
+    for g in range(16):
+        rg = r + g * 0.07
+        poly(f"sunglow{g}", circle_pts(x, z, rg, rg, 64), depth + 1 + g * 0.1,
+             material(f"sunglow{g}", hexc(glow), hexc(glow), 0, 1, 0.05, 0.05), sc)
+    poly("sun", circle_pts(x, z, r, r, 64), depth, material("sun", hexc(col), hexc('#fffaf0'), z - r, z + r), sc)
+
+
+def sparkles(sc, rnd, n, depth, z0=0.3, z1=H * 0.9):
+    sp = material("spark", hexc('#fff6ee'), hexc('#fff6ee'), 0, 1, 0.75, 0.75)
+    for i in range(n):
+        x, z = rnd.uniform(-W / 2, W / 2), rnd.uniform(z0, z1)
+        r = rnd.uniform(0.012, 0.028)
+        poly(f"spark{i}", circle_pts(x, z, r, r, 8), depth, sp, sc)
+
+
+def ridge_z(pts, x):
+    return min(pts[1:-1], key=lambda p: abs(p[0] - x))[1]
+
+
+# ---------------------------------------------------------------- Africa
+def build_africa():
+    sc = setup_scene("africa", hexc('#ffd3b4'), hexc('#f2b6cc'), hexc('#a99be8'))
+    rnd = random.Random(23)
+    fog = hexc('#fbe2e4')
+    glow = material("horizon", hexc('#ffd0ae'), hexc('#ffd0ae'), 4.6, 7.4, 0.95, 0.0)
+    poly("horizon", [(-W, 4.0), (W, 4.0), (W, 7.4), (-W, 7.4)], 260, glow, sc)
+    sun_disc(sc, 0.3, 5.35, 0.58, 249)
+    cloud(sc, "c1", -1.4, 8.3, 0.5, 230, hexc('#fff3f4'), 0.95, 1)
+    cloud(sc, "c2", 1.7, 7.4, 0.36, 229, hexc('#fff0ee'), 0.9, 2)
+    cloud(sc, "c3", 0.3, 9.25, 0.28, 228, hexc('#ffffff'), 0.85, 3)
+    birds(sc, "bird", [(-0.6, 6.9, 1.0), (-0.25, 7.15, 0.8), (-0.95, 7.2, 0.7), (1.6, 8.6, 0.6)], 225, hexc('#8a6fb8'))
+    # far: Table Mountain mesa on the right, low dunes across
+    mesa = [(1.1, 4.5), (1.35, 4.85), (1.6, 5.12), (2.55, 5.15), (2.75, 4.95), (W / 2 + 0.4, 4.75), (W / 2 + 0.4, 4.5)]
+    poly("mesa", mesa, 205, material("mesa", mix(hexc('#b393d2'), fog, 0.35), hexc('#bf9fd8'), 4.5, 5.2), sc)
+    poly("dune0", ridge(51, 4.55, [(-1.5, 0.25, 1.6), (0.4, 0.18, 1.3), (2.0, 0.2, 1.2)], 0.008),
+         200, material("dune0", mix(hexc('#e7b0c4'), fog, 0.4), hexc('#efbfc9'), 4.2, 4.95), sc)
+    # pyramids of Giza on the left: lit face and shade face
+    for i, (px, hw, ph) in enumerate(((-1.25, 0.78, 1.05), (-0.25, 0.52, 0.7), (-2.05, 0.36, 0.45))):
+        zb = 4.45
+        lit = material(f"pyr{i}", hexc('#eba98e'), hexc('#f7c7a0'), zb, zb + ph)
+        shd = material(f"pyrs{i}", hexc('#c486a6'), hexc('#d69bb0'), zb, zb + ph)
+        poly(f"pyr{i}", [(px - hw, zb), (px + hw * 0.15, zb), (px, zb + ph)], 190 - i, lit, sc)
+        poly(f"pyrs{i}", [(px + hw * 0.15, zb), (px + hw, zb), (px, zb + ph)], 190 - i - 0.001, shd, sc)
+    mist_band(sc, "farmist", 3.9, 4.75, 185, fog, 0.75, 0.0)
+    # mid dunes, near dunes with palms on the sides (centre stays clear for the island)
+    specs = [(52, 3.3, '#e4a08f', '#f5c3a7', 120, 0, 0.0), (53, 2.0, '#d68f93', '#eeb19f', 80, 2, 0.62), (54, 0.65, '#c47c93', '#e39e9c', 40, 2, 0.95)]
+    for i, (seed, base, c_low, c_top, depth, n_palms, ps) in enumerate(specs):
+        rr = random.Random(seed)
+        peaks = [(rr.choice([-1, 1]) * rr.uniform(0.9, 2.2), rr.uniform(0.3, 0.6), rr.uniform(1.0, 1.7)) for _ in range(2)]
+        pts = ridge(seed, base, peaks, 0.012)
+        poly(f"dune{i + 1}", pts, depth, material(f"dune{i + 1}", hexc(c_low), hexc(c_top), base - 0.8, base + 0.6), sc)
+        for t in range(n_palms):
+            side = -1 if t % 2 == 0 else 1
+            x = side * rr.uniform(1.25, W / 2 - 0.1)
+            dark = hexc(['#6d4f9a', '#5b4090', '#4a3182'][i])
+            palm2d(sc, f"palm{i}_{t}", x, ridge_z(pts, x) - 0.1, rr.uniform(1.3, 1.7) * ps, -side * 0.12, depth - 1 - t * 0.05,
+                   dark, mix(dark, hexc('#86c9a0'), 0.55), s=ps * 1.35, seed=seed + t)
+        if i == 0:   # an obelisk on the mid dune
+            x = 1.55
+            z = ridge_z(pts, x) - 0.03
+            poly("obelisk", [(x - 0.05, z), (x + 0.05, z), (x + 0.035, z + 0.55), (x, z + 0.62), (x - 0.035, z + 0.55)], depth - 1,
+                 material("obelisk", hexc('#c98d9a'), hexc('#efb8a6'), z, z + 0.6), sc)
+        mist_band(sc, f"dmist{i}", base - 0.7, base + 0.3, depth - 3, fog, 0.45, 0.0)
+    sparkles(sc, rnd, 36, 5)
+    return sc
+
+
+# ---------------------------------------------------------------- Latin America
+def build_latam():
+    sc = setup_scene("latam", hexc('#ffd7c8'), hexc('#efb4d6'), hexc('#9d8fe6'))
+    rnd = random.Random(29)
+    fog = hexc('#f4e2f2')
+    glow = material("horizon", hexc('#ffcfc0'), hexc('#ffcfc0'), 4.8, 7.6, 0.9, 0.0)
+    poly("horizon", [(-W, 4.0), (W, 4.0), (W, 7.6), (-W, 7.6)], 260, glow, sc)
+    sun_disc(sc, -0.85, 5.85, 0.48, 249)
+    cloud(sc, "c1", 1.4, 8.4, 0.5, 230, hexc('#fff4fb'), 0.95, 5)
+    cloud(sc, "c2", -1.6, 7.7, 0.38, 229, hexc('#fff0f8'), 0.9, 6)
+    cloud(sc, "c3", 0.1, 9.3, 0.26, 228, hexc('#ffffff'), 0.85, 7)
+    birds(sc, "bird", [(0.5, 7.0, 0.9), (0.85, 7.25, 0.75), (0.2, 7.3, 0.65)], 225, hexc('#7f68b4'))
+    # far Andes with a light pink snow line, and the Huayna Picchu spike on the left
+    peaks = [(-2.0, 1.0, 0.8), (-0.6, 1.3, 1.0), (0.7, 0.9, 0.7), (1.9, 1.2, 0.9)]
+    top_z = 4.85 + 1.3
+    m = snow_material("andes", mix(hexc('#a08ad6'), fog, 0.55), hexc('#b9a3e2'), hexc('#fbeaf6'), 4.4, 4.85 + 0.55 * 1.3, top_z)
+    poly("andes", ridge(61, 4.85, peaks, 0.07), 205, m, sc)
+    hp = []
+    for i in range(41):
+        t = i / 40
+        x = -2.0 + 1.3 * t
+        bell = math.sin(math.pi * t) ** 1.6
+        hp.append((x, 4.3 + 1.3 * bell + 0.04 * math.sin(t * 37)))
+    poly("huayna", [(-2.0, 4.0)] + hp + [(-0.7, 4.0)], 195, material("huayna", mix(hexc('#8a93cc'), fog, 0.4), hexc('#a2acd8'), 4.2, 5.6), sc)
+    mist_band(sc, "farmist", 4.0, 4.95, 190, fog, 0.8, 0.0)
+    # bay with Sugarloaf + Urca and a cable line on the right
+    sea = material("sea", hexc('#8c86d8'), hexc('#f2c4da'), 2.8, 4.45)
+    poly("sea", [(-W, -1), (W, -1), (W, 4.45), (-W, 4.45)], 150, sea, sc)
+    glint = material("glint", hexc('#fff6ea'), hexc('#fff6ea'), 0, 1, 0.7, 0.7)
+    for i in range(30):
+        z = rnd.uniform(3.3, 4.38)
+        x = rnd.uniform(-0.2, 2.2)
+        w = rnd.uniform(0.04, 0.14)
+        poly(f"glint{i}", [(x - w, z), (x + w, z), (x + w, z + 0.012), (x - w, z + 0.012)], 149, glint, sc)
+
+    def dome(cx, zb, rx, h, n=40):
+        return [(cx + rx * math.cos(math.pi * i / n) * (1.0 - 0.1 * math.sin(math.pi * i / n)),
+                 zb + h * math.sin(math.pi * i / n) ** 0.55) for i in range(n + 1)][::-1]
+    sl = dome(1.85, 4.1, 0.3, 0.95)
+    poly("sugarloaf", [(1.52, 3.95)] + sl + [(2.18, 3.95)], 140, material("sugar", hexc('#8a7cc8'), hexc('#a99ad8'), 4.0, 5.05), sc)
+    ur = dome(1.3, 4.1, 0.26, 0.42)
+    poly("urca", [(1.0, 3.95)] + ur + [(1.6, 3.95)], 139, material("urca", hexc('#7f86c6'), hexc('#9ba2d8'), 4.0, 4.55), sc)
+    cab = material("cable", hexc('#5f4f9a'), hexc('#5f4f9a'), 0, 1, 0.9, 0.9)
+    a0, a1 = (1.3, 4.52), (1.85, 5.05)
+    line = [(a0[0] + (a1[0] - a0[0]) * t, a0[1] + (a1[1] - a0[1]) * t - 0.06 * math.sin(math.pi * t)) for t in [k / 20 for k in range(21)]]
+    poly("cableline", line + [(x, z + 0.007) for (x, z) in line[::-1]], 138, cab, sc)
+    cxm, czm = line[9]
+    poly("cabin", [(cxm - 0.035, czm - 0.07), (cxm + 0.035, czm - 0.07), (cxm + 0.035, czm - 0.01), (cxm - 0.035, czm - 0.01)], 137.9,
+         material("cabin", hexc('#ffd77a'), hexc('#ffe7a8'), 0, 1), sc)
+    mist_band(sc, "seamist", 2.9, 3.95, 130, fog, 0.5, 0.0)
+    # jungle hills: a small stepped pyramid on the left, palms on the sides
+    specs = [(62, 3.0, '#7586c6', '#9cb7da', 100, 0, 0.0), (63, 1.75, '#6578bd', '#8eaed6', 70, 2, 0.6), (64, 0.55, '#5466b0', '#7d9fcf', 35, 2, 0.95)]
+    for i, (seed, base, c_low, c_top, depth, n_palms, ps) in enumerate(specs):
+        rr = random.Random(seed)
+        pk = [(rr.choice([-1, 1]) * rr.uniform(1.0, 2.2), rr.uniform(0.35, 0.7), rr.uniform(0.9, 1.5)) for _ in range(2)]
+        pts = ridge(seed, base, pk, 0.03)
+        poly(f"jhill{i}", pts, depth, material(f"jhill{i}", hexc(c_low), hexc(c_top), base - 0.8, base + 0.7), sc)
+        if i == 0:
+            x = -1.55
+            z = ridge_z(pts, x) - 0.05
+            pm = material("mpyr", hexc('#9c86c6'), hexc('#bfa8da'), z, z + 0.6)
+            for k in range(5):
+                w = 0.42 - k * 0.07
+                poly(f"mpyr{k}", [(x - w, z + k * 0.11), (x + w, z + k * 0.11), (x + w, z + (k + 1) * 0.11), (x - w, z + (k + 1) * 0.11)], depth - 4 - k * 0.001, pm, sc)
+            poly("mtemple", [(x - 0.1, z + 0.55), (x + 0.1, z + 0.55), (x + 0.1, z + 0.7), (x - 0.1, z + 0.7)], depth - 4.01, pm, sc)
+            poly("mbase", [(x - 0.5, z - 0.3), (x + 0.5, z - 0.3), (x + 0.45, z + 0.02), (x - 0.45, z + 0.02)], depth - 3.99,
+                 material("mbase", hexc(c_low), hexc(c_top), z - 0.3, z + 0.1), sc)
+        for t in range(n_palms):
+            side = -1 if t % 2 == 0 else 1
+            x = side * rr.uniform(1.2, W / 2 - 0.1)
+            dark = hexc(['#4f5ea6', '#435098', '#37428a'][i])
+            palm2d(sc, f"palm{i}_{t}", x, ridge_z(pts, x) - 0.1, rr.uniform(1.3, 1.7) * ps, -side * 0.12, depth - 1 - t * 0.05,
+                   dark, mix(dark, hexc('#7cc6a0'), 0.5), s=ps * 1.35, seed=seed + t)
+        mist_band(sc, f"jmist{i}", base - 0.7, base + 0.3, depth - 3, fog, 0.45, 0.0)
+    sparkles(sc, rnd, 36, 5)
+    return sc
+
+
 def render(sc, filename):
     os.makedirs(OUT_DIR, exist_ok=True)
     sc.render.filepath = os.path.join(OUT_DIR, filename)
@@ -416,7 +602,7 @@ def cleanup(sc):
 
 
 job = globals().get("JOB", "north")
-scene = build_north() if job == "north" else build_europe()
+scene = {"north": build_north, "europe": build_europe, "africa": build_africa, "latam": build_latam}[job]()
 try:
     path = render(scene, f"{job}_menu_bg.png")
     soften(path)
