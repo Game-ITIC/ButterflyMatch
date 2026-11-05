@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2bb52e15cfd73349af8ecad9cafb726, type: 3}
+  m_Name: egyptSphinxBody
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.BuildingSO
+  buildingId: egypt-sphinxbody
+  displayName: Sphinx Body
+  icon: {fileID: 21300000, guid: 1c3de8ba3f15d6c4686ae01f4b246912, type: 3}
+  prefab: {fileID: 2824797154095881235, guid: 3e26e83d540bdac4ba95dae5dfb6e7c0, type: 3}
+  requiredBuildings:
+  - {fileID: 11400000, guid: b6b067204cea4b64c817a99c371a9e41, type: 2}

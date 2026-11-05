@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: SouthAfricaIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: southafrica
+  displayName: South Africa
+  icon: {fileID: 21300000, guid: 9a55e54733774274da7a14c228b1fbb8, type: 3}
+  islandPrefab: {fileID: 9178380082373546643, guid: 123a3f2d6a2dc4543b8f9d62784e4246,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: southafrica-harborpier
+    building: {fileID: 11400000, guid: 88805d496bd1c5a4fb2a76c4c617a45a, type: 2}
+    starCost: 4
+    requiredBuildings: []
+    animationStep: 0
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-tablemountain
+    building: {fileID: 11400000, guid: cc5b8e6f2a8c4e242ba8da531ee25bf0, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 88805d496bd1c5a4fb2a76c4c617a45a, type: 2}
+    animationStep: 1
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-lionshead
+    building: {fileID: 11400000, guid: 6539e610261592145963145272cb777a, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: cc5b8e6f2a8c4e242ba8da531ee25bf0, type: 2}
+    animationStep: 2
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-capedutchhouse
+    building: {fileID: 11400000, guid: 185cc23b211ea1741ba0442a94604c54, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 6539e610261592145963145272cb777a, type: 2}
+    animationStep: 3
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-thatchedroof
+    building: {fileID: 11400000, guid: 8eabc9f9e74af47498cece76a70fc8c2, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 185cc23b211ea1741ba0442a94604c54, type: 2}
+    animationStep: 4
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-lighthouse
+    building: {fileID: 11400000, guid: c168d85a57943634391b6b0417a67861, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 8eabc9f9e74af47498cece76a70fc8c2, type: 2}
+    animationStep: 5
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-sailboat
+    building: {fileID: 11400000, guid: f61d0731d1fc8374a8d2be27c256232e, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: c168d85a57943634391b6b0417a67861, type: 2}
+    animationStep: 6
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-umbrellatrees
+    building: {fileID: 11400000, guid: d712828be246b1441b0a7c410024439a, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: f61d0731d1fc8374a8d2be27c256232e, type: 2}
+    animationStep: 7
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-proteagarden
+    building: {fileID: 11400000, guid: 73c46f03613442d489a6cb194ac9e676, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: d712828be246b1441b0a7c410024439a, type: 2}
+    animationStep: 8
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: southafrica-harborlamps
+    building: {fileID: 11400000, guid: 2219256a34b3d0e40ae4ffd8abc2c121, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: 73c46f03613442d489a6cb194ac9e676, type: 2}
+    animationStep: 9
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}

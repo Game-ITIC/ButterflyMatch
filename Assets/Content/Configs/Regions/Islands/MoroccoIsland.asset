@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4e1a9b2d8f4e6a9c0b1d2e3f4a5b6c, type: 3}
+  m_Name: MoroccoIsland
+  m_EditorClassIdentifier: Assembly-CSharp::Configs.IslandSO
+  islandId: morocco
+  displayName: Morocco
+  icon: {fileID: 21300000, guid: d47a718a73838524c827f137e3eb7439, type: 3}
+  islandPrefab: {fileID: 6187385037960465172, guid: 1b09780e6ec665b4787074eb3f3e1733,
+    type: 3}
+  isComingSoon: 0
+  slots:
+  - slotId: morocco-courtyard
+    building: {fileID: 11400000, guid: ba7a6477511d210419a472eb036c7759, type: 2}
+    starCost: 4
+    requiredBuildings: []
+    animationStep: 0
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-medinawalls
+    building: {fileID: 11400000, guid: 19d65c2e2d543aa40a1aa8e26ae29850, type: 2}
+    starCost: 4
+    requiredBuildings:
+    - {fileID: 11400000, guid: ba7a6477511d210419a472eb036c7759, type: 2}
+    animationStep: 1
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-medinagate
+    building: {fileID: 11400000, guid: 9687a68f93ad4504f9f77f6892663265, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 19d65c2e2d543aa40a1aa8e26ae29850, type: 2}
+    animationStep: 2
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-minaret
+    building: {fileID: 11400000, guid: 85378a19c4dcb0b478f03a033b93d973, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 9687a68f93ad4504f9f77f6892663265, type: 2}
+    animationStep: 3
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-minarettop
+    building: {fileID: 11400000, guid: 1b66493ea8c80664d94cc98e27ffe9f4, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 85378a19c4dcb0b478f03a033b93d973, type: 2}
+    animationStep: 4
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-tiledfountain
+    building: {fileID: 11400000, guid: 117e375fdc2da49428a74ca7043911f9, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 1b66493ea8c80664d94cc98e27ffe9f4, type: 2}
+    animationStep: 5
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-riadhouse
+    building: {fileID: 11400000, guid: a0301fecb88ec1f4481250bf96d4cfa6, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: 117e375fdc2da49428a74ca7043911f9, type: 2}
+    animationStep: 6
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-marketstalls
+    building: {fileID: 11400000, guid: bb5edbee334e887429a18e3e674ae822, type: 2}
+    starCost: 5
+    requiredBuildings:
+    - {fileID: 11400000, guid: a0301fecb88ec1f4481250bf96d4cfa6, type: 2}
+    animationStep: 7
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-palmtrees
+    building: {fileID: 11400000, guid: b5f2661b4416ea64396ddbafa1ea7a89, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: bb5edbee334e887429a18e3e674ae822, type: 2}
+    animationStep: 8
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
+  - slotId: morocco-flowerpots
+    building: {fileID: 11400000, guid: cdd573e2d1f5c4f4f9eb2c514b9fa508, type: 2}
+    starCost: 6
+    requiredBuildings:
+    - {fileID: 11400000, guid: b5f2661b4416ea64396ddbafa1ea7a89, type: 2}
+    animationStep: 9
+    objectName: 
+    objectNames: []
+    localPosition: {x: 0, y: 0, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+    localScale: {x: 1, y: 1, z: 1}
