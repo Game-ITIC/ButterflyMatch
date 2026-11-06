@@ -51,7 +51,8 @@ namespace Editor
                 scenes = GetEnabledScenes(),
                 locationPathName = outputPath,
                 target = BuildTarget.Android,
-                options = BuildOptions.None
+                // APK is the tester build: Development turns the cheat panel on. AAB stays a clean release build.
+                options = isApk ? BuildOptions.Development : BuildOptions.None
             };
 
             //UnityEditor.Android.UserBuildSettings.DebugSymbols.level = DebugSymbolLevel.None;
