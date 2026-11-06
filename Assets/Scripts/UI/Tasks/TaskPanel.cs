@@ -12,6 +12,7 @@ public class TaskPanel : MonoBehaviour
     [SerializeField] private Transform _taskViewParent;
     [SerializeField] private GameObject _animatedContent;
     [SerializeField] private GameObject _emptyStateRoot;
+    [SerializeField] private SettingsPanel _settingsPanel;
 
     [Header("Animation Settings")]
     [SerializeField] private bool animatePanelTransitions = true;
@@ -42,6 +43,7 @@ public class TaskPanel : MonoBehaviour
 
     public void Show()
     {
+        HideSettings();
         var dailyRewards = DailyRewards;
         if (dailyRewards != null)
             dailyRewards.gameObject.SetActive(false);
@@ -59,6 +61,7 @@ public class TaskPanel : MonoBehaviour
 
     public void ShowDailyRewards()
     {
+        HideSettings();
         if (_animatedContent != null)
             _animatedContent.SetActive(false);
 
@@ -105,6 +108,12 @@ public class TaskPanel : MonoBehaviour
     {
         if (_emptyStateRoot != null)
             _emptyStateRoot.SetActive(isVisible);
+    }
+
+    private void HideSettings()
+    {
+        if (_settingsPanel != null && _settingsPanel.gameObject.activeSelf)
+            _settingsPanel.HideImmediate();
     }
 
     private void DeactivateRoot()
