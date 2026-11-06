@@ -1,5 +1,5 @@
 def PROJECT_NAME = 'Butterfly_Match'
-def UNITY_VERSION = '6000.3.19f1'
+def UNITY_VERSION = '6000.3.18f1'
 def UNITY_INSTALLATION = "/var/lib/jenkins/Unity/Hub/Editor/${UNITY_VERSION}/Editor"
 
 pipeline {
