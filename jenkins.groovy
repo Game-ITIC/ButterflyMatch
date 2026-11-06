@@ -1,5 +1,5 @@
 def PROJECT_NAME = 'Butterfly_Match'
-def UNITY_VERSION = '6000.3.18f1'
+def UNITY_VERSION = '6000.3.19f1'
 def UNITY_INSTALLATION = "/var/lib/jenkins/Unity/Hub/Editor/${UNITY_VERSION}/Editor"
 
 pipeline {
@@ -88,6 +88,8 @@ pipeline {
                         # =========================================================================
 
                         TMP_BUILD_DIR="/tmp/butterfly_match_build_${BUILD_NUMBER}_APK"
+                        # Remove the sandbox on any exit, including a failed Unity build
+                        trap 'rm -rf "$TMP_BUILD_DIR"' EXIT
                         rm -rf "$TMP_BUILD_DIR"
                         mkdir -p "$TMP_BUILD_DIR"
 
@@ -142,9 +144,6 @@ pipeline {
                         echo "Retrieving APK..."
                         mkdir -p "$REPO_DIR/Builds/AndroidAPK"
                         cp -r "$TMP_BUILD_DIR/Builds/AndroidAPK/"* "$REPO_DIR/Builds/AndroidAPK/" || true
-
-                        # Clean up sandbox
-                        rm -rf "$TMP_BUILD_DIR"
                     '''
                 }
 
@@ -193,6 +192,8 @@ pipeline {
                         set -e
 
                         TMP_BUILD_DIR="/tmp/butterfly_match_build_${BUILD_NUMBER}_AAB"
+                        # Remove the sandbox on any exit, including a failed Unity build
+                        trap 'rm -rf "$TMP_BUILD_DIR"' EXIT
                         rm -rf "$TMP_BUILD_DIR"
                         mkdir -p "$TMP_BUILD_DIR"
 
@@ -247,9 +248,6 @@ pipeline {
                         echo "Retrieving AAB..."
                         mkdir -p "$REPO_DIR/Builds/AndroidAAB"
                         cp -r "$TMP_BUILD_DIR/Builds/AndroidAAB/"* "$REPO_DIR/Builds/AndroidAAB/" || true
-
-                        # Clean up sandbox
-                        rm -rf "$TMP_BUILD_DIR"
                     '''
                 }
 
