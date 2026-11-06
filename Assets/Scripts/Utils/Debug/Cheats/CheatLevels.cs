@@ -1,5 +1,6 @@
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
 using Cysharp.Threading.Tasks;
+using JuiceFresh.Scripts;
 using Systems;
 using TMPro;
 using UI;
@@ -89,6 +90,15 @@ namespace Utils.DebugTools
             PlayerPrefs.SetInt("OpenLevel", InputLevel);
             PlayerPrefs.Save();
             GoToMenu("Текущий уровень " + InputLevel);
+        }
+
+        /// <summary>OpenLevel is the player's reached level, so setting it to the last level unlocks the whole map.</summary>
+        public void OpenAllLevels()
+        {
+            PlayerPrefs.SetInt("OpenLevel", LevelProgressionHelper.LastLevel);
+            PlayerPrefs.Save();
+            InputLevel = LevelProgressionHelper.LastLevel;
+            GoToMenu("Открыты все уровни (1-" + LevelProgressionHelper.LastLevel + ")");
         }
 
         public void GoToMenu(string message = null)

@@ -215,6 +215,7 @@ namespace Utils.DebugTools
             _ui.Row(content,
                 ("Играть этот уровень", () => _levels.GoToLevel(_levels.InputLevel)),
                 ("Сделать текущим и в меню", _levels.MakeCurrentAndGoToMenu));
+            _ui.Row(content, ("Открыть все уровни", _levels.OpenAllLevels));
 
             _ui.Section(content, "Текущий уровень");
             _ui.Row(content,
