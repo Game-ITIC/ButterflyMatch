@@ -37,6 +37,7 @@
 | Поражение | `Game/Popups/MenuFailed` | `Views/GameOverView.cs` |
 | Победа | `Game/Popups/MenuComplete` | `Views/GameCompleteView.cs`, `JuiceFresh/Scripts/GUI/Popups/MenuCompletePopup.cs` |
 | Панели уровня | `Game/HUD/TopBarPanel`, `BottomPanel` | `JuiceFresh/Scripts/GUI/BoostIcon.cs` и другие |
+| Туториал в уровне | `Game/Tutorial/Tutorial Overlay` в `game.unity` | `Tutorial/LevelTutorialDirector.cs` (какие шаги и когда), `TutorialOverlay.cs` (затемнение, окно, рука), `TutorialGate.cs` (что можно трогать на поле) |
 
 Пути скриптов указаны от `Assets/Scripts/`, если не написано иначе.
 
