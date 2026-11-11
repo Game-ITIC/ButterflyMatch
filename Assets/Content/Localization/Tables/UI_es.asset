@@ -1159,6 +1159,36 @@ MonoBehaviour:
     m_Localized: Paredes
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Localized: Desliza el dedo sobre 3 mariposas iguales
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Localized: "Cada cadena gasta 1 movimiento. \xA1Las cadenas largas dan m\xE1s
+      puntos!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Localized: "Consigue puntos para encender las estrellas. \xA1Con ellas construyes
+      tu isla!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Localized: "\xA1Re\xFAne las mariposas del objetivo antes de quedarte sin movimientos!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Localized: "\xA1Nuevo potenciador: {0}! {1}. T\xF3calo para probarlo."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Localized: Ahora toca cualquier mariposa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Localized: Toca para continuar
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

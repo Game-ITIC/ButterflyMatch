@@ -1159,6 +1159,35 @@ MonoBehaviour:
     m_Localized: House Walls
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Localized: Swipe across 3 matching butterflies
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Localized: Each chain costs 1 move. Longer chains score more points!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Localized: Score points to light up the stars. Stars build your island!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Localized: Collect the butterflies shown in the goal before you run out of
+      moves!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Localized: 'New booster: {0}! {1}. Tap it to try.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Localized: Now tap any butterfly
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Localized: Tap to continue
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

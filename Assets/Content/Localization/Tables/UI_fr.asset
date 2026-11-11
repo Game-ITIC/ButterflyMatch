@@ -1160,6 +1160,37 @@ MonoBehaviour:
     m_Localized: Murs
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Localized: Glisse ton doigt sur 3 papillons identiques
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Localized: "Chaque cha\xEEne co\xFBte 1 coup. Plus elle est longue, plus elle
+      rapporte !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Localized: "Marque des points pour allumer les \xE9toiles. Elles servent \xE0
+      b\xE2tir ton \xEEle !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Localized: "R\xE9colte les papillons de l'objectif avant d'\xEAtre \xE0 court
+      de coups !"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Localized: 'Nouveau bonus : {0} ! {1}. Touche-le pour l''essayer.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Localized: Touche maintenant un papillon
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Localized: Touche pour continuer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

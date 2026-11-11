@@ -1159,6 +1159,35 @@ MonoBehaviour:
     m_Localized: Paredes
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Localized: Deslize o dedo sobre 3 borboletas iguais
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Localized: "Cada corrente gasta 1 jogada. Correntes maiores d\xE3o mais pontos!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Localized: "Fa\xE7a pontos para acender as estrelas. Com elas voc\xEA constr\xF3i
+      sua ilha!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Localized: Colete as borboletas do objetivo antes que as jogadas acabem!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Localized: "Novo b\xF4nus: {0}! {1}. Toque para experimentar."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Localized: Agora toque em qualquer borboleta
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Localized: Toque para continuar
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

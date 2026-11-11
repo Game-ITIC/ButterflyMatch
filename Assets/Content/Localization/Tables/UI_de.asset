@@ -1159,6 +1159,35 @@ MonoBehaviour:
     m_Localized: "Hausw\xE4nde"
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Localized: "Wische \xFCber 3 gleiche Schmetterlinge"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Localized: "Jede Kette kostet 1 Zug. L\xE4ngere Ketten bringen mehr Punkte!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Localized: "Sammle Punkte, um die Sterne zu f\xFCllen. Mit Sternen baust du
+      deine Insel!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Localized: "Sammle die Schmetterlinge aus dem Ziel, bevor die Z\xFCge ausgehen!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Localized: 'Neuer Booster: {0}! {1}. Tippe ihn an, um ihn auszuprobieren.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Localized: Tippe jetzt auf einen Schmetterling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Localized: Tippe, um fortzufahren
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

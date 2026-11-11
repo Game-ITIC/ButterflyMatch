@@ -1159,6 +1159,35 @@ MonoBehaviour:
     m_Localized: Dinding rumah
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Localized: Geser jarimu melewati 3 kupu-kupu yang sama
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Localized: Setiap rantai memakai 1 langkah. Rantai panjang memberi lebih banyak
+      poin!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Localized: Kumpulkan poin untuk menyalakan bintang. Bintang membangun pulaumu!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Localized: Kumpulkan kupu-kupu di target sebelum langkahmu habis!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Localized: 'Booster baru: {0}! {1}. Ketuk untuk mencoba.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Localized: Sekarang ketuk kupu-kupu mana saja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Localized: Ketuk untuk lanjut
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

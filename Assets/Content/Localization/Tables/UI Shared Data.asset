@@ -1155,6 +1155,34 @@ MonoBehaviour:
     m_Key: bld_house_walls
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Key: tut_chain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Key: tut_moves
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Key: tut_score
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Key: tut_goals
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Key: tut_booster
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Key: tut_booster_target
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Key: tap_to_continue
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

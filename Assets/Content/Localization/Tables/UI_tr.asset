@@ -1162,6 +1162,36 @@ MonoBehaviour:
     m_Localized: "Ev duvarlar\u0131"
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Localized: "Parma\u011F\u0131n\u0131 3 ayn\u0131 kelebe\u011Fin \xFCzerinden
+      kayd\u0131r"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Localized: "Her zincir 1 hamle harcar. Uzun zincirler daha \xE7ok puan verir!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Localized: "Y\u0131ld\u0131zlar\u0131 yakmak i\xE7in puan topla. Y\u0131ld\u0131zlarla
+      adan\u0131 in\u015Fa edersin!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Localized: Hamlelerin bitmeden hedefteki kelebekleri topla!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Localized: "Yeni g\xFC\xE7lendirici: {0}! {1}. Denemek i\xE7in dokun."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Localized: "\u015Eimdi herhangi bir kelebe\u011Fe dokun"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Localized: "Devam etmek i\xE7in dokun"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

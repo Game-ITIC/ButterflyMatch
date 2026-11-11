@@ -1159,6 +1159,35 @@ MonoBehaviour:
     m_Localized: Pareti
     m_Metadata:
       m_Items: []
+  - m_Id: 3219356883247104
+    m_Localized: Trascina il dito su 3 farfalle uguali
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881920
+    m_Localized: "Ogni catena costa 1 mossa. Catene pi\xF9 lunghe danno pi\xF9 punti!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881921
+    m_Localized: Fai punti per accendere le stelle. Con le stelle costruisci la tua
+      isola!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881922
+    m_Localized: Raccogli le farfalle dell'obiettivo prima di finire le mosse!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881923
+    m_Localized: 'Nuovo potenziamento: {0}! {1}. Toccalo per provarlo.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881924
+    m_Localized: Ora tocca una farfalla qualsiasi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3219357004881925
+    m_Localized: Tocca per continuare
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
