@@ -127,22 +127,8 @@ namespace JuiceFresh.States
             canvas.GetComponent<GraphicRaycaster>().enabled = false;
             canvas.GetComponent<GraphicRaycaster>().enabled = true;
 
-            Transform panelTransform = canvas.transform.Find("Panel/Panel");
-            if (panelTransform == null)
-            {
-                panelTransform = canvas.transform.Find("Panel");
-            }
-
-            if (Mathf.Abs(aspect - 2.17f) < 0.03f && panelTransform != null &&
-                panelTransform.TryGetComponent(out RectTransform panel))
-            {
-                // This offset is intended for tall mobile screens (e.g. iPhone X-like aspect ratios).
-                // Applying it on desktop can push the whole HUD (including TopBarPanel) out of place.
-                if (Application.isMobilePlatform)
-                {
-                    panel.anchoredPosition = new Vector2(panel.anchoredPosition.x, 935) + Vector2.down * 100;
-                }
-            }
+            // No HUD offset for tall screens here: Level/Canvas/Panel is anchored to the top and its SafeAreaFitter
+            // handles the notch. The old iPhone X offset (y = 835 on 2.14-2.20 screens) pushed TopBarPanel off-screen.
         }
 
         private void SetupGameCamera()

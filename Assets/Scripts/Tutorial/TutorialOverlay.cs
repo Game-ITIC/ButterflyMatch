@@ -30,6 +30,7 @@ namespace GameTutorials
         // (tall boards like level 6 reach down to ~650 units, the booster icons top out at ~370).
         private const float TopY = -300f;
         private const float BottomY = 400f;
+        private const float UnderGap = 30f;
 
         // A tap that arrives together with the step's appearance must not skip it.
         private const float TapDelay = 0.6f;
@@ -93,7 +94,9 @@ namespace GameTutorials
 
         public void ShowDim(bool on) => _dim.gameObject.SetActive(on);
 
-        public void ShowMessage(string text, Place place, bool tapToContinue)
+        /// <param name="under">For <see cref="Place.Top"/>: the card goes below this element (the top bar on
+        /// notched or tall screens sits lower than the fixed position).</param>
+        public void ShowMessage(string text, Place place, bool tapToContinue, RectTransform under = null)
         {
             _label.text = text;
             _continueLabel.text = GameLocalization.L10n.Get("tap_to_continue", "Tap to continue");
@@ -104,7 +107,10 @@ namespace GameTutorials
             bool top = place == Place.Top;
             _card.anchorMin = _card.anchorMax = new Vector2(0.5f, top ? 1f : 0f);
             _card.pivot = new Vector2(0.5f, top ? 1f : 0f);
-            _card.anchoredPosition = new Vector2(0f, top ? TopY : BottomY);
+            float y = top ? TopY : BottomY;
+            if (top && under != null)
+                y = Mathf.Min(y, UiBottomToLocal(under) - UnderGap - ((RectTransform)_card.parent).rect.yMax);
+            _card.anchoredPosition = new Vector2(0f, y);
             _card.gameObject.SetActive(true);
         }
 
@@ -232,17 +238,30 @@ namespace GameTutorials
 
         private Vector2 UiToLocal(RectTransform target)
         {
-            Canvas targetCanvas = target.GetComponentInParent<Canvas>();
-            Camera uiCamera = targetCanvas != null && targetCanvas.rootCanvas.renderMode != RenderMode.ScreenSpaceOverlay
-                ? targetCanvas.rootCanvas.worldCamera
-                : null;
             Vector3 center = target.TransformPoint(target.rect.center);
-            return ScreenToLocal(RectTransformUtility.WorldToScreenPoint(uiCamera, center));
+            return ScreenToLocal(RectTransformUtility.WorldToScreenPoint(UiCamera(target), center));
         }
 
-        private Vector2 ScreenToLocal(Vector2 screen)
+        // The element's lower edge in the card parent's space.
+        private float UiBottomToLocal(RectTransform target)
         {
-            var parent = (RectTransform)_hand.parent;
+            Vector3 bottom = target.TransformPoint(new Vector3(target.rect.center.x, target.rect.yMin, 0f));
+            Vector2 screen = RectTransformUtility.WorldToScreenPoint(UiCamera(target), bottom);
+            return ScreenToLocal(screen, (RectTransform)_card.parent).y;
+        }
+
+        private static Camera UiCamera(RectTransform target)
+        {
+            Canvas targetCanvas = target.GetComponentInParent<Canvas>();
+            return targetCanvas != null && targetCanvas.rootCanvas.renderMode != RenderMode.ScreenSpaceOverlay
+                ? targetCanvas.rootCanvas.worldCamera
+                : null;
+        }
+
+        private Vector2 ScreenToLocal(Vector2 screen) => ScreenToLocal(screen, (RectTransform)_hand.parent);
+
+        private Vector2 ScreenToLocal(Vector2 screen, RectTransform parent)
+        {
             RectTransformUtility.ScreenPointToLocalPointInRectangle(parent, screen, _canvas.worldCamera, out Vector2 local);
             return local;
         }

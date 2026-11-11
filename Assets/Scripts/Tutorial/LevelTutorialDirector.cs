@@ -122,7 +122,7 @@ namespace GameTutorials
                 TutorialGate.IsShowing = true;
                 TutorialGate.RestrictTo(_chain);
                 _dimmer.Dim(Level.GameField, _chain);
-                _overlay.ShowMessage(L10n.Get("tut_chain"), TutorialOverlay.Place.Top, false);
+                _overlay.ShowMessage(L10n.Get("tut_chain"), TutorialOverlay.Place.Top, false, _movesCard);
                 _overlay.Swipe(_path);
 
                 // A board rebuild (no more matches) replaces the pieces: the chain is found again.
@@ -152,7 +152,7 @@ namespace GameTutorials
             TutorialGate.BlocksBoard = true;
             _overlay.ShowDim(true);
             _raise.Raise(card, _overlay.SortingLayerId, _overlay.RaisedOrder);
-            _overlay.ShowMessage(text, TutorialOverlay.Place.Top, true);
+            _overlay.ShowMessage(text, TutorialOverlay.Place.Top, true, card);
             _tapped = false;
 
             await WaitStep(() => _tapped, token);

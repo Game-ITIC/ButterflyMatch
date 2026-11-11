@@ -193,18 +193,82 @@ namespace JuiceFresh.States
             float screenAspect = 1f / Mathf.Max(0.01f, levelManager.GetComponent<Camera>().aspect);
             float requiredOrtho = (gridWorldWidth + 2f * sideMargin) * screenAspect * 0.5f;
 
-            // Tall boards must still fit between the top bar and the booster row (~60% of the safe height).
+            // Tall boards must still fit between the top bar and the booster row.
             Square bottomSquare = _levelManagerActions.GetSquare(0, levelManager.maxRows - 1);
             if (bottomSquare != null)
             {
-                float gridWorldHeight = Mathf.Abs(leftSquare.transform.position.y - bottomSquare.transform.position.y)
-                                        + Mathf.Max(0.001f, levelManager.squareHeight);
-                float safeShare = Mathf.Clamp01(Screen.safeArea.height / Mathf.Max(1f, Screen.height));
-                requiredOrtho = Mathf.Max(requiredOrtho, gridWorldHeight / (0.6f * Mathf.Max(0.5f, safeShare)) * 0.5f);
+                float cellHeight = Mathf.Max(0.001f, levelManager.squareHeight);
+                if (TryGetHudBand(out float bandBottom, out float bandTop))
+                {
+                    // Measured band: works on any screen shape (tablets and foldables give the HUD a bigger share).
+                    float firstRowY = TargetWorldY(leftSquare.transform);
+                    float lastRowY = TargetWorldY(bottomSquare.transform);
+                    float boardTop = Mathf.Max(firstRowY, lastRowY) + cellHeight * (0.5f + HudGapInCells);
+                    float boardBottom = Mathf.Min(firstRowY, lastRowY) - cellHeight * (0.5f + HudGapInCells);
+                    float cameraY = levelManager.transform.position.y;
+                    if (bandTop > 0.5f)
+                        requiredOrtho = Mathf.Max(requiredOrtho, (boardTop - cameraY) / (2f * (bandTop - 0.5f)));
+                    if (bandBottom < 0.5f)
+                        requiredOrtho = Mathf.Max(requiredOrtho, (cameraY - boardBottom) / (2f * (0.5f - bandBottom)));
+                }
+                else
+                {
+                    float gridWorldHeight = Mathf.Abs(leftSquare.transform.position.y - bottomSquare.transform.position.y) + cellHeight;
+                    float safeShare = Mathf.Clamp01(Screen.safeArea.height / Mathf.Max(1f, Screen.height));
+                    requiredOrtho = Mathf.Max(requiredOrtho, gridWorldHeight / (0.6f * Mathf.Max(0.5f, safeShare)) * 0.5f);
+                }
             }
 
             // Set the camera size, clamped between the default and calculated values
             levelManager.GetComponent<Camera>().orthographicSize = Mathf.Max(defaultScale, requiredOrtho);
+        }
+
+        /// <summary>Free space between the board and the HUD, in cells.</summary>
+        private const float HudGapInCells = 0.25f;
+
+        /// <summary>
+        /// Where the board may go, as screen fractions from the bottom: above the booster row, below the top bar.
+        /// The level canvas is Screen Space - Camera, so these pixels don't depend on the camera size.
+        /// </summary>
+        private bool TryGetHudBand(out float bottom, out float top)
+        {
+            bottom = 0f;
+            top = 1f;
+
+            Transform canvasTransform = levelManager.Level != null ? levelManager.Level.transform.Find("Canvas") : null;
+            Canvas canvas = canvasTransform != null ? canvasTransform.GetComponent<Canvas>() : null;
+            var topBar = canvasTransform != null ? canvasTransform.Find("Panel/TopBarPanel") as RectTransform : null;
+            if (canvas == null || topBar == null || Screen.height <= 0)
+                return false;
+
+            Canvas.ForceUpdateCanvases();
+            Camera cam = canvas.worldCamera;
+            var corners = new Vector3[4];
+
+            topBar.GetWorldCorners(corners);
+            top = RectTransformUtility.WorldToScreenPoint(cam, corners[0]).y / Screen.height;
+
+            // Booster icons share one row; hidden ones (locked boosters) still mark it, so the board doesn't jump at unlock.
+            foreach (BoostIcon icon in levelManager.InGameBoosts)
+            {
+                if (icon == null)
+                    continue;
+
+                ((RectTransform)icon.transform).GetWorldCorners(corners);
+                bottom = Mathf.Max(bottom, RectTransformUtility.WorldToScreenPoint(cam, corners[1]).y / Screen.height);
+            }
+
+            return top > bottom;
+        }
+
+        /// <summary>A square's world Y once the board's intro tween has finished.</summary>
+        private float TargetWorldY(Transform square)
+        {
+            Transform field = levelManager.GameField;
+            Vector3 target = field.parent != null
+                ? field.parent.TransformPoint(levelManager.GameFieldTargetLocalPosition)
+                : levelManager.GameFieldTargetLocalPosition;
+            return square.position.y - field.position.y + target.y;
         }
     }
 }
