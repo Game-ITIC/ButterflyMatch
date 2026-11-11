@@ -36,6 +36,12 @@ namespace Utils.DebugTools
             _levels.GoToMenu("Ежедневную награду можно забрать снова");
         }
 
+        public void ResetTutorials()
+        {
+            GameTutorials.TutorialProgress.ResetAll();
+            _levels.GoToMenu("Туториал покажется снова");
+        }
+
         public void ResetTasks()
         {
             new TaskStorage().Clear();

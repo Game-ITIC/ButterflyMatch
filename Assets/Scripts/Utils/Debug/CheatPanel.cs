@@ -237,6 +237,7 @@ namespace Utils.DebugTools
             _ui.Row(content,
                 ("Сбросить награду дня", _resets.ResetDaily),
                 ("Обновить задания", _resets.ResetTasks));
+            _ui.Row(content, ("Сбросить туториал", _resets.ResetTutorials));
 
             _ui.Section(content, "Реклама");
             _ui.Row(content,
