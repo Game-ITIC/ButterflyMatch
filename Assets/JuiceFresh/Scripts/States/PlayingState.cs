@@ -67,7 +67,8 @@ public class PlayingState : GameStateBase
             return;
 
         // Before the input: the hint must not take the mark off a cell the player has just selected.
-        _hint.Tick(IsWaitingForPlayer());
+        // A tutorial points at its own pieces, so the hint waits.
+        _hint.Tick(IsWaitingForPlayer() && !GameTutorials.TutorialGate.IsShowing);
         HandleInput();
     }
 
@@ -155,6 +156,10 @@ public class PlayingState : GameStateBase
             return;
 #endif
 
+        // A tutorial step waits for a button or a tap on its dim.
+        if (GameTutorials.TutorialGate.BlocksBoard)
+            return;
+
         if (_pointer.IsPressed)
             HandleTouchDown();
         else if (_pointer.WasReleased)
@@ -173,7 +178,8 @@ public class PlayingState : GameStateBase
         if (_boosters.IsBoardBoosterArmed)
             return;
 
-        if (_chain.AcceptsColor(item.color))
+        // The chain tutorial lets only its shown pieces join.
+        if (_chain.AcceptsColor(item.color) && GameTutorials.TutorialGate.Allows(item))
             _chain.Select(item);
     }
 
